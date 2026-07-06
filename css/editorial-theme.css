@@ -1,0 +1,735 @@
+/* ============================================
+   EDITORIAL-THEME.CSS — High-Contrast Grayscale Theme
+   Minimalist Editorial Design for Landings & Subpages
+   ============================================ */
+
+/* ---------- Core Section Backgrounds & Layout Alternation ---------- */
+
+/* Why Choose Us: Pure White */
+.why-choose {
+  background: #ffffff !important;
+  padding: 100px 0 80px 0 !important;
+  border-top: 1px solid rgba(15, 23, 42, 0.08) !important;
+  box-shadow: none !important;
+}
+
+/* Skiing Section: Soft light Gray-Blue */
+.skiing {
+  background: #f8fafc !important;
+  padding: 100px 0 !important;
+  border-top: 1px solid rgba(15, 23, 42, 0.06) !important;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.06) !important;
+  position: relative;
+}
+
+.skiing__bg {
+  display: none !important; /* Remove dark background images completely */
+}
+
+.skiing__inner {
+  position: relative;
+  z-index: 2;
+}
+
+/* Trekking Section: Pure White */
+.trekking {
+  background: #ffffff !important;
+  padding: 100px 0 !important;
+  position: relative;
+}
+
+.trekking__parallax {
+  display: none !important; /* Hide old dark parallax layers */
+}
+
+/* Activities Section: Soft Light Gray */
+.activities {
+  background: #f8fafc !important;
+  padding: 100px 0 !important;
+  border-top: 1px solid rgba(15, 23, 42, 0.06) !important;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.06) !important;
+}
+
+/* Sightseeing Section: Pure White */
+.sightseeing {
+  background: #ffffff !important;
+  padding: 100px 0 !important;
+}
+
+/* Rentals Section: Soft Light Gray */
+.rentals {
+  background: #f8fafc !important;
+  padding: 100px 0 !important;
+  border-top: 1px solid rgba(15, 23, 42, 0.06) !important;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.06) !important;
+}
+
+/* Transport Section: Pure White */
+.transport {
+  background: #ffffff !important;
+  padding: 100px 0 !important;
+}
+
+.transport__bg {
+  display: none !important; /* Remove transport dark background */
+}
+
+/* Packages Section: Soft Light Gray */
+.packages {
+  background: #f8fafc !important;
+  padding: 100px 0 !important;
+  border-top: 1px solid rgba(15, 23, 42, 0.06) !important;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.06) !important;
+}
+
+/* Testimonials: Pure White */
+.testimonials {
+  background: #ffffff !important;
+  padding: 100px 0 !important;
+}
+
+/* Gallery: Soft Light Gray */
+.gallery {
+  background: #f8fafc !important;
+  padding: 100px 0 !important;
+  border-top: 1px solid rgba(15, 23, 42, 0.06) !important;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.06) !important;
+}
+
+/* About Us: Pure White */
+.about {
+  background: #ffffff !important;
+  padding: 100px 0 !important;
+}
+
+/* ---------- Typography Readability & Contrast Polish ---------- */
+body, 
+section {
+  color: #0f172a !important; /* Force deep slate body text */
+}
+
+.section-label {
+  color: #000000 !important;
+  font-family: var(--font-accent);
+  font-size: var(--text-xs);
+  font-weight: 700 !important;
+  letter-spacing: 0.25em !important;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+  opacity: 0.9;
+}
+
+.section-title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.8rem, 4vw, 2.8rem) !important;
+  font-weight: 900 !important;
+  line-height: 1.2 !important;
+  color: #0f172a !important;
+  margin-bottom: var(--space-4);
+}
+
+/* Overrides text gradients to clean high-end slate-black headers */
+.section-title .text-gradient {
+  background: none !important;
+  -webkit-text-fill-color: initial !important;
+  color: #000000 !important;
+  display: inline !important;
+  font-weight: 900 !important;
+}
+
+.section-subtitle {
+  color: #475569 !important;
+  font-size: var(--text-base) !important;
+  max-width: 600px;
+  line-height: 1.6 !important;
+  margin-bottom: 0;
+}
+
+/* ---------- 1. Why Choose Us Section ---------- */
+.why-choose__grid {
+  counter-reset: why-counter;
+  gap: 24px !important;
+  margin-top: 48px !important;
+}
+
+.why-choose__card {
+  position: relative;
+  counter-increment: why-counter;
+  background: #ffffff !important;
+  border: 1px solid rgba(15, 23, 42, 0.08) !important;
+  border-radius: 4px !important;
+  padding: 40px 30px !important;
+  text-align: left !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.015) !important;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.why-choose__card::after {
+  content: "0" counter(why-counter);
+  position: absolute;
+  top: 36px;
+  right: 30px;
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: rgba(15, 23, 42, 0.07);
+  letter-spacing: -0.02em;
+}
+
+.why-choose__card:hover {
+  transform: translateY(-6px) !important;
+  border-color: #000000 !important;
+  box-shadow: 0 16px 36px rgba(15, 23, 42, 0.05) !important;
+}
+
+.why-choose__card-title {
+  color: #0f172a !important;
+  font-weight: 800 !important;
+  font-size: 1.15rem !important;
+  margin: 20px 0 10px 0 !important;
+}
+
+.why-choose__card-desc {
+  color: #475569 !important;
+  font-size: 0.9rem !important;
+  line-height: 1.6 !important;
+}
+
+.why-choose__icon svg {
+  color: #000000 !important;
+}
+
+/* ---------- 2. Skiing & Snowboarding Section ---------- */
+.skiing__layout {
+  grid-template-columns: 1.1fr 0.9fr !important;
+  gap: 48px !important;
+  margin-top: 40px !important;
+}
+
+.skiing__hero-image {
+  border: 1px solid rgba(15, 23, 42, 0.08) !important;
+  padding: 12px !important;
+  background: #ffffff !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.03) !important;
+  border-radius: 4px !important;
+  position: relative;
+}
+
+.skiing__hero-badge {
+  background: #000000 !important;
+  color: #ffffff !important;
+  font-family: var(--font-accent);
+  font-weight: 800 !important;
+  border-radius: 2px !important;
+  font-size: 10px !important;
+  padding: 6px 12px !important;
+  top: 24px !important;
+  left: 24px !important;
+}
+
+.skiing__packages {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.skiing__category-title {
+  color: #000000 !important;
+  font-family: var(--font-heading);
+  font-weight: 800 !important;
+  font-size: 1.1rem !important;
+  letter-spacing: -0.01em;
+  margin-bottom: 20px !important;
+  text-transform: uppercase;
+}
+
+.skiing__package-card {
+  background: #ffffff !important;
+  border: 1px solid rgba(15, 23, 42, 0.08) !important;
+  border-radius: 4px !important;
+  padding: 22px 26px !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  color: #0f172a !important;
+  margin-bottom: 14px !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.01) !important;
+}
+
+.skiing__package-card:hover {
+  border-color: #000000 !important;
+  transform: translateX(6px) !important;
+  background: #ffffff !important;
+}
+
+.skiing__package-name {
+  font-weight: 700 !important;
+  font-size: 0.95rem !important;
+}
+
+.skiing__package-arrow {
+  color: #000000 !important;
+  font-weight: bold !important;
+}
+
+/* ---------- 3. Trekking Section ---------- */
+.trekking__masonry {
+  gap: 24px !important;
+  margin-top: 48px !important;
+}
+
+.trekking__card {
+  background: #ffffff !important;
+  border: 1px solid rgba(15, 23, 42, 0.08) !important;
+  border-radius: 4px !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.015) !important;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.trekking__card:hover {
+  transform: translateY(-8px) !important;
+  border-color: #000000 !important;
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.06) !important;
+}
+
+.trekking__card-difficulty {
+  top: 20px !important;
+  left: 20px !important;
+  border-radius: 2px !important;
+  font-weight: 800 !important;
+  font-size: 10px !important;
+  text-transform: uppercase !important;
+  border: 1px solid rgba(255, 255, 255, 0.4) !important;
+  background: rgba(0, 0, 0, 0.6) !important;
+  color: #ffffff !important;
+  backdrop-filter: blur(4px);
+}
+
+.trekking__card-content {
+  padding: 24px !important;
+  background: #ffffff !important;
+  border-top: 1px solid rgba(15, 23, 42, 0.06) !important;
+  position: relative !important;
+}
+
+.trekking__card-title {
+  color: #0f172a !important;
+  font-weight: 800 !important;
+  font-size: 1.15rem !important;
+  margin-bottom: 12px !important;
+}
+
+.trekking__card-info {
+  display: flex !important;
+  gap: 20px !important;
+  color: #475569 !important;
+  font-size: 0.85rem !important;
+  font-weight: 600 !important;
+}
+
+.trekking__card-info svg {
+  color: #000000 !important;
+  width: 16px !important;
+  height: 16px !important;
+  margin-right: 4px !important;
+}
+
+/* ---------- 4. Activities Section ---------- */
+.activities__split {
+  gap: 40px !important;
+  margin-top: 48px !important;
+}
+
+.activities__season {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+.activities__season--winter {
+  border-right: 1px solid rgba(15, 23, 42, 0.08) !important;
+  padding-right: 40px !important;
+}
+
+.activities__season-label {
+  color: #000000 !important;
+  font-family: var(--font-accent);
+  font-weight: 800 !important;
+  font-size: var(--text-xs) !important;
+  letter-spacing: 0.1em !important;
+}
+
+.activities__season-title {
+  color: #000000 !important;
+  font-family: var(--font-heading);
+  font-weight: 900 !important;
+  font-size: 1.4rem !important;
+  margin-bottom: 30px !important;
+}
+
+.activities__item {
+  border-bottom: 1px solid rgba(15, 23, 42, 0.06) !important;
+  padding: 20px 0 !important;
+  transition: all 0.3s ease !important;
+}
+
+.activities__item:hover {
+  transform: translateX(6px) !important;
+}
+
+.activities__item-name {
+  color: #000000 !important;
+  font-weight: 800 !important;
+  font-size: 1.02rem !important;
+  margin-bottom: 4px !important;
+}
+
+.activities__item-desc {
+  color: #475569 !important;
+  font-size: 0.88rem !important;
+}
+
+/* ---------- 5. Sightseeing & Map ---------- */
+.sightseeing__map-container {
+  background: #f8fafc !important;
+  border: 1px solid rgba(15, 23, 42, 0.08) !important;
+  border-radius: 4px !important;
+  padding: 12px !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.03) !important;
+  overflow: hidden;
+  margin-top: 48px !important;
+}
+
+.sightseeing__map-bg {
+  filter: grayscale(1) contrast(1.1) brightness(0.95) !important;
+  opacity: 0.85 !important;
+}
+
+.sightseeing__pin-dot {
+  width: 14px !important;
+  height: 14px !important;
+  background: #000000 !important;
+  border: 3px solid #ffffff !important;
+  box-shadow: 0 0 0 5px rgba(0, 0, 0, 0.12) !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.sightseeing__pin:hover .sightseeing__pin-dot,
+.sightseeing__pin--active .sightseeing__pin-dot {
+  background: var(--glacier-blue) !important;
+  transform: scale(1.3) !important;
+  box-shadow: 0 0 0 6px rgba(37, 99, 235, 0.25) !important;
+}
+
+.sightseeing__pin-label {
+  background: #ffffff !important;
+  border: 1px solid rgba(15, 23, 42, 0.08) !important;
+  color: #000000 !important;
+  border-radius: 2px !important;
+  font-weight: 700 !important;
+  font-size: 11px !important;
+  padding: 5px 12px !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05) !important;
+}
+
+.sightseeing__info-card {
+  background: #ffffff !important;
+  border: 1px solid #000000 !important;
+  border-radius: 4px !important;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.12) !important;
+  padding: 24px !important;
+}
+
+.sightseeing__info-title {
+  color: #000000 !important;
+  font-weight: 800 !important;
+}
+
+.sightseeing__info-desc {
+  color: #475569 !important;
+}
+
+/* ---------- 6. Equipment Rentals & Transportation ---------- */
+.rentals__grid,
+.transport__grid {
+  gap: 24px !important;
+  margin-top: 48px !important;
+}
+
+.rentals__card,
+.transport__card {
+  background: #ffffff !important;
+  border: 1px solid rgba(15, 23, 42, 0.08) !important;
+  border-radius: 4px !important;
+  padding: 40px 30px !important;
+  text-align: center !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.015) !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.rentals__card:hover,
+.transport__card:hover {
+  border-color: #000000 !important;
+  transform: translateY(-6px) !important;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.04) !important;
+}
+
+.rentals__card-icon,
+.transport__card-icon {
+  width: 58px !important;
+  height: 58px !important;
+  background: #f1f5f9 !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin: 0 auto 24px auto !important;
+  color: #000000 !important;
+}
+
+.rentals__card-title,
+.transport__card-title {
+  color: #0f172a !important;
+  font-weight: 800 !important;
+  font-size: 1.15rem !important;
+  margin-bottom: 12px !important;
+}
+
+.rentals__card-desc,
+.transport__card-desc {
+  color: #475569 !important;
+  font-size: 0.9rem !important;
+  line-height: 1.6 !important;
+}
+
+.rentals__card-badge {
+  background: #000000 !important;
+  color: #ffffff !important;
+  border-radius: 2px !important;
+  font-weight: 700 !important;
+}
+
+/* ---------- 7. Tour Packages Grid ---------- */
+.packages__grid {
+  gap: 24px !important;
+  margin-top: 48px !important;
+}
+
+.packages__card {
+  background: #ffffff !important;
+  border: 1px solid rgba(15, 23, 42, 0.08) !important;
+  border-radius: 4px !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.015) !important;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  overflow: hidden;
+}
+
+.packages__card:hover {
+  transform: translateY(-8px) !important;
+  border-color: #000000 !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06) !important;
+}
+
+.packages__card-tag {
+  background: #000000 !important;
+  color: #ffffff !important;
+  border-radius: 2px !important;
+  font-weight: 800 !important;
+  font-size: 9px !important;
+  text-transform: uppercase !important;
+  top: 20px !important;
+  left: 20px !important;
+}
+
+.packages__card-content {
+  padding: 28px 24px !important;
+  background: #ffffff !important;
+  border-top: 1px solid rgba(15, 23, 42, 0.06) !important;
+}
+
+.packages__card-title {
+  color: #0f172a !important;
+  font-weight: 800 !important;
+  font-size: 1.15rem !important;
+  margin-bottom: 12px !important;
+}
+
+.packages__card-desc {
+  color: #475569 !important;
+  font-size: 0.9rem !important;
+  line-height: 1.6 !important;
+  margin-bottom: 24px !important;
+}
+
+/* ---------- 8. Testimonials Section ---------- */
+.testimonials__card {
+  background: #f8fafc !important;
+  border: 1px solid rgba(15, 23, 42, 0.08) !important;
+  border-radius: 4px !important;
+  padding: 44px !important;
+  position: relative !important;
+  text-align: left !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.015) !important;
+}
+
+.testimonials__card::before {
+  content: '“';
+  position: absolute;
+  top: 12px;
+  left: 36px;
+  font-family: var(--font-serif);
+  font-size: 7rem;
+  line-height: 1;
+  color: rgba(15, 23, 42, 0.05);
+  font-style: italic;
+  font-weight: 700;
+  pointer-events: none;
+}
+
+.testimonials__star {
+  color: #000000 !important;
+}
+
+.testimonials__text {
+  color: #1e293b !important;
+  font-size: 1rem !important;
+  line-height: 1.7 !important;
+  margin: 16px 0 24px 0 !important;
+  position: relative;
+  z-index: 2;
+}
+
+.testimonials__avatar {
+  background: #000000 !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+}
+
+.testimonials__author-name {
+  color: #000000 !important;
+  font-weight: 700 !important;
+}
+
+.testimonials__author-source {
+  color: #475569 !important;
+}
+
+/* ---------- 9. Gallery Masonry ---------- */
+.gallery__masonry {
+  gap: 20px !important;
+  margin-top: 48px !important;
+}
+
+.gallery__item {
+  border: 1px solid rgba(15, 23, 42, 0.08) !important;
+  padding: 8px !important;
+  background: #ffffff !important;
+  border-radius: 4px !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.01) !important;
+}
+
+.gallery__item:hover {
+  border-color: #000000 !important;
+  transform: scale(1.02) !important;
+  z-index: 5 !important;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05) !important;
+}
+
+.gallery__item-overlay {
+  background: rgba(0, 0, 0, 0.6) !important;
+}
+
+.gallery__item-label {
+  font-weight: 700 !important;
+  font-size: 11px !important;
+  letter-spacing: 0.1em !important;
+  border-radius: 2px !important;
+}
+
+/* ---------- 10. About Us & Timeline ---------- */
+.about__portrait {
+  border: 1px solid rgba(15, 23, 42, 0.08) !important;
+  padding: 12px !important;
+  background: #ffffff !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.03) !important;
+  border-radius: 4px !important;
+}
+
+.about__timeline {
+  border-left: 2px solid rgba(15, 23, 42, 0.06) !important;
+  padding-left: 28px !important;
+  margin-left: 10px !important;
+}
+
+.about__timeline-item {
+  position: relative !important;
+  margin-bottom: 28px !important;
+}
+
+.about__timeline-item::before {
+  content: '' !important;
+  position: absolute !important;
+  left: -36px !important;
+  top: 6px !important;
+  width: 14px !important;
+  height: 14px !important;
+  border-radius: 50% !important;
+  background: #000000 !important;
+  border: 3px solid #ffffff !important;
+  box-shadow: 0 0 0 2px rgba(15, 23, 42, 0.08) !important;
+}
+
+.about__timeline-year {
+  color: #000000 !important;
+  font-weight: 800 !important;
+  font-size: 1.1rem !important;
+}
+
+.about__timeline-text {
+  color: #475569 !important;
+  font-size: 0.9rem !important;
+}
+
+/* ---------- Buttons & Action Triggers ---------- */
+.btn--primary {
+  background: #000000 !important;
+  color: #ffffff !important;
+  border: 1px solid #000000 !important;
+  border-radius: 4px !important;
+}
+
+.btn--primary:hover {
+  background: #ffffff !important;
+  color: #000000 !important;
+}
+
+.btn--secondary {
+  background: transparent !important;
+  color: #000000 !important;
+  border: 1px solid rgba(15, 23, 42, 0.25) !important;
+  border-radius: 4px !important;
+}
+
+.btn--secondary:hover {
+  background: #000000 !important;
+  color: #ffffff !important;
+  border-color: #000000 !important;
+}
+
+/* Responsive details */
+@media (max-width: 992px) {
+  .activities__season--winter {
+    border-right: none !important;
+    border-bottom: 1px solid rgba(15, 23, 42, 0.08) !important;
+    padding-right: 0 !important;
+    padding-bottom: 30px !important;
+    margin-bottom: 30px !important;
+  }
+}

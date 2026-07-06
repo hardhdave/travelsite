@@ -1,0 +1,170 @@
+/* ============================================
+   TREKKING — Parallax Masonry Layout
+   ============================================ */
+
+.trekking {
+  padding: var(--space-section) 0;
+  position: relative;
+  overflow: hidden;
+  background: var(--midnight-navy);
+  margin-top: -60px;
+  border-top-left-radius: var(--radius-2xl);
+  border-top-right-radius: var(--radius-2xl);
+  z-index: 14;
+  box-shadow: 0 -20px 40px rgba(15, 23, 42, 0.04);
+}
+
+/* Parallax Mountain Layers */
+.trekking__parallax {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.trekking__parallax-layer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40%;
+  opacity: 0.06;
+}
+
+.trekking__parallax-layer--1 {
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%235BA8FF' d='M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,218.7C672,235,768,245,864,234.7C960,224,1056,192,1152,176C1248,160,1344,160,1392,160L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'/%3E%3C/svg%3E") no-repeat bottom;
+  background-size: cover;
+  will-change: transform;
+}
+
+.trekking__parallax-layer--2 {
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%232F6B52' d='M0,288L60,272C120,256,240,224,360,218.7C480,213,600,235,720,245.3C840,256,960,256,1080,234.7C1200,213,1320,171,1380,149.3L1440,128L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z'/%3E%3C/svg%3E") no-repeat bottom;
+  background-size: cover;
+  height: 30%;
+  will-change: transform;
+}
+
+.trekking__inner {
+  position: relative;
+  z-index: 1;
+}
+
+.trekking__header {
+  text-align: center;
+  margin-bottom: var(--space-16);
+}
+
+.trekking__header .section-label {
+  justify-content: center;
+}
+
+.trekking__header .section-subtitle {
+  margin: 0 auto;
+}
+
+/* Masonry Grid */
+.trekking__masonry {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 200px;
+  gap: var(--space-5);
+}
+
+.trekking__card {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+}
+
+.trekking__card:nth-child(1) { grid-row: span 2; }
+.trekking__card:nth-child(2) { grid-row: span 2; }
+.trekking__card:nth-child(3) { grid-row: span 2; }
+.trekking__card:nth-child(4) { grid-row: span 1; }
+.trekking__card:nth-child(5) { grid-row: span 1; grid-column: span 2; }
+
+.trekking__card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--duration-slower) var(--ease-smooth);
+}
+
+.trekking__card:hover .trekking__card-image {
+  transform: scale(1.1);
+}
+
+.trekking__card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(8,18,32,0.9) 100%);
+  z-index: 1;
+  transition: background var(--duration-normal) var(--ease-smooth);
+}
+
+.trekking__card:hover .trekking__card-overlay {
+  background: linear-gradient(180deg, transparent 20%, rgba(8,18,32,0.95) 100%);
+}
+
+.trekking__card-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: var(--space-6);
+  z-index: 2;
+}
+
+.trekking__card-difficulty {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--glacier-blue);
+  background: rgba(91,168,255,0.15);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  margin-bottom: var(--space-3);
+}
+
+.trekking__card-title {
+  font-size: var(--text-xl);
+  font-weight: var(--weight-bold);
+  margin-bottom: var(--space-2);
+  color: #FAFCFF;
+}
+
+.trekking__card-info {
+  font-size: var(--text-xs);
+  color: rgba(255, 255, 255, 0.7);
+  display: flex;
+  gap: var(--space-4);
+}
+
+.trekking__card-info span {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+@media (max-width: 1024px) {
+  .trekking__masonry {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 180px;
+  }
+
+  .trekking__card:nth-child(5) { grid-column: span 1; }
+}
+
+@media (max-width: 640px) {
+  .trekking__masonry {
+    grid-template-columns: 1fr;
+    grid-auto-rows: 250px;
+  }
+
+  .trekking__card:nth-child(n) {
+    grid-row: span 1;
+    grid-column: span 1;
+  }
+}

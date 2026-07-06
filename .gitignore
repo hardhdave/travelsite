@@ -1,0 +1,18 @@
+# Node / dev
+node_modules/
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Temp / cache
+*.tmp
+*.bak

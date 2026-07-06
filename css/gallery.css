@@ -1,0 +1,122 @@
+/* ============================================
+   GALLERY — Pinterest Masonry
+   ============================================ */
+
+.gallery {
+  padding: var(--space-section) 0;
+  background: var(--midnight-navy);
+}
+
+.gallery__header {
+  text-align: center;
+  margin-bottom: var(--space-12);
+}
+
+.gallery__header .section-label { justify-content: center; }
+.gallery__header .section-subtitle { margin: 0 auto; }
+
+.gallery__masonry {
+  columns: 4;
+  column-gap: var(--space-4);
+}
+
+.gallery__item {
+  break-inside: avoid;
+  margin-bottom: var(--space-4);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+}
+
+.gallery__item img {
+  width: 100%;
+  display: block;
+  transition: transform var(--duration-slower) var(--ease-smooth);
+}
+
+.gallery__item:hover img {
+  transform: scale(1.08);
+}
+
+.gallery__item-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 50%, rgba(8,18,32,0.8) 100%);
+  opacity: 0;
+  transition: opacity var(--duration-normal) var(--ease-smooth);
+  display: flex;
+  align-items: flex-end;
+  padding: var(--space-5);
+  z-index: 1;
+}
+
+.gallery__item:hover .gallery__item-overlay {
+  opacity: 1;
+}
+
+.gallery__item-label {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--snow-white);
+}
+
+/* Lightbox */
+.gallery__lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+  background: rgba(8, 18, 32, 0.95);
+  backdrop-filter: blur(30px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--duration-normal) var(--ease-smooth);
+}
+
+.gallery__lightbox.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.gallery__lightbox img {
+  max-width: 90vw;
+  max-height: 90vh;
+  border-radius: var(--radius-lg);
+  object-fit: contain;
+}
+
+.gallery__lightbox-close {
+  position: absolute;
+  top: var(--space-8);
+  right: var(--space-8);
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(248,250,252,0.1);
+  border-radius: var(--radius-full);
+  color: var(--snow-white);
+  font-size: 24px;
+  cursor: pointer;
+  transition: background var(--duration-fast) var(--ease-smooth);
+}
+
+.gallery__lightbox-close:hover {
+  background: rgba(248,250,252,0.2);
+}
+
+@media (max-width: 1024px) {
+  .gallery__masonry { columns: 3; }
+}
+
+@media (max-width: 768px) {
+  .gallery__masonry { columns: 2; }
+}
+
+@media (max-width: 480px) {
+  .gallery__masonry { columns: 1; }
+}

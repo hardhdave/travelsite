@@ -1,0 +1,134 @@
+/* ============================================
+   ABOUT — Dark Gold Founder Section
+   ============================================ */
+
+.about {
+  padding: var(--space-section) 0;
+  background: var(--bg-base);
+  position: relative;
+  overflow: hidden;
+}
+
+.about__layout {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: var(--space-16);
+  align-items: center;
+}
+
+/* Portrait */
+.about__portrait {
+  position: relative;
+}
+
+.about__portrait-image {
+  width: 100%;
+  max-width: 460px;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  border-radius: 0;
+  filter: grayscale(25%) brightness(0.82);
+}
+
+.about__portrait-frame {
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  width: 100%;
+  max-width: 460px;
+  aspect-ratio: 3/4;
+  border: 1px solid rgba(201,168,76,0.3);
+  border-radius: 0;
+  pointer-events: none;
+}
+
+/* Content */
+.about__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.about__quote {
+  font-family: var(--font-serif);
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  font-weight: var(--weight-light);
+  font-style: italic;
+  line-height: var(--leading-relaxed);
+  color: var(--text-secondary);
+  position: relative;
+  padding-left: var(--space-6);
+  border-left: 2px solid var(--gold);
+  max-width: none;
+}
+
+.about__bio {
+  font-size: var(--text-base);
+  color: var(--text-secondary);
+  line-height: var(--leading-relaxed);
+  max-width: none;
+}
+
+/* Timeline */
+.about__timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-left: 1px solid rgba(201,168,76,0.2);
+  position: relative;
+  margin-top: var(--space-4);
+}
+
+.about__timeline-item {
+  position: relative;
+  padding: var(--space-5) var(--space-6);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  display: flex;
+  gap: var(--space-6);
+  align-items: flex-start;
+}
+
+.about__timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -4px;
+  top: calc(var(--space-5) + 6px);
+  width: 8px;
+  height: 8px;
+  border-radius: 0;
+  background: var(--gold);
+  opacity: 0.6;
+}
+
+.about__timeline-year {
+  font-family: var(--font-accent);
+  font-size: 10px;
+  font-weight: var(--weight-semibold);
+  color: var(--gold);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  flex-shrink: 0;
+  padding-top: 2px;
+}
+
+.about__timeline-text {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  line-height: var(--leading-relaxed);
+  max-width: none;
+}
+
+@media (max-width: 1024px) {
+  .about__layout {
+    grid-template-columns: 1fr;
+    gap: var(--space-10);
+  }
+
+  .about__portrait {
+    display: flex;
+    justify-content: center;
+  }
+
+  .about__portrait-image { max-width: 360px; }
+  .about__portrait-frame { max-width: 360px; }
+}

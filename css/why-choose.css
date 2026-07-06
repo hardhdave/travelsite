@@ -1,0 +1,196 @@
+/* ============================================
+   WHY CHOOSE — 3×3 Premium Cards
+   ============================================ */
+
+.why-choose {
+  padding: 60px 0;
+  background: var(--bg-raised);
+  margin-top: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  position: relative;
+  z-index: 10;
+}
+
+.why-choose::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201,168,76,0.2), transparent);
+  pointer-events: none;
+}
+
+.why-choose__header {
+  text-align: center;
+  margin-bottom: var(--space-8);
+}
+
+.why-choose__header .section-label {
+  justify-content: center;
+}
+
+.why-choose__header .section-subtitle {
+  margin: 0 auto;
+}
+
+.why-choose__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+}
+
+.why-choose__card {
+  background: var(--bg-raised);
+  border: none;
+  border-radius: 0;
+  padding: var(--space-8) var(--space-6);
+  text-align: left;
+  transition: background var(--duration-normal) ease;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.why-choose__card::before {
+  display: none;
+}
+
+.why-choose__card:hover {
+  transform: none;
+  background: var(--bg-card);
+  box-shadow: none;
+}
+
+.why-choose__card:hover::before { display: none; }
+
+.why-choose__icon {
+  width: 46px;
+  height: 46px;
+  margin: 0 0 var(--space-2);
+  background: rgba(201,168,76,0.06);
+  border: 1px solid var(--gold-border);
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--duration-normal) var(--ease-premium);
+  flex-shrink: 0;
+}
+
+.why-choose__icon svg,
+.why-choose__icon i {
+  width: 20px;
+  height: 20px;
+  color: var(--gold);
+  transition: transform var(--duration-normal) var(--ease-premium);
+}
+
+.why-choose__card:hover .why-choose__icon {
+  background: var(--gold);
+  border-color: var(--gold);
+  transform: none;
+}
+
+.why-choose__card:hover .why-choose__icon svg {
+  color: #0a0a0a;
+  transform: none;
+}
+
+.why-choose__card-title {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: var(--weight-semibold);
+  margin-bottom: 0;
+  color: var(--text-primary);
+  letter-spacing: 0.02em;
+}
+
+.why-choose__card-desc {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  line-height: var(--leading-relaxed);
+  max-width: none;
+}
+
+@media (max-width: 1024px) {
+  .why-choose__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .why-choose__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+}
+
+@media (min-width: 1025px) {
+  .why-choose {
+    height: 100vh;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 100px 0 40px;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+  
+  /* Optimize default desktop sizes to prevent clipping */
+  .why-choose__header {
+    margin-bottom: var(--space-6);
+  }
+  .why-choose__grid {
+    gap: var(--space-3);
+  }
+  .why-choose__card {
+    padding: var(--space-4) var(--space-4);
+  }
+  .why-choose__icon {
+    width: 44px;
+    height: 44px;
+    margin-bottom: var(--space-2);
+  }
+  .why-choose__card-title {
+    font-size: var(--text-lg);
+    margin-bottom: var(--space-2);
+  }
+  .why-choose__card-desc {
+    font-size: var(--text-sm);
+    line-height: 1.5;
+  }
+  
+  /* Compact height adjustment to ensure 100% viewport fit on shorter screens */
+  @media (max-height: 850px) {
+    .why-choose {
+      padding: 90px 0 20px;
+    }
+    .why-choose__header {
+      margin-bottom: var(--space-3);
+    }
+    .why-choose__grid {
+      gap: var(--space-2);
+    }
+    .why-choose__card {
+      padding: var(--space-3) var(--space-3);
+    }
+    .why-choose__icon {
+      width: 36px;
+      height: 36px;
+      margin-bottom: var(--space-1);
+    }
+    .why-choose__card-title {
+      font-size: var(--text-base);
+      margin-bottom: var(--space-1);
+    }
+    .why-choose__card-desc {
+      font-size: var(--text-xs);
+      line-height: 1.4;
+    }
+  }
+}
+

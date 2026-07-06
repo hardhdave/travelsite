@@ -1,0 +1,199 @@
+/* ============================================
+   PACKAGES — Tour Package Conversion Cards
+   ============================================ */
+
+.packages {
+  padding: var(--space-section) 0;
+  background: var(--gradient-premium);
+  position: relative;
+  overflow: hidden;
+}
+
+.packages::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle, rgba(37, 99, 235, 0.03) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.packages__header {
+  text-align: center;
+  margin-bottom: var(--space-16);
+}
+
+.packages__header .section-label { justify-content: center; }
+.packages__header .section-subtitle { margin: 0 auto; }
+
+.packages__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6);
+}
+
+.packages__card {
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  position: relative;
+  min-height: 480px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  cursor: pointer;
+  transition: all var(--duration-normal) var(--ease-premium);
+}
+
+.packages__card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-xl);
+}
+
+.packages__card:nth-child(1),
+.packages__card:nth-child(2) {
+  grid-column: span 1;
+}
+
+.packages__card--featured {
+  grid-row: span 2;
+  min-height: 100%;
+}
+
+.packages__card-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--duration-slower) var(--ease-smooth);
+}
+
+.packages__card:hover .packages__card-image {
+  transform: scale(1.08);
+}
+
+.packages__card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 20%, rgba(8,18,32,0.95) 100%);
+  z-index: 1;
+}
+
+.packages__card-content {
+  position: relative;
+  z-index: 2;
+  padding: var(--space-8);
+}
+
+.packages__card-tag {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  background: var(--glass-border-hover);
+  color: var(--glacier-blue);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  margin-bottom: var(--space-4);
+  border: 1px solid var(--glass-border-hover);
+}
+
+.packages__card-title {
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-bold);
+  margin-bottom: var(--space-3);
+  color: #FAFCFF;
+}
+
+.packages__card-desc {
+  font-size: var(--text-sm);
+  color: rgba(255, 255, 255, 0.7);
+  line-height: var(--leading-relaxed);
+  margin-bottom: var(--space-5);
+}
+
+.packages__card .btn {
+  align-self: flex-start;
+}
+
+/* Bottom row: 2 cards spanning full width */
+.packages__bottom-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-6);
+  margin-top: var(--space-6);
+}
+
+.packages__bottom-card {
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  position: relative;
+  min-height: 320px;
+  display: flex;
+  align-items: flex-end;
+  cursor: pointer;
+  transition: all var(--duration-normal) var(--ease-premium);
+}
+
+.packages__bottom-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-xl);
+}
+
+.packages__bottom-card-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--duration-slower) var(--ease-smooth);
+}
+
+.packages__bottom-card:hover .packages__bottom-card-image {
+  transform: scale(1.08);
+}
+
+.packages__bottom-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 30%, rgba(8,18,32,0.92) 100%);
+  z-index: 1;
+}
+
+.packages__bottom-card-content {
+  position: relative;
+  z-index: 2;
+  padding: var(--space-8);
+}
+
+.packages__bottom-card-content .packages__card-title {
+  font-size: var(--text-xl);
+}
+
+@media (max-width: 1024px) {
+  .packages__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .packages__card--featured {
+    grid-row: span 1;
+  }
+
+  .packages__bottom-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .packages__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .packages__card {
+    min-height: 360px;
+  }
+}

@@ -1,0 +1,203 @@
+/* ============================================
+   NAVBAR — Dark Gold Luxury Edition
+   ============================================ */
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: var(--z-navbar);
+  padding: var(--space-6) 0;
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  transition: all var(--duration-slow) var(--ease-premium);
+}
+
+.navbar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: var(--container-wide);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+}
+
+/* Logo */
+.navbar__logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-family: var(--font-heading);
+  font-size: clamp(1.1rem, 1.5vw, 1.3rem);
+  font-weight: var(--weight-light);
+  color: var(--text-primary);
+  letter-spacing: 0.1em;
+  z-index: 10;
+}
+
+.navbar__logo-icon {
+  width: 34px;
+  height: 34px;
+  background: rgba(201, 168, 76, 0.1);
+  border: 1px solid var(--gold-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold);
+}
+
+.navbar__logo-text span {
+  color: var(--gold);
+}
+
+/* Nav Links */
+.navbar__links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+}
+
+.navbar__link {
+  font-family: var(--font-accent);
+  font-size: 10px;
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(245, 240, 232, 0.65);
+  transition: color var(--duration-fast) ease;
+  position: relative;
+}
+
+.navbar__link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--duration-normal) var(--ease-premium);
+}
+
+.navbar__link:hover,
+.navbar__link.active {
+  color: var(--gold);
+  opacity: 1;
+}
+
+.navbar__link:hover::after,
+.navbar__link.active::after {
+  transform: scaleX(1);
+}
+
+/* CTA */
+.navbar__cta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.navbar__cta .btn {
+  padding: 9px 22px;
+  font-size: 10px;
+  background: transparent;
+  color: var(--gold);
+  border: 1px solid var(--gold-border);
+  border-radius: 0;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.navbar__cta .btn:hover {
+  background: var(--gold);
+  color: #0a0a0a;
+  border-color: var(--gold);
+  box-shadow: none;
+}
+
+/* Scrolled State */
+.navbar--scrolled {
+  padding: var(--space-4) 0;
+  background: rgba(8, 8, 8, 0.94) !important;
+  border-bottom: 1px solid rgba(201, 168, 76, 0.2) !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+}
+
+.navbar--scrolled .navbar__logo { color: var(--text-primary); }
+.navbar--scrolled .navbar__link { color: rgba(245, 240, 232, 0.65); }
+.navbar--scrolled .navbar__link:hover,
+.navbar--scrolled .navbar__link.active { color: var(--gold); }
+
+/* Hide mobile CTA on desktop */
+.navbar__cta-mobile { display: none; }
+
+/* Mobile Menu Toggle */
+.navbar__toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  z-index: 10;
+  width: 28px;
+}
+
+.navbar__toggle span {
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: var(--text-primary);
+  transition: all var(--duration-normal) var(--ease-premium);
+}
+
+.navbar__toggle.active span:nth-child(1) { transform: rotate(45deg) translate(4px, 4px); }
+.navbar__toggle.active span:nth-child(2) { opacity: 0; }
+.navbar__toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(4px, -4px); }
+
+/* Mobile Styles */
+@media (max-width: 1024px) {
+  .navbar__toggle { display: flex; }
+
+  .navbar__links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 100%;
+    height: 100vh;
+    background: var(--bg-deepest);
+    border-left: 1px solid var(--gold-border);
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--space-8);
+    transition: right var(--duration-slow) var(--ease-premium);
+  }
+
+  .navbar__links.active { right: 0; }
+
+  .navbar__link {
+    font-family: var(--font-heading);
+    font-size: clamp(1.8rem, 5vw, 2.4rem);
+    font-weight: var(--weight-light);
+    letter-spacing: 0.08em;
+    color: var(--text-secondary);
+  }
+
+  .navbar__link:hover,
+  .navbar__link.active { color: var(--gold); }
+
+  .navbar__cta { display: none; }
+
+  .navbar__links .navbar__cta-mobile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-4);
+    margin-top: var(--space-8);
+  }
+
+  .navbar__toggle.active span { background: var(--text-primary) !important; }
+}

@@ -1,0 +1,593 @@
+/* ============================================
+   STACKING-CARDS.CSS — 3D Stacking Panels
+   Multi-Colored Overlapping Sections on Scroll
+   ============================================ */
+
+/* ---------- Stacking Context base & Card stack look ---------- */
+body {
+  background: #070b12 !important;
+  overflow-x: hidden;
+}
+
+.stack-section {
+  position: relative;
+  width: 100%;
+  box-shadow: 0 -30px 80px rgba(0, 0, 0, 0.22);
+  border-top-left-radius: 28px;
+  border-top-right-radius: 28px;
+  overflow: hidden;
+  will-change: transform, opacity;
+}
+
+/* Ensure padding matches stacking layouts */
+.stack-section > .container,
+.stack-section > .container-fluid,
+.stack-section > .skiing__inner,
+.stack-section > .transport__inner {
+  padding-top: 110px !important;
+  padding-bottom: 110px !important;
+}
+
+/* ---------- Curated Section Color Palette ---------- */
+
+/* 1. Why Choose Us: Slate Navy (Dark) */
+.why-choose {
+  background: #0b0f19 !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+/* 2. Skiing & Snowboarding: Deep Glacier Navy (Dark) */
+.skiing {
+  background: #070b12 !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.04) !important;
+}
+.skiing__bg {
+  display: none !important; /* Hide old bg image */
+}
+.skiing__inner {
+  position: relative;
+  z-index: 2;
+}
+
+/* 3. Trekking: Alpine Charcoal (Dark) */
+.trekking {
+  background: #0f121d !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.04) !important;
+}
+.trekking__parallax {
+  display: none !important; /* Hide trekking layers */
+}
+
+/* 4. Activities: Indigo Black (Dark) */
+.activities {
+  background: #090a10 !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.04) !important;
+}
+
+/* 5. Sightseeing Map: Light Snow-White (Light pop) */
+.sightseeing {
+  background: #f8fafc !important;
+  border-top: 1px solid rgba(15, 23, 42, 0.08) !important;
+}
+
+/* 6. Equipment Rentals: Pure Charcoal Black (Dark) */
+.rentals {
+  background: #0a0b0d !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.04) !important;
+}
+
+/* 7. Transportation: Pure Charcoal Black (Dark) */
+.transport {
+  background: #0a0b0d !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.03) !important;
+}
+.transport__bg {
+  display: none !important; /* Remove transport bg image */
+}
+.transport__inner {
+  position: relative;
+  z-index: 2;
+}
+
+/* 8. Tour Packages: Glacial Silver-Gray (Light pop) */
+.packages {
+  background: #eef2f6 !important;
+  border-top: 1px solid rgba(15, 23, 42, 0.08) !important;
+}
+
+/* 9. Testimonials: Luxury Dark Slate (Dark) */
+.testimonials {
+  background: #111622 !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.04) !important;
+}
+
+/* 10. Gallery: Pure White (Light) */
+.gallery {
+  background: #ffffff !important;
+  border-top: 1px solid rgba(15, 23, 42, 0.08) !important;
+}
+
+/* 11. About Us: Deep Charcoal Indigo (Dark) */
+.about {
+  background: #08090f !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.04) !important;
+}
+
+/* ---------- Dark Sections Typography / Theme ---------- */
+.why-choose, .skiing, .trekking, .activities, .rentals, .transport, .testimonials, .about {
+  color: #e2e8f0 !important;
+}
+
+.why-choose .section-label,
+.skiing .section-label,
+.trekking .section-label,
+.activities .section-label,
+.rentals .section-label,
+.transport .section-label,
+.testimonials .section-label,
+.about .section-label {
+  color: #60a5fa !important; /* Premium glacier blue tag */
+}
+
+.why-choose .section-title,
+.skiing .section-title,
+.trekking .section-title,
+.activities .section-title,
+.rentals .section-title,
+.transport .section-title,
+.testimonials .section-title,
+.about .section-title {
+  color: #ffffff !important;
+}
+
+.why-choose .section-title .text-gradient,
+.skiing .section-title .text-gradient,
+.trekking .section-title .text-gradient,
+.activities .section-title .text-gradient,
+.rentals .section-title .text-gradient,
+.transport .section-title .text-gradient,
+.testimonials .section-title .text-gradient,
+.about .section-title .text-gradient {
+  background: linear-gradient(135deg, #93c5fd 0%, #3b82f6 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  display: inline !important;
+}
+
+.why-choose .section-subtitle,
+.skiing .section-subtitle,
+.trekking .section-subtitle,
+.activities .section-subtitle,
+.rentals .section-subtitle,
+.transport .section-subtitle,
+.testimonials .section-subtitle,
+.about .section-subtitle {
+  color: #94a3b8 !important;
+}
+
+/* ---------- Light Sections Typography / Theme ---------- */
+.sightseeing, .packages, .gallery {
+  color: #0f172a !important;
+}
+
+.sightseeing .section-label,
+.packages .section-label,
+.gallery .section-label {
+  color: #2563eb !important;
+}
+
+.sightseeing .section-title,
+.packages .section-title,
+.gallery .section-title {
+  color: #0f172a !important;
+}
+
+.sightseeing .section-title .text-gradient,
+.packages .section-title .text-gradient,
+.gallery .section-title .text-gradient {
+  background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  display: inline !important;
+}
+
+.sightseeing .section-subtitle,
+.packages .section-subtitle,
+.gallery .section-subtitle {
+  color: #475569 !important;
+}
+
+/* ---------- Dark Card Themes (Translucent + Border Highlight) ---------- */
+.why-choose__card,
+.skiing__hero-image,
+.skiing__package-card,
+.trekking__card,
+.activities__season,
+.rentals__card,
+.transport__card,
+.testimonials__card,
+.about__portrait {
+  /* Default settings for dark blocks */
+  background: rgba(255, 255, 255, 0.02) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 6px !important;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1) !important;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+/* Staggered Outline counters for Why Choose (dark) */
+.why-choose__grid {
+  counter-reset: why-counter;
+  gap: 24px !important;
+  margin-top: 48px !important;
+}
+.why-choose__card {
+  position: relative;
+  counter-increment: why-counter;
+  text-align: left !important;
+  padding: 40px 30px !important;
+}
+.why-choose__card::after {
+  content: "0" counter(why-counter);
+  position: absolute;
+  top: 36px;
+  right: 30px;
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.05);
+  letter-spacing: -0.02em;
+}
+
+.why-choose__card:hover,
+.skiing__package-card:hover,
+.trekking__card:hover,
+.rentals__card:hover,
+.transport__card:hover {
+  transform: translateY(-6px) !important;
+  border-color: #3b82f6 !important;
+  background: rgba(255, 255, 255, 0.04) !important;
+  box-shadow: 0 20px 40px rgba(59, 130, 246, 0.08) !important;
+}
+
+.why-choose__card-title,
+.skiing__package-name,
+.trekking__card-title,
+.rentals__card-title,
+.transport__card-title,
+.testimonials__author-name {
+  color: #ffffff !important;
+}
+
+.why-choose__card-desc,
+.rentals__card-desc,
+.transport__card-desc {
+  color: #94a3b8 !important;
+}
+
+.why-choose__icon svg,
+.rentals__card-icon,
+.transport__card-icon {
+  color: #60a5fa !important;
+}
+
+.rentals__card-icon,
+.transport__card-icon {
+  width: 58px !important;
+  height: 58px !important;
+  background: rgba(255, 255, 255, 0.03) !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin: 0 auto 24px auto !important;
+}
+
+/* Skiing Split layout detail styling */
+.skiing__layout {
+  grid-template-columns: 1.1fr 0.9fr !important;
+  gap: 48px !important;
+  margin-top: 40px !important;
+}
+.skiing__hero-badge {
+  background: #3b82f6 !important;
+  color: #ffffff !important;
+  font-family: var(--font-accent);
+  font-weight: 800 !important;
+  border-radius: 2px !important;
+  font-size: 10px !important;
+  padding: 6px 12px !important;
+  top: 24px !important;
+  left: 24px !important;
+}
+.skiing__category-title {
+  color: #ffffff !important;
+  font-family: var(--font-heading);
+  font-weight: 800 !important;
+  font-size: 1.1rem !important;
+  text-transform: uppercase;
+  margin-bottom: 20px !important;
+}
+.skiing__package-card {
+  padding: 22px 26px !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+}
+.skiing__package-arrow {
+  color: #60a5fa !important;
+}
+
+/* Trekking grid card specifics */
+.trekking__masonry {
+  gap: 24px !important;
+  margin-top: 48px !important;
+}
+.trekking__card-content {
+  background: rgba(15, 18, 29, 0.95) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.05) !important;
+  padding: 24px !important;
+}
+.trekking__card-difficulty {
+  top: 20px !important;
+  left: 20px !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  background: rgba(0, 0, 0, 0.6) !important;
+  color: #ffffff !important;
+  backdrop-filter: blur(4px);
+  font-size: 10px !important;
+}
+.trekking__card-info {
+  color: #94a3b8 !important;
+  font-size: 0.85rem !important;
+  font-weight: 600 !important;
+}
+.trekking__card-info svg {
+  color: #60a5fa !important;
+  width: 16px !important;
+  height: 16px !important;
+}
+
+/* Activities Winter vs Summer split columns */
+.activities__split {
+  gap: 40px !important;
+  margin-top: 48px !important;
+}
+.activities__season {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  backdrop-filter: none !important;
+}
+.activities__season--winter {
+  border-right: 1px solid rgba(255, 255, 255, 0.08) !important;
+  padding-right: 40px !important;
+}
+.activities__season-label {
+  color: #60a5fa !important;
+  font-family: var(--font-accent);
+  font-weight: 800 !important;
+  font-size: var(--text-xs) !important;
+}
+.activities__season-title {
+  color: #ffffff !important;
+  font-family: var(--font-heading);
+  font-weight: 900 !important;
+  font-size: 1.4rem !important;
+  margin-bottom: 30px !important;
+}
+.activities__item {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+  padding: 20px 0 !important;
+  transition: all 0.3s ease !important;
+}
+.activities__item:hover {
+  transform: translateX(6px) !important;
+}
+.activities__item-name {
+  color: #ffffff !important;
+  font-weight: 800 !important;
+  font-size: 1.02rem !important;
+  margin-bottom: 4px !important;
+}
+.activities__item-desc {
+  color: #94a3b8 !important;
+  font-size: 0.88rem !important;
+}
+
+/* Testimonials Quotes */
+.testimonials__card {
+  padding: 44px !important;
+}
+.testimonials__card::before {
+  content: '“';
+  position: absolute;
+  top: 12px;
+  left: 36px;
+  font-family: var(--font-serif);
+  font-size: 7rem;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.03);
+  font-style: italic;
+  font-weight: 700;
+}
+.testimonials__star {
+  color: #f59e0b !important;
+}
+.testimonials__text {
+  color: #cbd5e1 !important;
+  font-size: 1rem !important;
+  line-height: 1.7 !important;
+}
+.testimonials__avatar {
+  background: #3b82f6 !important;
+  color: #ffffff !important;
+}
+.testimonials__author-source {
+  color: #94a3b8 !important;
+}
+
+/* About & Timeline in Dark */
+.about__portrait {
+  padding: 12px !important;
+}
+.about__timeline {
+  border-left: 2px solid rgba(255, 255, 255, 0.06) !important;
+  padding-left: 28px !important;
+  margin-left: 10px !important;
+}
+.about__timeline-item::before {
+  content: '' !important;
+  position: absolute !important;
+  left: -36px !important;
+  top: 6px !important;
+  width: 14px !important;
+  height: 14px !important;
+  border-radius: 50% !important;
+  background: #3b82f6 !important;
+  border: 3px solid #08090f !important;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.08) !important;
+}
+.about__timeline-year {
+  color: #ffffff !important;
+  font-weight: 800 !important;
+}
+.about__timeline-text {
+  color: #94a3b8 !important;
+}
+
+/* ---------- Light Card Themes (Solid outline) ---------- */
+.sightseeing__map-container,
+.sightseeing__info-card,
+.packages__card,
+.gallery__item {
+  background: #ffffff !important;
+  border: 1px solid rgba(15, 23, 42, 0.08) !important;
+  border-radius: 6px !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02) !important;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.packages__card {
+  overflow: hidden !important;
+}
+
+.packages__card:hover {
+  transform: translateY(-8px) !important;
+  border-color: #2563eb !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05) !important;
+}
+
+.packages__card-tag {
+  background: #2563eb !important;
+  color: #ffffff !important;
+  border-radius: 2px !important;
+  font-weight: 800 !important;
+  font-size: 9px !important;
+  text-transform: uppercase !important;
+  top: 20px !important;
+  left: 20px !important;
+}
+
+.packages__card-content {
+  padding: 28px 24px !important;
+  background: #ffffff !important;
+  border-top: 1px solid rgba(15, 23, 42, 0.06) !important;
+}
+
+.packages__card-title {
+  color: #0f172a !important;
+  font-weight: 800 !important;
+}
+
+.packages__card-desc {
+  color: #475569 !important;
+}
+
+.gallery__item {
+  padding: 8px !important;
+}
+
+.gallery__item:hover {
+  border-color: #2563eb !important;
+  transform: scale(1.02) !important;
+  z-index: 5 !important;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.06) !important;
+}
+
+/* Sightseeing details */
+.sightseeing__map-container {
+  padding: 12px !important;
+  margin-top: 48px !important;
+}
+.sightseeing__map-bg {
+  filter: grayscale(1) contrast(1.15) brightness(0.9) !important;
+  opacity: 0.8 !important;
+}
+.sightseeing__pin-dot {
+  width: 14px !important;
+  height: 14px !important;
+  background: #0f172a !important;
+  border: 3px solid #ffffff !important;
+  box-shadow: 0 0 0 5px rgba(0, 0, 0, 0.12) !important;
+  transition: all 0.3s ease !important;
+}
+.sightseeing__pin:hover .sightseeing__pin-dot,
+.sightseeing__pin--active .sightseeing__pin-dot {
+  background: #2563eb !important;
+  transform: scale(1.3) !important;
+  box-shadow: 0 0 0 6px rgba(37, 99, 235, 0.25) !important;
+}
+.sightseeing__pin-label {
+  background: #ffffff !important;
+  border: 1px solid rgba(15, 23, 42, 0.08) !important;
+  color: #000000 !important;
+  border-radius: 2px !important;
+  font-weight: 700 !important;
+  font-size: 11px !important;
+  padding: 5px 12px !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05) !important;
+}
+.sightseeing__info-card {
+  border: 1px solid #000000 !important;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.15) !important;
+  padding: 24px !important;
+}
+.sightseeing__info-title {
+  color: #000000 !important;
+  font-weight: 800 !important;
+}
+.sightseeing__info-desc {
+  color: #475569 !important;
+}
+
+/* ---------- Global Buttons Styling in Stacking Cards ---------- */
+.btn--primary {
+  background: #3b82f6 !important;
+  color: #ffffff !important;
+  border: 1px solid #3b82f6 !important;
+  border-radius: 4px !important;
+}
+.btn--primary:hover {
+  background: #ffffff !important;
+  color: #3b82f6 !important;
+}
+
+/* Stacking section header line fix */
+.stack-section .why-choose__header {
+  text-align: center !important;
+  margin-bottom: 48px !important;
+}
+
+@media (max-width: 992px) {
+  .activities__season--winter {
+    border-right: none !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+    padding-right: 0 !important;
+    padding-bottom: 30px !important;
+    margin-bottom: 30px !important;
+  }
+}

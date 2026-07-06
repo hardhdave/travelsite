@@ -1,0 +1,95 @@
+/* ============================================
+   RENTALS — Equipment Cards
+   ============================================ */
+
+.rentals {
+  padding: var(--space-section) 0;
+  background: var(--deep-navy);
+  position: relative;
+  overflow: hidden;
+}
+
+.rentals__header {
+  text-align: center;
+  margin-bottom: var(--space-16);
+}
+
+.rentals__header .section-label { justify-content: center; }
+.rentals__header .section-subtitle { margin: 0 auto; }
+
+.rentals__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-6);
+}
+
+.rentals__card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8) var(--space-6);
+  text-align: center;
+  transition: all var(--duration-normal) var(--ease-premium);
+  position: relative;
+  overflow: hidden;
+}
+
+.rentals__card:hover {
+  transform: translateY(-8px);
+  border-color: var(--glass-border-hover);
+  box-shadow: var(--shadow-glow);
+}
+
+.rentals__card--coming-soon {
+  opacity: 0.6;
+}
+
+.rentals__card-badge {
+  position: absolute;
+  top: var(--space-4);
+  right: var(--space-4);
+  background: var(--warm-gold);
+  color: var(--midnight-navy);
+  font-size: 9px;
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+}
+
+.rentals__card-icon {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto var(--space-5);
+  background: var(--glass-border);
+  border-radius: var(--radius-xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  transition: transform var(--duration-slow) var(--ease-premium);
+}
+
+.rentals__card:hover .rentals__card-icon {
+  transform: translateY(-4px);
+}
+
+.rentals__card-title {
+  font-size: var(--text-lg);
+  font-weight: var(--weight-semibold);
+  margin-bottom: var(--space-2);
+}
+
+.rentals__card-desc {
+  font-size: var(--text-sm);
+  color: var(--mountain-gray);
+}
+
+@media (max-width: 1024px) {
+  .rentals__grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 640px) {
+  .rentals__grid { grid-template-columns: 1fr; }
+}

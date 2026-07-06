@@ -1,0 +1,190 @@
+/* ============================================
+   EXPERIENCES — Horizontal Scroll Showcase
+   Dark Gold Edition
+   ============================================ */
+
+.experiences {
+  padding: var(--space-section) 0 0;
+  background: var(--bg-deepest);
+  margin-top: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  position: relative;
+  z-index: 11;
+  border-top: 1px solid rgba(201,168,76,0.1);
+}
+
+.experiences__header {
+  padding: 0 var(--container-padding);
+  max-width: var(--container-max);
+  margin: 0 auto var(--space-12);
+}
+
+.experiences__scroll-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.experiences__track {
+  display: flex;
+  gap: var(--space-6);
+  padding: 0 var(--container-padding) var(--space-16);
+  width: max-content;
+  will-change: transform;
+}
+
+.experiences__card {
+  width: 420px;
+  height: 540px;
+  border-radius: 0;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  cursor: pointer;
+  transform: scale(0.93);
+  transition: transform var(--duration-slow) var(--ease-premium);
+  border: 1px solid rgba(201,168,76,0.1);
+}
+
+.experiences__card.is-active {
+  transform: scale(1);
+  border-color: rgba(201,168,76,0.25);
+}
+
+.experiences__card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--duration-slower) var(--ease-smooth);
+}
+
+.experiences__card:hover .experiences__card-image {
+  transform: scale(1.08);
+}
+
+.experiences__card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 30%, rgba(8,18,32,0.85) 100%);
+  z-index: 1;
+}
+
+.experiences__card-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: var(--space-8);
+  z-index: 2;
+}
+
+.experiences__card-number {
+  font-family: var(--font-accent);
+  font-size: 10px;
+  color: var(--gold);
+  letter-spacing: 0.3em;
+  margin-bottom: var(--space-3);
+  text-transform: uppercase;
+}
+
+.experiences__card-title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+  font-weight: var(--weight-light);
+  margin-bottom: var(--space-2);
+  color: var(--text-primary);
+  letter-spacing: 0.04em;
+}
+
+.experiences__card-desc {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  margin-bottom: var(--space-4);
+  max-width: none;
+}
+
+.experiences__card-arrow {
+  width: 38px;
+  height: 38px;
+  border-radius: 0;
+  background: rgba(201,168,76,0.08);
+  border: 1px solid var(--gold-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold);
+  transition: all var(--duration-normal) var(--ease-premium);
+  font-size: 16px;
+}
+
+.experiences__card:hover .experiences__card-arrow {
+  background: var(--gold);
+  color: #0a0a0a;
+  border-color: var(--gold);
+}
+
+/* Scroll Progress Bar */
+.experiences__progress {
+  padding: 0 var(--container-padding);
+  max-width: var(--container-max);
+  margin: 0 auto;
+}
+
+.experiences__progress-track {
+  width: 100%;
+  height: 1px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 0;
+  overflow: hidden;
+}
+
+.experiences__progress-bar {
+  height: 100%;
+  width: 0%;
+  background: var(--gold);
+  border-radius: 0;
+  transition: width 0.1s linear;
+}
+
+@media (max-width: 768px) {
+  .experiences__card {
+    width: 300px;
+    height: 420px;
+  }
+}
+
+@media (min-width: 1025px) {
+  .experiences {
+    height: 100vh;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 100px 0 40px;
+    box-sizing: border-box;
+    overflow: hidden;
+    margin-top: 0; /* Reset margin top on desktop to prevent offset issues with pinning */
+  }
+
+  .experiences__header {
+    margin-bottom: var(--space-4);
+  }
+
+  /* Compact styling for shorter viewports to prevent overflow */
+  @media (max-height: 850px) {
+    .experiences {
+      padding: 90px 0 20px;
+    }
+    .experiences__header {
+      margin-bottom: var(--space-2);
+    }
+    .experiences__card {
+      width: 360px;
+      height: 440px;
+    }
+    .experiences__track {
+      padding-bottom: var(--space-8);
+    }
+  }
+}
+

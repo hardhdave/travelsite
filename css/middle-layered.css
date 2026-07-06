@@ -1,0 +1,307 @@
+/* ============================================
+   MIDDLE-LAYERED — Voyago Inspired Layout
+   Parallax Mountain Background & Glassmorphism
+   ============================================ */
+
+/* Mountain Parallax Section Wrapper */
+.mountain-parallax-wrapper {
+  position: relative;
+  background-image: url('../assets/images/hero-mountains.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* Standard parallax fallback */
+  overflow: hidden;
+  padding: 40px 0;
+}
+
+/* Dark Frosty Overlay for the Mountain Wrapper */
+.mountain-parallax-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, 
+    rgba(15, 23, 42, 0.6) 0%, 
+    rgba(15, 23, 42, 0.45) 50%, 
+    rgba(15, 23, 42, 0.7) 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Force all sections inside wrapper to be transparent */
+.mountain-parallax-wrapper section {
+  background: transparent !important;
+  position: relative;
+  z-index: 2;
+}
+
+/* Style Section Headers to pop on Dark Mountain BG */
+.mountain-parallax-wrapper .section-label {
+  color: #ffffff !important;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  opacity: 0.95;
+}
+
+.mountain-parallax-wrapper .section-title {
+  color: #ffffff !important;
+}
+
+.mountain-parallax-wrapper .section-title .text-gradient {
+  background: linear-gradient(135deg, #ffffff 0%, #d8e2ef 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+
+.mountain-parallax-wrapper .section-subtitle {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+/* ============================================
+   Glassmorphic Card UI Styles (Voyago-Style)
+   ============================================ */
+
+/* 1. Why Choose Us Cards */
+.mountain-parallax-wrapper .why-choose__card {
+  background: rgba(255, 255, 255, 0.82) !important;
+  border: 1px solid rgba(255, 255, 255, 0.45) !important;
+  backdrop-filter: blur(16px) saturate(130%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(130%) !important;
+  border-radius: 16px !important;
+  padding: 36px 28px !important;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08) !important;
+}
+
+.mountain-parallax-wrapper .why-choose__card:hover {
+  transform: translateY(-8px) !important;
+  background: rgba(255, 255, 255, 0.92) !important;
+  border-color: rgba(255, 255, 255, 0.7) !important;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15) !important;
+}
+
+.mountain-parallax-wrapper .why-choose__card-title {
+  color: #0f172a !important;
+  font-weight: 800 !important;
+  font-size: 1.15rem !important;
+  margin-top: 16px !important;
+}
+
+.mountain-parallax-wrapper .why-choose__card-desc {
+  color: #334155 !important;
+  line-height: 1.6 !important;
+}
+
+.mountain-parallax-wrapper .why-choose__icon svg {
+  color: #0f172a !important; /* Premium dark branding */
+}
+
+/* 2. Activities Season Container */
+.mountain-parallax-wrapper .activities__season {
+  background: rgba(255, 255, 255, 0.82) !important;
+  border: 1px solid rgba(255, 255, 255, 0.45) !important;
+  backdrop-filter: blur(16px) saturate(130%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(130%) !important;
+  border-radius: 18px !important;
+  padding: 40px !important;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08) !important;
+}
+
+.mountain-parallax-wrapper .activities__season-label {
+  color: #0f172a !important;
+  font-weight: 700 !important;
+}
+
+.mountain-parallax-wrapper .activities__season-title {
+  color: #0f172a !important;
+  font-weight: 800 !important;
+}
+
+.mountain-parallax-wrapper .activities__item-name {
+  color: #0f172a !important;
+  font-weight: 700 !important;
+}
+
+.mountain-parallax-wrapper .activities__item-desc {
+  color: #334155 !important;
+}
+
+.mountain-parallax-wrapper .activities__item-icon svg {
+  color: #0f172a !important;
+}
+
+.mountain-parallax-wrapper .activities__item {
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08) !important;
+}
+
+/* 3. Interactive Map Container */
+.mountain-parallax-wrapper .sightseeing__map-container {
+  background: rgba(255, 255, 255, 0.85) !important;
+  border: 1px solid rgba(255, 255, 255, 0.5) !important;
+  backdrop-filter: blur(16px) saturate(130%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(130%) !important;
+  border-radius: 20px !important;
+  padding: 16px !important;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.12) !important;
+}
+
+/* Map Pins & Info Card Overrides */
+.mountain-parallax-wrapper .sightseeing__info-card {
+  background: #ffffff !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* 4. Equipment Rentals Cards */
+.mountain-parallax-wrapper .rentals__card {
+  background: rgba(255, 255, 255, 0.82) !important;
+  border: 1px solid rgba(255, 255, 255, 0.45) !important;
+  backdrop-filter: blur(16px) saturate(130%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(130%) !important;
+  border-radius: 16px !important;
+  padding: 36px 28px !important;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08) !important;
+}
+
+.mountain-parallax-wrapper .rentals__card:hover {
+  transform: translateY(-8px) !important;
+  background: rgba(255, 255, 255, 0.92) !important;
+  border-color: rgba(255, 255, 255, 0.7) !important;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15) !important;
+}
+
+.mountain-parallax-wrapper .rentals__card-title {
+  color: #0f172a !important;
+  font-weight: 800 !important;
+}
+
+.mountain-parallax-wrapper .rentals__card-desc {
+  color: #334155 !important;
+}
+
+.mountain-parallax-wrapper .rentals__card-icon svg {
+  color: #0f172a !important;
+}
+
+/* 5. Transportation Cards */
+.mountain-parallax-wrapper .transport__card {
+  background: rgba(255, 255, 255, 0.82) !important;
+  border: 1px solid rgba(255, 255, 255, 0.45) !important;
+  backdrop-filter: blur(16px) saturate(130%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(130%) !important;
+  border-radius: 16px !important;
+  padding: 36px 28px !important;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08) !important;
+}
+
+.mountain-parallax-wrapper .transport__card:hover {
+  transform: translateY(-8px) !important;
+  background: rgba(255, 255, 255, 0.92) !important;
+  border-color: rgba(255, 255, 255, 0.7) !important;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15) !important;
+}
+
+.mountain-parallax-wrapper .transport__card-title {
+  color: #0f172a !important;
+  font-weight: 800 !important;
+}
+
+.mountain-parallax-wrapper .transport__card-desc {
+  color: #334155 !important;
+}
+
+.mountain-parallax-wrapper .transport__card-icon svg {
+  color: #0f172a !important;
+}
+
+/* 6. Tour Packages Cards */
+.mountain-parallax-wrapper .packages__card {
+  background: rgba(255, 255, 255, 0.82) !important;
+  border: 1px solid rgba(255, 255, 255, 0.45) !important;
+  backdrop-filter: blur(16px) saturate(130%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(130%) !important;
+  border-radius: 18px !important;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08) !important;
+}
+
+.mountain-parallax-wrapper .packages__card-title {
+  color: #0f172a !important;
+  font-weight: 800 !important;
+}
+
+.mountain-parallax-wrapper .packages__card-desc {
+  color: #334155 !important;
+}
+
+/* 7. Guest Testimonials Cards */
+.mountain-parallax-wrapper .testimonials__card {
+  background: rgba(255, 255, 255, 0.82) !important;
+  border: 1px solid rgba(255, 255, 255, 0.45) !important;
+  backdrop-filter: blur(16px) saturate(130%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(130%) !important;
+  border-radius: 18px !important;
+  color: #0f172a !important;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08) !important;
+}
+
+.mountain-parallax-wrapper .testimonials__text {
+  color: #1e293b !important;
+  line-height: 1.6 !important;
+}
+
+.mountain-parallax-wrapper .testimonials__author-name {
+  color: #0f172a !important;
+  font-weight: 700 !important;
+}
+
+.mountain-parallax-wrapper .testimonials__author-source {
+  color: #475569 !important;
+}
+
+.mountain-parallax-wrapper .testimonials__avatar {
+  background: #0f172a !important;
+  color: #ffffff !important;
+}
+
+.mountain-parallax-wrapper .testimonials__star {
+  color: #0f172a !important;
+}
+
+/* Interactive elements */
+.mountain-parallax-wrapper .btn--primary {
+  background: #0f172a !important;
+  color: #ffffff !important;
+  border-color: #0f172a !important;
+}
+
+.mountain-parallax-wrapper .btn--primary:hover {
+  background: #ffffff !important;
+  color: #0f172a !important;
+  border-color: #0f172a !important;
+}
+
+.mountain-parallax-wrapper .btn--secondary {
+  border-color: rgba(15, 23, 42, 0.3) !important;
+  color: #0f172a !important;
+}
+
+.mountain-parallax-wrapper .btn--secondary:hover {
+  background: #0f172a !important;
+  color: #ffffff !important;
+  border-color: #0f172a !important;
+}
+
+/* Adjustments for default background graphics */
+.mountain-parallax-wrapper .skiing__bg,
+.mountain-parallax-wrapper .transport__bg,
+.mountain-parallax-wrapper .trekking__parallax {
+  opacity: 0.15 !important;
+}
+.mountain-parallax-wrapper .skiing__bg-overlay,
+.mountain-parallax-wrapper .transport__bg-overlay {
+  background: transparent !important;
+}

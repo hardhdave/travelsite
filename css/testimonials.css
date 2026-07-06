@@ -1,0 +1,132 @@
+/* ============================================
+   TESTIMONIALS — Dark Gold Review Slider
+   ============================================ */
+
+.testimonials {
+  padding: var(--space-section) 0;
+  background: var(--bg-raised);
+  overflow: hidden;
+  position: relative;
+}
+
+.testimonials::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-border), transparent);
+}
+
+.testimonials__header {
+  text-align: center;
+  margin-bottom: var(--space-12);
+  padding: 0 var(--container-padding);
+}
+
+.testimonials__header .section-label { justify-content: center; }
+.testimonials__header .section-subtitle { margin: 0 auto; }
+
+.testimonials__slider {
+  position: relative;
+  overflow: hidden;
+  padding: var(--space-4) 0;
+}
+
+.testimonials__track {
+  display: flex;
+  gap: var(--space-5);
+  animation: testimonialScroll 50s linear infinite;
+  width: max-content;
+}
+
+.testimonials__track:hover {
+  animation-play-state: paused;
+}
+
+.testimonials__card {
+  flex-shrink: 0;
+  width: 400px;
+  background: var(--bg-card);
+  border: 1px solid rgba(201,168,76,0.12);
+  border-radius: 0;
+  padding: var(--space-8);
+  transition: all var(--duration-normal) ease;
+}
+
+.testimonials__card:hover {
+  border-color: rgba(201,168,76,0.3);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+}
+
+.testimonials__stars {
+  display: flex;
+  gap: 3px;
+  margin-bottom: var(--space-4);
+}
+
+.testimonials__star {
+  color: var(--gold);
+  font-size: 15px;
+}
+
+.testimonials__text {
+  font-family: var(--font-serif);
+  font-size: var(--text-lg);
+  color: var(--text-secondary);
+  line-height: var(--leading-relaxed);
+  margin-bottom: var(--space-6);
+  font-style: italic;
+  max-width: none;
+}
+
+.testimonials__author {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.testimonials__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 0;
+  background: rgba(201,168,76,0.08);
+  border: 1px solid var(--gold-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-accent);
+  font-weight: var(--weight-bold);
+  font-size: var(--text-xs);
+  color: var(--gold);
+  letter-spacing: 0.05em;
+}
+
+.testimonials__author-name {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--text-primary);
+}
+
+.testimonials__author-source {
+  font-family: var(--font-accent);
+  font-size: 10px;
+  color: var(--gold);
+  opacity: 0.65;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+@keyframes testimonialScroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@media (max-width: 640px) {
+  .testimonials__card {
+    width: 300px;
+    padding: var(--space-6);
+  }
+}

@@ -1,0 +1,292 @@
+/* ============================================
+   HERO — Dark Gold Cinematic Slider
+   ============================================ */
+
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 700px;
+  overflow: hidden;
+  background: var(--bg-deepest);
+}
+
+/* Slider Container */
+.hero__slider {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+/* Individual Slide */
+.hero__slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.hero__slide.active {
+  opacity: 1;
+  pointer-events: auto;
+  z-index: 2;
+}
+
+/* Media Background */
+.hero__media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.hero__video,
+.hero__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.12);
+  transition: transform 2s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform;
+  filter: brightness(0.65) saturate(0.75);
+}
+
+.hero__slide.active .hero__video,
+.hero__slide.active .hero__image {
+  transform: scale(1.02);
+}
+
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(8, 8, 8, 0.45) 0%,
+    rgba(8, 8, 8, 0.2)  40%,
+    rgba(8, 8, 8, 0.7)  100%
+  );
+  z-index: 1;
+}
+
+/* Snow Particles */
+.hero__snow {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* Content Layout */
+.hero__content {
+  position: relative;
+  z-index: 4;
+  text-align: center;
+  max-width: 960px;
+  padding: 0 var(--container-padding);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: -20px;
+}
+
+.hero__label {
+  font-family: var(--font-accent);
+  font-size: 10px;
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 28px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1) 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: rgba(201, 168, 76, 0.06);
+  border: 1px solid rgba(201, 168, 76, 0.25);
+  padding: 8px 20px;
+}
+
+.hero__label::before {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 1px;
+  background: var(--gold);
+  opacity: 0.7;
+}
+
+.hero__title {
+  font-family: var(--font-heading);
+  font-size: clamp(2.4rem, 5.5vw, 5rem);
+  font-weight: var(--weight-light);
+  line-height: 1.1;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  margin-bottom: 24px;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.9s cubic-bezier(0.25, 1, 0.5, 1) 0.5s;
+  text-shadow: 0 4px 24px rgba(0,0,0,0.5);
+}
+
+.hero__subtitle {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(1.1rem, 2vw, 1.6rem);
+  font-weight: var(--weight-light);
+  line-height: 1.6;
+  color: rgba(245, 240, 232, 0.75);
+  max-width: 680px;
+  margin: 0 auto 40px auto;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1) 0.7s;
+}
+
+.hero__buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1) 0.9s;
+}
+
+/* Active Slide Animations */
+.hero__slide.active .hero__label,
+.hero__slide.active .hero__title,
+.hero__slide.active .hero__subtitle,
+.hero__slide.active .hero__buttons {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Slide Controls */
+.hero__controls {
+  position: absolute;
+  left: clamp(24px, 5vw, 80px);
+  bottom: clamp(24px, 5vw, 80px);
+  z-index: 10;
+  display: flex;
+  gap: 8px;
+}
+
+.hero__control {
+  width: 48px;
+  height: 48px;
+  border-radius: 0;
+  border: 1px solid rgba(201, 168, 76, 0.3);
+  background: rgba(8, 8, 8, 0.4);
+  color: rgba(245, 240, 232, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s var(--ease-premium);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.hero__control:hover {
+  background: var(--gold);
+  color: #0a0a0a;
+  border-color: var(--gold);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-gold);
+}
+
+.hero__control svg {
+  width: 18px;
+  height: 18px;
+  stroke-width: 1.5px;
+  transition: transform 0.3s ease;
+}
+
+.hero__control--prev:hover svg { transform: translateX(-2px); }
+.hero__control--next:hover svg { transform: translateX(2px); }
+
+/* Scroll Down Indicator */
+.hero__scroll-down {
+  position: absolute;
+  right: clamp(24px, 5vw, 80px);
+  bottom: clamp(24px, 5vw, 80px);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.hero__scroll-text {
+  font-family: var(--font-accent);
+  font-size: 9px;
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(201, 168, 76, 0.6);
+  writing-mode: vertical-lr;
+  animation: pulseOpacity 2s infinite ease-in-out;
+}
+
+.hero__scroll-line {
+  width: 1px;
+  height: 60px;
+  background: rgba(201, 168, 76, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero__scroll-line::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--gold);
+  transform: translateY(-100%);
+  animation: scrollLineDraw 2s infinite cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes scrollLineDraw {
+  0%   { transform: translateY(-100%); }
+  50%  { transform: translateY(0); }
+  100% { transform: translateY(100%); }
+}
+
+@keyframes pulseOpacity {
+  0%, 100% { opacity: 0.4; }
+  50%       { opacity: 1; }
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .hero__controls { left: 40px; bottom: 40px; }
+  .hero__scroll-down { right: 40px; bottom: 40px; }
+}
+
+@media (max-width: 768px) {
+  .hero { min-height: 640px; }
+  .hero__content { margin-top: -40px; }
+  .hero__label { font-size: 9px; letter-spacing: 0.2em; margin-bottom: 16px; }
+  .hero__title { font-size: 2rem; margin-bottom: 16px; }
+  .hero__subtitle { font-size: 1.05rem; margin-bottom: 28px; }
+  .hero__buttons { flex-direction: column; width: 100%; max-width: 320px; }
+  .hero__buttons .btn { width: 100%; }
+  .hero__controls { left: 50%; transform: translateX(-50%); bottom: 32px; }
+  .hero__scroll-down { display: none; }
+}
