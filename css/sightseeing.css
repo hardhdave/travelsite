@@ -1,38 +1,69 @@
 /* ============================================
-   SIGHTSEEING — Interactive Map
+   SIGHTSEEING — Kashmir Interactive Map (Premium Light Neutral)
    ============================================ */
 
 .sightseeing {
-  padding: var(--space-section) 0;
+  padding: var(--space-20) 0;
   position: relative;
   overflow: hidden;
-  background: var(--midnight-navy);
+  background: var(--bg-base);
+  border-top: 1px solid rgba(31, 41, 51, 0.05);
 }
 
 .sightseeing__header {
   text-align: center;
-  margin-bottom: var(--space-16);
+  margin-bottom: var(--space-12);
+  max-width: var(--container-narrow);
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.sightseeing__header .section-label { justify-content: center; }
-.sightseeing__header .section-subtitle { margin: 0 auto; }
+.sightseeing__header .section-label {
+  justify-content: center;
+  color: var(--forest-green);
+  font-family: var(--font-accent);
+  font-size: 10px;
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  margin-bottom: var(--space-3);
+}
 
+.sightseeing__header .section-label::before {
+  background: var(--forest-green);
+}
+
+.sightseeing__header .section-title {
+  color: var(--text-primary);
+  font-size: var(--text-4xl);
+  margin-bottom: var(--space-4);
+}
+
+.sightseeing__header .section-subtitle {
+  color: var(--text-muted);
+  line-height: var(--leading-relaxed);
+  font-size: var(--text-base);
+}
+
+/* Map Container with refined borders and shadows */
 .sightseeing__map-container {
   position: relative;
   max-width: 900px;
-  margin: 0 auto;
-  aspect-ratio: 4/3;
-  background: var(--glass-bg);
-  border-radius: var(--radius-xl);
-  border: 1px solid var(--glass-border);
+  margin: var(--space-8) auto 0;
+  aspect-ratio: 16/10;
+  background: #FFFFFF;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(31, 41, 51, 0.08);
   overflow: hidden;
+  box-shadow: var(--shadow-xl);
 }
 
 .sightseeing__map-bg {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0.3;
+  opacity: 0.95;
+  filter: sepia(0.08) brightness(0.92) contrast(0.95);
+  transition: all var(--duration-slow) var(--ease-premium);
 }
 
 /* Map Pins */
@@ -43,21 +74,24 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 8px;
   transition: transform var(--duration-normal) var(--ease-premium);
 }
 
 .sightseeing__pin:hover {
-  transform: scale(1.2);
+  transform: translateY(-4px) scale(1.05);
 }
 
+/* Premium Gold Pulsing Dot */
 .sightseeing__pin-dot {
   width: 16px;
   height: 16px;
-  background: var(--glacier-blue);
+  background: var(--gold) !important;
   border-radius: var(--radius-full);
-  border: 3px solid var(--snow-white);
-  box-shadow: 0 0 20px rgba(91,168,255,0.5);
+  border: 3px solid #FFFFFF !important;
+  box-shadow: 0 4px 12px rgba(183, 160, 23, 0.4);
   position: relative;
+  transition: all var(--duration-fast) var(--ease-smooth);
 }
 
 .sightseeing__pin-dot::before {
@@ -65,43 +99,71 @@
   position: absolute;
   inset: -6px;
   border-radius: var(--radius-full);
-  border: 2px solid var(--glacier-blue);
+  border: 2px solid var(--gold);
   animation: pingPulse 2s var(--ease-smooth) infinite;
+  opacity: 0.7;
 }
 
+.sightseeing__pin:hover .sightseeing__pin-dot {
+  background: var(--forest-green) !important;
+  border-color: #FFFFFF !important;
+  box-shadow: 0 4px 16px rgba(47, 79, 62, 0.4);
+}
+
+.sightseeing__pin:hover .sightseeing__pin-dot::before {
+  border-color: var(--forest-green);
+}
+
+/* Elegant Light Label */
 .sightseeing__pin-label {
-  font-size: 11px;
-  font-weight: var(--weight-semibold);
-  color: var(--snow-white);
-  margin-top: var(--space-2);
+  font-family: var(--font-accent);
+  font-size: 9.5px;
+  font-weight: 700;
+  color: var(--text-primary) !important;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  background: #FFFFFF !important;
+  border: 1px solid rgba(31, 41, 51, 0.08) !important;
+  border-radius: var(--radius-sm);
+  padding: 4px 10px;
   white-space: nowrap;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+  box-shadow: 0 4px 12px rgba(31, 41, 51, 0.06);
+  transition: all var(--duration-normal) var(--ease-premium);
+  text-shadow: none !important;
+}
+
+.sightseeing__pin:hover .sightseeing__pin-label {
+  background: var(--forest-green) !important;
+  color: #FFFFFF !important;
+  border-color: var(--forest-green) !important;
+  box-shadow: 0 6px 16px rgba(47, 79, 62, 0.2);
 }
 
 /* Pin Positions */
 .sightseeing__pin--gulmarg { top: 30%; left: 25%; }
-.sightseeing__pin--srinagar { top: 35%; left: 50%; }
-.sightseeing__pin--pahalgam { top: 55%; left: 65%; }
+.sightseeing__pin--srinagar { top: 38%; left: 50%; }
+.sightseeing__pin--pahalgam { top: 58%; left: 65%; }
 .sightseeing__pin--sonamarg { top: 25%; left: 72%; }
 
-/* Info Card */
+/* Info Card: Premium Light Translucent Glass */
 .sightseeing__info-card {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  background: rgba(8, 18, 32, 0.95);
+  background: rgba(255, 255, 255, 0.96) !important;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-top: 1px solid var(--glass-border-hover);
-  padding: var(--space-8);
+  border-top: 1px solid rgba(31, 41, 51, 0.06) !important;
+  padding: var(--space-8) !important;
   transform: translateY(100%);
   transition: transform var(--duration-slow) var(--ease-premium);
   z-index: 10;
   display: grid;
-  grid-template-columns: 200px 1fr;
-  gap: var(--space-6);
+  grid-template-columns: 240px 1fr;
+  gap: var(--space-8);
   align-items: center;
+  box-shadow: 0 -10px 30px rgba(31, 41, 51, 0.04);
 }
 
 .sightseeing__info-card.active {
@@ -110,22 +172,31 @@
 
 .sightseeing__info-image {
   width: 100%;
-  aspect-ratio: 4/3;
-  border-radius: var(--radius-md);
+  aspect-ratio: 16/10;
+  border-radius: var(--radius-sm);
   object-fit: cover;
+  border: 1px solid rgba(31, 41, 51, 0.05);
+}
+
+.sightseeing__info-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .sightseeing__info-title {
+  font-family: var(--font-heading);
   font-size: var(--text-2xl);
-  font-weight: var(--weight-bold);
-  margin-bottom: var(--space-2);
+  font-weight: var(--weight-medium);
+  color: var(--text-primary) !important;
+  margin-bottom: 0;
 }
 
 .sightseeing__info-desc {
   font-size: var(--text-sm);
-  color: var(--mountain-gray);
+  color: var(--text-muted) !important;
   line-height: var(--leading-relaxed);
-  margin-bottom: var(--space-4);
+  margin-bottom: 0;
 }
 
 .sightseeing__info-close {
@@ -137,26 +208,31 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(248,250,252,0.1);
+  background: rgba(31, 41, 51, 0.05) !important;
   border-radius: var(--radius-full);
-  color: var(--snow-white);
+  color: var(--text-primary) !important;
   cursor: pointer;
-  transition: background var(--duration-fast) var(--ease-smooth);
+  transition: all var(--duration-fast) var(--ease-smooth);
 }
 
 .sightseeing__info-close:hover {
-  background: rgba(248,250,252,0.2);
+  background: rgba(31, 41, 51, 0.1) !important;
+  transform: scale(1.05);
 }
 
 @keyframes pingPulse {
   0% { transform: scale(1); opacity: 1; }
-  100% { transform: scale(2.5); opacity: 0; }
+  100% { transform: scale(2.2); opacity: 0; }
 }
 
 @media (max-width: 768px) {
+  .sightseeing__map-container {
+    aspect-ratio: 4/3;
+  }
   .sightseeing__info-card {
     grid-template-columns: 1fr;
-    padding: var(--space-6);
+    padding: var(--space-6) !important;
+    gap: var(--space-4);
   }
 
   .sightseeing__info-image {
@@ -164,6 +240,7 @@
   }
 
   .sightseeing__pin-label {
-    font-size: 9px;
+    font-size: 8.5px;
+    padding: 3px 8px;
   }
 }

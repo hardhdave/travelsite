@@ -86,18 +86,18 @@ const SHData = (function () {
 
     activities: {
       winter: [
-        { id: 'aw1', name: 'Skiing & Snowboarding', desc: 'World-class powder runs in Gulmarg' },
-        { id: 'aw2', name: 'Sledging & Tobogganing', desc: 'Family-friendly winter fun' },
-        { id: 'aw3', name: 'Snow Trekking', desc: 'Guided winter trail expeditions' },
-        { id: 'aw4', name: 'Ice Climbing', desc: 'Frozen waterfall ascents' },
-        { id: 'aw5', name: 'Heliskiing', desc: 'Exclusive backcountry access by helicopter' }
+        { id: 'aw1', name: 'Skiing & Snowboarding', desc: 'World-class powder runs in Gulmarg', image: 'assets/images/skiing-action.png' },
+        { id: 'aw2', name: 'Sledging & Tobogganing', desc: 'Family-friendly winter fun', image: 'assets/images/activities-winter.png' },
+        { id: 'aw3', name: 'Snow Trekking', desc: 'Guided winter trail expeditions', image: 'assets/images/gallery-gulmarg.png' },
+        { id: 'aw4', name: 'Ice Climbing', desc: 'Frozen waterfall ascents', image: 'assets/images/hero-mountains.png' },
+        { id: 'aw5', name: 'Heliskiing', desc: 'Exclusive backcountry access by helicopter', image: 'assets/images/gallery-helicopter.png' }
       ],
       summer: [
-        { id: 'as1', name: 'Camping', desc: 'Starlit nights in alpine meadows' },
-        { id: 'as2', name: 'River Rafting', desc: 'White-water rapids on the Lidder' },
-        { id: 'as3', name: 'Horse Riding', desc: 'Mountain trail rides through meadows' },
-        { id: 'as4', name: 'Mountain Biking', desc: 'Scenic Himalayan cycling routes' },
-        { id: 'as5', name: 'Trout Fishing', desc: 'Pristine river fishing experiences' }
+        { id: 'as1', name: 'Camping', desc: 'Starlit nights in alpine meadows', image: 'assets/images/trekking-landscape.png' },
+        { id: 'as2', name: 'River Rafting', desc: 'White-water rapids on the Lidder', image: 'assets/images/gallery-sonamarg.png' },
+        { id: 'as3', name: 'Horse Riding', desc: 'Mountain trail rides through meadows', image: 'assets/images/gallery-pahalgam.png' },
+        { id: 'as4', name: 'Mountain Biking', desc: 'Scenic Himalayan cycling routes', image: 'assets/images/sightseeing-dal-lake.png' },
+        { id: 'as5', name: 'Trout Fishing', desc: 'Pristine river fishing experiences', image: 'assets/images/gallery-luxury-stay.png' }
       ]
     },
 
@@ -297,22 +297,40 @@ const SHData = (function () {
   /* -- Activities -- */
   function renderActivities(winterId, summerId) {
     const acts = get('activities');
+    const defaultImages = {
+      aw1: 'assets/images/skiing-action.png',
+      aw2: 'assets/images/activities-winter.png',
+      aw3: 'assets/images/gallery-gulmarg.png',
+      aw4: 'assets/images/hero-mountains.png',
+      aw5: 'assets/images/gallery-helicopter.png',
+      as1: 'assets/images/trekking-landscape.png',
+      as2: 'assets/images/gallery-sonamarg.png',
+      as3: 'assets/images/gallery-pahalgam.png',
+      as4: 'assets/images/sightseeing-dal-lake.png',
+      as5: 'assets/images/gallery-luxury-stay.png'
+    };
     const winter = (acts.winter || []).filter(a => a.enabled !== false);
     const summer = (acts.summer || []).filter(a => a.enabled !== false);
     const wEl = document.getElementById(winterId);
     const sEl = document.getElementById(summerId);
+    
     if (wEl) wEl.innerHTML = winter.map(a => `
       <div class="activities__item reveal">
-        <div class="activities__item-icon"></div>
-        <div>
+        <div class="activities__item-img-wrap">
+          <img src="${a.image || defaultImages[a.id] || 'assets/images/skiing-action.png'}" alt="${a.name}" class="activities__item-img">
+        </div>
+        <div class="activities__item-body">
           <div class="activities__item-name">${a.name}</div>
           <div class="activities__item-desc">${a.desc}</div>
         </div>
       </div>`).join('');
+      
     if (sEl) sEl.innerHTML = summer.map(a => `
       <div class="activities__item reveal">
-        <div class="activities__item-icon"></div>
-        <div>
+        <div class="activities__item-img-wrap">
+          <img src="${a.image || defaultImages[a.id] || 'assets/images/trekking-landscape.png'}" alt="${a.name}" class="activities__item-img">
+        </div>
+        <div class="activities__item-body">
           <div class="activities__item-name">${a.name}</div>
           <div class="activities__item-desc">${a.desc}</div>
         </div>

@@ -1,10 +1,10 @@
 /* ============================================
-   TESTIMONIALS — Dark Gold Review Slider
+   TESTIMONIALS — Cream Background Review Slider
    ============================================ */
 
 .testimonials {
   padding: var(--space-section) 0;
-  background: var(--bg-raised);
+  background: var(--bg-cream);
   overflow: hidden;
   position: relative;
 }
@@ -14,7 +14,7 @@
   position: absolute;
   top: 0; left: 0; right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--gold-border), transparent);
+  background: linear-gradient(90deg, transparent, var(--gold-border-on-cream), transparent);
 }
 
 .testimonials__header {
@@ -23,8 +23,20 @@
   padding: 0 var(--container-padding);
 }
 
-.testimonials__header .section-label { justify-content: center; }
-.testimonials__header .section-subtitle { margin: 0 auto; }
+.testimonials__header .section-label { 
+  justify-content: center; 
+  color: var(--gold-dark);
+}
+.testimonials__header .section-label::before {
+  background: var(--gold-dark);
+}
+.testimonials__header .section-title {
+  color: var(--text-on-cream);
+}
+.testimonials__header .section-subtitle { 
+  margin: 0 auto; 
+  color: var(--text-secondary-on-cream);
+}
 
 .testimonials__slider {
   position: relative;
@@ -46,17 +58,17 @@
 .testimonials__card {
   flex-shrink: 0;
   width: 400px;
-  background: var(--bg-card);
-  border: 1px solid rgba(201,168,76,0.12);
+  background: var(--bg-cream-card);
+  border: 1px solid var(--border-on-cream);
   border-radius: 0;
   padding: var(--space-8);
   transition: all var(--duration-normal) ease;
 }
 
 .testimonials__card:hover {
-  border-color: rgba(201,168,76,0.3);
+  border-color: var(--gold-dark);
   transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.08);
 }
 
 .testimonials__stars {
@@ -66,14 +78,14 @@
 }
 
 .testimonials__star {
-  color: var(--gold);
+  color: var(--gold-dark);
   font-size: 15px;
 }
 
 .testimonials__text {
   font-family: var(--font-serif);
   font-size: var(--text-lg);
-  color: var(--text-secondary);
+  color: var(--text-on-cream);
   line-height: var(--leading-relaxed);
   margin-bottom: var(--space-6);
   font-style: italic;
@@ -90,29 +102,29 @@
   width: 40px;
   height: 40px;
   border-radius: 0;
-  background: rgba(201,168,76,0.08);
-  border: 1px solid var(--gold-border);
+  background: rgba(154,138,80,0.08);
+  border: 1px solid var(--gold-border-on-cream);
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: var(--font-accent);
   font-weight: var(--weight-bold);
   font-size: var(--text-xs);
-  color: var(--gold);
+  color: var(--gold-dark);
   letter-spacing: 0.05em;
 }
 
 .testimonials__author-name {
   font-size: var(--text-sm);
   font-weight: var(--weight-semibold);
-  color: var(--text-primary);
+  color: var(--text-on-cream);
 }
 
 .testimonials__author-source {
   font-family: var(--font-accent);
   font-size: 10px;
-  color: var(--gold);
-  opacity: 0.65;
+  color: var(--gold-dark);
+  opacity: 0.85;
   letter-spacing: 0.05em;
   display: flex;
   align-items: center;

@@ -703,7 +703,7 @@ function saveModal() {
     const newA = {
       id: ctx2 !== null ? existing.id : 'act-' + Date.now(),
       enabled: existing.enabled !== false,
-      name: v('f-name'), desc: v('f-desc')
+      name: v('f-name'), desc: v('f-desc'), image: v('f-image')
     };
     if (!newA.name) { toast('Name is required!', 'red'); return; }
     if (ctx2 !== null) acts[ctx1][ctx2] = newA; else acts[ctx1].push(newA);
@@ -931,7 +931,8 @@ function trekForm(item) {
 function activityForm(item) {
   return `
     ${f('Activity Name *','f-name', item.name)}
-    ${f('Short Description','f-desc', item.desc)}`;
+    ${f('Short Description','f-desc', item.desc)}
+    ${imageUploadField('f-image', item.image)}`;
 }
 
 function sightseeingForm(item) {

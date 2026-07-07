@@ -10,13 +10,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="css/variables.css">
-  <link rel="stylesheet" href="css/base.css">
-  <link rel="stylesheet" href="css/navbar.css">
+  <link rel="stylesheet" href="css/variables.css?v=2">
+  <link rel="stylesheet" href="css/base.css?v=4">
+  <link rel="stylesheet" href="css/navbar.css?v=4">
   <link rel="stylesheet" href="css/page-hero.css?v=9">
-  <link rel="stylesheet" href="css/subpage.css?v=9">
+  <link rel="stylesheet" href="css/subpage.css?v=13">
   <link rel="stylesheet" href="css/footer.css">
-  <link rel="stylesheet" href="css/polish.css?v=8">
+  <link rel="stylesheet" href="css/polish.css?v=10">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23C9A84C' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='m8 3 4 8 5-5 5 15H2L8 3z'/></svg>">
 
   <style>
@@ -69,8 +69,8 @@
       letter-spacing: 0.4em;
       text-transform: uppercase;
       color: var(--gold);
-      border: 1px solid rgba(201,168,76,0.3);
-      background: rgba(201,168,76,0.08);
+      border: 1px solid rgba(196,168,108,0.3);
+      background: rgba(196,168,108,0.08);
       padding: 6px 16px;
       display: inline-block;
       margin-bottom: 18px;
@@ -172,7 +172,7 @@
       background: linear-gradient(to top, rgba(6,6,6,0.9) 0%, rgba(6,6,6,0.15) 60%);
     }
     .cat-card.active .cat-card__overlay {
-      background: linear-gradient(to top, rgba(6,6,6,0.92) 0%, rgba(201,168,76,0.08) 100%);
+      background: linear-gradient(to top, rgba(6,6,6,0.92) 0%, rgba(196,168,108,0.08) 100%);
     }
     .cat-card__body {
       position: absolute;
@@ -185,7 +185,7 @@
       width: 36px;
       height: 36px;
       background: rgba(8,8,8,0.8);
-      border: 1px solid rgba(201,168,76,0.3);
+      border: 1px solid rgba(196,168,108,0.3);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -248,7 +248,7 @@
     /* ── Tab Content Area ── */
     .adv-content {
       background: var(--bg-base);
-      border-top: 1px solid rgba(201,168,76,0.12);
+      border-top: 1px solid rgba(196,168,108,0.12);
       margin-top: 3px;
     }
 
@@ -256,7 +256,7 @@
     .adv-panel__intro {
       position: relative;
       background: var(--bg-raised);
-      border-bottom: 1px solid rgba(201,168,76,0.1);
+      border-bottom: 1px solid rgba(196,168,108,0.1);
       overflow: hidden;
     }
     .adv-panel__intro-bg {
@@ -310,7 +310,7 @@
     .adv-intro-stat {
       text-align: center;
       padding: 18px 28px;
-      border-left: 1px solid rgba(201,168,76,0.15);
+      border-left: 1px solid rgba(196,168,108,0.15);
     }
     .adv-intro-stat:first-child { border-left: none; }
     .adv-intro-stat__val {
@@ -352,7 +352,7 @@
     /* ── CTA Strip ── */
     .adv-cta {
       background: var(--bg-raised);
-      border-top: 1px solid rgba(201,168,76,0.1);
+      border-top: 1px solid rgba(196,168,108,0.1);
       padding: 44px 0;
     }
     .adv-cta__inner {
@@ -392,8 +392,15 @@
       text-transform: uppercase;
       color: var(--gold);
       padding-bottom: 12px;
-      margin-bottom: 20px;
-      border-bottom: 1px solid rgba(201,168,76,0.15);
+      margin-bottom: 24px;
+      border-bottom: 1px solid rgba(196,168,108,0.15);
+    }
+
+    #activities-winter-container,
+    #activities-summer-container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
     }
 
     /* Override detail-card for horizontal layout within adventure page */
@@ -404,50 +411,97 @@
       gap: 20px;
     }
 
-    /* ── Activities items override for dark gold theme ── */
+    /* ── Activities items override for premium vertical cards with photos ── */
     .adv-packages .activities__item {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0;
+      padding: 0;
       background: var(--bg-card);
-      border: 1px solid rgba(255,255,255,0.06);
+      border: 1px solid rgba(196, 168, 108, 0.12);
       border-radius: 0;
-      transition: border-color 0.2s ease, transform 0.2s ease;
+      transition: all var(--duration-normal) var(--ease-premium);
+      height: 100%;
+      overflow: hidden;
     }
     .adv-packages .activities__item:hover {
-      border-color: rgba(201,168,76,0.25);
-      transform: translateX(4px);
+      border-color: var(--gold);
+      background: var(--bg-hover);
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-xl), var(--shadow-glow);
     }
-    .adv-packages .activities__item-icon {
-      width: 40px;
-      height: 40px;
-      background: rgba(201,168,76,0.08);
-      border: 1px solid rgba(201,168,76,0.2);
-      border-radius: 0;
-      flex-shrink: 0;
+    .adv-packages .activities__item-img-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16/10;
+      overflow: hidden;
+    }
+    .adv-packages .activities__item-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform var(--duration-slower) var(--ease-smooth);
+      filter: brightness(0.8) saturate(0.8) sepia(0.05);
+    }
+    .adv-packages .activities__item:hover .activities__item-img {
+      transform: scale(1.05);
+      filter: brightness(0.88) saturate(0.85);
+    }
+    .adv-packages .activities__item-body {
+      padding: 24px 20px;
       display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .adv-packages .activities__item-icon::before {
-      content: '◆';
-      color: var(--gold);
-      font-size: 12px;
+      flex-direction: column;
+      flex-grow: 1;
+      justify-content: flex-start;
+      width: 100%;
     }
     .adv-packages .activities__item-name {
       font-family: var(--font-body);
-      font-size: 14px;
-      font-weight: 600;
+      font-size: 14.5px;
+      font-weight: 700;
       color: var(--text-primary) !important;
-      margin-bottom: 3px;
+      margin-bottom: 8px;
+      letter-spacing: 0.02em;
     }
     .adv-packages .activities__item-desc {
       font-size: 12.5px;
-      color: var(--text-muted) !important;
+      color: var(--text-secondary) !important;
+      line-height: 1.55;
     }
 
     @media (max-width: 1024px) {
       .adv-cats__grid { grid-template-columns: repeat(2, 1fr); }
       .cat-card { height: 180px; }
       .adv-panel__intro-inner { flex-direction: column; }
-      .adv-panel__intro-stats { width: 100%; justify-content: center; border-top: 1px solid rgba(201,168,76,0.1); padding-top: 20px; margin-top: 8px; }
+      .adv-panel__intro-stats { width: 100%; justify-content: center; border-top: 1px solid rgba(196,168,108,0.1); padding-top: 20px; margin-top: 8px; }
+    }
+    @media (max-width: 768px) {
+      #activities-winter-container,
+      #activities-summer-container {
+        display: flex !important;
+        flex-direction: row !important;
+        overflow-x: auto !important;
+        scroll-snap-type: x mandatory !important;
+        gap: 14px !important;
+        scroll-behavior: smooth !important;
+        margin-left: -20px !important;
+        margin-right: -20px !important;
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+        padding-bottom: 16px !important;
+        scrollbar-width: none !important;
+      }
+      #activities-winter-container::-webkit-scrollbar,
+      #activities-summer-container::-webkit-scrollbar {
+        display: none !important;
+      }
+      .adv-packages .activities__item {
+        flex: 0 0 78% !important;
+        scroll-snap-align: start !important;
+        max-width: 290px !important;
+        height: auto !important;
+      }
     }
     @media (max-width: 640px) {
       .adv-cats__grid { grid-template-columns: 1fr 1fr; }
@@ -732,7 +786,7 @@
   <!-- ======================================================
        SCRIPTS
   ====================================================== -->
-  <script src="js/site-data.js"></script>
+  <script src="js/site-data.js?v=4"></script>
   <script src="js/navbar.js?v=3"></script>
   <script>
   /* ============================================================

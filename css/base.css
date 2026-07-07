@@ -91,6 +91,32 @@ p {
   background-clip: text;
 }
 
+/* ---- Cream Section Utility ---- */
+.section--cream {
+  background: var(--bg-cream);
+  color: var(--text-on-cream);
+}
+
+.section--cream .section-label {
+  color: var(--gold-dark);
+}
+
+.section--cream .section-label::before {
+  background: var(--gold-dark);
+}
+
+.section--cream .section-title {
+  color: var(--text-on-cream);
+}
+
+.section--cream .section-subtitle {
+  color: var(--text-secondary-on-cream);
+}
+
+.section--cream p {
+  color: var(--text-secondary-on-cream);
+}
+
 /* Fix for split-text animated gradient spans */
 .text-gradient .anim-word {
   background: linear-gradient(135deg, var(--gold-light), var(--gold)) !important;
@@ -205,7 +231,7 @@ section {
 /* Primary = Gold filled */
 .btn--primary {
   background: var(--gold);
-  color: #0e0e0e;
+  color: #ffffff;
   border: 1px solid var(--gold);
   font-weight: var(--weight-bold);
   letter-spacing: var(--tracking-wider);
@@ -311,7 +337,7 @@ section {
 /* ---------- Selection ---------- */
 ::selection {
   background: var(--gold);
-  color: #0e0e0e;
+  color: #1a1f14;
 }
 
 /* ---------- Scrollbar ---------- */

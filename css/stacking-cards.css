@@ -519,50 +519,7 @@ body {
 }
 
 /* Sightseeing details */
-.sightseeing__map-container {
-  padding: 12px !important;
-  margin-top: 48px !important;
-}
-.sightseeing__map-bg {
-  filter: grayscale(1) contrast(1.15) brightness(0.9) !important;
-  opacity: 0.8 !important;
-}
-.sightseeing__pin-dot {
-  width: 14px !important;
-  height: 14px !important;
-  background: #0f172a !important;
-  border: 3px solid #ffffff !important;
-  box-shadow: 0 0 0 5px rgba(0, 0, 0, 0.12) !important;
-  transition: all 0.3s ease !important;
-}
-.sightseeing__pin:hover .sightseeing__pin-dot,
-.sightseeing__pin--active .sightseeing__pin-dot {
-  background: #2563eb !important;
-  transform: scale(1.3) !important;
-  box-shadow: 0 0 0 6px rgba(37, 99, 235, 0.25) !important;
-}
-.sightseeing__pin-label {
-  background: #ffffff !important;
-  border: 1px solid rgba(15, 23, 42, 0.08) !important;
-  color: #000000 !important;
-  border-radius: 2px !important;
-  font-weight: 700 !important;
-  font-size: 11px !important;
-  padding: 5px 12px !important;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05) !important;
-}
-.sightseeing__info-card {
-  border: 1px solid #000000 !important;
-  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.15) !important;
-  padding: 24px !important;
-}
-.sightseeing__info-title {
-  color: #000000 !important;
-  font-weight: 800 !important;
-}
-.sightseeing__info-desc {
-  color: #475569 !important;
-}
+/* Stacking Map styling removed — centralized in sightseeing.css */
 
 /* ---------- Global Buttons Styling in Stacking Cards ---------- */
 .btn--primary {

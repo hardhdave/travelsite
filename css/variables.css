@@ -1,87 +1,101 @@
 /* ============================================
-   SHRED HIMALAYAS — Luxury Dark Gold Design Tokens
+   SHRED HIMALAYAS — Light Neutral Luxury Design Tokens
    ============================================ */
 
 :root {
-  /* ——— Core Brand Colors ——— */
-  --gold:            #C9A84C;
-  --gold-light:      #E2C07A;
-  --gold-dark:       #A07830;
-  --gold-subtle:     rgba(201, 168, 76, 0.12);
-  --gold-border:     rgba(201, 168, 76, 0.28);
-  --gold-border-hover: rgba(201, 168, 76, 0.6);
+  /* ——— Core Brand Colors (Sunset Gold, Forest Green, Earth Brown, Sky Blue) ——— */
+  --gold:            #B7A017;
+  --gold-light:      #D8C235;
+  --gold-dark:       #8A750E;
+  --gold-subtle:     rgba(183, 160, 23, 0.08);
+  --gold-border:     rgba(183, 160, 23, 0.28);
+  --gold-border-hover: rgba(183, 160, 23, 0.6);
 
-  /* ——— Background Scale ——— */
-  --bg-deepest:      #080808;
-  --bg-base:         #0e0e0e;
-  --bg-raised:       #141414;
-  --bg-card:         #1a1a1a;
-  --bg-hover:        #1f1f1f;
-  --bg-overlay:      rgba(8, 8, 8, 0.72);
+  --forest-green:     #2F4F3E;
+  --earth-brown:      #8B5E34;
+  --sky-blue:         #87AFC7;
+  --charcoal:         #1F2933;
 
-  /* ——— Text Scale ——— */
-  --text-primary:    #F5F0E8;
-  --text-secondary:  #A09898;
-  --text-muted:      #5A5550;
-  --text-gold:       #C9A84C;
+  /* ——— Background Scale (Light Neutral Sand Beige) ——— */
+  --bg-deepest:      #E4D9C1; /* Darker sand beige for deep shadows/overlays */
+  --bg-base:         #F2E8D5; /* Main page background (Light Neutral) */
+  --bg-raised:       #FBF8F2; /* Soft off-white for alternative rows */
+  --bg-card:         #FFFFFF; /* Pure white cards for crisp editorial separation */
+  --bg-hover:        #EAE0CB; /* Hover state for list items and tags */
+  --bg-overlay:      rgba(31, 41, 51, 0.45); /* Charcoal translucent overlay */
+
+  /* ——— Cream Section Tokens (Retained for legacy/compatibility) ——— */
+  --bg-cream:        #F2E8D5;
+  --bg-cream-dark:   #E4D9C1;
+  --bg-cream-card:   #FFFFFF;
+  --text-on-cream:       #1F2933;
+  --text-secondary-on-cream: #2F4F3E;
+  --text-muted-on-cream:     #7F8A95;
+  --border-on-cream:   rgba(31, 41, 51, 0.08);
+  --gold-border-on-cream: rgba(183, 160, 23, 0.25);
+
+  /* ——— Text Scale (High Contrast Charcoal & Earthy Accents) ——— */
+  --text-primary:    #1F2933; /* Primary body text and headers */
+  --text-secondary:  #2F4F3E; /* Subheadings / category tags (Forest Green) */
+  --text-muted:      #6A7682; /* Caption and minor labels */
+  --text-gold:       #B7A017;
   --text-white:      #FFFFFF;
 
   /* ——— Border / Divider ——— */
-  --border-subtle:   rgba(255, 255, 255, 0.06);
-  --border-medium:   rgba(255, 255, 255, 0.10);
-  --border-strong:   rgba(255, 255, 255, 0.18);
+  --border-subtle:   rgba(31, 41, 51, 0.08);
+  --border-medium:   rgba(31, 41, 51, 0.14);
+  --border-strong:   rgba(31, 41, 51, 0.22);
 
   /* ——— Glass / Card Effects ——— */
-  --glass-dark:      rgba(14, 14, 14, 0.82);
-  --glass-dark-hover:rgba(20, 20, 20, 0.92);
-  --glass-gold:      rgba(201, 168, 76, 0.08);
-  --glass-shadow:    0 8px 32px rgba(0, 0, 0, 0.6);
+  --glass-dark:      rgba(255, 255, 255, 0.85); /* Frosty white glass */
+  --glass-dark-hover:rgba(255, 255, 255, 0.95);
+  --glass-gold:      rgba(183, 160, 23, 0.05);
+  --glass-shadow:    0 8px 32px rgba(31, 41, 51, 0.08);
 
   /* ——— Legacy aliases (for compatibility) ——— */
   --midnight-navy:        var(--bg-base);
-  --midnight-navy-rgb:    14, 14, 14;
+  --midnight-navy-rgb:    242, 232, 213;
   --glacier-blue:         var(--gold);
-  --glacier-blue-rgb:     201, 168, 76;
+  --glacier-blue-rgb:     183, 160, 23;
   --snow-white:           var(--text-primary);
-  --snow-white-rgb:       245, 240, 232;
+  --snow-white-rgb:       31, 41, 51;
   --mountain-gray:        var(--text-secondary);
-  --mountain-gray-rgb:    160, 152, 152;
-  --forest-green:         #2A5C3F;
-  --forest-green-rgb:     42, 92, 63;
+  --mountain-gray-rgb:    47, 79, 62;
+  --forest-green-rgb:     47, 79, 62;
   --deep-navy:            var(--bg-raised);
   --dark-slate:           var(--bg-card);
-  --ice-blue:             var(--gold-light);
+  --ice-blue:             var(--sky-blue);
   --warm-gold:            var(--gold);
-  --sunset-amber:         #E8A040;
+  --sunset-amber:         #D4A050;
   --alpine-white:         var(--text-primary);
-  --charcoal:             var(--bg-card);
-  --storm-gray:           var(--text-secondary);
+  --charcoal-hex:         var(--charcoal);
+  --storm-gray:           var(--text-muted);
   --soft-navy:            var(--bg-raised);
 
   /* ——— Gradients ——— */
-  --gradient-premium:      linear-gradient(135deg, #0e0e0e, #141414, #1a1a1a);
+  --gradient-premium:      linear-gradient(135deg, #F2E8D5, #FBF8F2, #FFFFFF);
   --gradient-hero-overlay: linear-gradient(180deg,
-      rgba(8,8,8,0.25) 0%,
-      rgba(8,8,8,0.1)  40%,
-      rgba(8,8,8,0.75) 100%);
-  --gradient-card:         linear-gradient(145deg, rgba(26,26,26,0.95), rgba(20,20,20,0.98));
+      rgba(31,41,51,0.3) 0%,
+      rgba(31,41,51,0.1)  40%,
+      rgba(31,41,51,0.65) 100%);
+  --gradient-card:         linear-gradient(145deg, #FFFFFF, #FBF8F2);
   --gradient-glacier:      linear-gradient(135deg, var(--gold-dark), var(--gold));
-  --gradient-forest:       linear-gradient(135deg, #1a3520, #2A5C3F);
-  --gradient-winter:       linear-gradient(180deg, #0e1520 0%, #0a1020 100%);
-  --gradient-summer:       linear-gradient(180deg, #0e1a10 0%, #0a1410 100%);
-  --gradient-text:         linear-gradient(135deg, var(--gold-light), var(--gold));
+  --gradient-forest:       linear-gradient(135deg, #2F4F3E, #4A7A61);
+  --gradient-winter:       linear-gradient(180deg, #FBF8F2 0%, #F2E8D5 100%);
+  --gradient-summer:       linear-gradient(180deg, #F2E8D5 0%, #E4D9C1 100%);
+  --gradient-text:         linear-gradient(135deg, #1F2933, #2F4F3E);
   --gradient-gold-shine:   linear-gradient(90deg,
-      transparent, rgba(201,168,76,0.12), transparent);
+      transparent, rgba(183,160,23,0.12), transparent);
 
   /* ——— Glass Effects ——— */
-  --glass-bg:          rgba(20, 20, 20, 0.75);
-  --glass-bg-light:    rgba(26, 26, 26, 0.55);
-  --glass-border:      rgba(201, 168, 76, 0.2);
-  --glass-border-hover:rgba(201, 168, 76, 0.45);
+  --glass-bg:          rgba(255, 255, 255, 0.82);
+  --glass-bg-light:    rgba(255, 255, 255, 0.65);
+  --glass-border:      rgba(183, 160, 23, 0.15);
+  --glass-border-hover:rgba(183, 160, 23, 0.35);
 
   /* ——— Section shadows ——— */
   --section-overlap:    clamp(54px, 8vw, 118px);
-  --section-lift-shadow: 0 -20px 60px rgba(0, 0, 0, 0.5), 0 20px 60px rgba(0, 0, 0, 0.3);
+  --section-lift-shadow: 0 -20px 60px rgba(31, 41, 51, 0.05), 0 20px 60px rgba(31, 41, 51, 0.05);
 
   /* ——— Typography ——— */
   --font-heading:  'Cormorant Garamond', 'Georgia', serif;
@@ -149,21 +163,21 @@
   --container-padding: clamp(1.5rem, 4vw, 4rem);
 
   /* ——— Borders & Radius ——— */
-  --radius-sm:   6px;
-  --radius-md:   12px;
-  --radius-lg:   20px;
-  --radius-xl:   28px;
-  --radius-2xl:  40px;
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:   16px;
+  --radius-xl:   24px;
+  --radius-2xl:  32px;
   --radius-full: 9999px;
 
-  /* ——— Shadows ——— */
-  --shadow-sm:          0 2px 8px rgba(0, 0, 0, 0.5);
-  --shadow-md:          0 4px 16px rgba(0, 0, 0, 0.6);
-  --shadow-lg:          0 8px 32px rgba(0, 0, 0, 0.7);
-  --shadow-xl:          0 16px 48px rgba(0, 0, 0, 0.8);
-  --shadow-glow:        0 0 30px rgba(201, 168, 76, 0.15);
-  --shadow-glow-strong: 0 0 50px rgba(201, 168, 76, 0.3);
-  --shadow-gold:        0 4px 24px rgba(201, 168, 76, 0.2);
+  /* ——— Shadows (Refined for Light Backgrounds) ——— */
+  --shadow-sm:          0 2px 6px rgba(31, 41, 51, 0.04);
+  --shadow-md:          0 4px 12px rgba(31, 41, 51, 0.06);
+  --shadow-lg:          0 8px 24px rgba(31, 41, 51, 0.08);
+  --shadow-xl:          0 16px 36px rgba(31, 41, 51, 0.12);
+  --shadow-glow:        0 0 20px rgba(183, 160, 23, 0.12);
+  --shadow-glow-strong: 0 0 35px rgba(183, 160, 23, 0.22);
+  --shadow-gold:        0 4px 16px rgba(183, 160, 23, 0.15);
 
   /* ——— Transitions ——— */
   --ease-smooth:  cubic-bezier(0.25, 0.46, 0.45, 0.94);

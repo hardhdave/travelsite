@@ -8,7 +8,7 @@
   position: fixed;
   inset: 0;
   z-index: var(--z-loader);
-  background: #080808;
+  background: var(--bg-deepest);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -52,7 +52,7 @@
 
 .loader__ring-bg {
   fill: none;
-  stroke: rgba(201,168,76,0.12);
+  stroke: rgba(196,168,108,0.12);
   stroke-width: 2;
 }
 
@@ -152,7 +152,7 @@ body {
 
 .navbar--scrolled {
   background: rgba(8, 8, 8, 0.94) !important;
-  border-bottom-color: rgba(201, 168, 76, 0.2) !important;
+  border-bottom-color: rgba(196, 168, 108, 0.2) !important;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
 }
@@ -246,8 +246,8 @@ body {
   gap: 10px;
   padding: 8px 18px;
   color: var(--gold);
-  background: rgba(201, 168, 76, 0.08);
-  border: 1px solid rgba(201, 168, 76, 0.28);
+  background: rgba(196, 168, 108, 0.08);
+  border: 1px solid rgba(196, 168, 108, 0.28);
   border-radius: 0;
   font-family: var(--font-accent);
   font-size: 10px;
@@ -294,7 +294,7 @@ body {
 .hero .btn--primary:hover {
   background: var(--gold-light);
   border-color: var(--gold-light);
-  box-shadow: 0 8px 30px rgba(201,168,76,0.3);
+  box-shadow: 0 8px 30px rgba(196,168,108,0.3);
 }
 
 .hero .btn--secondary {
@@ -319,7 +319,7 @@ body {
 }
 
 .hero__scroll-line {
-  background: rgba(201, 168, 76, 0.4);
+  background: rgba(196, 168, 108, 0.4);
 }
 
 /* ======== SECTION TITLE GLOBAL ======== */
@@ -353,7 +353,7 @@ body {
 }
 
 .btn--primary:hover {
-  box-shadow: 0 8px 30px rgba(201,168,76,0.25);
+  box-shadow: 0 8px 30px rgba(196,168,108,0.25);
   background: var(--gold-light);
   border-color: var(--gold-light);
 }
@@ -372,7 +372,7 @@ body {
   background: var(--gold-subtle);
   border-color: var(--gold);
   color: var(--gold-light);
-  box-shadow: 0 8px 30px rgba(201,168,76,0.15);
+  box-shadow: 0 8px 30px rgba(196,168,108,0.15);
 }
 
 /* ======== EXPERIENCES SECTION ======== */
@@ -472,7 +472,7 @@ body {
   grid-template-columns: repeat(3, 1fr);
   gap: 1px;
   background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(201,168,76,0.15);
+  border: 1px solid rgba(196,168,108,0.15);
 }
 
 @media (max-width: 900px) {
@@ -499,7 +499,7 @@ body {
   position: absolute;
   bottom: 0; left: var(--space-8); right: var(--space-8);
   height: 1px;
-  background: rgba(201,168,76,0.1);
+  background: rgba(196,168,108,0.1);
 }
 
 .why-choose__card:hover {
@@ -549,8 +549,8 @@ body {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   margin-top: var(--space-16);
-  border-top: 1px solid rgba(201,168,76,0.15);
-  border-left: 1px solid rgba(201,168,76,0.15);
+  border-top: 1px solid rgba(196,168,108,0.15);
+  border-left: 1px solid rgba(196,168,108,0.15);
 }
 
 @media (max-width: 768px) {
@@ -559,8 +559,8 @@ body {
 
 .why-choose__stat {
   padding: var(--space-8);
-  border-right: 1px solid rgba(201,168,76,0.15);
-  border-bottom: 1px solid rgba(201,168,76,0.15);
+  border-right: 1px solid rgba(196,168,108,0.15);
+  border-bottom: 1px solid rgba(196,168,108,0.15);
   text-align: center;
 }
 
@@ -607,7 +607,7 @@ body {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(180deg, var(--bg-deepest) 0%, rgba(8,8,8,0.6) 50%, var(--bg-deepest) 100%);
+    linear-gradient(180deg, var(--bg-deepest) 0%, rgba(242, 232, 213, 0.4) 50%, var(--bg-deepest) 100%);
 }
 
 .skiing__inner {
@@ -663,7 +663,7 @@ body {
   color: var(--gold);
   margin-bottom: var(--space-6);
   padding-bottom: var(--space-4);
-  border-bottom: 1px solid rgba(201,168,76,0.2);
+  border-bottom: 1px solid rgba(196,168,108,0.2);
 }
 
 .skiing__package-card {
@@ -679,7 +679,7 @@ body {
 
 .skiing__package-card:hover {
   padding-left: var(--space-3);
-  border-bottom-color: rgba(201,168,76,0.3);
+  border-bottom-color: rgba(196,168,108,0.3);
 }
 
 .skiing__package-name {
@@ -730,7 +730,7 @@ body {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(180deg, var(--bg-base) 0%, rgba(8,8,8,0.3) 50%, var(--bg-base) 100%);
+    linear-gradient(180deg, var(--bg-base) 0%, rgba(242, 232, 213, 0.22) 50%, var(--bg-base) 100%);
 }
 
 .trekking__inner {
@@ -759,12 +759,12 @@ body {
 .trekking__card {
   position: relative;
   overflow: hidden;
-  border: 1px solid rgba(201,168,76,0.12);
+  border: 1px solid rgba(196,168,108,0.12);
   cursor: pointer;
 }
 
 .trekking__card:hover {
-  border-color: rgba(201,168,76,0.35);
+  border-color: rgba(196,168,108,0.35);
 }
 
 .trekking__card-image {
@@ -884,7 +884,7 @@ body {
 }
 
 .activities__split-divider {
-  background: rgba(201,168,76,0.2);
+  background: rgba(196,168,108,0.2);
   align-self: stretch;
 }
 
@@ -907,7 +907,7 @@ body {
   letter-spacing: 0.35em;
   text-transform: uppercase;
   color: var(--gold);
-  background: rgba(201,168,76,0.08);
+  background: rgba(196,168,108,0.08);
   border: 1px solid var(--gold-border);
   padding: 5px 14px;
   display: inline-block;
@@ -934,7 +934,7 @@ body {
 
 .activities__item:hover {
   padding-left: var(--space-2);
-  border-bottom-color: rgba(201,168,76,0.2);
+  border-bottom-color: rgba(196,168,108,0.2);
 }
 
 .activities__item-icon {
@@ -968,67 +968,7 @@ body {
   line-height: 1.5;
 }
 
-/* ======== SIGHTSEEING / MAP ======== */
-.sightseeing {
-  background: var(--bg-deepest);
-}
-
-.sightseeing__header {
-  text-align: center;
-  margin-bottom: var(--space-12);
-}
-
-.sightseeing__map-container {
-  position: relative;
-  border: 1px solid var(--gold-border);
-  overflow: hidden;
-}
-
-.sightseeing__map-bg {
-  width: 100%;
-  height: 480px;
-  object-fit: cover;
-  filter: brightness(0.4) saturate(0.5);
-}
-
-.sightseeing__pin-dot {
-  background: var(--gold);
-  box-shadow: 0 0 0 3px rgba(201,168,76,0.25), 0 0 12px rgba(201,168,76,0.4);
-}
-
-.sightseeing__pin-label {
-  color: var(--text-primary);
-  font-family: var(--font-accent);
-  font-size: 10px;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  background: rgba(8,8,8,0.8);
-  border: 1px solid var(--gold-border);
-  padding: 3px 10px;
-  white-space: nowrap;
-}
-
-.sightseeing__info-card {
-  background: rgba(8,8,8,0.95);
-  border: 1px solid var(--gold-border);
-  border-radius: 0;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-}
-
-.sightseeing__info-title {
-  color: var(--text-primary);
-  font-family: var(--font-heading);
-  font-weight: var(--weight-light);
-}
-
-.sightseeing__info-desc {
-  color: var(--text-secondary);
-}
-
-.sightseeing__info-close {
-  color: var(--text-muted);
-}
+/* ======== SIGHTSEEING / MAP (Centralized in sightseeing.css) ======== */
 
 .sightseeing__info-close:hover {
   color: var(--gold);
@@ -1048,8 +988,8 @@ body {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1px;
-  background: rgba(201,168,76,0.1);
-  border: 1px solid rgba(201,168,76,0.15);
+  background: rgba(196,168,108,0.1);
+  border: 1px solid rgba(196,168,108,0.15);
 }
 
 @media (max-width: 768px) {
@@ -1107,7 +1047,7 @@ body {
   position: absolute;
   top: var(--space-4);
   right: var(--space-4);
-  background: rgba(201,168,76,0.08);
+  background: rgba(196,168,108,0.08);
   border: 1px solid var(--gold-border);
   color: var(--gold);
   font-family: var(--font-accent);
@@ -1140,7 +1080,7 @@ body {
 .transport__bg-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, var(--bg-raised) 0%, rgba(20,20,20,0.7) 50%, var(--bg-raised) 100%);
+  background: linear-gradient(180deg, var(--bg-raised) 0%, rgba(242, 232, 213, 0.45) 50%, var(--bg-raised) 100%);
 }
 
 .transport__inner {
@@ -1157,8 +1097,8 @@ body {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1px;
-  background: rgba(201,168,76,0.1);
-  border: 1px solid rgba(201,168,76,0.15);
+  background: rgba(196,168,108,0.1);
+  border: 1px solid rgba(196,168,108,0.15);
 }
 
 @media (max-width: 768px) {
@@ -1236,13 +1176,13 @@ body {
 .packages__card {
   position: relative;
   overflow: hidden;
-  border: 1px solid rgba(201,168,76,0.12);
+  border: 1px solid rgba(196,168,108,0.12);
   transition: border-color var(--duration-normal) ease;
   cursor: pointer;
 }
 
 .packages__card:hover {
-  border-color: rgba(201,168,76,0.4);
+  border-color: rgba(196,168,108,0.4);
 }
 
 .packages__card-image {
@@ -1331,7 +1271,7 @@ body {
 
 .testimonials__card {
   background: var(--bg-card) !important;
-  border: 1px solid rgba(201,168,76,0.12) !important;
+  border: 1px solid rgba(196,168,108,0.12) !important;
   border-radius: 0 !important;
   padding: var(--space-8) !important;
   flex-shrink: 0;
@@ -1339,7 +1279,7 @@ body {
 }
 
 .testimonials__card:hover {
-  border-color: rgba(201,168,76,0.3) !important;
+  border-color: rgba(196,168,108,0.3) !important;
 }
 
 .testimonials__star {
@@ -1367,7 +1307,7 @@ body {
 }
 
 .testimonials__avatar {
-  background: rgba(201,168,76,0.1) !important;
+  background: rgba(196,168,108,0.1) !important;
   border: 1px solid var(--gold-border) !important;
   color: var(--gold) !important;
 }
@@ -1440,7 +1380,7 @@ body {
 }
 
 .about__portrait-frame {
-  border-color: rgba(201,168,76,0.3) !important;
+  border-color: rgba(196,168,108,0.3) !important;
 }
 
 .about__portrait-image {
@@ -1587,7 +1527,7 @@ body {
 /* ======== FOOTER ======== */
 .footer {
   background: var(--bg-deepest) !important;
-  border-top: 1px solid rgba(201,168,76,0.2);
+  border-top: 1px solid rgba(196,168,108,0.2);
 }
 
 .footer__top {
@@ -1686,7 +1626,7 @@ body {
 
 .footer__map {
   margin: var(--space-8) 0;
-  border: 1px solid rgba(201,168,76,0.15);
+  border: 1px solid rgba(196,168,108,0.15);
   overflow: hidden;
   filter: grayscale(60%) brightness(0.6) contrast(1.1);
 }
@@ -1782,7 +1722,7 @@ body {
   .navbar__link:hover,
   .navbar__link.active {
     color: var(--gold);
-    background: rgba(201,168,76,0.05);
+    background: rgba(196,168,108,0.05);
   }
 
   .activities__season {

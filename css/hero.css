@@ -57,7 +57,7 @@
   transform: scale(1.12);
   transition: transform 2s cubic-bezier(0.25, 1, 0.5, 1);
   will-change: transform;
-  filter: brightness(0.65) saturate(0.75);
+  filter: brightness(0.65) saturate(0.8) sepia(0.1);
 }
 
 .hero__slide.active .hero__video,
@@ -70,9 +70,9 @@
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(8, 8, 8, 0.45) 0%,
-    rgba(8, 8, 8, 0.2)  40%,
-    rgba(8, 8, 8, 0.7)  100%
+    rgba(26, 31, 20, 0.45) 0%,
+    rgba(26, 31, 20, 0.15)  40%,
+    rgba(26, 31, 20, 0.75)  100%
   );
   z-index: 1;
 }
@@ -113,8 +113,8 @@
   display: flex;
   align-items: center;
   gap: 14px;
-  background: rgba(201, 168, 76, 0.06);
-  border: 1px solid rgba(201, 168, 76, 0.25);
+  background: rgba(196, 168, 108, 0.06);
+  border: 1px solid rgba(196, 168, 108, 0.25);
   padding: 8px 20px;
 }
 
@@ -190,9 +190,9 @@
   width: 48px;
   height: 48px;
   border-radius: 0;
-  border: 1px solid rgba(201, 168, 76, 0.3);
-  background: rgba(8, 8, 8, 0.4);
-  color: rgba(245, 240, 232, 0.8);
+  border: 1px solid rgba(196, 168, 108, 0.3);
+  background: rgba(26, 31, 20, 0.4);
+  color: rgba(242, 237, 228, 0.8);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -204,7 +204,7 @@
 
 .hero__control:hover {
   background: var(--gold);
-  color: #0a0a0a;
+  color: #1a1f14;
   border-color: var(--gold);
   transform: translateY(-2px);
   box-shadow: var(--shadow-gold);
@@ -238,7 +238,7 @@
   font-weight: var(--weight-semibold);
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: rgba(201, 168, 76, 0.6);
+  color: rgba(196, 168, 108, 0.6);
   writing-mode: vertical-lr;
   animation: pulseOpacity 2s infinite ease-in-out;
 }
@@ -246,7 +246,7 @@
 .hero__scroll-line {
   width: 1px;
   height: 60px;
-  background: rgba(201, 168, 76, 0.15);
+  background: rgba(196, 168, 108, 0.15);
   position: relative;
   overflow: hidden;
 }
