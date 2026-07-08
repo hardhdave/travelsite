@@ -118,5 +118,12 @@
 }
 
 @media (max-width: 480px) {
-  .gallery__masonry { columns: 1; }
+  .gallery__masonry {
+    columns: 2 !important;
+    column-gap: 8px !important;
+  }
+  .gallery__item {
+    margin-bottom: 8px !important;
+    border-radius: var(--radius-sm) !important;
+  }
 }

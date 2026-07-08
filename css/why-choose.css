@@ -178,12 +178,18 @@
 
 @media (max-width: 768px) {
   .why-choose__grid {
-    grid-template-columns: 1fr;
-    gap: var(--space-5);
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
   }
   .why-choose__stats {
-    flex-direction: column;
-    gap: var(--space-6);
-    align-items: center;
+    flex-direction: row !important;
+    justify-content: space-around !important;
+    gap: var(--space-4) !important;
+  }
+}
+@media (max-width: 480px) {
+  .why-choose__grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
   }
 }
