@@ -120,6 +120,37 @@
   align-self: flex-start;
 }
 
+/* ---- Button inside card: cream/sand for contrast over dark image ---- */
+.packages__card-content .btn--primary {
+  background: #f5e9d5 !important;
+  color: #1a2e22 !important;
+  border: 1px solid #f5e9d5 !important;
+  border-radius: 4px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.15em !important;
+}
+
+.packages__card-content .btn--primary:hover {
+  background: #ffffff !important;
+  color: #1a2e22 !important;
+  border-color: #ffffff !important;
+}
+
+/* ---- Badge: warm sand border, cream text — visible on any image ---- */
+.packages__card-tag {
+  background: rgba(245, 233, 213, 0.15) !important;
+  color: #f5e9d5 !important;
+  border: 1px solid rgba(245, 233, 213, 0.5) !important;
+  border-radius: 3px !important;
+  font-family: var(--font-accent) !important;
+  font-size: 9px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.25em !important;
+  text-transform: uppercase !important;
+  padding: 4px 12px !important;
+  backdrop-filter: blur(4px) !important;
+}
+
 /* Bottom row: 2 cards spanning full width */
 .packages__bottom-row {
   display: grid;

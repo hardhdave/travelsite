@@ -52,13 +52,13 @@
 
 .loader__ring-bg {
   fill: none;
-  stroke: rgba(196,168,108,0.12);
+  stroke: rgba(47, 79, 62, 0.12);
   stroke-width: 2;
 }
 
 .loader__ring-progress {
   fill: none;
-  stroke: #C9A84C;
+  stroke: #2F4F3E;
   stroke-width: 2;
   stroke-linecap: butt;
   stroke-dasharray: 283;
@@ -1793,3 +1793,49 @@ body {
     padding: 0;
   }
 }
+
+/* =====================================================
+   PACKAGE CARDS — button & badge contrast fix
+   Warm cream stands out on dark mountain photo overlay
+   ===================================================== */
+.packages__card-content .btn--primary {
+  background: #f5e9d5 !important;
+  color: #1a2e22 !important;
+  border: 1px solid #f5e9d5 !important;
+  border-radius: 4px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.15em !important;
+  text-transform: uppercase !important;
+}
+
+.packages__card-content .btn--primary:hover {
+  background: #ffffff !important;
+  color: #1a2e22 !important;
+  border-color: #ffffff !important;
+}
+
+.packages__card-tag {
+  background: rgba(245,233,213,0.12) !important;
+  color: #f5e9d5 !important;
+  border: 1px solid rgba(245,233,213,0.45) !important;
+  border-radius: 3px !important;
+  font-size: 9px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.25em !important;
+  text-transform: uppercase !important;
+  padding: 4px 12px !important;
+  backdrop-filter: blur(4px) !important;
+  -webkit-backdrop-filter: blur(4px) !important;
+}
+
+.packages__card-content .packages__card-title {
+  color: #f7f3ee !important;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.5) !important;
+}
+
+.packages__card-content .packages__card-desc {
+  color: rgba(247, 243, 238, 0.85) !important;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.5) !important;
+}
+
+

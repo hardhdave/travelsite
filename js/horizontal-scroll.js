@@ -1,76 +1,143 @@
 /* ============================================
-   HORIZONTAL-SCROLL.JS — Apple-style Scroll
+   EXPERIENCES-TABS.JS — Editorial Magazine Tabs
+   Keyboard, Touch & Auto-Advance Support
    ============================================ */
 
-(function() {
-  // Expose function globally so it can be initialized sequentially
-  window.initHorizontalScroll = initHorizontalScroll;
+(function () {
+  'use strict';
 
-  function initHorizontalScroll() {
-    if (!window.gsap || !window.ScrollTrigger) return;
+  function initExperiencesTabs() {
     const section = document.querySelector('.experiences');
     if (!section) return;
 
-    const track = document.getElementById('experiencesTrack');
-    const wrapper = section.querySelector('.experiences__scroll-wrapper');
-    const progressBar = document.getElementById('experiencesProgress');
-    if (!track || !wrapper) return;
+    const navBtns = section.querySelectorAll('.experiences__nav-btn');
+    const panels  = section.querySelectorAll('.experiences__panel');
+    const dots    = section.querySelectorAll('.experiences__dot');
 
-    const cards = track.querySelectorAll('.experiences__card');
-    if (!cards.length) return;
+    if (!navBtns.length || !panels.length) return;
 
-    // Full distance the track must travel so the LAST card is fully on screen
-    function getTravelDistance() {
-      return Math.max(0, track.scrollWidth - wrapper.clientWidth);
+    let currentIndex = 0;
+    let autoTimer    = null;
+    const AUTO_DELAY = 5000;
+
+    /* ---- Core switch function ---- */
+    function switchTo(index) {
+      if (index === currentIndex) return;
+      if (index < 0) index = navBtns.length - 1;
+      if (index >= navBtns.length) index = 0;
+
+      // De-activate current
+      navBtns[currentIndex].classList.remove('is-active');
+      navBtns[currentIndex].setAttribute('aria-selected', 'false');
+      panels[currentIndex].classList.remove('is-active');
+      if (dots[currentIndex]) dots[currentIndex].classList.remove('is-active');
+
+      // Activate new
+      currentIndex = index;
+      navBtns[currentIndex].classList.add('is-active');
+      navBtns[currentIndex].setAttribute('aria-selected', 'true');
+      panels[currentIndex].classList.add('is-active');
+      if (dots[currentIndex]) dots[currentIndex].classList.add('is-active');
+
+      // Scroll nav button into view on mobile
+      navBtns[currentIndex].scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' });
     }
 
-    // Vertical scroll length — 2.5× the travel distance for a comfortable pace
-    function getScrollLength() {
-      return Math.max(getTravelDistance() * 1.05 + window.innerHeight * 0.2, window.innerHeight * 0.9);
+    /* ---- Auto-advance ---- */
+    function startAuto() {
+      clearInterval(autoTimer);
+      autoTimer = setInterval(() => {
+        switchTo(currentIndex + 1);
+      }, AUTO_DELAY);
     }
 
-    gsap.to(track, {
-      x: () => -getTravelDistance(),
-      ease: 'none',
-      scrollTrigger: {
-        trigger: section,
-        pin: true,
-        pinSpacing: true,
-        scrub: 1,
-        start: 'top top',
-        end: () => '+=' + getScrollLength(),
-        invalidateOnRefresh: true,
-        anticipatePin: 1,
-        onUpdate: (self) => {
-          // Progress bar
-          if (progressBar) {
-            progressBar.style.width = (self.progress * 100) + '%';
-          }
+    function stopAuto() {
+      clearInterval(autoTimer);
+    }
 
-          // Card scale / opacity based on distance from viewport center
-          const centerX = window.innerWidth / 2;
-          cards.forEach(card => {
-            const rect = card.getBoundingClientRect();
-            const cardCenter = rect.left + rect.width / 2;
-            const dist = Math.abs(centerX - cardCenter);
-            const maxDist = window.innerWidth * 0.6;
-            const t = Math.min(dist / maxDist, 1);          // 0 = center, 1 = far
-            const scale  = 1 - t * 0.1;                     // 1 → 0.9
-            const opacity = 1 - t * 0.35;                   // 1 → 0.65
+    /* ---- Bind nav buttons ---- */
+    navBtns.forEach((btn, i) => {
+      btn.addEventListener('click', () => {
+        stopAuto();
+        switchTo(i);
+        startAuto();
+      });
+    });
 
-            gsap.set(card, { scale, opacity });
+    /* ---- Bind progress dots ---- */
+    dots.forEach((dot, i) => {
+      dot.addEventListener('click', () => {
+        stopAuto();
+        switchTo(i);
+        startAuto();
+      });
+    });
 
-            if (dist < 250) {
-              card.classList.add('is-active');
-            } else {
-              card.classList.remove('is-active');
-            }
-          });
-        }
+    /* ---- Keyboard navigation (arrow keys) ---- */
+    section.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
+        e.preventDefault();
+        stopAuto();
+        switchTo(currentIndex + 1);
+        startAuto();
+      } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+        e.preventDefault();
+        stopAuto();
+        switchTo(currentIndex - 1);
+        startAuto();
       }
     });
 
-    // Refresh once more after images settle
-    setTimeout(() => ScrollTrigger.refresh(), 500);
+    /* ---- Touch swipe on stage ---- */
+    const stage = section.querySelector('.experiences__stage');
+    if (stage) {
+      let touchStartX = 0;
+      let touchStartY = 0;
+
+      stage.addEventListener('touchstart', (e) => {
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+      }, { passive: true });
+
+      stage.addEventListener('touchend', (e) => {
+        const dx = e.changedTouches[0].clientX - touchStartX;
+        const dy = e.changedTouches[0].clientY - touchStartY;
+
+        // Only horizontal swipes (dx > dy in absolute terms)
+        if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40) {
+          stopAuto();
+          switchTo(dx < 0 ? currentIndex + 1 : currentIndex - 1);
+          startAuto();
+        }
+      }, { passive: true });
+    }
+
+    /* ---- Pause on hover ---- */
+    section.addEventListener('mouseenter', stopAuto);
+    section.addEventListener('mouseleave', startAuto);
+
+    /* ---- Intersection Observer: only auto-advance when visible ---- */
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            startAuto();
+          } else {
+            stopAuto();
+          }
+        });
+      }, { threshold: 0.3 });
+      io.observe(section);
+    } else {
+      startAuto();
+    }
   }
+
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initExperiencesTabs);
+  } else {
+    initExperiencesTabs();
+  }
+
 })();

@@ -3,13 +3,13 @@
    ============================================ */
 
 :root {
-  /* ——— Core Brand Colors (Sunset Gold, Forest Green, Earth Brown, Sky Blue) ——— */
-  --gold:            #B7A017;
-  --gold-light:      #D8C235;
-  --gold-dark:       #8A750E;
-  --gold-subtle:     rgba(183, 160, 23, 0.08);
-  --gold-border:     rgba(183, 160, 23, 0.28);
-  --gold-border-hover: rgba(183, 160, 23, 0.6);
+  /* ——— Core Brand Colors (Forest Green primary, Earth Brown, Sky Blue) ——— */
+  --gold:            #2F4F3E; /* Redefined to Forest Green as primary brand accent */
+  --gold-light:      #437057; /* Lighter forest green for hover/gradients */
+  --gold-dark:       #1C3026; /* Darker forest green */
+  --gold-subtle:     rgba(47, 79, 62, 0.08);
+  --gold-border:     rgba(47, 79, 62, 0.28);
+  --gold-border-hover: rgba(47, 79, 62, 0.6);
 
   --forest-green:     #2F4F3E;
   --earth-brown:      #8B5E34;
@@ -32,13 +32,13 @@
   --text-secondary-on-cream: #2F4F3E;
   --text-muted-on-cream:     #7F8A95;
   --border-on-cream:   rgba(31, 41, 51, 0.08);
-  --gold-border-on-cream: rgba(183, 160, 23, 0.25);
+  --gold-border-on-cream: rgba(47, 79, 62, 0.25);
 
   /* ——— Text Scale (High Contrast Charcoal & Earthy Accents) ——— */
   --text-primary:    #1F2933; /* Primary body text and headers */
   --text-secondary:  #2F4F3E; /* Subheadings / category tags (Forest Green) */
   --text-muted:      #6A7682; /* Caption and minor labels */
-  --text-gold:       #B7A017;
+  --text-gold:       #2F4F3E;
   --text-white:      #FFFFFF;
 
   /* ——— Border / Divider ——— */
@@ -49,14 +49,14 @@
   /* ——— Glass / Card Effects ——— */
   --glass-dark:      rgba(255, 255, 255, 0.85); /* Frosty white glass */
   --glass-dark-hover:rgba(255, 255, 255, 0.95);
-  --glass-gold:      rgba(183, 160, 23, 0.05);
+  --glass-gold:      rgba(47, 79, 62, 0.05);
   --glass-shadow:    0 8px 32px rgba(31, 41, 51, 0.08);
 
   /* ——— Legacy aliases (for compatibility) ——— */
   --midnight-navy:        var(--bg-base);
   --midnight-navy-rgb:    242, 232, 213;
   --glacier-blue:         var(--gold);
-  --glacier-blue-rgb:     183, 160, 23;
+  --glacier-blue-rgb:     47, 79, 62;
   --snow-white:           var(--text-primary);
   --snow-white-rgb:       31, 41, 51;
   --mountain-gray:        var(--text-secondary);
@@ -66,7 +66,7 @@
   --dark-slate:           var(--bg-card);
   --ice-blue:             var(--sky-blue);
   --warm-gold:            var(--gold);
-  --sunset-amber:         #D4A050;
+  --sunset-amber:         #8B5E34; /* Mapped to Earth Brown */
   --alpine-white:         var(--text-primary);
   --charcoal-hex:         var(--charcoal);
   --storm-gray:           var(--text-muted);
@@ -85,22 +85,22 @@
   --gradient-summer:       linear-gradient(180deg, #F2E8D5 0%, #E4D9C1 100%);
   --gradient-text:         linear-gradient(135deg, #1F2933, #2F4F3E);
   --gradient-gold-shine:   linear-gradient(90deg,
-      transparent, rgba(183,160,23,0.12), transparent);
+      transparent, rgba(47,79,62,0.12), transparent);
 
   /* ——— Glass Effects ——— */
   --glass-bg:          rgba(255, 255, 255, 0.82);
   --glass-bg-light:    rgba(255, 255, 255, 0.65);
-  --glass-border:      rgba(183, 160, 23, 0.15);
-  --glass-border-hover:rgba(183, 160, 23, 0.35);
+  --glass-border:      rgba(47, 79, 62, 0.15);
+  --glass-border-hover:rgba(47, 79, 62, 0.35);
 
   /* ——— Section shadows ——— */
   --section-overlap:    clamp(54px, 8vw, 118px);
   --section-lift-shadow: 0 -20px 60px rgba(31, 41, 51, 0.05), 0 20px 60px rgba(31, 41, 51, 0.05);
 
   /* ——— Typography ——— */
-  --font-heading:  'Cormorant Garamond', 'Georgia', serif;
-  --font-body:     'Plus Jakarta Sans', 'Inter', sans-serif;
-  --font-accent:   'Outfit', 'Plus Jakarta Sans', sans-serif;
+  --font-heading:  'Cormorant Garamond', 'Georgia', serif;   /* Editorial serif — Canela-style */
+  --font-body:     'Satoshi', 'Inter', sans-serif;            /* Satoshi for all body text */
+  --font-accent:   'Satoshi', 'Outfit', sans-serif;           /* Satoshi for labels, tags, CTAs */
   --font-serif:    'Cormorant Garamond', serif;
   --font-display:  'Cormorant Garamond', serif;
 

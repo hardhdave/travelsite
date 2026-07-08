@@ -10,15 +10,17 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400,300&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,600&display=swap" rel="stylesheet">
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="css/variables.css?v=2">
+  <link rel="stylesheet" href="css/variables.css?v=4">
   <link rel="stylesheet" href="css/base.css?v=4">
   <link rel="stylesheet" href="css/navbar.css?v=4">
   <link rel="stylesheet" href="css/hero.css">
-  <link rel="stylesheet" href="css/why-choose.css?v=4">
-  <link rel="stylesheet" href="css/experiences.css?v=3">
+  <link rel="stylesheet" href="css/why-choose.css?v=5">
+  <link rel="stylesheet" href="css/experiences.css?v=13">
   <link rel="stylesheet" href="css/skiing.css?v=2">
   <link rel="stylesheet" href="css/snowboarding.css">
   <link rel="stylesheet" href="css/trekking.css?v=3">
@@ -26,17 +28,17 @@
   <link rel="stylesheet" href="css/sightseeing.css?v=3">
   <link rel="stylesheet" href="css/rentals.css">
   <link rel="stylesheet" href="css/transport.css">
-  <link rel="stylesheet" href="css/packages.css?v=2">
+  <link rel="stylesheet" href="css/packages.css?v=3">
   <link rel="stylesheet" href="css/testimonials.css">
   <link rel="stylesheet" href="css/gallery.css?v=2">
   <link rel="stylesheet" href="css/about.css">
   <link rel="stylesheet" href="css/cta.css?v=6">
   <link rel="stylesheet" href="css/footer.css">
   <link rel="stylesheet" href="css/mega-menu.css">
-  <link rel="stylesheet" href="css/polish.css?v=11">
+  <link rel="stylesheet" href="css/polish.css?v=14">
 
   <!-- Favicon -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23C9A84C' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='m8 3 4 8 5-5 5 15H2L8 3z'/></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232F4F3E' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='m8 3 4 8 5-5 5 15H2L8 3z'/></svg>">
 </head>
 <body>
 
@@ -177,176 +179,431 @@
 
   <!-- ===== EXPERIENCES SHOWCASE ===== -->
   <section class="experiences" id="experiences">
-    <div class="experiences__header">
-      <p class="section-label">Our Experiences</p>
-      <h2 class="section-title split-text">Curated <span class="text-gradient">Himalayan Experiences</span></h2>
-      <p class="section-subtitle">From powder-fresh skiing to ancient mountain trails — discover Kashmir like never before.</p>
-    </div>
+    <div class="experiences__layout">
 
-    <div class="experiences__scroll-wrapper">
-      <div class="experiences__track" id="experiencesTrack">
-        <div class="experiences__card">
-          <img src="assets/images/skiing-action.png" alt="Skiing in Gulmarg" class="experiences__card-image">
-          <div class="experiences__card-overlay"></div>
-          <div class="experiences__card-content">
-            <span class="experiences__card-number">01</span>
-            <h3 class="experiences__card-title">Skiing</h3>
-            <p class="experiences__card-desc">World-class powder skiing in the Himalayas</p>
-            <div class="experiences__card-arrow">→</div>
-          </div>
+      <!-- Left Sidebar: Navigation -->
+      <aside class="experiences__sidebar">
+        <div class="experiences__sidebar-header">
+          <p class="experiences__sidebar-label">Our Experiences</p>
+          <h2 class="experiences__sidebar-title">
+            Choose Your<br><span>Adventure</span>
+          </h2>
         </div>
-        <div class="experiences__card">
-          <img src="assets/images/snowboarding-action.png" alt="Snowboarding in Kashmir" class="experiences__card-image">
-          <div class="experiences__card-overlay"></div>
-          <div class="experiences__card-content">
-            <span class="experiences__card-number">02</span>
-            <h3 class="experiences__card-title">Snowboarding</h3>
-            <p class="experiences__card-desc">Backcountry runs through untouched terrain</p>
-            <div class="experiences__card-arrow">→</div>
-          </div>
-        </div>
-        <div class="experiences__card">
-          <img src="assets/images/trekking-landscape.png" alt="Trekking in Kashmir" class="experiences__card-image">
-          <div class="experiences__card-overlay"></div>
-          <div class="experiences__card-content">
-            <span class="experiences__card-number">03</span>
-            <h3 class="experiences__card-title">Trekking</h3>
-            <p class="experiences__card-desc">Ancient trails through alpine meadows and lakes</p>
-            <div class="experiences__card-arrow">→</div>
-          </div>
-        </div>
-        <div class="experiences__card">
-          <img src="assets/images/sightseeing-dal-lake.png" alt="Sightseeing in Kashmir" class="experiences__card-image">
-          <div class="experiences__card-overlay"></div>
-          <div class="experiences__card-content">
-            <span class="experiences__card-number">04</span>
-            <h3 class="experiences__card-title">Sightseeing</h3>
-            <p class="experiences__card-desc">Iconic Kashmiri landscapes and cultural gems</p>
-            <div class="experiences__card-arrow">→</div>
-          </div>
-        </div>
-        <div class="experiences__card">
-          <img src="assets/images/activities-winter.png" alt="Winter activities in Kashmir" class="experiences__card-image">
-          <div class="experiences__card-overlay"></div>
-          <div class="experiences__card-content">
-            <span class="experiences__card-number">05</span>
-            <h3 class="experiences__card-title">Activities</h3>
-            <p class="experiences__card-desc">Year-round adventures for every season</p>
-            <div class="experiences__card-arrow">→</div>
-          </div>
-        </div>
-        <div class="experiences__card">
-          <img src="assets/images/rentals-equipment.png" alt="Equipment rentals" class="experiences__card-image">
-          <div class="experiences__card-overlay"></div>
-          <div class="experiences__card-content">
-            <span class="experiences__card-number">06</span>
-            <h3 class="experiences__card-title">Rentals</h3>
-            <p class="experiences__card-desc">Premium equipment for your mountain adventure</p>
-            <div class="experiences__card-arrow">→</div>
-          </div>
-        </div>
-      </div>
-    </div>
 
-    <div class="experiences__progress container">
-      <div class="experiences__progress-track">
-        <div class="experiences__progress-bar" id="experiencesProgress"></div>
-      </div>
-    </div>
+        <ul class="experiences__nav" role="tablist" aria-label="Experience categories">
+          <li class="experiences__nav-item">
+            <button class="experiences__nav-btn is-active" role="tab" aria-selected="true" data-exp="0" id="exp-tab-0" aria-controls="exp-panel-0">
+              <span class="experiences__nav-num">01</span>
+              <span class="experiences__nav-info">
+                <span class="experiences__nav-title">Skiing</span>
+                <span class="experiences__nav-sub">Gulmarg · Snow Sports</span>
+              </span>
+              <span class="experiences__nav-arrow" aria-hidden="true">↗</span>
+            </button>
+          </li>
+          <li class="experiences__nav-item">
+            <button class="experiences__nav-btn" role="tab" aria-selected="false" data-exp="1" id="exp-tab-1" aria-controls="exp-panel-1">
+              <span class="experiences__nav-num">02</span>
+              <span class="experiences__nav-info">
+                <span class="experiences__nav-title">Snowboarding</span>
+                <span class="experiences__nav-sub">Kashmir · Backcountry</span>
+              </span>
+              <span class="experiences__nav-arrow" aria-hidden="true">↗</span>
+            </button>
+          </li>
+          <li class="experiences__nav-item">
+            <button class="experiences__nav-btn" role="tab" aria-selected="false" data-exp="2" id="exp-tab-2" aria-controls="exp-panel-2">
+              <span class="experiences__nav-num">03</span>
+              <span class="experiences__nav-info">
+                <span class="experiences__nav-title">Trekking</span>
+                <span class="experiences__nav-sub">Trails · High Altitude</span>
+              </span>
+              <span class="experiences__nav-arrow" aria-hidden="true">↗</span>
+            </button>
+          </li>
+          <li class="experiences__nav-item">
+            <button class="experiences__nav-btn" role="tab" aria-selected="false" data-exp="3" id="exp-tab-3" aria-controls="exp-panel-3">
+              <span class="experiences__nav-num">04</span>
+              <span class="experiences__nav-info">
+                <span class="experiences__nav-title">Sightseeing</span>
+                <span class="experiences__nav-sub">Culture · Landscapes</span>
+              </span>
+              <span class="experiences__nav-arrow" aria-hidden="true">↗</span>
+            </button>
+          </li>
+          <li class="experiences__nav-item">
+            <button class="experiences__nav-btn" role="tab" aria-selected="false" data-exp="4" id="exp-tab-4" aria-controls="exp-panel-4">
+              <span class="experiences__nav-num">05</span>
+              <span class="experiences__nav-info">
+                <span class="experiences__nav-title">Activities</span>
+                <span class="experiences__nav-sub">Year-Round · All Levels</span>
+              </span>
+              <span class="experiences__nav-arrow" aria-hidden="true">↗</span>
+            </button>
+          </li>
+          <li class="experiences__nav-item">
+            <button class="experiences__nav-btn" role="tab" aria-selected="false" data-exp="5" id="exp-tab-5" aria-controls="exp-panel-5">
+              <span class="experiences__nav-num">06</span>
+              <span class="experiences__nav-info">
+                <span class="experiences__nav-title">Rentals</span>
+                <span class="experiences__nav-sub">Equipment · Premium Gear</span>
+              </span>
+              <span class="experiences__nav-arrow" aria-hidden="true">↗</span>
+            </button>
+          </li>
+        </ul>
+      </aside>
+
+      <!-- Right Stage: Image Panels -->
+      <div class="experiences__stage">
+
+        <!-- Panel 01: Skiing -->
+        <div class="experiences__panel is-active" role="tabpanel" id="exp-panel-0" aria-labelledby="exp-tab-0">
+          <img src="assets/images/skiing-action.png" alt="Skiing in Gulmarg" class="experiences__panel-image" loading="eager">
+          <div class="experiences__panel-overlay"></div>
+          <div class="experiences__panel-overlay-bottom"></div>
+          <div class="experiences__panel-bignum" aria-hidden="true">01</div>
+          <div class="experiences__panel-content">
+            <div class="experiences__panel-tag">Snow Sports</div>
+            <h3 class="experiences__panel-heading">Skiing in<br>the Himalayas</h3>
+            <p class="experiences__panel-desc">Asia's highest gondola, legendary powder runs, and certified instructors for all levels. From first-timers to expert heli-skiers — Gulmarg delivers like nowhere else on Earth.</p>
+            <div class="experiences__panel-meta">
+              <a href="skiing.html" class="experiences__panel-cta">
+                Explore Skiing
+                <svg class="experiences__panel-cta-icon" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+            <div class="experiences__panel-stats">
+              <div class="experiences__stat">
+                <span class="experiences__stat-num">4,138m</span>
+                <span class="experiences__stat-label">Peak Altitude</span>
+              </div>
+              <div class="experiences__stat">
+                <span class="experiences__stat-num">16km</span>
+                <span class="experiences__stat-label">Ski Runs</span>
+              </div>
+              <div class="experiences__stat">
+                <span class="experiences__stat-num">5★</span>
+                <span class="experiences__stat-label">Rated</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Panel 02: Snowboarding -->
+        <div class="experiences__panel" role="tabpanel" id="exp-panel-1" aria-labelledby="exp-tab-1">
+          <img src="assets/images/snowboarding-action.png" alt="Snowboarding in Kashmir" class="experiences__panel-image" loading="lazy">
+          <div class="experiences__panel-overlay"></div>
+          <div class="experiences__panel-overlay-bottom"></div>
+          <div class="experiences__panel-bignum" aria-hidden="true">02</div>
+          <div class="experiences__panel-content">
+            <div class="experiences__panel-tag">Backcountry</div>
+            <h3 class="experiences__panel-heading">Snowboarding<br>Kashmir</h3>
+            <p class="experiences__panel-desc">Carve your way through untouched mountain terrain. Our guides know every hidden line, drop, and powder stash in Kashmir's backcountry.</p>
+            <div class="experiences__panel-meta">
+              <a href="adventures.html" class="experiences__panel-cta">
+                Explore Snowboarding
+                <svg class="experiences__panel-cta-icon" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+            <div class="experiences__panel-stats">
+              <div class="experiences__stat">
+                <span class="experiences__stat-num">3,200m</span>
+                <span class="experiences__stat-label">Base Altitude</span>
+              </div>
+              <div class="experiences__stat">
+                <span class="experiences__stat-num">Dec–Mar</span>
+                <span class="experiences__stat-label">Best Season</span>
+              </div>
+              <div class="experiences__stat">
+                <span class="experiences__stat-num">All</span>
+                <span class="experiences__stat-label">Skill Levels</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Panel 03: Trekking -->
+        <div class="experiences__panel" role="tabpanel" id="exp-panel-2" aria-labelledby="exp-tab-2">
+          <img src="assets/images/trekking-landscape.png" alt="Trekking in Kashmir" class="experiences__panel-image" loading="lazy">
+          <div class="experiences__panel-overlay"></div>
+          <div class="experiences__panel-overlay-bottom"></div>
+          <div class="experiences__panel-bignum" aria-hidden="true">03</div>
+          <div class="experiences__panel-content">
+            <div class="experiences__panel-tag">High Altitude</div>
+            <h3 class="experiences__panel-heading">Trekking the<br>Great Himalayas</h3>
+            <p class="experiences__panel-desc">Walk ancient Silk Road trails through emerald alpine meadows, glacial lakes, and summit passes that have been traversed for centuries.</p>
+            <div class="experiences__panel-meta">
+              <a href="treks.html" class="experiences__panel-cta">
+                Explore Trekking
+                <svg class="experiences__panel-cta-icon" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+            <div class="experiences__panel-stats">
+              <div class="experiences__stat">
+                <span class="experiences__stat-num">12+</span>
+                <span class="experiences__stat-label">Trek Routes</span>
+              </div>
+              <div class="experiences__stat">
+                <span class="experiences__stat-num">Jun–Oct</span>
+                <span class="experiences__stat-label">Best Season</span>
+              </div>
+              <div class="experiences__stat">
+                <span class="experiences__stat-num">5,400m</span>
+                <span class="experiences__stat-label">Max Altitude</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Panel 04: Sightseeing -->
+        <div class="experiences__panel" role="tabpanel" id="exp-panel-3" aria-labelledby="exp-tab-3">
+          <img src="assets/images/sightseeing-dal-lake.png" alt="Sightseeing in Kashmir" class="experiences__panel-image" loading="lazy">
+          <div class="experiences__panel-overlay"></div>
+          <div class="experiences__panel-overlay-bottom"></div>
+          <div class="experiences__panel-bignum" aria-hidden="true">04</div>
+          <div class="experiences__panel-content">
+            <div class="experiences__panel-tag">Culture & Landscapes</div>
+            <h3 class="experiences__panel-heading">Sightseeing<br>Kashmir</h3>
+            <p class="experiences__panel-desc">From the shimmering Dal Lake to the Mughal Gardens, immerse yourself in Kashmir's timeless beauty, living culture, and storied landscapes.</p>
+            <div class="experiences__panel-meta">
+              <a href="adventures.html" class="experiences__panel-cta">
+                Explore Sightseeing
+                <svg class="experiences__panel-cta-icon" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+            <div class="experiences__panel-stats">
+              <div class="experiences__stat">
+                <span class="experiences__stat-num">20+</span>
+                <span class="experiences__stat-label">Landmarks</span>
+              </div>
+              <div class="experiences__stat">
+                <span class="experiences__stat-num">All Year</span>
+                <span class="experiences__stat-label">Season</span>
+              </div>
+              <div class="experiences__stat">
+                <span class="experiences__stat-num">Cultural</span>
+                <span class="experiences__stat-label">Experience</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Panel 05: Activities -->
+        <div class="experiences__panel" role="tabpanel" id="exp-panel-4" aria-labelledby="exp-tab-4">
+          <img src="assets/images/activities-winter.png" alt="Winter activities in Kashmir" class="experiences__panel-image" loading="lazy">
+          <div class="experiences__panel-overlay"></div>
+          <div class="experiences__panel-overlay-bottom"></div>
+          <div class="experiences__panel-bignum" aria-hidden="true">05</div>
+          <div class="experiences__panel-content">
+            <div class="experiences__panel-tag">Year-Round Adventures</div>
+            <h3 class="experiences__panel-heading">Activities for<br>Every Season</h3>
+            <p class="experiences__panel-desc">Snowshoeing, ice fishing, zorbing, and more. Kashmir offers a calendar full of thrilling activities whether the mountains are white or green.</p>
+            <div class="experiences__panel-meta">
+              <a href="adventures.html" class="experiences__panel-cta">
+                Explore Activities
+                <svg class="experiences__panel-cta-icon" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+            <div class="experiences__panel-stats">
+              <div class="experiences__stat">
+                <span class="experiences__stat-num">15+</span>
+                <span class="experiences__stat-label">Activities</span>
+              </div>
+              <div class="experiences__stat">
+                <span class="experiences__stat-num">All Year</span>
+                <span class="experiences__stat-label">Available</span>
+              </div>
+              <div class="experiences__stat">
+                <span class="experiences__stat-num">Family</span>
+                <span class="experiences__stat-label">Friendly</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Panel 06: Rentals -->
+        <div class="experiences__panel" role="tabpanel" id="exp-panel-5" aria-labelledby="exp-tab-5">
+          <img src="assets/images/rentals-equipment.png" alt="Equipment rentals" class="experiences__panel-image" loading="lazy">
+          <div class="experiences__panel-overlay"></div>
+          <div class="experiences__panel-overlay-bottom"></div>
+          <div class="experiences__panel-bignum" aria-hidden="true">06</div>
+          <div class="experiences__panel-content">
+            <div class="experiences__panel-tag">Premium Gear</div>
+            <h3 class="experiences__panel-heading">Top-Tier<br>Equipment Rentals</h3>
+            <p class="experiences__panel-desc">Rent premium skis, snowboards, helmets, and mountain gear from our fully-stocked base camp. Expert fitting, daily maintenance included.</p>
+            <div class="experiences__panel-meta">
+              <a href="adventures.html" class="experiences__panel-cta">
+                Browse Equipment
+                <svg class="experiences__panel-cta-icon" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+            <div class="experiences__panel-stats">
+              <div class="experiences__stat">
+                <span class="experiences__stat-num">200+</span>
+                <span class="experiences__stat-label">Items Available</span>
+              </div>
+              <div class="experiences__stat">
+                <span class="experiences__stat-num">Daily</span>
+                <span class="experiences__stat-label">Maintained</span>
+              </div>
+              <div class="experiences__stat">
+                <span class="experiences__stat-num">Expert</span>
+                <span class="experiences__stat-label">Fitting</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Progress Dots -->
+        <div class="experiences__dots" aria-hidden="true">
+          <button class="experiences__dot is-active" data-exp="0" aria-label="Skiing"></button>
+          <button class="experiences__dot" data-exp="1" aria-label="Snowboarding"></button>
+          <button class="experiences__dot" data-exp="2" aria-label="Trekking"></button>
+          <button class="experiences__dot" data-exp="3" aria-label="Sightseeing"></button>
+          <button class="experiences__dot" data-exp="4" aria-label="Activities"></button>
+          <button class="experiences__dot" data-exp="5" aria-label="Rentals"></button>
+        </div>
+
+      </div><!-- /stage -->
+    </div><!-- /layout -->
   </section>
 
   <!-- ===== WHY CHOOSE ===== -->
   <section class="why-choose" id="why-choose">
-    <div class="container">
+    <div class="why-choose__inner">
+
+      <!-- Two-column Header -->
       <div class="why-choose__header">
-        <p class="section-label">Why Choose Us</p>
-        <h2 class="section-title split-text">Why Choose <span class="text-gradient">Shred Himalayas</span></h2>
-        <p class="section-subtitle">We don't just plan trips — we craft unforgettable Himalayan stories with the expertise only locals can offer.</p>
-      </div>
-
-      <div class="why-choose__grid">
-        <div class="why-choose__card reveal">
-          <div class="why-choose__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-          </div>
-          <h4 class="why-choose__card-title">Local Expertise</h4>
-          <p class="why-choose__card-desc">Born and raised in Kashmir, our team knows every hidden trail, secret viewpoint, and local gem.</p>
+        <div class="why-choose__header-left">
+          <p class="section-label">Why Choose Us</p>
+          <h2>Why Choose<br><em>Shred Himalayas</em></h2>
         </div>
-        <div class="why-choose__card reveal">
-          <div class="why-choose__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 L15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26Z"/></svg>
-          </div>
-          <h4 class="why-choose__card-title">Premium Quality</h4>
-          <p class="why-choose__card-desc">Hand-selected accommodations, premium equipment, and world-class service at every step.</p>
-        </div>
-        <div class="why-choose__card reveal">
-          <div class="why-choose__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          </div>
-          <h4 class="why-choose__card-title">Safety First</h4>
-          <p class="why-choose__card-desc">Certified guides, premium safety gear, and comprehensive emergency protocols for every adventure.</p>
-        </div>
-        <div class="why-choose__card reveal">
-          <div class="why-choose__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-          </div>
-          <h4 class="why-choose__card-title">Luxury Comfort</h4>
-          <p class="why-choose__card-desc">From boutique mountain lodges to luxury houseboats — every stay is a curated experience.</p>
-        </div>
-        <div class="why-choose__card reveal">
-          <div class="why-choose__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-          </div>
-          <h4 class="why-choose__card-title">Personalized Trips</h4>
-          <p class="why-choose__card-desc">No cookie-cutter packages. Every journey is tailored to your preferences, pace, and dreams.</p>
-        </div>
-        <div class="why-choose__card reveal">
-          <div class="why-choose__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-          </div>
-          <h4 class="why-choose__card-title">Transparent Pricing</h4>
-          <p class="why-choose__card-desc">Clear pricing with no hidden costs. You see exactly what you pay for — premium value, always.</p>
-        </div>
-        <div class="why-choose__card reveal">
-          <div class="why-choose__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
-          </div>
-          <h4 class="why-choose__card-title">Licensed Company</h4>
-          <p class="why-choose__card-desc">Fully licensed and registered tourism company with government certifications and insurance.</p>
-        </div>
-        <div class="why-choose__card reveal">
-          <div class="why-choose__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg>
-          </div>
-          <h4 class="why-choose__card-title">Handpicked Stays</h4>
-          <p class="why-choose__card-desc">Every hotel, homestay, and lodge is personally vetted for quality, comfort, and authentic charm.</p>
-        </div>
-        <div class="why-choose__card reveal">
-          <div class="why-choose__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          </div>
-          <h4 class="why-choose__card-title">24/7 Support</h4>
-          <p class="why-choose__card-desc">Round-the-clock assistance before, during, and after your trip. We're always just a call away.</p>
+        <div class="why-choose__header-right">
+          <p>We don't just plan trips — we craft unforgettable Himalayan stories with the expertise only locals can offer.</p>
+          <div class="why-choose__header-badge">Trusted since 2017</div>
         </div>
       </div>
 
-      <!-- Stats Bar (matching reference image 4) -->
+      <!-- BENTO GRID -->
+      <div class="why-choose__bento">
+
+        <!-- Card 1: Featured — Local Expertise (Large Dark) -->
+        <div class="wc-card wc-card--featured reveal">
+          <div class="wc-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <span class="wc-card__num">01 — Local Expertise</span>
+          <h3 class="wc-card__title">Born & Raised<br>in Kashmir</h3>
+          <p class="wc-card__desc">Our team knows every hidden trail, secret viewpoint, and local gem. We've been navigating these mountains since childhood — that's something no guidebook can replicate.</p>
+          <a href="adventures.html" class="wc-card__arrow-link">
+            Explore Experiences
+            <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <span class="wc-card__watermark" aria-hidden="true">01</span>
+        </div>
+
+        <!-- Card 2: Premium Quality (Medium Light) -->
+        <div class="wc-card wc-card--medium-light reveal">
+          <div class="wc-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 L15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26Z"/></svg>
+          </div>
+          <span class="wc-card__num">02 — Premium Quality</span>
+          <h3 class="wc-card__title">Premium Quality</h3>
+          <p class="wc-card__desc">Hand-selected accommodations, premium equipment, and world-class service at every step of your journey.</p>
+        </div>
+
+        <!-- Card 3: Safety First (Medium Green Tint) -->
+        <div class="wc-card wc-card--medium-green reveal">
+          <div class="wc-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <span class="wc-card__num">03 — Safety First</span>
+          <h3 class="wc-card__title">Safety First</h3>
+          <p class="wc-card__desc">Certified guides, premium safety gear, and comprehensive emergency protocols for every adventure.</p>
+        </div>
+
+        <!-- Card 4: Luxury Comfort (Tall Dark Green) -->
+        <div class="wc-card wc-card--tall-dark reveal">
+          <div class="wc-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+          <span class="wc-card__num">04 — Luxury Comfort</span>
+          <h3 class="wc-card__title">Luxury Comfort</h3>
+          <p class="wc-card__desc">From boutique mountain lodges to luxury houseboats — every stay is a curated experience crafted for your comfort.</p>
+        </div>
+
+        <!-- Card 5: Personalized Trips (Wide Beige) -->
+        <div class="wc-card wc-card--wide-beige reveal">
+          <div class="wc-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <span class="wc-card__num">05 — Personalized Trips</span>
+          <h3 class="wc-card__title">Tailored Just For You</h3>
+          <p class="wc-card__desc">No cookie-cutter packages. Every journey is tailored to your preferences, pace, and dreams.</p>
+        </div>
+
+        <!-- Card 6: Transparent Pricing (Accent Outline — Wide) -->
+        <div class="wc-card wc-card--accent-outline reveal">
+          <div class="wc-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
+          <span class="wc-card__num">06 — Transparent Pricing</span>
+          <h3 class="wc-card__title">What You See Is What You Pay</h3>
+          <p class="wc-card__desc">Clear pricing with no hidden costs. You see exactly what you pay for — premium value, always. Our quotes are comprehensive and honest from the first conversation.</p>
+          <div class="wc-card__tag">No Hidden Fees · Ever</div>
+        </div>
+
+        <!-- Card 7: Licensed Company (Small Slate) -->
+        <div class="wc-card wc-card--small-slate reveal">
+          <div class="wc-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+          </div>
+          <span class="wc-card__num">07</span>
+          <h3 class="wc-card__title">Licensed Company</h3>
+          <p class="wc-card__desc">Fully licensed, registered & government certified with comprehensive insurance coverage.</p>
+        </div>
+
+        <!-- Card 8: Handpicked Stays (Small Warm) -->
+        <div class="wc-card wc-card--small-warm reveal">
+          <div class="wc-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg>
+          </div>
+          <span class="wc-card__num">08</span>
+          <h3 class="wc-card__title">Handpicked Stays</h3>
+          <p class="wc-card__desc">Every hotel and homestay is personally vetted for quality, comfort, and authentic charm.</p>
+        </div>
+
+        <!-- Card 9: 24/7 Support (Gradient) -->
+        <div class="wc-card wc-card--gradient reveal">
+          <div class="wc-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          <span class="wc-card__num">09</span>
+          <h3 class="wc-card__title">24/7 Support</h3>
+          <p class="wc-card__desc">Round-the-clock assistance before, during, and after your trip. We're always just a call away.</p>
+          <div class="wc-card__tag">Always Available</div>
+        </div>
+
+      </div><!-- /bento -->
+
+      <!-- Stats Row -->
       <div class="why-choose__stats">
-        <div class="why-choose__stat">
+        <div class="why-choose__stat-card">
           <div class="why-choose__stat-num">2000+</div>
           <div class="why-choose__stat-label">Happy Guests</div>
         </div>
-        <div class="why-choose__stat">
+        <div class="why-choose__stat-card">
           <div class="why-choose__stat-num">5★</div>
           <div class="why-choose__stat-label">Google Rating</div>
         </div>
-        <div class="why-choose__stat">
+        <div class="why-choose__stat-card">
           <div class="why-choose__stat-num">7+</div>
           <div class="why-choose__stat-label">Years Experience</div>
         </div>
-        <div class="why-choose__stat">
+        <div class="why-choose__stat-card">
           <div class="why-choose__stat-num">100%</div>
-          <div class="why-choose__stat-label">Certified & Licensed</div>
+          <div class="why-choose__stat-label">Certified &amp; Licensed</div>
         </div>
       </div>
 
