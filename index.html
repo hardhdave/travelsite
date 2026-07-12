@@ -1134,7 +1134,8 @@
   <script src="js/hero.js?v=3"></script>
   <script src="js/scroll-animations.js?v=7"></script>
   <script src="js/horizontal-scroll.js?v=5"></script>
-  <script src="js/polish-animations.js?v=6"></script>
+  <script src="js/polish-animations.js?v=15"></script>
+  <script src="js/why-choose-slider.js?v=4"></script>
   <script src="js/map.js?v=3"></script>
   <script src="js/gallery.js?v=3"></script>
   <script>
@@ -1151,6 +1152,9 @@
           loader.classList.add('loaded');
           setTimeout(function() {
             loader.style.display = 'none';
+            if (window.ScrollTrigger) {
+              ScrollTrigger.refresh();
+            }
           }, 900);
         }, 2200);
       }

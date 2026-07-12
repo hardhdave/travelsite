@@ -159,6 +159,69 @@
       initTiltCards();
     }
 
+    // Stats Count Up Animation using Intersection Observer
+    const statsSection = document.querySelector('.why-choose__stats');
+    const statNums = document.querySelectorAll('.why-choose__stat-num');
+    
+    if (statsSection && statNums.length) {
+      // Parse targets and set elements to 0 initially
+      const parsedStats = Array.from(statNums).map(numEl => {
+        let targetText = numEl.getAttribute('data-target-val');
+        if (!targetText) {
+          targetText = numEl.textContent.trim();
+          numEl.setAttribute('data-target-val', targetText);
+        }
+
+        const matches = targetText.match(/^([0-9.]+)(.*)$/);
+        if (!matches) return null;
+        
+        const targetVal = parseFloat(matches[1]);
+        const suffix = matches[2] || '';
+        
+        // Immediately set state to 0 on page load
+        numEl.textContent = "0" + suffix;
+        
+        return {
+          el: numEl,
+          targetVal,
+          suffix
+        };
+      }).filter(Boolean);
+
+      // Create an intersection observer targeting 40% (30-50% range) visibility threshold
+      const statsObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          // Once the statistics container matches our visibility threshold
+          if (entry.isIntersecting) {
+            // Disconnect immediately to run the count-up only once
+            observer.unobserve(entry.target);
+            observer.disconnect();
+
+            // Fire the smooth count-up animations using GSAP
+            parsedStats.forEach(stat => {
+              const countObj = { val: 0 };
+              gsap.to(countObj, {
+                val: stat.targetVal,
+                duration: 1.8,
+                ease: 'power2.out',
+                onUpdate: () => {
+                  if (stat.targetVal % 1 === 0) {
+                    stat.el.textContent = Math.floor(countObj.val) + stat.suffix;
+                  } else {
+                    stat.el.textContent = countObj.val.toFixed(1) + stat.suffix;
+                  }
+                }
+              });
+            });
+          }
+        });
+      }, {
+        threshold: 0.4 // 40% visible trigger point
+      });
+
+      statsObserver.observe(statsSection);
+    }
+
     ScrollTrigger.refresh();
   }
 
