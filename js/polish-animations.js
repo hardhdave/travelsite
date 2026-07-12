@@ -104,6 +104,7 @@
     });
 
     const staggerGroups = [
+      ['.why-choose__bento', '.wc-card', 20],
       ['.skiing__category', '.skiing__package-card', 18],
       ['.activities__split', '.activities__item', 18],
       ['.rentals__grid', '.rentals__card', 24],
@@ -111,6 +112,7 @@
       ['.packages__grid', '.packages__card', 26],
       ['.packages__bottom-row', '.packages__bottom-card', 22],
       ['.testimonials__slider', '.testimonials__card', 18],
+      ['.gallery__masonry', '.gallery__item', 20],
       ['.about__timeline', '.about__timeline-item', 18]
     ];
 

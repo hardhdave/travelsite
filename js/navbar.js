@@ -1,23 +1,11 @@
 /* ============================================
-   NAVBAR.JS — Scroll-based Transitions
+   NAVBAR.JS — Scroll-based Transitions & Mobile Binds
    ============================================ */
 
 (function() {
   const navbar = document.getElementById('navbar');
   const navToggle = document.getElementById('navToggle');
   const navLinks = document.getElementById('navLinks');
-
-  // Scroll threshold for glassmorphism
-  const SCROLL_THRESHOLD = 50;
-
-  // Scroll handler
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > SCROLL_THRESHOLD) {
-      navbar.classList.add('navbar--scrolled');
-    } else {
-      navbar.classList.remove('navbar--scrolled');
-    }
-  });
 
   // Mobile menu toggle
   if (navToggle && navLinks) {
@@ -52,7 +40,8 @@
 
     navLinksAll.forEach(link => {
       link.classList.remove('active');
-      if (link.getAttribute('href') === '#' + current) {
+      const href = link.getAttribute('href');
+      if (href === '#' + current || href === 'index.html#' + current) {
         link.classList.add('active');
       }
     });

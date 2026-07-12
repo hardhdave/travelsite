@@ -90,6 +90,34 @@
   .rentals__grid { grid-template-columns: repeat(2, 1fr); }
 }
 
-@media (max-width: 640px) {
-  .rentals__grid { grid-template-columns: 1fr; }
+@media (max-width: 768px) {
+  .rentals__grid {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 16px;
+    padding: 10px 4px 20px;
+    -webkit-overflow-scrolling: touch;
+    margin-left: -20px;
+    margin-right: -20px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .rentals__grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .rentals__card {
+    flex: 0 0 280px;
+    scroll-snap-align: start;
+    min-height: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .rentals__card {
+    flex: 0 0 260px;
+  }
 }

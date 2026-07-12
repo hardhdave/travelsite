@@ -3,89 +3,89 @@
    ============================================ */
 
 :root {
-  /* ——— Core Brand Colors (Forest Green primary, Earth Brown, Sky Blue) ——— */
-  --gold:            #2F4F3E; /* Redefined to Forest Green as primary brand accent */
-  --gold-light:      #437057; /* Lighter forest green for hover/gradients */
-  --gold-dark:       #1C3026; /* Darker forest green */
-  --gold-subtle:     rgba(47, 79, 62, 0.08);
-  --gold-border:     rgba(47, 79, 62, 0.28);
-  --gold-border-hover: rgba(47, 79, 62, 0.6);
+  /* ——— Core Brand Colors (Charcoal primary, Gold Accent) ——— */
+  --gold:            #A77B34; /* Premium Gold Accent */
+  --gold-light:      #b88d44; /* Lighter gold for hover/gradients */
+  --gold-dark:       #8a6224; /* Darker gold */
+  --gold-subtle:     rgba(167, 123, 52, 0.08);
+  --gold-border:     rgba(167, 123, 52, 0.28);
+  --gold-border-hover: rgba(167, 123, 52, 0.6);
 
-  --forest-green:     #2F4F3E;
-  --earth-brown:      #8B5E34;
+  --forest-green:     #1C1C1C;
+  --earth-brown:      #A77B34;
   --sky-blue:         #87AFC7;
   --charcoal:         #1F2933;
 
-  /* ——— Background Scale (Light Neutral Sand Beige) ——— */
-  --bg-deepest:      #E4D9C1; /* Darker sand beige for deep shadows/overlays */
-  --bg-base:         #F2E8D5; /* Main page background (Light Neutral) */
-  --bg-raised:       #FBF8F2; /* Soft off-white for alternative rows */
-  --bg-card:         #FFFFFF; /* Pure white cards for crisp editorial separation */
-  --bg-hover:        #EAE0CB; /* Hover state for list items and tags */
-  --bg-overlay:      rgba(31, 41, 51, 0.45); /* Charcoal translucent overlay */
+  /* ——— Background Scale (Dark Luxury Charcoal) ——— */
+  --bg-deepest:      #121212; /* Darker charcoal/black for overlays/shadows */
+  --bg-base:         #1C1C1C; /* Main page background (#1C1C1C) */
+  --bg-raised:       #1C1C1C; /* Main page background (#1C1C1C) */
+  --bg-card:         #181818; /* Card background (#181818) */
+  --bg-hover:        #242424; /* Hover state for list items and tags */
+  --bg-overlay:      rgba(0, 0, 0, 0.6); /* Black translucent overlay */
 
   /* ——— Cream Section Tokens (Retained for legacy/compatibility) ——— */
-  --bg-cream:        #F2E8D5;
-  --bg-cream-dark:   #E4D9C1;
-  --bg-cream-card:   #FFFFFF;
-  --text-on-cream:       #1F2933;
-  --text-secondary-on-cream: #2F4F3E;
-  --text-muted-on-cream:     #7F8A95;
-  --border-on-cream:   rgba(31, 41, 51, 0.08);
-  --gold-border-on-cream: rgba(47, 79, 62, 0.25);
+  --bg-cream:        #1C1C1C;
+  --bg-cream-dark:   #1C1C1C;
+  --bg-cream-card:   #181818;
+  --text-on-cream:       #F2F2F2;
+  --text-secondary-on-cream: #A77B34;
+  --text-muted-on-cream:     #A8A8A8;
+  --border-on-cream:   rgba(255, 255, 255, 0.08);
+  --gold-border-on-cream: rgba(167, 123, 52, 0.25);
 
-  /* ——— Text Scale (High Contrast Charcoal & Earthy Accents) ——— */
-  --text-primary:    #1F2933; /* Primary body text and headers */
-  --text-secondary:  #2F4F3E; /* Subheadings / category tags (Forest Green) */
-  --text-muted:      #6A7682; /* Caption and minor labels */
-  --text-gold:       #2F4F3E;
+  /* ——— Text Scale (High Contrast Light & Gold Accents) ——— */
+  --text-primary:    #F2F2F2; /* Primary body text and headers */
+  --text-secondary:  #A77B34; /* Subheadings / category tags (Gold Accent) */
+  --text-muted:      #A8A8A8; /* Caption and minor labels */
+  --text-gold:       #A77B34;
   --text-white:      #FFFFFF;
 
   /* ——— Border / Divider ——— */
-  --border-subtle:   rgba(31, 41, 51, 0.08);
-  --border-medium:   rgba(31, 41, 51, 0.14);
-  --border-strong:   rgba(31, 41, 51, 0.22);
+  --border-subtle:   rgba(255, 255, 255, 0.08);
+  --border-medium:   rgba(255, 255, 255, 0.14);
+  --border-strong:   rgba(255, 255, 255, 0.22);
 
   /* ——— Glass / Card Effects ——— */
-  --glass-dark:      rgba(255, 255, 255, 0.85); /* Frosty white glass */
-  --glass-dark-hover:rgba(255, 255, 255, 0.95);
-  --glass-gold:      rgba(47, 79, 62, 0.05);
-  --glass-shadow:    0 8px 32px rgba(31, 41, 51, 0.08);
+  --glass-dark:      rgba(20, 20, 20, 0.6); /* Translucent dark glass */
+  --glass-dark-hover:rgba(20, 20, 20, 0.8);
+  --glass-gold:      rgba(167, 123, 52, 0.05);
+  --glass-shadow:    0 8px 32px rgba(0, 0, 0, 0.3);
 
   /* ——— Legacy aliases (for compatibility) ——— */
   --midnight-navy:        var(--bg-base);
-  --midnight-navy-rgb:    242, 232, 213;
+  --midnight-navy-rgb:    28, 28, 28;
   --glacier-blue:         var(--gold);
-  --glacier-blue-rgb:     47, 79, 62;
+  --glacier-blue-rgb:     167, 123, 52;
   --snow-white:           var(--text-primary);
-  --snow-white-rgb:       31, 41, 51;
+  --snow-white-rgb:       242, 242, 242;
   --mountain-gray:        var(--text-secondary);
-  --mountain-gray-rgb:    47, 79, 62;
-  --forest-green-rgb:     47, 79, 62;
+  --mountain-gray-rgb:    167, 123, 52;
+  --forest-green-rgb:     28, 28, 28;
   --deep-navy:            var(--bg-raised);
   --dark-slate:           var(--bg-card);
   --ice-blue:             var(--sky-blue);
   --warm-gold:            var(--gold);
-  --sunset-amber:         #8B5E34; /* Mapped to Earth Brown */
+  --sunset-amber:         #A77B34;
   --alpine-white:         var(--text-primary);
   --charcoal-hex:         var(--charcoal);
   --storm-gray:           var(--text-muted);
   --soft-navy:            var(--bg-raised);
 
   /* ——— Gradients ——— */
-  --gradient-premium:      linear-gradient(135deg, #F2E8D5, #FBF8F2, #FFFFFF);
+  --gradient-premium:      linear-gradient(135deg, #1C1C1C, #181818);
   --gradient-hero-overlay: linear-gradient(180deg,
-      rgba(31,41,51,0.3) 0%,
-      rgba(31,41,51,0.1)  40%,
-      rgba(31,41,51,0.65) 100%);
-  --gradient-card:         linear-gradient(145deg, #FFFFFF, #FBF8F2);
+      rgba(0,0,0,0.4) 0%,
+      rgba(0,0,0,0.15)  40%,
+      rgba(0,0,0,0.7) 100%);
+  --gradient-card:         linear-gradient(145deg, #181818, #1A1A1A);
   --gradient-glacier:      linear-gradient(135deg, var(--gold-dark), var(--gold));
-  --gradient-forest:       linear-gradient(135deg, #2F4F3E, #4A7A61);
-  --gradient-winter:       linear-gradient(180deg, #FBF8F2 0%, #F2E8D5 100%);
-  --gradient-summer:       linear-gradient(180deg, #F2E8D5 0%, #E4D9C1 100%);
-  --gradient-text:         linear-gradient(135deg, #1F2933, #2F4F3E);
+  --gradient-forest:       linear-gradient(135deg, #1C1C1C, #181818);
+  --gradient-winter:       linear-gradient(180deg, #1C1C1C 0%, #1C1C1C 100%);
+  --gradient-summer:       linear-gradient(180deg, #1C1C1C 0%, #1C1C1C 100%);
+  --gradient-text:         linear-gradient(135deg, #F2F2F2, #A77B34);
   --gradient-gold-shine:   linear-gradient(90deg,
-      transparent, rgba(47,79,62,0.12), transparent);
+      transparent, rgba(167,123,52,0.12), transparent);
 
   /* ——— Glass Effects ——— */
   --glass-bg:          rgba(255, 255, 255, 0.82);
@@ -98,11 +98,11 @@
   --section-lift-shadow: 0 -20px 60px rgba(31, 41, 51, 0.05), 0 20px 60px rgba(31, 41, 51, 0.05);
 
   /* ——— Typography ——— */
-  --font-heading:  'Cormorant Garamond', 'Georgia', serif;   /* Editorial serif — Canela-style */
-  --font-body:     'Satoshi', 'Inter', sans-serif;            /* Satoshi for all body text */
-  --font-accent:   'Satoshi', 'Outfit', sans-serif;           /* Satoshi for labels, tags, CTAs */
-  --font-serif:    'Cormorant Garamond', serif;
-  --font-display:  'Cormorant Garamond', serif;
+  --font-heading:  'Canela', 'Cormorant Garamond', 'Georgia', serif;
+  --font-body:     'Satoshi', 'Inter', sans-serif;
+  --font-accent:   'Satoshi', 'Outfit', sans-serif;
+  --font-serif:    'Canela', 'Cormorant Garamond', serif;
+  --font-display:  'Canela', 'Cormorant Garamond', serif;
 
   /* Type Scale */
   --text-xs:   clamp(0.7rem,  0.8vw,  0.75rem);

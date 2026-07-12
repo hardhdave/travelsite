@@ -7,14 +7,15 @@
   background: var(--bg-base);
   padding: 80px 0;
   border-top: 1px solid rgba(31, 41, 51, 0.05);
+  overflow: hidden;
 }
 
 .cta__grid {
   display: grid;
   grid-template-columns: 1.15fr 1fr;
   gap: 0;
-  background: #FFFFFF;
-  border: 1px solid rgba(183, 160, 23, 0.16);
+  background: #1C1C1C;
+  border: 1px solid #343434;
   box-shadow: var(--shadow-xl);
   overflow: hidden;
   border-radius: var(--radius-sm);
@@ -95,7 +96,7 @@
   justify-content: center;
   align-items: flex-start;
   text-align: left;
-  background: #FFFFFF;
+  background: #181818;
 }
 
 .cta__title {
@@ -134,7 +135,7 @@
 .cta__input {
   width: 100%;
   background: var(--bg-raised) !important;
-  border: 1px solid rgba(31, 41, 51, 0.08) !important;
+  border: 1px solid #343434 !important;
   border-radius: 0 !important;
   color: var(--text-primary) !important;
   padding: 13px 18px;
@@ -150,7 +151,7 @@
 
 .cta__input:focus {
   border-color: var(--gold) !important;
-  background: #FFFFFF !important;
+  background: #1A1A1A !important;
   box-shadow: var(--shadow-glow);
 }
 
@@ -237,6 +238,109 @@
   background: #a38d12 !important;
   transform: translateY(-2px);
   box-shadow: 0 6px 18px rgba(183, 160, 23, 0.32);
+}
+
+
+/* ============================================
+   Centered Background CTA Layout (Subpages)
+   ============================================ */
+.cta__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.cta__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.2) saturate(0.5);
+  transition: transform 2s var(--ease-premium, cubic-bezier(0.25, 1, 0.5, 1));
+}
+
+.cta:hover .cta__bg img {
+  transform: scale(1.05);
+}
+
+.cta__bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    var(--bg-base, #1C1C1C) 0%,
+    rgba(28, 28, 28, 0.45) 40%,
+    rgba(28, 28, 28, 0.45) 60%,
+    var(--bg-base, #1C1C1C) 100%
+  );
+  z-index: 1;
+}
+
+.cta__content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px var(--container-padding, 24px);
+}
+
+.cta__content .cta__title {
+  font-family: var(--font-heading, "Cormorant Garamond", serif);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: var(--weight-light, 300);
+  line-height: var(--leading-tight, 1.15);
+  margin-bottom: var(--space-4, 16px);
+  color: var(--text-primary, #F2F2F2);
+  text-align: center;
+  max-width: 700px;
+  text-wrap: balance;
+  letter-spacing: 0.02em;
+}
+
+.cta__content .cta__subtitle {
+  color: var(--text-muted, #A8A8A8);
+  font-size: clamp(15px, 2vw, 17px);
+  margin-bottom: var(--space-8, 32px);
+  text-align: center;
+  max-width: 580px;
+  line-height: var(--leading-relaxed, 1.6);
+}
+
+.cta__buttons {
+  display: flex;
+  gap: var(--space-4, 16px);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.cta__whatsapp {
+  background: rgba(37, 211, 102, 0.08);
+  color: #25D366;
+  border: 1px solid rgba(37, 211, 102, 0.3) !important;
+  font-family: var(--font-accent, "Satoshi", sans-serif);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.cta__whatsapp:hover {
+  background: rgba(37, 211, 102, 0.15);
+  border-color: rgba(37, 211, 102, 0.6) !important;
+  color: #4AE07A;
+  transform: translateY(-2px);
+}
+
+.cta__whatsapp svg {
+  width: 18px;
+  height: 18px;
 }
 
 /* Responsive Breakpoints */

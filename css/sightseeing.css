@@ -50,9 +50,9 @@
   max-width: 900px;
   margin: var(--space-8) auto 0;
   aspect-ratio: 16/10;
-  background: #FFFFFF;
+  background: #181818;
   border-radius: var(--radius-md);
-  border: 1px solid rgba(31, 41, 51, 0.08);
+  border: 1px solid #343434;
   overflow: hidden;
   box-shadow: var(--shadow-xl);
 }
@@ -88,7 +88,7 @@
   height: 16px;
   background: var(--gold) !important;
   border-radius: var(--radius-full);
-  border: 3px solid #FFFFFF !important;
+  border: 3px solid #1C1C1C !important;
   box-shadow: 0 4px 12px rgba(183, 160, 23, 0.4);
   position: relative;
   transition: all var(--duration-fast) var(--ease-smooth);
@@ -106,7 +106,7 @@
 
 .sightseeing__pin:hover .sightseeing__pin-dot {
   background: var(--forest-green) !important;
-  border-color: #FFFFFF !important;
+  border-color: #1C1C1C !important;
   box-shadow: 0 4px 16px rgba(47, 79, 62, 0.4);
 }
 
@@ -122,12 +122,12 @@
   color: var(--text-primary) !important;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  background: #FFFFFF !important;
-  border: 1px solid rgba(31, 41, 51, 0.08) !important;
+  background: #181818 !important;
+  border: 1px solid #343434 !important;
   border-radius: var(--radius-sm);
   padding: 4px 10px;
   white-space: nowrap;
-  box-shadow: 0 4px 12px rgba(31, 41, 51, 0.06);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   transition: all var(--duration-normal) var(--ease-premium);
   text-shadow: none !important;
 }

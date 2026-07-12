@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Adventures — Shred Himalayas</title>
-  <meta name="description" content="Explore all adventures by Shred Himalayas — skiing, snowboarding, trekking and adventure activities in the Himalayas of Kashmir.">
+  <meta name="description"
+    content="Explore all adventures by Shred Himalayas — skiing, snowboarding, trekking and adventure activities in the Himalayas of Kashmir.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://api.fontshare.com">
   <link href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400,300&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.cdnfonts.com/css/canela" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,600&display=swap"
+    rel="stylesheet">
 
   <link rel="stylesheet" href="css/variables.css?v=4">
   <link rel="stylesheet" href="css/base.css?v=4">
@@ -19,7 +24,8 @@
   <link rel="stylesheet" href="css/subpage.css?v=13">
   <link rel="stylesheet" href="css/footer.css">
   <link rel="stylesheet" href="css/polish.css?v=11">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232F4F3E' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='m8 3 4 8 5-5 5 15H2L8 3z'/></svg>">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232F4F3E' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='m8 3 4 8 5-5 5 15H2L8 3z'/></svg>">
 
   <style>
     /* ============================================
@@ -35,6 +41,7 @@
       justify-content: flex-end;
       overflow: hidden;
     }
+
     .adv-hero__bg {
       position: absolute;
       inset: 0;
@@ -45,22 +52,19 @@
       filter: brightness(0.55) saturate(0.75);
       transform: scale(1.03);
     }
+
     .adv-hero__overlay {
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(
-          to right,
-          rgba(4,4,4,0.92) 0%,
-          rgba(4,4,4,0.65) 40%,
-          rgba(4,4,4,0.10) 70%,
-          transparent 100%
-        ),
-        linear-gradient(
-          to top,
-          rgba(4,4,4,0.6) 0%,
-          transparent 40%
-        );
+        linear-gradient(to right,
+          rgba(4, 4, 4, 0.92) 0%,
+          rgba(4, 4, 4, 0.65) 40%,
+          rgba(4, 4, 4, 0.10) 70%,
+          transparent 100%),
+        linear-gradient(to top,
+          rgba(4, 4, 4, 0.6) 0%,
+          transparent 40%);
     }
 
     /* Hero top content */
@@ -72,18 +76,20 @@
       margin: 0 auto;
       padding: 120px var(--container-padding) 32px;
     }
+
     .adv-hero__label {
       font-family: var(--font-accent);
       font-size: 9px;
       letter-spacing: 0.4em;
       text-transform: uppercase;
       color: var(--gold);
-      border: 1px solid rgba(47,79,62,0.3);
-      background: rgba(47,79,62,0.08);
+      border: 1px solid rgba(47, 79, 62, 0.3);
+      background: rgba(47, 79, 62, 0.08);
       padding: 6px 16px;
       display: inline-block;
       margin-bottom: 18px;
     }
+
     .adv-hero__title {
       font-family: var(--font-heading) !important;
       font-weight: 300 !important;
@@ -92,13 +98,15 @@
       letter-spacing: -0.02em !important;
       line-height: 1.05 !important;
       margin: 0 0 20px !important;
-      text-shadow: 0 2px 16px rgba(0,0,0,0.7), 0 1px 4px rgba(0,0,0,0.9) !important;
+      text-shadow: 0 2px 16px rgba(0, 0, 0, 0.7), 0 1px 4px rgba(0, 0, 0, 0.9) !important;
     }
+
     .adv-hero__title em {
       font-style: italic !important;
       color: #8bba99 !important;
       font-weight: 300 !important;
     }
+
     .adv-hero__sub {
       font-family: var(--font-body) !important;
       font-size: 15px !important;
@@ -106,13 +114,15 @@
       max-width: 500px !important;
       line-height: 1.7 !important;
       margin-bottom: 28px !important;
-      text-shadow: 0 1px 6px rgba(0,0,0,0.7) !important;
+      text-shadow: 0 1px 6px rgba(0, 0, 0, 0.7) !important;
     }
+
     .adv-hero__badges {
       display: flex;
       gap: 10px;
       flex-wrap: wrap;
     }
+
     .adv-hero__badge {
       display: inline-flex !important;
       align-items: center !important;
@@ -122,12 +132,16 @@
       letter-spacing: 0.12em !important;
       text-transform: uppercase !important;
       color: #f0ebe4 !important;
-      background: rgba(255,255,255,0.10) !important;
-      border: 1px solid rgba(255,255,255,0.22) !important;
+      background: rgba(255, 255, 255, 0.10) !important;
+      border: 1px solid rgba(255, 255, 255, 0.22) !important;
       padding: 7px 14px !important;
       backdrop-filter: blur(8px) !important;
     }
-    .adv-hero__badge svg { color: #8bba99 !important; flex-shrink: 0; }
+
+    .adv-hero__badge svg {
+      color: #8bba99 !important;
+      flex-shrink: 0;
+    }
 
     /* ── Category Selector Cards ── */
     .adv-cats {
@@ -140,6 +154,7 @@
       margin-top: 32px;
       padding-bottom: 0;
     }
+
     .adv-cats__label {
       font-family: var(--font-accent);
       font-size: 9px;
@@ -149,6 +164,7 @@
       opacity: 0.65;
       margin-bottom: 16px;
     }
+
     .adv-cats__grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -164,30 +180,37 @@
       border: 2px solid transparent;
       transition: border-color 0.25s ease;
     }
+
     .cat-card.active {
       border-color: var(--gold);
     }
+
     .cat-card__img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      filter: brightness(0.55) saturate(0.65); /* Brighter — was 0.42 */
+      filter: brightness(0.55) saturate(0.65);
+      /* Brighter — was 0.42 */
       transition: transform 0.5s ease, filter 0.4s ease;
       display: block;
     }
+
     .cat-card:hover .cat-card__img,
     .cat-card.active .cat-card__img {
       transform: scale(1.06);
       filter: brightness(0.7) saturate(0.8);
     }
+
     .cat-card__overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(to top, rgba(6,6,6,0.9) 0%, rgba(6,6,6,0.15) 60%);
+      background: linear-gradient(to top, rgba(6, 6, 6, 0.9) 0%, rgba(6, 6, 6, 0.15) 60%);
     }
+
     .cat-card.active .cat-card__overlay {
-      background: linear-gradient(to top, rgba(6,6,6,0.92) 0%, rgba(47,79,62,0.08) 100%);
+      background: linear-gradient(to top, rgba(6, 6, 6, 0.92) 0%, rgba(47, 79, 62, 0.08) 100%);
     }
+
     .cat-card__body {
       position: absolute;
       bottom: 0;
@@ -195,11 +218,12 @@
       right: 0;
       padding: 16px 18px;
     }
+
     .cat-card__icon {
       width: 36px;
       height: 36px;
-      background: rgba(8,8,8,0.8);
-      border: 1px solid rgba(47,79,62,0.3);
+      background: rgba(8, 8, 8, 0.8);
+      border: 1px solid rgba(47, 79, 62, 0.3);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -207,11 +231,13 @@
       margin-bottom: 10px;
       transition: background 0.25s ease;
     }
+
     .cat-card.active .cat-card__icon,
     .cat-card:hover .cat-card__icon {
       background: var(--gold);
       color: #0a0a0a;
     }
+
     .cat-card__title {
       font-family: var(--font-body) !important;
       font-size: 16px !important;
@@ -220,16 +246,21 @@
       margin: 0 0 4px !important;
       letter-spacing: 0.01em !important;
       transition: color 0.2s !important;
-      text-shadow: 0 1px 6px rgba(0,0,0,0.8) !important;
+      text-shadow: 0 1px 6px rgba(0, 0, 0, 0.8) !important;
     }
-    .cat-card.active .cat-card__title { color: #8bba99 !important; }
+
+    .cat-card.active .cat-card__title {
+      color: #8bba99 !important;
+    }
+
     .cat-card__desc {
       font-size: 11.5px !important;
       color: #ccc7c0 !important;
       line-height: 1.45 !important;
       margin: 0 !important;
-      text-shadow: 0 1px 4px rgba(0,0,0,0.7) !important;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7) !important;
     }
+
     .cat-card__arrow {
       position: absolute;
       top: 12px;
@@ -240,11 +271,13 @@
       transform: translateX(-6px);
       transition: all 0.22s ease;
     }
+
     .cat-card:hover .cat-card__arrow,
     .cat-card.active .cat-card__arrow {
       opacity: 1;
       transform: translateX(0);
     }
+
     /* Active gold top border accent */
     .cat-card::before {
       content: '';
@@ -259,12 +292,15 @@
       transition: transform 0.3s ease;
       z-index: 5;
     }
-    .cat-card.active::before { transform: scaleX(1); }
+
+    .cat-card.active::before {
+      transform: scaleX(1);
+    }
 
     /* ── Tab Content Area ── */
     .adv-content {
       background: var(--bg-base);
-      border-top: 1px solid rgba(47,79,62,0.12);
+      border-top: 1px solid rgba(47, 79, 62, 0.12);
       margin-top: 3px;
     }
 
@@ -272,17 +308,20 @@
     .adv-panel__intro {
       position: relative;
       background: var(--bg-raised);
-      border-bottom: 1px solid rgba(47,79,62,0.1);
+      border-bottom: 1px solid rgba(47, 79, 62, 0.1);
       overflow: hidden;
     }
+
     .adv-panel__intro-bg {
       position: absolute;
       inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      filter: brightness(0.35) saturate(0.5); /* Enough to show image but dark enough for text */
+      filter: brightness(0.35) saturate(0.5);
+      /* Enough to show image but dark enough for text */
     }
+
     .adv-panel__intro-inner {
       position: relative;
       z-index: 2;
@@ -294,7 +333,9 @@
       justify-content: space-between;
       gap: 40px;
     }
+
     .adv-panel__intro-text {}
+
     .adv-panel__intro-label {
       font-family: var(--font-accent);
       font-size: 9px;
@@ -303,62 +344,84 @@
       color: #8bba99 !important;
       margin-bottom: 10px;
     }
+
     .adv-panel__intro-title {
       font-family: var(--font-heading);
       font-weight: 300;
       font-size: clamp(1.8rem, 3vw, 2.8rem);
-      color: #f7f3ee !important;  /* Was var(--text-primary) = dark on dark bg */
+      color: #f7f3ee !important;
+      /* Was var(--text-primary) = dark on dark bg */
       line-height: 1.15;
       margin: 0 0 12px;
-      text-shadow: 0 2px 12px rgba(0,0,0,0.6);
+      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
     }
+
     .adv-panel__intro-desc {
       font-size: 14px;
-      color: #ccc7c0 !important; /* Was var(--text-secondary) = dark on dark bg */
+      color: #ccc7c0 !important;
+      /* Was var(--text-secondary) = dark on dark bg */
       line-height: 1.65;
       max-width: 520px;
       margin: 0;
-      text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
     }
+
     .adv-panel__intro-stats {
       display: flex;
       gap: 0;
       flex-shrink: 0;
     }
+
     .adv-intro-stat {
       text-align: center;
       padding: 18px 28px;
-      border-left: 1px solid rgba(255,255,255,0.12);
+      border-left: 1px solid rgba(255, 255, 255, 0.12);
     }
-    .adv-intro-stat:first-child { border-left: none; }
+
+    .adv-intro-stat:first-child {
+      border-left: none;
+    }
+
     .adv-intro-stat__val {
       font-family: var(--font-heading);
       font-size: 2rem;
       font-weight: 300;
-      color: #8bba99 !important;  /* Sage green accent — visible on dark bg */
+      color: #8bba99 !important;
+      /* Sage green accent — visible on dark bg */
       line-height: 1;
       margin-bottom: 4px;
-      text-shadow: 0 1px 8px rgba(0,0,0,0.5);
+      text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
     }
+
     .adv-intro-stat__label {
       font-family: var(--font-accent);
       font-size: 9px;
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: #a8a39c !important;  /* Light muted — visible on dark bg */
+      color: #a8a39c !important;
+      /* Light muted — visible on dark bg */
     }
 
     /* ── Package Panels ── */
     .adv-panel {
       display: none;
     }
+
     .adv-panel.is-active {
       display: block;
       animation: panelIn 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
     }
+
     @keyframes panelIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     /* ── Package content wrapper ── */
@@ -371,9 +434,10 @@
     /* ── CTA Strip ── */
     .adv-cta {
       background: var(--bg-raised);
-      border-top: 1px solid rgba(47,79,62,0.1);
+      border-top: 1px solid rgba(47, 79, 62, 0.1);
       padding: 44px 0;
     }
+
     .adv-cta__inner {
       max-width: var(--container-wide);
       margin: 0 auto;
@@ -384,6 +448,7 @@
       gap: 24px;
       flex-wrap: wrap;
     }
+
     .adv-cta__text h3 {
       font-family: var(--font-heading);
       font-weight: 300;
@@ -391,12 +456,18 @@
       color: var(--text-primary);
       margin: 0 0 4px;
     }
+
     .adv-cta__text p {
       font-size: 13.5px;
       color: var(--text-secondary);
       margin: 0;
     }
-    .adv-cta__btns { display: flex; gap: 12px; flex-shrink: 0; }
+
+    .adv-cta__btns {
+      display: flex;
+      gap: 12px;
+      flex-shrink: 0;
+    }
 
     /* ── Activities Layout ── */
     .adv-activities-wrap {
@@ -404,6 +475,7 @@
       grid-template-columns: 1fr 1fr;
       gap: 40px;
     }
+
     .adv-activities-col-title {
       font-family: var(--font-accent);
       font-size: 9px;
@@ -412,7 +484,7 @@
       color: var(--gold);
       padding-bottom: 12px;
       margin-bottom: 24px;
-      border-bottom: 1px solid rgba(47,79,62,0.15);
+      border-bottom: 1px solid rgba(47, 79, 62, 0.15);
     }
 
     #activities-winter-container,
@@ -426,6 +498,7 @@
     .adv-packages .detail-card {
       margin-bottom: 20px;
     }
+
     .adv-packages .detail-grid {
       gap: 20px;
     }
@@ -444,18 +517,21 @@
       height: 100%;
       overflow: hidden;
     }
+
     .adv-packages .activities__item:hover {
       border-color: var(--gold);
       background: var(--bg-hover);
       transform: translateY(-6px);
       box-shadow: var(--shadow-xl), var(--shadow-glow);
     }
+
     .adv-packages .activities__item-img-wrap {
       position: relative;
       width: 100%;
       aspect-ratio: 16/10;
       overflow: hidden;
     }
+
     .adv-packages .activities__item-img {
       width: 100%;
       height: 100%;
@@ -463,10 +539,12 @@
       transition: transform var(--duration-slower) var(--ease-smooth);
       filter: brightness(0.8) saturate(0.8) sepia(0.05);
     }
+
     .adv-packages .activities__item:hover .activities__item-img {
       transform: scale(1.05);
       filter: brightness(0.88) saturate(0.85);
     }
+
     .adv-packages .activities__item-body {
       padding: 24px 20px;
       display: flex;
@@ -475,6 +553,7 @@
       justify-content: flex-start;
       width: 100%;
     }
+
     .adv-packages .activities__item-name {
       font-family: var(--font-body);
       font-size: 14.5px;
@@ -483,6 +562,7 @@
       margin-bottom: 8px;
       letter-spacing: 0.02em;
     }
+
     .adv-packages .activities__item-desc {
       font-size: 12.5px;
       color: var(--text-secondary) !important;
@@ -494,9 +574,11 @@
         padding-left: 0 !important;
         padding-right: 0 !important;
       }
+
       .adv-cats__label {
         padding-left: var(--container-padding);
       }
+
       .adv-cats__grid {
         display: flex !important;
         flex-direction: row !important;
@@ -511,41 +593,60 @@
         padding-bottom: 16px !important;
         scrollbar-width: none !important;
       }
+
       .adv-cats__grid::-webkit-scrollbar {
         display: none !important;
       }
+
       .cat-card {
         flex: 0 0 45% !important;
         scroll-snap-align: start !important;
         height: 160px !important;
         max-width: 280px !important;
       }
-      .adv-panel__intro-inner { flex-direction: column; }
-      .adv-panel__intro-stats { width: 100%; justify-content: center; border-top: 1px solid rgba(47,79,62,0.1); padding-top: 20px; margin-top: 8px; }
+
+      .adv-panel__intro-inner {
+        flex-direction: column;
+      }
+
+      .adv-panel__intro-stats {
+        width: 100%;
+        justify-content: center;
+        border-top: 1px solid rgba(47, 79, 62, 0.1);
+        padding-top: 20px;
+        margin-top: 8px;
+      }
     }
+
     @media (max-width: 768px) {
       .cat-card {
         flex: 0 0 68% !important;
         height: 140px !important;
       }
+
       .cat-card__body {
         padding: 12px 14px !important;
       }
+
       .cat-card__icon {
         width: 32px !important;
         height: 32px !important;
         margin-bottom: 6px !important;
       }
+
       .cat-card__icon svg {
         width: 15px !important;
         height: 15px !important;
       }
+
       .cat-card__title {
         font-size: 14px !important;
       }
+
       .cat-card__desc {
         font-size: 11px !important;
       }
+
       #activities-winter-container,
       #activities-summer-container {
         display: flex !important;
@@ -561,10 +662,12 @@
         padding-bottom: 16px !important;
         scrollbar-width: none !important;
       }
+
       #activities-winter-container::-webkit-scrollbar,
       #activities-summer-container::-webkit-scrollbar {
         display: none !important;
       }
+
       .adv-packages .activities__item {
         flex: 0 0 78% !important;
         scroll-snap-align: start !important;
@@ -572,39 +675,73 @@
         height: auto !important;
       }
     }
+
     @media (max-width: 640px) {
       .cat-card {
         flex: 0 0 75% !important;
       }
-      .adv-activities-wrap { grid-template-columns: 1fr; }
+
+      .adv-activities-wrap {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
+
 <body>
 
   <!-- ===== NAVBAR ===== -->
-  <nav class="navbar navbar--scrolled" id="navbar">
+  <nav class="navbar" id="navbar">
     <div class="navbar__inner">
       <a href="index.html" class="navbar__logo">
         <div class="navbar__logo-icon">
-          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 3 4 8 5-5 5 15H2L8 3z"/></svg>
+          <svg viewBox="0 0 100 100" class="navbar__yak-logo" width="34" height="34" fill="none" stroke="currentColor"
+            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M15 35 C15 20, 30 10, 50 25 C70 10, 85 20, 85 35" />
+            <path d="M22 38 C25 28, 38 24, 50 32 C62 24, 75 28, 78 38" />
+            <path d="M32 36 L40 70 C42 75, 45 80, 50 80 C55 80, 58 75, 60 70 L68 36 Z" />
+            <path d="M44 68 C46 70, 54 70, 56 68" />
+          </svg>
         </div>
         <div class="navbar__logo-text">Shred <span>Himalayas</span></div>
       </a>
+
       <div class="navbar__links" id="navLinks">
-        <a href="index.html" class="navbar__link">Home</a>
-        <a href="adventures.html" class="navbar__link active">Adventures</a>
-        <a href="packages.html" class="navbar__link">Packages</a>
-        <a href="index.html#gallery" class="navbar__link">Gallery</a>
+        <a href="index.html" class="navbar__link">Journeys</a>
+        <a href="adventures.html" class="navbar__link active">Stays</a>
+        <a href="packages.html" class="navbar__link">Bhutan</a>
+        <a href="index.html#gallery" class="navbar__link">Journal</a>
         <a href="index.html#about" class="navbar__link">About</a>
-        <a href="index.html#contact" class="navbar__link">Contact</a>
         <div class="navbar__cta-mobile">
           <a href="packages.html" class="btn btn--primary"><span>Plan My Journey</span></a>
         </div>
       </div>
-      <div class="navbar__cta">
-        <a href="packages.html" class="btn btn--primary"><span>Plan My Journey</span></a>
+
+      <div class="navbar__actions">
+        <div class="navbar__badge-lang">
+          <span>us</span><strong>EN</strong>
+          <svg viewBox="0 0 24 24" width="10" height="10" stroke="currentColor" fill="none" stroke-width="2.5">
+            <path d="m6 9 6 6 6-6" />
+          </svg>
+        </div>
+        <div class="navbar__badge-search">
+          <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" fill="none" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <span>Search</span>
+          <span class="navbar__search-kbd">⌘K</span>
+        </div>
+        <div class="navbar__cta">
+          <a href="packages.html" class="btn btn--outline-gold navbar__plan-btn"><span>PLAN MY TRIP</span><svg
+              viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" fill="none" stroke-width="2.5">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg></a>
+        </div>
       </div>
+
       <button class="navbar__toggle" id="navToggle" aria-label="Toggle menu">
         <span></span><span></span><span></span>
       </button>
@@ -619,19 +756,29 @@
     <div class="adv-hero__top">
       <p class="adv-hero__label">Shred Himalayas</p>
       <h1 class="adv-hero__title">Explore. Experience. <em>Excel.</em></h1>
-      <p class="adv-hero__sub">From adrenaline-pumping ski runs to peaceful alpine treks — choose your Himalayan adventure and create memories that last a lifetime.</p>
+      <p class="adv-hero__sub">From adrenaline-pumping ski runs to peaceful alpine treks — choose your Himalayan
+        adventure and create memories that last a lifetime.</p>
       <div class="adv-hero__badges">
         <span class="adv-hero__badge">
-          <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Expert Guides
+          <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+          </svg>Expert Guides
         </span>
         <span class="adv-hero__badge">
-          <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>Premium Gear
+          <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10" />
+            <path d="M12 8v4l3 3" />
+          </svg>Premium Gear
         </span>
         <span class="adv-hero__badge">
-          <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/></svg>Best Locations
+          <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+          </svg>Best Locations
         </span>
         <span class="adv-hero__badge">
-          <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 2 4.11V3a2 2 0 0 1 2-2"/></svg>24/7 Support
+          <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 2 4.11V3a2 2 0 0 1 2-2" />
+          </svg>24/7 Support
         </span>
       </div>
     </div>
@@ -646,7 +793,10 @@
           <div class="cat-card__overlay"></div>
           <div class="cat-card__body">
             <div class="cat-card__icon">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M19.5 3.5L18 2l-4 4-2-2-3 3 4.5 4.5"/><path d="m4 20 7-7M5 4l-2 2 8 8"/></svg>
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M19.5 3.5L18 2l-4 4-2-2-3 3 4.5 4.5" />
+                <path d="m4 20 7-7M5 4l-2 2 8 8" />
+              </svg>
             </div>
             <h3 class="cat-card__title">Skiing</h3>
             <p class="cat-card__desc">Feel the thrill on pristine white slopes of Gulmarg</p>
@@ -659,7 +809,10 @@
           <div class="cat-card__overlay"></div>
           <div class="cat-card__body">
             <div class="cat-card__icon">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v3"/><rect x="9" y="11" width="14" height="10" rx="2"/></svg>
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v3" />
+                <rect x="9" y="11" width="14" height="10" rx="2" />
+              </svg>
             </div>
             <h3 class="cat-card__title">Snowboarding</h3>
             <p class="cat-card__desc">Carve your way through the mountains of Kashmir</p>
@@ -672,7 +825,10 @@
           <div class="cat-card__overlay"></div>
           <div class="cat-card__body">
             <div class="cat-card__icon">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m3 17 3-8 4 5 3-3 4 6"/><circle cx="17" cy="7" r="2"/></svg>
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="m3 17 3-8 4 5 3-3 4 6" />
+                <circle cx="17" cy="7" r="2" />
+              </svg>
             </div>
             <h3 class="cat-card__title">Trekking</h3>
             <p class="cat-card__desc">Discover the raw beauty of the Himalayas on foot</p>
@@ -685,7 +841,9 @@
           <div class="cat-card__overlay"></div>
           <div class="cat-card__body">
             <div class="cat-card__icon">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+              </svg>
             </div>
             <h3 class="cat-card__title">Adventure Activities</h3>
             <p class="cat-card__desc">From biking to rafting — adventure never ends</p>
@@ -708,12 +866,22 @@
           <div class="adv-panel__intro-text">
             <p class="adv-panel__intro-label">Snow Sports · Gulmarg, Kashmir</p>
             <h2 class="adv-panel__intro-title">Skiing in the Himalayas</h2>
-            <p class="adv-panel__intro-desc">Asia's highest gondola, legendary powder runs, and certified instructors for all levels. From first-timers to expert heli-skiers — Gulmarg delivers like nowhere else on Earth.</p>
+            <p class="adv-panel__intro-desc">Asia's highest gondola, legendary powder runs, and certified instructors
+              for all levels. From first-timers to expert heli-skiers — Gulmarg delivers like nowhere else on Earth.</p>
           </div>
           <div class="adv-panel__intro-stats">
-            <div class="adv-intro-stat"><div class="adv-intro-stat__val">4,200m</div><div class="adv-intro-stat__label">Peak Altitude</div></div>
-            <div class="adv-intro-stat"><div class="adv-intro-stat__val">Dec–Mar</div><div class="adv-intro-stat__label">Snow Season</div></div>
-            <div class="adv-intro-stat"><div class="adv-intro-stat__val">14m+</div><div class="adv-intro-stat__label">Annual Snowfall</div></div>
+            <div class="adv-intro-stat">
+              <div class="adv-intro-stat__val">4,200m</div>
+              <div class="adv-intro-stat__label">Peak Altitude</div>
+            </div>
+            <div class="adv-intro-stat">
+              <div class="adv-intro-stat__val">Dec–Mar</div>
+              <div class="adv-intro-stat__label">Snow Season</div>
+            </div>
+            <div class="adv-intro-stat">
+              <div class="adv-intro-stat__val">14m+</div>
+              <div class="adv-intro-stat__label">Annual Snowfall</div>
+            </div>
           </div>
         </div>
       </div>
@@ -743,12 +911,22 @@
           <div class="adv-panel__intro-text">
             <p class="adv-panel__intro-label">Snow Sports · Gulmarg, Kashmir</p>
             <h2 class="adv-panel__intro-title">Snowboarding in the Himalayas</h2>
-            <p class="adv-panel__intro-desc">From butter-smooth groomers to untouched backcountry powder — Gulmarg is a snowboarder's dream. Expert coaches and world-class terrain for every rider.</p>
+            <p class="adv-panel__intro-desc">From butter-smooth groomers to untouched backcountry powder — Gulmarg is a
+              snowboarder's dream. Expert coaches and world-class terrain for every rider.</p>
           </div>
           <div class="adv-panel__intro-stats">
-            <div class="adv-intro-stat"><div class="adv-intro-stat__val">Beginner</div><div class="adv-intro-stat__label">to Expert</div></div>
-            <div class="adv-intro-stat"><div class="adv-intro-stat__val">Dec–Mar</div><div class="adv-intro-stat__label">Snow Season</div></div>
-            <div class="adv-intro-stat"><div class="adv-intro-stat__val">Heli</div><div class="adv-intro-stat__label">Access Available</div></div>
+            <div class="adv-intro-stat">
+              <div class="adv-intro-stat__val">Beginner</div>
+              <div class="adv-intro-stat__label">to Expert</div>
+            </div>
+            <div class="adv-intro-stat">
+              <div class="adv-intro-stat__val">Dec–Mar</div>
+              <div class="adv-intro-stat__label">Snow Season</div>
+            </div>
+            <div class="adv-intro-stat">
+              <div class="adv-intro-stat__val">Heli</div>
+              <div class="adv-intro-stat__label">Access Available</div>
+            </div>
           </div>
         </div>
       </div>
@@ -778,12 +956,23 @@
           <div class="adv-panel__intro-text">
             <p class="adv-panel__intro-label">Himalayan Treks · Kashmir</p>
             <h2 class="adv-panel__intro-title">Trek Through Living Postcards</h2>
-            <p class="adv-panel__intro-desc">Seven alpine lakes, wildflower meadows, glaciers and sacred peaks. Kashmir's trekking routes are among the most breathtaking on Earth — guided by certified local experts.</p>
+            <p class="adv-panel__intro-desc">Seven alpine lakes, wildflower meadows, glaciers and sacred peaks.
+              Kashmir's trekking routes are among the most breathtaking on Earth — guided by certified local experts.
+            </p>
           </div>
           <div class="adv-panel__intro-stats">
-            <div class="adv-intro-stat"><div class="adv-intro-stat__val">Jun–Oct</div><div class="adv-intro-stat__label">Trek Season</div></div>
-            <div class="adv-intro-stat"><div class="adv-intro-stat__val">4,100m</div><div class="adv-intro-stat__label">Max Altitude</div></div>
-            <div class="adv-intro-stat"><div class="adv-intro-stat__val">5+</div><div class="adv-intro-stat__label">Trek Routes</div></div>
+            <div class="adv-intro-stat">
+              <div class="adv-intro-stat__val">Jun–Oct</div>
+              <div class="adv-intro-stat__label">Trek Season</div>
+            </div>
+            <div class="adv-intro-stat">
+              <div class="adv-intro-stat__val">4,100m</div>
+              <div class="adv-intro-stat__label">Max Altitude</div>
+            </div>
+            <div class="adv-intro-stat">
+              <div class="adv-intro-stat__val">5+</div>
+              <div class="adv-intro-stat__label">Trek Routes</div>
+            </div>
           </div>
         </div>
       </div>
@@ -813,12 +1002,22 @@
           <div class="adv-panel__intro-text">
             <p class="adv-panel__intro-label">All Seasons · Kashmir</p>
             <h2 class="adv-panel__intro-title">Adventure Activities</h2>
-            <p class="adv-panel__intro-desc">From white-water rafting to mountain biking, sledging to ice climbing — Kashmir is an adventure playground every season of the year.</p>
+            <p class="adv-panel__intro-desc">From white-water rafting to mountain biking, sledging to ice climbing —
+              Kashmir is an adventure playground every season of the year.</p>
           </div>
           <div class="adv-panel__intro-stats">
-            <div class="adv-intro-stat"><div class="adv-intro-stat__val">10+</div><div class="adv-intro-stat__label">Activities</div></div>
-            <div class="adv-intro-stat"><div class="adv-intro-stat__val">All</div><div class="adv-intro-stat__label">Age Groups</div></div>
-            <div class="adv-intro-stat"><div class="adv-intro-stat__val">Year</div><div class="adv-intro-stat__label">Round</div></div>
+            <div class="adv-intro-stat">
+              <div class="adv-intro-stat__val">10+</div>
+              <div class="adv-intro-stat__label">Activities</div>
+            </div>
+            <div class="adv-intro-stat">
+              <div class="adv-intro-stat__val">All</div>
+              <div class="adv-intro-stat__label">Age Groups</div>
+            </div>
+            <div class="adv-intro-stat">
+              <div class="adv-intro-stat__val">Year</div>
+              <div class="adv-intro-stat__label">Round</div>
+            </div>
           </div>
         </div>
       </div>
@@ -859,69 +1058,70 @@
   <script src="js/site-data.js?v=4"></script>
   <script src="js/navbar.js?v=3"></script>
   <script>
-  /* ============================================================
-     Adventures Page Controller
-     – Uses SHData renderers to stay in sync with admin panel
-  ============================================================ */
-  (function () {
-    'use strict';
+    /* ============================================================
+       Adventures Page Controller
+       – Uses SHData renderers to stay in sync with admin panel
+    ============================================================ */
+    (function () {
+      'use strict';
 
-    var currentTab = 'skiing';
+      var currentTab = 'skiing';
 
-    // ── Tab switch ──────────────────────────────────────────
-    window.switchTab = function (tabId) {
-      if (currentTab === tabId) return;
-      currentTab = tabId;
+      // ── Tab switch ──────────────────────────────────────────
+      window.switchTab = function (tabId) {
+        if (currentTab === tabId) return;
+        currentTab = tabId;
 
-      // Update card states
-      document.querySelectorAll('.cat-card').forEach(function (card) {
-        card.classList.toggle('active', card.dataset.tab === tabId);
-      });
+        // Update card states
+        document.querySelectorAll('.cat-card').forEach(function (card) {
+          card.classList.toggle('active', card.dataset.tab === tabId);
+        });
 
-      // Show/hide panels
-      document.querySelectorAll('.adv-panel').forEach(function (panel) {
-        panel.classList.remove('is-active');
-      });
-      var target = document.getElementById('panel-' + tabId);
-      if (target) {
-        target.classList.add('is-active');
-        // Scroll smoothly to content
-        setTimeout(function () {
-          target.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        }, 50);
+        // Show/hide panels
+        document.querySelectorAll('.adv-panel').forEach(function (panel) {
+          panel.classList.remove('is-active');
+        });
+        var target = document.getElementById('panel-' + tabId);
+        if (target) {
+          target.classList.add('is-active');
+          // Scroll smoothly to content
+          setTimeout(function () {
+            target.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          }, 50);
+        }
+      };
+
+      // ── Check URL hash for deep link e.g. adventures.html#trekking ──
+      var hash = (window.location.hash || '').replace('#', '');
+      if (['skiing', 'snowboarding', 'trekking', 'activities'].indexOf(hash) !== -1) {
+        currentTab = hash;
+        switchTab(hash);
       }
-    };
 
-    // ── Check URL hash for deep link e.g. adventures.html#trekking ──
-    var hash = (window.location.hash || '').replace('#', '');
-    if (['skiing', 'snowboarding', 'trekking', 'activities'].indexOf(hash) !== -1) {
-      currentTab = hash;
-      switchTab(hash);
-    }
+      // ── Render all panels via SHData (admin-synced) ──────────
+      document.addEventListener('DOMContentLoaded', function () {
 
-    // ── Render all panels via SHData (admin-synced) ──────────
-    document.addEventListener('DOMContentLoaded', function () {
+        // Skiing — uses SHData.renderSkiing
+        SHData.renderSkiing('skiing-packages-container');
 
-      // Skiing — uses SHData.renderSkiing
-      SHData.renderSkiing('skiing-packages-container');
+        // Snowboarding — uses SHData.renderSnowboarding
+        SHData.renderSnowboarding('snowboarding-packages-container');
 
-      // Snowboarding — uses SHData.renderSnowboarding
-      SHData.renderSnowboarding('snowboarding-packages-container');
+        // Trekking — uses SHData.renderTrekking
+        SHData.renderTrekking('trekking-packages-container');
 
-      // Trekking — uses SHData.renderTrekking
-      SHData.renderTrekking('trekking-packages-container');
+        // Activities — uses SHData.renderActivities
+        SHData.renderActivities('activities-winter-container', 'activities-summer-container');
 
-      // Activities — uses SHData.renderActivities
-      SHData.renderActivities('activities-winter-container', 'activities-summer-container');
+        // Footer
+        SHData.renderFooter();
 
-      // Footer
-      SHData.renderFooter();
+        // Update WhatsApp links with correct number from settings
+        SHData.updateWhatsApp();
+      });
 
-      // Update WhatsApp links with correct number from settings
-      SHData.updateWhatsApp();
-    });
-
-  }());
+    }());
   </script>
 </body>
+
 </html>

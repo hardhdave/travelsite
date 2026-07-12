@@ -62,7 +62,12 @@ input, textarea, select {
 }
 
 /* ---------- Typography ---------- */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-heading);
   font-weight: var(--weight-regular);
   line-height: var(--leading-tight);
@@ -74,8 +79,20 @@ h1 { font-size: var(--text-7xl); font-weight: var(--weight-light); }
 h2 { font-size: var(--text-5xl); }
 h3 { font-size: var(--text-4xl); font-weight: var(--weight-light); }
 h4 { font-size: var(--text-3xl); }
-h5 { font-size: var(--text-2xl); font-weight: var(--weight-medium); font-family: var(--font-body); }
-h6 { font-size: var(--text-xl);  font-family: var(--font-body); }
+h5 { font-size: var(--text-2xl); font-weight: var(--weight-medium); }
+h6 { font-size: var(--text-xl); }
+
+button,
+input,
+textarea,
+select,
+label,
+p,
+span,
+a,
+li {
+  font-family: var(--font-body);
+}
 
 p {
   color: var(--text-secondary);
@@ -197,7 +214,7 @@ p {
 }
 
 section {
-  padding: var(--space-section) 0;
+  /* padding: var(--space-section) 0; */
   position: relative;
 }
 

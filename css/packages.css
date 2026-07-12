@@ -78,7 +78,7 @@
 .packages__card-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, transparent 20%, rgba(8,18,32,0.95) 100%);
+  background: linear-gradient(180deg, transparent 20%, rgba(20,20,20,0.95) 100%);
   z-index: 1;
 }
 
@@ -123,7 +123,7 @@
 /* ---- Button inside card: cream/sand for contrast over dark image ---- */
 .packages__card-content .btn--primary {
   background: #f5e9d5 !important;
-  color: #1a2e22 !important;
+  color: #1C1C1C !important;
   border: 1px solid #f5e9d5 !important;
   border-radius: 4px !important;
   font-weight: 700 !important;
