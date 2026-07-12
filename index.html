@@ -75,25 +75,52 @@
     <div class="navbar__inner">
       <a href="index.html" class="navbar__logo">
         <div class="navbar__logo-icon">
-          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 3 4 8 5-5 5 15H2L8 3z"/></svg>
+          <svg viewBox="0 0 100 100" class="navbar__yak-logo" width="34" height="34" fill="none" stroke="currentColor"
+            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M15 35 C15 20, 30 10, 50 25 C70 10, 85 20, 85 35" />
+            <path d="M22 38 C25 28, 38 24, 50 32 C62 24, 75 28, 78 38" />
+            <path d="M32 36 L40 70 C42 75, 45 80, 50 80 C55 80, 58 75, 60 70 L68 36 Z" />
+            <path d="M44 68 C46 70, 54 70, 56 68" />
+          </svg>
         </div>
         <div class="navbar__logo-text">Shred <span>Himalayas</span></div>
       </a>
 
       <div class="navbar__links" id="navLinks">
-        <a href="index.html" class="navbar__link">Home</a>
+        <a href="index.html" class="navbar__link active">Home</a>
         <a href="adventures.html" class="navbar__link">Adventures</a>
         <a href="packages.html" class="navbar__link">Packages</a>
-        <a href="#gallery" class="navbar__link">Gallery</a>
-        <a href="#about" class="navbar__link">About</a>
-        <a href="#contact" class="navbar__link">Contact</a>
+        <a href="index.html#gallery" class="navbar__link">Gallery</a>
+        <a href="index.html#about" class="navbar__link">About</a>
+        <a href="index.html#cta__form-side" class="navbar__link">Contact Us</a>
         <div class="navbar__cta-mobile">
-          <a href="#packages" class="btn btn--primary"><span>Plan My Journey</span></a>
+          <a href="packages.html" class="btn btn--primary"><span>Plan My Journey</span></a>
         </div>
       </div>
 
-      <div class="navbar__cta">
-        <a href="#packages" class="btn btn--primary"><span>Plan My Journey</span></a>
+      <div class="navbar__actions">
+        <div class="navbar__badge-lang">
+          <span>us</span><strong>EN</strong>
+          <svg viewBox="0 0 24 24" width="10" height="10" stroke="currentColor" fill="none" stroke-width="2.5">
+            <path d="m6 9 6 6 6-6" />
+          </svg>
+        </div>
+        <div class="navbar__badge-search">
+          <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" fill="none" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <span>Search</span>
+          <span class="navbar__search-kbd">⌘K</span>
+        </div>
+        <div class="navbar__cta">
+          <a href="packages.html" class="btn btn--outline-gold navbar__plan-btn"><span>PLAN MY TRIP</span><svg
+              viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" fill="none" stroke-width="2.5">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg></a>
+        </div>
       </div>
 
       <button class="navbar__toggle" id="navToggle" aria-label="Toggle menu">
