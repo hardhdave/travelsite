@@ -13,15 +13,19 @@
     const navBtns = section.querySelectorAll('.experiences__nav-btn');
     const panels  = section.querySelectorAll('.experiences__panel');
     const dots    = section.querySelectorAll('.experiences__dot');
+    const navContainer = section.querySelector('.experiences__nav');
+    const navItems = section.querySelectorAll('.experiences__nav-item');
 
     if (!navBtns.length || !panels.length) return;
 
     let currentIndex = 0;
     let autoTimer    = null;
-    const AUTO_DELAY = 5000;
+
+    // Dynamic delay: 3 seconds for mobile devices, 5 seconds for desktop/tablet
+    const AUTO_DELAY = window.innerWidth <= 767 ? 3000 : 5000;
 
     /* ---- Core switch function ---- */
-    function switchTo(index) {
+    function switchTo(index, skipScroll = false) {
       if (index === currentIndex) return;
       if (index < 0) index = navBtns.length - 1;
       if (index >= navBtns.length) index = 0;
@@ -40,7 +44,9 @@
       if (dots[currentIndex]) dots[currentIndex].classList.add('is-active');
 
       // Scroll nav button into view on mobile
-      navBtns[currentIndex].scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' });
+      if (!skipScroll && navBtns[currentIndex]) {
+        navBtns[currentIndex].scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' });
+      }
     }
 
     /* ---- Auto-advance ---- */
@@ -110,6 +116,71 @@
           startAuto();
         }
       }, { passive: true });
+    }
+
+    /* ---- Mobile Scroll Snapping Interactivity ---- */
+    let isUserInteracting = false;
+    let interactionTimeout = null;
+    let scrollTimeout = null;
+
+    if (navContainer && window.innerWidth <= 767) {
+      // Find centered card during manual swipe scroll and switch active panel
+      const handleManualScroll = () => {
+        if (!isUserInteracting) return;
+
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => {
+          const containerRect = navContainer.getBoundingClientRect();
+          const containerCenter = containerRect.left + containerRect.width / 2;
+
+          let closestIndex = currentIndex;
+          let minDistance = Infinity;
+
+          navItems.forEach((item, idx) => {
+            const rect = item.getBoundingClientRect();
+            const itemCenter = rect.left + rect.width / 2;
+            const distance = Math.abs(itemCenter - containerCenter);
+
+            if (distance < minDistance) {
+              minDistance = distance;
+              closestIndex = idx;
+            }
+          });
+
+          if (closestIndex !== currentIndex) {
+            // Update active state without scrolling container (avoids scroll-fights)
+            switchTo(closestIndex, true);
+          }
+        }, 100); // 100ms debounce
+      };
+
+      const startUserInteraction = () => {
+        isUserInteracting = true;
+        stopAuto();
+        clearTimeout(interactionTimeout);
+      };
+
+      const endUserInteraction = () => {
+        clearTimeout(interactionTimeout);
+        interactionTimeout = setTimeout(() => {
+          isUserInteracting = false;
+          startAuto();
+        }, 4000); // Resume auto-scroll after 4s of inactivity
+      };
+
+      // Register interaction events
+      navContainer.addEventListener('touchstart', startUserInteraction, { passive: true });
+      navContainer.addEventListener('touchend', endUserInteraction, { passive: true });
+      navContainer.addEventListener('mousedown', startUserInteraction);
+      navContainer.addEventListener('mouseup', endUserInteraction);
+      navContainer.addEventListener('mouseleave', endUserInteraction);
+      navContainer.addEventListener('wheel', () => {
+        startUserInteraction();
+        endUserInteraction();
+      }, { passive: true });
+
+      // Detect horizontal scroll shifts
+      navContainer.addEventListener('scroll', handleManualScroll, { passive: true });
     }
 
     /* ---- Pause on hover ---- */

@@ -822,3 +822,58 @@
     font-size: 0.66rem !important;
   }
 }
+
+/* ============================================================
+   MOBILE HORIZONTAL SCROLL CARDS (max-width: 767px)
+   ============================================================ */
+@media (max-width: 767px) {
+  /* Layout: single horizontal flex row instead of 3x2 grid */
+  .experiences__nav {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory !important;
+    scroll-behavior: smooth !important;
+    -webkit-overflow-scrolling: touch !important;
+
+    /* Pull edge-to-edge with negative margin, offset by padding */
+    margin-left: -20px !important;
+    margin-right: -20px !important;
+    padding: 12px 10vw 24px !important;
+    gap: 16px !important;
+
+    /* Hide scrollbar */
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+  }
+
+  .experiences__nav::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  /* Fixed size for individual cards, snapping to center */
+  .experiences__nav-item {
+    flex: 0 0 80vw !important;
+    max-width: 300px !important;
+    scroll-snap-align: center !important;
+    scroll-snap-stop: always !important;
+  }
+
+  /* Expand button to fill container height */
+  .experiences__nav-btn {
+    height: 100% !important;
+    padding: 22px 16px 18px !important;
+  }
+}
+
+/* Adjust negative margins on smaller screens to match sidebar padding */
+@media (max-width: 480px) {
+  .experiences__nav {
+    margin-left: -16px !important;
+    margin-right: -16px !important;
+    padding-left: 10vw !important;
+    padding-right: 10vw !important;
+    gap: 12px !important;
+  }
+}
