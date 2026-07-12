@@ -96,7 +96,7 @@ p {
 .detail-card {
   background: var(--bg-card) !important;
   border: 1px solid rgba(196,168,108,0.12) !important;
-  border-radius: 0 !important;
+  border-radius: 24px !important;
   overflow: hidden;
   transition: all var(--duration-normal) var(--ease-premium);
   display: flex;
@@ -279,7 +279,7 @@ p {
 .trek-card {
   background: var(--bg-card) !important;
   border: 1px solid rgba(196,168,108,0.12) !important;
-  border-radius: 0 !important;
+  border-radius: 24px !important;
   overflow: hidden;
   transition: all var(--duration-normal) var(--ease-premium);
   display: flex;
@@ -689,3 +689,246 @@ p {
     flex-shrink: 0 !important;
   }
 }
+
+/* ============================================
+   SHRED HIMALAYAS — MODAL POPUP STYLES
+   ============================================ */
+
+.sh-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 12, 8, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+  padding: 24px;
+}
+
+.sh-modal-overlay.is-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.sh-modal {
+  background: var(--bg-card);
+  border: 1px solid rgba(196, 168, 108, 0.2);
+  border-radius: 24px;
+  width: 100%;
+  max-width: 900px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  transform: scale(0.92);
+  transition: transform 0.4s var(--ease-premium);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6), 0 0 40px rgba(196, 168, 108, 0.05);
+}
+
+.sh-modal-overlay.is-active .sh-modal {
+  transform: scale(1);
+}
+
+.sh-modal__close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s ease;
+  z-index: 10;
+}
+
+.sh-modal__close:hover {
+  background: var(--gold);
+  color: #0a0a0a;
+  border-color: var(--gold);
+  transform: rotate(90deg);
+}
+
+.sh-modal__grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1.3fr;
+  min-height: 480px;
+}
+
+.sh-modal__image-side {
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+  min-height: 300px;
+}
+
+.sh-modal__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.sh-modal__badge {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: var(--gold);
+  color: #1a1f14;
+  padding: 5px 14px;
+  font-family: var(--font-accent);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  z-index: 2;
+  border: 1px solid var(--gold);
+}
+
+.sh-modal__content-side {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 24px;
+  overflow-y: auto;
+}
+
+.sh-modal__title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.6rem, 2.5vw, 2.1rem);
+  font-weight: var(--weight-medium);
+  color: var(--text-primary);
+  margin: 0;
+  line-height: 1.25;
+}
+
+.sh-modal__meta-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 16px 0;
+}
+
+.sh-modal__meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sh-modal__meta-label {
+  font-family: var(--font-accent);
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--text-muted);
+}
+
+.sh-modal__meta-value {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--gold);
+}
+
+.sh-modal__desc {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  line-height: 1.65;
+  margin: 0;
+}
+
+.sh-modal__extra {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sh-modal__extra-title {
+  font-family: var(--font-accent);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--gold);
+  margin: 0;
+}
+
+.sh-modal__tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.sh-modal__tag {
+  font-family: var(--font-accent);
+  font-size: 9px;
+  color: var(--gold);
+  background: rgba(196, 168, 108, 0.06);
+  border: 1px solid var(--gold-border);
+  padding: 6px 12px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.sh-modal__highlight-item {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  display: block;
+  line-height: 1.6;
+}
+
+.sh-modal__highlight-item::before {
+  content: '✦';
+  color: var(--gold);
+  font-size: 8px;
+  margin-right: 8px;
+}
+
+.sh-modal__cta {
+  margin-top: auto;
+}
+
+.sh-modal__enquire {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  padding: 16px !important;
+}
+
+@media (max-width: 768px) {
+  .sh-modal__grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .sh-modal__image-side {
+    height: 240px;
+    min-height: auto;
+  }
+  
+  .sh-modal__content-side {
+    padding: 24px;
+    gap: 20px;
+  }
+  
+  .sh-modal__meta-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    padding: 12px 0;
+  }
+  
+  .sh-modal-overlay {
+    padding: 12px;
+  }
+}
+

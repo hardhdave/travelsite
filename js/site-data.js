@@ -170,6 +170,7 @@ const SHData = (function () {
 
   /* -- Skiing & Snowboarding package card (shared template) -- */
   function renderActivityCard(item, wa_num) {
+    const safeData = encodeURIComponent(JSON.stringify(item));
     return `
       <div class="detail-card reveal">
         <div class="detail-card__image-wrap">
@@ -187,6 +188,7 @@ const SHData = (function () {
           <div class="detail-card__includes">${makeTags(item.includes)}</div>
           <div class="detail-card__cta">
             <a href="${wa(wa_num, item.waMsg)}" class="btn btn--primary"><span>Enquire Now</span></a>
+            <button class="btn btn--outline sh-more-info-btn" data-item-type="activity" data-item='${safeData}'><span>More Info</span></button>
           </div>
         </div>
       </div>`;
@@ -236,7 +238,9 @@ const SHData = (function () {
     if (!el) return;
     const treks = get('trekking').filter(t => t.enabled !== false);
     const wa_num = get('settings').whatsappNumber;
-    el.innerHTML = treks.map(t => `
+    el.innerHTML = treks.map(t => {
+      const safeData = encodeURIComponent(JSON.stringify(t));
+      return `
       <div class="trek-card reveal">
         <div class="trek-card__image-wrap">
           <img src="${t.image}" alt="${t.title}" class="trek-card__image">
@@ -254,9 +258,11 @@ const SHData = (function () {
           <div class="trek-card__highlights">${makeHighlights(t.highlights)}</div>
           <div class="detail-card__cta">
             <a href="${wa(wa_num, t.waMsg)}" class="btn btn--primary"><span>Enquire Now</span></a>
+            <button class="btn btn--outline sh-more-info-btn" data-item-type="trek" data-item='${safeData}'><span>More Info</span></button>
           </div>
         </div>
-      </div>`).join('');
+      </div>`;
+    }).join('');
   }
 
   /* -- Tour packages -- */

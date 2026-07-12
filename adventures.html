@@ -168,21 +168,25 @@
     .adv-cats__grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 3px;
+      gap: 20px;
     }
 
     /* Individual category card */
     .cat-card {
       position: relative;
-      height: 220px;
+      aspect-ratio: 1 / 1;
+      height: auto;
+      border-radius: 24px;
       overflow: hidden;
       cursor: pointer;
       border: 2px solid transparent;
       transition: border-color 0.25s ease;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     }
 
     .cat-card.active {
       border-color: var(--gold);
+      box-shadow: 0 12px 35px rgba(196, 168, 108, 0.2);
     }
 
     .cat-card__img {
@@ -601,8 +605,10 @@
       .cat-card {
         flex: 0 0 45% !important;
         scroll-snap-align: start !important;
-        height: 160px !important;
+        height: auto !important;
+        aspect-ratio: 1 / 1 !important;
         max-width: 280px !important;
+        border-radius: 20px !important;
       }
 
       .adv-panel__intro-inner {
@@ -621,7 +627,10 @@
     @media (max-width: 768px) {
       .cat-card {
         flex: 0 0 68% !important;
-        height: 140px !important;
+        height: auto !important;
+        aspect-ratio: 1 / 1 !important;
+        max-width: 220px !important;
+        border-radius: 20px !important;
       }
 
       .cat-card__body {
@@ -1157,9 +1166,164 @@
 
         // Update WhatsApp links with correct number from settings
         SHData.updateWhatsApp();
+
+        // ── More Info Modal ─────────────────────────────────────
+        initMoreInfoModal();
       });
 
     }());
+  </script>
+
+  <!-- ===== MORE INFO MODAL OVERLAY ===== -->
+  <div class="sh-modal-overlay" id="shModalOverlay">
+    <div class="sh-modal" id="shModal">
+      <button class="sh-modal__close" id="shModalClose" aria-label="Close modal">×</button>
+      <div class="sh-modal__grid" id="shModalContent">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* ============================================================
+       More Info Modal Controller
+       – Reads item data from button data-attributes
+       – Populates a premium two-column modal
+    ============================================================ */
+    function initMoreInfoModal() {
+      var overlay = document.getElementById('shModalOverlay');
+      var modal = document.getElementById('shModal');
+      var closeBtn = document.getElementById('shModalClose');
+      var contentEl = document.getElementById('shModalContent');
+      if (!overlay || !modal || !contentEl) return;
+
+      var wa_num = SHData.get('settings').whatsappNumber;
+
+      function openModal(itemData, itemType) {
+        var html = '';
+
+        if (itemType === 'trek') {
+          // Trek-specific modal layout
+          var highlights = (itemData.highlights || '').split(',').filter(Boolean);
+          html = '\
+            <div class="sh-modal__image-side">\
+              <img src="' + itemData.image + '" alt="' + itemData.title + '" class="sh-modal__img">\
+              <span class="sh-modal__badge">' + itemData.difficulty + '</span>\
+            </div>\
+            <div class="sh-modal__content-side">\
+              <h2 class="sh-modal__title">' + itemData.title + '</h2>\
+              <div class="sh-modal__meta-grid">\
+                <div class="sh-modal__meta-item">\
+                  <span class="sh-modal__meta-label">Duration</span>\
+                  <span class="sh-modal__meta-value">' + itemData.days + '</span>\
+                </div>\
+                <div class="sh-modal__meta-item">\
+                  <span class="sh-modal__meta-label">Max Altitude</span>\
+                  <span class="sh-modal__meta-value">' + itemData.altitude + '</span>\
+                </div>\
+                <div class="sh-modal__meta-item">\
+                  <span class="sh-modal__meta-label">Distance</span>\
+                  <span class="sh-modal__meta-value">' + itemData.distance + '</span>\
+                </div>\
+                <div class="sh-modal__meta-item">\
+                  <span class="sh-modal__meta-label">Best Season</span>\
+                  <span class="sh-modal__meta-value">' + itemData.season + '</span>\
+                </div>\
+                <div class="sh-modal__meta-item">\
+                  <span class="sh-modal__meta-label">Difficulty</span>\
+                  <span class="sh-modal__meta-value">' + itemData.difficulty + '</span>\
+                </div>\
+              </div>\
+              <p class="sh-modal__desc">' + itemData.description + '</p>\
+              <div class="sh-modal__extra">\
+                <h4 class="sh-modal__extra-title">Trek Highlights</h4>\
+                <div>' + highlights.map(function(h) {
+                  return '<span class="sh-modal__highlight-item">' + h.trim() + '</span>';
+                }).join('') + '</div>\
+              </div>\
+              <div class="sh-modal__cta">\
+                <a href="https://wa.me/' + wa_num + '?text=' + encodeURIComponent(itemData.waMsg || '') + '" class="btn btn--primary sh-modal__enquire" target="_blank"><span>Enquire Now</span></a>\
+              </div>\
+            </div>';
+
+        } else {
+          // Activity (skiing/snowboarding) modal layout
+          var includes = (itemData.includes || '').split(',').filter(Boolean);
+          html = '\
+            <div class="sh-modal__image-side">\
+              <img src="' + itemData.image + '" alt="' + itemData.title + '" class="sh-modal__img">\
+              <span class="sh-modal__badge">' + itemData.badge + '</span>\
+            </div>\
+            <div class="sh-modal__content-side">\
+              <h2 class="sh-modal__title">' + itemData.title + '</h2>\
+              <div class="sh-modal__meta-grid">\
+                <div class="sh-modal__meta-item">\
+                  <span class="sh-modal__meta-label">Duration</span>\
+                  <span class="sh-modal__meta-value">' + itemData.meta1 + '</span>\
+                </div>\
+                <div class="sh-modal__meta-item">\
+                  <span class="sh-modal__meta-label">Guide</span>\
+                  <span class="sh-modal__meta-value">' + itemData.meta2 + '</span>\
+                </div>\
+                <div class="sh-modal__meta-item">\
+                  <span class="sh-modal__meta-label">Terrain</span>\
+                  <span class="sh-modal__meta-value">' + itemData.meta3 + '</span>\
+                </div>\
+                <div class="sh-modal__meta-item">\
+                  <span class="sh-modal__meta-label">Level</span>\
+                  <span class="sh-modal__meta-value">' + itemData.badge + '</span>\
+                </div>\
+              </div>\
+              <p class="sh-modal__desc">' + itemData.description + '</p>\
+              <div class="sh-modal__extra">\
+                <h4 class="sh-modal__extra-title">What\'s Included</h4>\
+                <div class="sh-modal__tags-container">' + includes.map(function(inc) {
+                  return '<span class="sh-modal__tag">' + inc.trim() + '</span>';
+                }).join('') + '</div>\
+              </div>\
+              <div class="sh-modal__cta">\
+                <a href="https://wa.me/' + wa_num + '?text=' + encodeURIComponent(itemData.waMsg || '') + '" class="btn btn--primary sh-modal__enquire" target="_blank"><span>Enquire Now</span></a>\
+              </div>\
+            </div>';
+        }
+
+        contentEl.innerHTML = html;
+        overlay.classList.add('is-active');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeModal() {
+        overlay.classList.remove('is-active');
+        document.body.style.overflow = '';
+      }
+
+      // Close button
+      closeBtn.addEventListener('click', closeModal);
+
+      // Close on overlay click
+      overlay.addEventListener('click', function (e) {
+        if (e.target === overlay) closeModal();
+      });
+
+      // Close on Escape
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeModal();
+      });
+
+      // Event delegation for all More Info buttons
+      document.addEventListener('click', function (e) {
+        var btn = e.target.closest('.sh-more-info-btn');
+        if (!btn) return;
+        e.preventDefault();
+        try {
+          var itemData = JSON.parse(decodeURIComponent(btn.getAttribute('data-item')));
+          var itemType = btn.getAttribute('data-item-type') || 'activity';
+          openModal(itemData, itemType);
+        } catch (err) {
+          console.error('Modal data parse error:', err);
+        }
+      });
+    }
   </script>
 </body>
 
