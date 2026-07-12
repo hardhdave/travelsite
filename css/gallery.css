@@ -1,5 +1,5 @@
 /* ============================================
-   GALLERY — Pinterest Masonry
+   GALLERY — 2-Row Horizontal Scroll Grid
    ============================================ */
 
 .gallery {
@@ -16,22 +16,53 @@
 .gallery__header .section-subtitle { margin: 0 auto; }
 
 .gallery__masonry {
-  columns: 4;
-  column-gap: var(--space-4);
+  display: grid;
+  grid-template-rows: repeat(2, 260px);
+  grid-auto-flow: column;
+  overflow-x: auto;
+  scroll-snap-type: none; /* disabled during auto-scroll */
+  gap: 20px;
+  padding: 10px 4px 20px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  cursor: grab;
+  user-select: none;
+}
+
+.gallery__masonry.is-interacting {
+  scroll-snap-type: x mandatory;
+}
+
+.gallery__masonry.active-drag {
+  cursor: grabbing !important;
+  scroll-snap-type: none !important;
+}
+
+.gallery__masonry::-webkit-scrollbar {
+  display: none !important;
 }
 
 .gallery__item {
-  break-inside: avoid;
-  margin-bottom: var(--space-4);
-  border-radius: var(--radius-md);
+  scroll-snap-align: start;
+  width: 360px;
+  height: 260px;
+  border-radius: var(--radius-lg);
   overflow: hidden;
   position: relative;
   cursor: pointer;
+  flex: none;
+  transition: transform var(--duration-slower) var(--ease-smooth), box-shadow 0.3s ease;
+}
+
+.gallery__item:active {
+  transform: scale(0.96) !important;
 }
 
 .gallery__item img {
   width: 100%;
-  display: block;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none; /* prevents browser native drag-and-drop of images interfering with our drag scrolling */
   transition: transform var(--duration-slower) var(--ease-smooth);
 }
 
@@ -110,58 +141,42 @@
 }
 
 @media (max-width: 1024px) {
-  .gallery__masonry { columns: 3; }
+  .gallery__masonry {
+    grid-template-rows: repeat(2, 220px);
+    gap: 16px;
+  }
+  .gallery__item {
+    width: 300px;
+    height: 220px;
+  }
 }
 
 @media (max-width: 768px) {
   .gallery__masonry {
-    display: flex !important;
-    flex-direction: row !important;
-    overflow-x: auto !important;
-    scroll-snap-type: x mandatory !important;
-    gap: 16px !important;
-    padding: 10px 4px 20px !important;
-    -webkit-overflow-scrolling: touch !important;
-    margin-left: -20px !important;
-    margin-right: -20px !important;
-    padding-left: 20px !important;
-    padding-right: 20px !important;
-    columns: auto !important;
-    column-gap: 0 !important;
+    grid-template-rows: repeat(2, 200px);
+    gap: 16px;
+    margin-left: -20px;
+    margin-right: -20px;
+    padding-left: 20px;
+    padding-right: 20px;
   }
-
-  .gallery__masonry::-webkit-scrollbar {
-    display: none !important;
-  }
-
   .gallery__item {
-    flex: 0 0 280px !important;
-    scroll-snap-align: start !important;
-    width: 280px !important;
-    height: 200px !important;
-    margin-bottom: 0 !important;
-    border-radius: 16px !important;
-    break-inside: auto !important;
-    transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.3s ease !important;
+    width: 280px;
+    height: 200px;
+    border-radius: 16px;
   }
-
-  .gallery__item:active {
-    transform: scale(0.96) !important;
-  }
-
-  .gallery__item img {
-    height: 100% !important;
-    object-fit: cover !important;
-  }
-
   .gallery__item-overlay {
     opacity: 1 !important;
   }
 }
 
 @media (max-width: 480px) {
+  .gallery__masonry {
+    grid-template-rows: repeat(2, 170px);
+    gap: 12px;
+  }
   .gallery__item {
-    flex: 0 0 260px !important;
-    width: 260px !important;
+    width: 240px;
+    height: 170px;
   }
 }
