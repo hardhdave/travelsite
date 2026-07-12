@@ -212,13 +212,13 @@
   position: fixed;
   left: 12px;
   right: 12px;
-  top: 96px; /* Sits directly below the mobile navbar */
+  bottom: 12px; /* Bottom of the screen like iOS sheet */
   z-index: 999;
   background: #0f0f11;
   border: 1.5px solid rgba(255, 255, 255, 0.08);
   border-radius: 28px;
   padding: 14px 14px 18px;
-  transform: translateY(-20px) scale(0.97);
+  transform: translateY(20px) scale(0.97); /* slide up transition */
   opacity: 0;
   pointer-events: none;
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
@@ -468,6 +468,7 @@
   .nav-sheet {
     left: 8px;
     right: 8px;
-    top: 92px; /* sit perfectly under navbar at small screen */
+    bottom: 8px; /* sits at bottom of screen on smaller devices */
+    top: auto;
   }
 }
