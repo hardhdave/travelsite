@@ -1,39 +1,57 @@
 /* ============================================
-   NAVBAR.JS — Scroll-based Transitions & Mobile Binds
+   NAVBAR.JS — Bottom-sheet menu & scroll binds
    ============================================ */
 
 (function() {
-  const navbar = document.getElementById('navbar');
+  const navbar    = document.getElementById('navbar');
   const navToggle = document.getElementById('navToggle');
-  const navLinks = document.getElementById('navLinks');
+  const sheet     = document.getElementById('navSheet');
+  const backdrop  = document.getElementById('navSheetBackdrop');
 
-  // Mobile menu toggle
-  if (navToggle && navLinks) {
+  /* ── Open / close sheet ── */
+  function openSheet() {
+    sheet.classList.add('active');
+    backdrop.classList.add('active');
+    navToggle.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeSheet() {
+    sheet.classList.remove('active');
+    backdrop.classList.remove('active');
+    navToggle.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  if (navToggle && sheet) {
     navToggle.addEventListener('click', () => {
-      navToggle.classList.toggle('active');
-      navLinks.classList.toggle('active');
-      document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
+      sheet.classList.contains('active') ? closeSheet() : openSheet();
     });
 
-    // Close menu on link click
-    navLinks.querySelectorAll('.navbar__link').forEach(link => {
-      link.addEventListener('click', () => {
-        navToggle.classList.remove('active');
-        navLinks.classList.remove('active');
-        document.body.style.overflow = '';
-      });
+    // Close on backdrop click
+    backdrop && backdrop.addEventListener('click', closeSheet);
+
+    // Close on any sheet link click
+    sheet.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', closeSheet);
     });
   }
 
-  // Active link highlighting
-  const sections = document.querySelectorAll('section[id]');
+  /* ── Scroll: add .scrolled class to navbar ── */
+  if (navbar) {
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+  }
+
+  /* ── Active link highlighting on scroll ── */
+  const sections    = document.querySelectorAll('section[id]');
   const navLinksAll = document.querySelectorAll('.navbar__link');
 
   window.addEventListener('scroll', () => {
     let current = '';
     sections.forEach(section => {
-      const sectionTop = section.offsetTop;
-      if (window.scrollY >= sectionTop - 200) {
+      if (window.scrollY >= section.offsetTop - 200) {
         current = section.getAttribute('id');
       }
     });
@@ -45,5 +63,6 @@
         link.classList.add('active');
       }
     });
-  });
+  }, { passive: true });
+
 })();

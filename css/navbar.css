@@ -1,27 +1,48 @@
 /* ============================================
-   NAVBAR — Replicated Premium Glassmorphism Pill Layout
+   NAVBAR — Apple-style Ultra Glass Effect
    ============================================ */
 
 .navbar {
   position: fixed;
-  top: 0;
+  top: 32px; /* sits right below the 32px-high top ticker */
   left: 50%;
   transform: translateX(-50%);
-  margin-top: 24px;
+  margin-top: 16px;
   width: calc(100% - 48px);
-  max-width: 1200px;
+  max-width: 1160px;
   z-index: var(--z-navbar);
-  height: 58px;
-  background: rgba(20, 20, 20, 0.55); /* Dark transparent glassmorphism */
-  backdrop-filter: blur(20px) saturate(1.8);
-  -webkit-backdrop-filter: blur(20px) saturate(1.8);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  height: 56px;
+
+  /* Apple-style glassmorphism */
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(32px) saturate(2) brightness(1.1);
+  -webkit-backdrop-filter: blur(32px) saturate(2) brightness(1.1);
+
+  /* Subtle top highlight like glass edge */
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-top: 1px solid rgba(255, 255, 255, 0.28);
+
   border-radius: 100px;
   display: flex;
   align-items: center;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-  padding: 0 16px 0 24px;
-  transition: none; /* No shrink or color changes on scroll */
+
+  /* Layered shadow like floating glass */
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.12),
+    0 8px 32px rgba(0, 0, 0, 0.22),
+    0 0 0 0.5px rgba(255, 255, 255, 0.06) inset,
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+
+  padding: 0 8px 0 20px;
+  transition: background 0.4s ease, box-shadow 0.4s ease, top 0.3s ease, margin-top 0.3s ease;
+}
+
+.navbar.scrolled {
+  background: rgba(10, 10, 12, 0.52);
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.18),
+    0 12px 40px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 .navbar__inner {
@@ -31,13 +52,14 @@
   width: 100%;
 }
 
-/* Logo styling matching the screenshot */
+/* ── Logo ── */
 .navbar__logo {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   text-decoration: none;
   z-index: 10;
+  flex-shrink: 0;
 }
 
 .navbar__logo-icon {
@@ -45,16 +67,16 @@
   align-items: center;
   justify-content: center;
   color: var(--gold);
-  transition: transform 0.3s ease;
+  transition: transform 0.35s ease;
 }
 
 .navbar__logo:hover .navbar__logo-icon {
-  transform: rotate(-8deg) scale(1.05);
+  transform: rotate(-8deg) scale(1.08);
 }
 
 .navbar__logo-text {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 19px;
+  font-size: 18px;
   font-weight: 500;
   line-height: 0.95;
   letter-spacing: 0.05em;
@@ -67,237 +89,365 @@
 .navbar__logo-text span {
   font-family: 'Cormorant Garamond', serif;
   text-transform: none;
-  font-size: 15px;
+  font-size: 13px;
   font-style: italic;
   color: var(--gold);
   letter-spacing: 0.02em;
-  margin-top: 1px;
+  margin-top: 2px;
 }
 
-/* Nav Links in the middle */
+/* ── Nav Links — centred on desktop ── */
 .navbar__links {
   display: flex;
   align-items: center;
-  gap: 32px;
+  gap: 6px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .navbar__link {
   font-family: 'Satoshi', sans-serif;
   font-size: 12px;
   font-weight: 500;
-  letter-spacing: 0.03em;
-  text-transform: capitalize;
-  color: rgba(255, 255, 255, 0.75);
-  transition: color 0.3s ease;
-  position: relative;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.72);
   text-decoration: none;
+  padding: 6px 14px;
+  border-radius: 100px;
+  transition: color 0.25s ease, background 0.25s ease;
+  white-space: nowrap;
 }
 
-.navbar__link::after {
-  display: none;
+.navbar__link:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
 }
 
-.navbar__link:hover,
 .navbar__link.active {
   color: #ffffff;
+  background: rgba(255, 255, 255, 0.1);
+  font-weight: 600;
 }
 
-/* Actions Wrapper */
+/* ── Actions (right side) ── */
 .navbar__actions {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   z-index: 10;
+  flex-shrink: 0;
 }
 
-/* Language Badge */
-.navbar__badge-lang {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: rgba(255, 255, 255, 0.03);
-  border-radius: 100px;
-  padding: 6px 12px;
-  color: #ffffff;
-  font-size: 9.5px;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-family: 'Satoshi', sans-serif;
+/* Hide old elements that are removed */
+.navbar__badge-lang,
+.navbar__badge-search,
+.navbar__plan-btn,
+.navbar__cta {
+  display: none !important;
 }
 
-.navbar__badge-lang span {
-  opacity: 0.55;
-  text-transform: lowercase;
-}
-
-.navbar__badge-lang strong {
-  font-weight: 800;
-  text-transform: uppercase;
-}
-
-.navbar__badge-lang svg {
-  opacity: 0.6;
-  margin-left: 1px;
-}
-
-.navbar__badge-lang:hover {
-  border-color: rgba(255, 255, 255, 0.3);
-  background: rgba(255, 255, 255, 0.06);
-}
-
-/* Search Badge */
-.navbar__badge-search {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: rgba(255, 255, 255, 0.03);
-  border-radius: 100px;
-  padding: 6px 14px;
-  color: #ffffff;
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.02em;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-family: 'Satoshi', sans-serif;
-}
-
-.navbar__badge-search span {
-  opacity: 0.8;
-}
-
-.navbar__search-kbd {
-  font-size: 9px;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  background: rgba(255, 255, 255, 0.04);
-  border-radius: 4px;
-  padding: 1px 4px;
-  font-family: monospace, sans-serif;
-  margin-left: 2px;
-}
-
-.navbar__badge-search:hover {
-  border-color: rgba(255, 255, 255, 0.3);
-  background: rgba(255, 255, 255, 0.06);
-}
-
-/* Plan My Trip Button */
-.navbar__plan-btn {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 7px 18px !important;
-  font-size: 10px !important;
-  background: transparent !important;
-  color: var(--gold) !important;
-  border: 1px solid rgba(199, 154, 99, 0.35) !important;
-  border-radius: 100px !important;
-  font-weight: 700 !important;
-  letter-spacing: 0.08em !important;
-  transition: all 0.3s ease !important;
-  box-shadow: none !important;
-  text-decoration: none;
-}
-
-.navbar__plan-btn:hover {
-  background: var(--gold) !important;
-  color: #ffffff !important;
-  border-color: var(--gold) !important;
-  box-shadow: 0 4px 16px rgba(199, 154, 99, 0.25) !important;
-}
-
-.navbar__plan-btn svg {
-  transition: transform 0.3s ease;
-}
-
-.navbar__plan-btn:hover svg {
-  transform: translateX(2px);
-}
-
-/* Hide mobile elements on desktop */
 .navbar__cta-mobile { display: none; }
 
-/* Mobile Menu Toggle */
+/* ── Mobile Menu Toggle ── */
 .navbar__toggle {
   display: none;
   align-items: center;
   justify-content: center;
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 100px;
-  padding: 8px 20px;
+  padding: 9px 22px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.25s ease;
   z-index: 10;
-  width: auto;
-  height: auto;
 }
 
 .navbar__toggle::before {
   content: 'MENU';
   font-family: 'Satoshi', sans-serif;
   font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
+  font-weight: 700;
+  letter-spacing: 0.12em;
   color: #ffffff;
 }
 
 .navbar__toggle.active::before {
-  content: 'CLOSE' !important;
+  content: 'CLOSE';
 }
 
-/* Hide toggle hamburger spans */
-.navbar__toggle span {
-  display: none !important;
+.navbar__toggle:hover {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.28);
 }
 
-/* Mobile & Tablet Styles */
+.navbar__toggle span { display: none !important; }
+
+
+/* ============================================================
+   MOBILE BOTTOM-SHEET MENU (matches references exactly)
+   ============================================================ */
+
+/* Backdrop overlay */
+.nav-sheet-backdrop {
+  display: block;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  z-index: 998;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+.nav-sheet-backdrop.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* The sheet card itself */
+.nav-sheet {
+  position: fixed;
+  left: 12px;
+  right: 12px;
+  top: 96px; /* Sits directly below the mobile navbar */
+  z-index: 999;
+  background: #0f0f11;
+  border: 1.5px solid rgba(255, 255, 255, 0.08);
+  border-radius: 28px;
+  padding: 14px 14px 18px;
+  transform: translateY(-20px) scale(0.97);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.3s ease;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+}
+
+.nav-sheet.active {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* Drag pill at top */
+.nav-sheet__pill {
+  width: 32px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 100px;
+  margin: 0 auto 16px;
+}
+
+/* Header row: NAVIGATION + Himalayan Locals */
+.nav-sheet__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  padding: 0 4px;
+}
+
+.nav-sheet__label {
+  font-family: 'Satoshi', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold, #c7965a);
+}
+
+.nav-sheet__brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 13px;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Divider */
+.nav-sheet__divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
+  margin-bottom: 12px;
+}
+
+/* Grid of links */
+.nav-sheet__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.nav-sheet__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1.5px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.85);
+  font-family: 'Satoshi', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.25s ease;
+}
+
+.nav-sheet__item:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+}
+
+.nav-sheet__item.active {
+  background: rgba(255, 255, 255, 0.06);
+  border: 2px solid #ffffff !important;
+  color: #ffffff;
+}
+
+.nav-sheet__arrow {
+  width: 14px;
+  height: 14px;
+  opacity: 0.6;
+  flex-shrink: 0;
+  stroke: currentColor;
+}
+
+/* Bottom action buttons */
+.nav-sheet__actions {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 10px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.nav-sheet__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 14px;
+  border-radius: 100px;
+  font-family: 'Satoshi', sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.nav-sheet__btn--ghost {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.nav-sheet__btn--ghost:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.nav-sheet__btn--gold {
+  background: var(--gold, #c7965a);
+  border: 1px solid transparent;
+  color: #0f0f11;
+}
+
+.nav-sheet__btn--gold:hover {
+  background: #d4a96a;
+  box-shadow: 0 4px 16px rgba(199, 150, 90, 0.35);
+}
+
+
+/* ============================================================
+   TICKER / MARQUEE BAR (perfectly placed at absolute top)
+   ============================================================ */
+
+.nav-ticker {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  height: 32px;
+  background: #09090b;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.nav-ticker__track {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  animation: ticker-scroll 24s linear infinite;
+  will-change: transform;
+}
+
+@keyframes ticker-scroll {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.nav-ticker__item {
+  font-family: 'Satoshi', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.65);
+  display: inline-flex;
+  align-items: center;
+}
+
+.nav-ticker__dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--gold, #c7965a);
+  margin: 0 24px;
+  display: inline-block;
+  opacity: 0.85;
+}
+
+
+/* ── Desktop: hide sheet & toggle, show centered links ── */
+@media (min-width: 1025px) {
+  .navbar__toggle { display: none; }
+  .nav-sheet,
+  .nav-sheet-backdrop { display: none !important; }
+}
+
+/* ── Mobile & Tablet ── */
 @media (max-width: 1024px) {
   .navbar {
     width: calc(100% - 32px);
-    margin-top: 16px;
-    padding: 8px 12px;
+    top: 32px;
+    margin-top: 12px;
+    padding: 8px 8px 8px 16px;
     height: auto;
   }
 
   .navbar__inner {
-    padding: 0 8px;
+    padding: 0 4px;
   }
 
+  /* Hide the desktop link rail */
   .navbar__links {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: 100%;
-    height: 100vh;
-    background: var(--forest-green-dark);
-    flex-direction: column;
-    justify-content: center;
-    gap: 24px;
-    transition: right 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-    border-radius: 0;
-  }
-
-  .navbar__links.active {
-    right: 0;
-  }
-
-  .navbar__link {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 32px;
-    font-weight: 500;
-    color: rgba(255, 255, 255, 0.85);
-  }
-
-  .navbar__link:hover,
-  .navbar__link.active {
-    color: var(--gold);
+    display: none !important;
   }
 
   .navbar__actions {
@@ -306,5 +456,18 @@
 
   .navbar__toggle {
     display: flex;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    width: calc(100% - 24px);
+    margin-top: 10px;
+  }
+
+  .nav-sheet {
+    left: 8px;
+    right: 8px;
+    top: 92px; /* sit perfectly under navbar at small screen */
   }
 }

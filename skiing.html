@@ -49,40 +49,15 @@
       </a>
 
       <div class="navbar__links" id="navLinks">
-        <a href="index.html" class="navbar__link">Journeys</a>
-        <a href="adventures.html" class="navbar__link active">Stays</a>
-        <a href="packages.html" class="navbar__link">Bhutan</a>
-        <a href="index.html#gallery" class="navbar__link">Journal</a>
+        <a href="index.html" class="navbar__link">Home</a>
+        <a href="adventures.html" class="navbar__link">Adventures</a>
+        <a href="packages.html" class="navbar__link">Packages</a>
+        <a href="index.html#gallery" class="navbar__link">Gallery</a>
         <a href="index.html#about" class="navbar__link">About</a>
-        <div class="navbar__cta-mobile">
-          <a href="packages.html" class="btn btn--primary"><span>Plan My Journey</span></a>
-        </div>
+        <a href="index.html#cta__form-side" class="navbar__link">Contact Us</a>
       </div>
 
-      <div class="navbar__actions">
-        <div class="navbar__badge-lang">
-          <span>us</span><strong>EN</strong>
-          <svg viewBox="0 0 24 24" width="10" height="10" stroke="currentColor" fill="none" stroke-width="2.5">
-            <path d="m6 9 6 6 6-6" />
-          </svg>
-        </div>
-        <div class="navbar__badge-search">
-          <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" fill="none" stroke-width="2.5"
-            stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="11" cy="11" r="8"></circle>
-            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-          </svg>
-          <span>Search</span>
-          <span class="navbar__search-kbd">⌘K</span>
-        </div>
-        <div class="navbar__cta">
-          <a href="packages.html" class="btn btn--outline-gold navbar__plan-btn"><span>PLAN MY TRIP</span><svg
-              viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" fill="none" stroke-width="2.5">
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-              <polyline points="12 5 19 12 12 19"></polyline>
-            </svg></a>
-        </div>
-      </div>
+      <div class="navbar__actions"></div>
 
       <button class="navbar__toggle" id="navToggle" aria-label="Toggle menu">
         <span></span><span></span><span></span>
@@ -90,8 +65,67 @@
     </div>
   </nav>
 
+  <!-- ===== MOBILE NAV BOTTOM-SHEET ===== -->
+  <div class="nav-sheet-backdrop" id="navSheetBackdrop"></div>
+  <div class="nav-sheet" id="navSheet" role="dialog" aria-modal="true" aria-label="Navigation">
+    <div class="nav-sheet__pill"></div>
+    <div class="nav-sheet__header">
+      <span class="nav-sheet__label">Navigation</span>
+      <span class="nav-sheet__brand">Himalayan Locals</span>
+    </div>
+    <div class="nav-sheet__divider"></div>
+    <div class="nav-sheet__grid">
+      <a href="index.html" class="nav-sheet__item">
+        Journeys
+        <svg class="nav-sheet__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+      <a href="adventures.html" class="nav-sheet__item active">
+        Stays
+        <svg class="nav-sheet__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+      <a href="packages.html" class="nav-sheet__item">
+        Bhutan
+        <svg class="nav-sheet__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+      <a href="index.html#gallery" class="nav-sheet__item">
+        Journal
+        <svg class="nav-sheet__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+      <a href="index.html#about" class="nav-sheet__item">
+        About
+        <svg class="nav-sheet__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+    <div class="nav-sheet__actions">
+      <a href="index.html#cta__form-side" class="nav-sheet__btn nav-sheet__btn--ghost">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        Search
+      </a>
+      <a href="packages.html" class="nav-sheet__btn nav-sheet__btn--gold">
+        Plan Journey
+        <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- ===== TICKER BAR ===== -->
+  <div class="nav-ticker" aria-hidden="true">
+    <div class="nav-ticker__track">
+      <span class="nav-ticker__item">Skiing</span><span class="nav-ticker__dot"></span>
+      <span class="nav-ticker__item">Snowboarding</span><span class="nav-ticker__dot"></span>
+      <span class="nav-ticker__item">Adventure</span><span class="nav-ticker__dot"></span>
+      <span class="nav-ticker__item">Shred Himalayas</span><span class="nav-ticker__dot"></span>
+      <span class="nav-ticker__item">Trekking</span><span class="nav-ticker__dot"></span>
+      <span class="nav-ticker__item">Skiing</span><span class="nav-ticker__dot"></span>
+      <span class="nav-ticker__item">Snowboarding</span><span class="nav-ticker__dot"></span>
+      <span class="nav-ticker__item">Adventure</span><span class="nav-ticker__dot"></span>
+      <span class="nav-ticker__item">Shred Himalayas</span><span class="nav-ticker__dot"></span>
+      <span class="nav-ticker__item">Trekking</span><span class="nav-ticker__dot"></span>
+    </div>
+  </div>
 
   <!-- ===== PAGE HERO ===== -->
+
   <section class="page-hero">
     <div class="page-hero__media">
       <img src="assets/images/skiing-action.png" alt="Skiing in Gulmarg, Kashmir" class="page-hero__image">
