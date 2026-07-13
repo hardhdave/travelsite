@@ -466,7 +466,16 @@ function doLogout(){document.getElementById('app').classList.remove('visible');d
 <script src="js/site-data.js?v=4"></script>
 <script src="js/admin.js?v=2"></script>
 <script>
-function navigate(el){document.querySelectorAll('.nv').forEach(function(i){i.classList.remove('active')});el.classList.add('active');var pg=el.dataset.page;document.querySelectorAll('.pg').forEach(function(p){p.classList.remove('active')});var t=document.getElementById('page-'+pg);if(t)t.classList.add('active');closeSB()}
+function navigate(el){
+  document.querySelectorAll('.nv').forEach(function(i){i.classList.remove('active')});
+  el.classList.add('active');
+  var pg = el.dataset.page;
+  document.querySelectorAll('.pg').forEach(function(p){p.classList.remove('active')});
+  var t = document.getElementById('page-'+pg);
+  if(t) t.classList.add('active');
+  if(typeof renderPage === 'function') renderPage(pg);
+  closeSB();
+}
 function closeModalOnBackdrop(e){if(e.target===document.getElementById('modalBackdrop'))closeModal()}
 function closeModal(){document.getElementById('modalBackdrop').classList.remove('open')}
 function showToast(msg,ok){var t=document.getElementById('toast');t.textContent=(ok!==false?'\u2705 ':'\u274c ')+msg;t.classList.add('show');setTimeout(function(){t.classList.remove('show')},3000)}
