@@ -75,7 +75,7 @@
 }
 
 .navbar__logo-text {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-heading);
   font-size: 18px;
   font-weight: 500;
   line-height: 0.95;
@@ -87,7 +87,7 @@
 }
 
 .navbar__logo-text span {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-heading);
   text-transform: none;
   font-size: 13px;
   font-style: italic;
@@ -260,7 +260,7 @@
 }
 
 .nav-sheet__brand {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--font-heading);
   font-size: 13px;
   font-style: italic;
   color: rgba(255, 255, 255, 0.5);
