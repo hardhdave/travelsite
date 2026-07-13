@@ -3,7 +3,7 @@
    ============================================ */
 
 .sightseeing {
-  padding: var(--space-20) 0;
+  padding: clamp(3rem, 6vw, 5rem) 0; /* Reduced from var(--space-20) = 5rem */
   position: relative;
   overflow: hidden;
   background: var(--bg-base);
@@ -12,7 +12,7 @@
 
 .sightseeing__header {
   text-align: center;
-  margin-bottom: var(--space-12);
+  margin-bottom: var(--space-8); /* Reduced from var(--space-12) */
   max-width: var(--container-narrow);
   margin-left: auto;
   margin-right: auto;
@@ -228,6 +228,9 @@
 @media (max-width: 768px) {
   .sightseeing__map-container {
     aspect-ratio: 4/3;
+  }
+  .sightseeing {
+    padding: 2rem 0; /* Compact mobile padding */
   }
   .sightseeing__info-card {
     grid-template-columns: 1fr;

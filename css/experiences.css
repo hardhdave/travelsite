@@ -49,7 +49,7 @@
 /* ---- Left Sidebar ---- */
 .experiences__sidebar {
   background: #1C1C1C;
-  padding: 60px 48px;
+  padding: clamp(32px, 5vw, 60px) clamp(24px, 4vw, 48px); /* Reduced from 60px 48px */
   display: flex;
   flex-direction: column;
   justify-content: center;

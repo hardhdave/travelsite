@@ -8,7 +8,7 @@
 /* Why Choose Us: Pure White */
 .why-choose {
   background: #ffffff !important;
-  padding: 100px 0 80px 0 !important;
+  padding: clamp(48px, 7vw, 100px) 0 clamp(40px, 6vw, 80px) 0 !important; /* Reduced from 100px/80px */
   border-top: 1px solid rgba(15, 23, 42, 0.08) !important;
   box-shadow: none !important;
 }
@@ -16,7 +16,7 @@
 /* Skiing Section: Soft light Gray-Blue */
 .skiing {
   background: #f8fafc !important;
-  padding: 100px 0 !important;
+  padding: clamp(48px, 7vw, 100px) 0 !important; /* Reduced from 100px */
   border-top: 1px solid rgba(15, 23, 42, 0.06) !important;
   border-bottom: 1px solid rgba(15, 23, 42, 0.06) !important;
   position: relative;
@@ -34,7 +34,7 @@
 /* Trekking Section: Pure White */
 .trekking {
   background: #ffffff !important;
-  padding: 100px 0 !important;
+  padding: clamp(48px, 7vw, 100px) 0 !important; /* Reduced from 100px */
   position: relative;
 }
 
@@ -45,7 +45,7 @@
 /* Activities Section: Soft Light Gray */
 .activities {
   background: #f8fafc !important;
-  padding: 100px 0 !important;
+  padding: clamp(48px, 7vw, 100px) 0 !important; /* Reduced from 100px */
   border-top: 1px solid rgba(15, 23, 42, 0.06) !important;
   border-bottom: 1px solid rgba(15, 23, 42, 0.06) !important;
 }
@@ -53,13 +53,13 @@
 /* Sightseeing Section: Pure White */
 .sightseeing {
   background: #ffffff !important;
-  padding: 100px 0 !important;
+  padding: clamp(48px, 7vw, 100px) 0 !important; /* Reduced from 100px */
 }
 
 /* Rentals Section: Soft Light Gray */
 .rentals {
   background: #f8fafc !important;
-  padding: 100px 0 !important;
+  padding: clamp(48px, 7vw, 100px) 0 !important; /* Reduced from 100px */
   border-top: 1px solid rgba(15, 23, 42, 0.06) !important;
   border-bottom: 1px solid rgba(15, 23, 42, 0.06) !important;
 }
@@ -67,7 +67,7 @@
 /* Transport Section: Pure White */
 .transport {
   background: #ffffff !important;
-  padding: 100px 0 !important;
+  padding: clamp(48px, 7vw, 100px) 0 !important; /* Reduced from 100px */
 }
 
 .transport__bg {
@@ -77,7 +77,7 @@
 /* Packages Section: Soft Light Gray */
 .packages {
   background: #f8fafc !important;
-  padding: 100px 0 !important;
+  padding: clamp(48px, 7vw, 100px) 0 !important; /* Reduced from 100px */
   border-top: 1px solid rgba(15, 23, 42, 0.06) !important;
   border-bottom: 1px solid rgba(15, 23, 42, 0.06) !important;
 }
@@ -85,13 +85,13 @@
 /* Testimonials: Pure White */
 .testimonials {
   background: #ffffff !important;
-  padding: 100px 0 !important;
+  padding: clamp(48px, 7vw, 100px) 0 !important; /* Reduced from 100px */
 }
 
 /* Gallery: Soft Light Gray */
 .gallery {
   background: #f8fafc !important;
-  padding: 100px 0 !important;
+  padding: clamp(48px, 7vw, 100px) 0 !important; /* Reduced from 100px */
   border-top: 1px solid rgba(15, 23, 42, 0.06) !important;
   border-bottom: 1px solid rgba(15, 23, 42, 0.06) !important;
 }
@@ -99,7 +99,7 @@
 /* About Us: Pure White */
 .about {
   background: #ffffff !important;
-  padding: 100px 0 !important;
+  padding: clamp(48px, 7vw, 100px) 0 !important; /* Reduced from 100px */
 }
 
 /* ---------- Typography Readability & Contrast Polish ---------- */
@@ -152,7 +152,7 @@ section {
 .why-choose__grid {
   counter-reset: why-counter;
   gap: 24px !important;
-  margin-top: 48px !important;
+  margin-top: 32px !important; /* Reduced from 48px */
 }
 
 .why-choose__card {
@@ -279,7 +279,7 @@ section {
 /* ---------- 3. Trekking Section ---------- */
 .trekking__masonry {
   gap: 24px !important;
-  margin-top: 48px !important;
+  margin-top: 32px !important; /* Reduced from 48px */
 }
 
 .trekking__card {
@@ -342,7 +342,7 @@ section {
 /* ---------- 4. Activities Section ---------- */
 .activities__split {
   gap: 40px !important;
-  margin-top: 48px !important;
+  margin-top: 32px !important; /* Reduced from 48px */
 }
 
 .activities__season {
@@ -401,7 +401,7 @@ section {
 .rentals__grid,
 .transport__grid {
   gap: 24px !important;
-  margin-top: 48px !important;
+  margin-top: 32px !important; /* Reduced from 48px */
 }
 
 .rentals__card,
@@ -460,7 +460,7 @@ section {
 /* ---------- 7. Tour Packages Grid ---------- */
 .packages__grid {
   gap: 24px !important;
-  margin-top: 48px !important;
+  margin-top: 32px !important; /* Reduced from 48px */
 }
 
 .packages__card {
@@ -565,7 +565,7 @@ section {
 /* ---------- 9. Gallery Masonry ---------- */
 .gallery__masonry {
   gap: 20px !important;
-  margin-top: 48px !important;
+  margin-top: 32px !important; /* Reduced from 48px */
 }
 
 .gallery__item {
