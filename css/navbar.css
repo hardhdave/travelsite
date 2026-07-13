@@ -218,16 +218,16 @@
   border: 1.5px solid rgba(255, 255, 255, 0.08);
   border-radius: 28px;
   padding: 14px 14px 18px;
-  transform: translateY(20px) scale(0.97); /* slide up transition */
+  transform: translateY(calc(100% + 24px)); /* slide up from completely off-screen */
   opacity: 0;
   pointer-events: none;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-              opacity 0.3s ease;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.4s ease;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
 }
 
 .nav-sheet.active {
-  transform: translateY(0) scale(1);
+  transform: translateY(0);
   opacity: 1;
   pointer-events: all;
 }
@@ -317,10 +317,9 @@
   stroke: currentColor;
 }
 
-/* Bottom action buttons */
 .nav-sheet__actions {
   display: grid;
-  grid-template-columns: 1fr 1.2fr;
+  grid-template-columns: 1fr;
   gap: 10px;
   padding-top: 14px;
   border-top: 1px solid rgba(255, 255, 255, 0.08);

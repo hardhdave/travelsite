@@ -938,28 +938,91 @@ p {
 }
 
 @media (max-width: 768px) {
+  .sh-modal-overlay {
+    padding: 0;
+    align-items: flex-end;
+  }
+
+  .sh-modal {
+    max-height: 92vh;
+    border-radius: 20px 20px 0 0;
+    box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.5);
+  }
+
   .sh-modal__grid {
     grid-template-columns: 1fr;
-  }
-  
-  .sh-modal__image-side {
-    height: 240px;
     min-height: auto;
   }
   
+  .sh-modal__image-side {
+    height: 160px;
+    min-height: auto;
+  }
+
+  .sh-modal__close {
+    width: 30px;
+    height: 30px;
+    font-size: 16px;
+    top: 10px;
+    right: 10px;
+  }
+  
   .sh-modal__content-side {
-    padding: 24px;
-    gap: 20px;
+    padding: 16px 20px 24px;
+    gap: 12px;
+    overflow-y: auto;
+    max-height: calc(92vh - 160px);
+  }
+
+  .sh-modal__title {
+    font-size: 1.25rem;
+    line-height: 1.2;
+  }
+
+  .sh-modal__price-tag {
+    font-size: 1.15rem !important;
+    margin-bottom: 10px !important;
   }
   
   .sh-modal__meta-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-    padding: 12px 0;
+    gap: 8px;
+    padding: 10px 0;
   }
-  
-  .sh-modal-overlay {
-    padding: 12px;
+
+  .sh-modal__meta-label {
+    font-size: 8px;
+  }
+
+  .sh-modal__meta-value {
+    font-size: 12px;
+  }
+
+  .sh-modal__desc {
+    font-size: 0.82rem;
+    line-height: 1.55;
+  }
+
+  .sh-modal__extra {
+    gap: 8px;
+  }
+
+  .sh-modal__extra-title {
+    font-size: 9px;
+  }
+
+  .sh-modal__tag {
+    padding: 4px 8px;
+    font-size: 8px;
+  }
+
+  .sh-modal__cta {
+    margin-top: 8px !important;
+  }
+
+  .sh-modal__enquire {
+    padding: 10px !important;
+    font-size: 13px;
   }
 }
 

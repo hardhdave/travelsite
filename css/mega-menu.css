@@ -79,10 +79,10 @@
   z-index: calc(var(--z-navbar) - 1);
   pointer-events: none;
   opacity: 0;
-  transform: translateY(-12px);
+  transform: translateY(-20px);
   transition:
-    opacity 0.3s var(--ease-premium),
-    transform 0.3s var(--ease-premium);
+    opacity 0.4s var(--ease-premium),
+    transform 0.4s var(--ease-premium);
   will-change: opacity, transform;
   padding-top: 70px; /* offset for navbar height */
   overflow: hidden;

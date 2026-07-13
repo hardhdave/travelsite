@@ -2,6 +2,7 @@
    WHY-CHOOSE-SLIDER.JS - Mobile Bento Grid Alternating Vertical Scroll
    Supports continuous autoscroll marquee, pointer-based manual swiping/dragging,
    momentum glide on release, and seamless wrap-around looping.
+   Per-column pause: only the column being interacted with pauses.
    ============================================================ */
 (function () {
   'use strict';
@@ -19,8 +20,8 @@
     let marqueeActive = false;
     let animationId = null;
 
-    let isUserInteracting = false;
-    let resumeTimeout = null;
+    // Per-column interaction state (independent pause per column)
+    let colInteracting = [false, false];
 
     // Tracker arrays for columns
     let yPositions = [0, 0];
@@ -40,16 +41,20 @@
     function animateMarquee() {
       if (!marqueeActive) return;
 
-      if (!isUserInteracting && columns.length === 2) {
-        // Column 1 (Index 0) scrolls UP (y decreases)
-        yPositions[0] -= scrollSpeed;
-        yPositions[0] = wrapY(yPositions[0], halfHeights[0]);
-        columns[0].style.transform = `translate3d(0, ${yPositions[0]}px, 0)`;
+      if (columns.length === 2) {
+        // Column 1 (Index 0) scrolls UP (y decreases) — only if not interacting
+        if (!colInteracting[0]) {
+          yPositions[0] -= scrollSpeed;
+          yPositions[0] = wrapY(yPositions[0], halfHeights[0]);
+          columns[0].style.transform = `translate3d(0, ${yPositions[0]}px, 0)`;
+        }
 
-        // Column 2 (Index 1) scrolls DOWN (y increases)
-        yPositions[1] += scrollSpeed;
-        yPositions[1] = wrapY(yPositions[1], halfHeights[1]);
-        columns[1].style.transform = `translate3d(0, ${yPositions[1]}px, 0)`;
+        // Column 2 (Index 1) scrolls DOWN (y increases) — only if not interacting
+        if (!colInteracting[1]) {
+          yPositions[1] += scrollSpeed;
+          yPositions[1] = wrapY(yPositions[1], halfHeights[1]);
+          columns[1].style.transform = `translate3d(0, ${yPositions[1]}px, 0)`;
+        }
       }
 
       animationId = requestAnimationFrame(animateMarquee);
@@ -74,6 +79,7 @@
       let dragVelocity = 0;
       let lastTouchTime = 0;
       let isDragging = false;
+      let resumeTimeout = null;
 
       const onPointerDown = (e) => {
         // Capture pointer events to track movement even outside card bounds
@@ -82,7 +88,7 @@
         } catch (err) {}
 
         isDragging = true;
-        isUserInteracting = true;
+        colInteracting[colIdx] = true;
         clearTimeout(resumeTimeout);
 
         startTouchY = e.clientY;
@@ -128,7 +134,7 @@
           let velocity = dragVelocity * 16; // scale to frame delta
           
           const frictionDecel = () => {
-            if (isDragging || !isUserInteracting) return; // cancel glide if user touches again
+            if (isDragging) return; // cancel glide if user touches again
             
             momentumY += velocity;
             momentumY = wrapY(momentumY, halfHeights[colIdx]);
@@ -138,29 +144,47 @@
             velocity *= 0.92; // friction reduction
             if (Math.abs(velocity) > 0.15) {
               requestAnimationFrame(frictionDecel);
+            } else {
+              // Resume this column's auto-scroll when momentum ends
+              colInteracting[colIdx] = false;
             }
           };
           requestAnimationFrame(frictionDecel);
+        } else {
+          // No momentum — resume this column immediately
+          colInteracting[colIdx] = false;
         }
+      };
 
-        // Resume auto-scroll after 2.5 seconds of inactivity
-        clearTimeout(resumeTimeout);
-        resumeTimeout = setTimeout(() => {
-          isUserInteracting = false;
-        }, 2500);
+      // Desktop hover: pause only this column on hover
+      const onPointerEnter = (e) => {
+        // Only apply hover-pause for non-touch (mouse) devices
+        if (e.pointerType === 'mouse' && !isDragging) {
+          colInteracting[colIdx] = true;
+        }
+      };
+
+      const onPointerLeave = (e) => {
+        if (e.pointerType === 'mouse' && !isDragging) {
+          colInteracting[colIdx] = false;
+        }
       };
 
       col.addEventListener('pointerdown', onPointerDown);
       col.addEventListener('pointermove', onPointerMove);
       col.addEventListener('pointerup', onPointerUp);
       col.addEventListener('pointercancel', onPointerUp);
+      col.addEventListener('pointerenter', onPointerEnter);
+      col.addEventListener('pointerleave', onPointerLeave);
 
       // Keep references to clean up listeners on resize
       activePointerEvents.push({
         col,
         onPointerDown,
         onPointerMove,
-        onPointerUp
+        onPointerUp,
+        onPointerEnter,
+        onPointerLeave
       });
     }
 
@@ -234,11 +258,13 @@
         stopMarquee();
 
         // Clean up event listeners
-        activePointerEvents.forEach(({ col, onPointerDown, onPointerMove, onPointerUp }) => {
+        activePointerEvents.forEach(({ col, onPointerDown, onPointerMove, onPointerUp, onPointerEnter, onPointerLeave }) => {
           col.removeEventListener('pointerdown', onPointerDown);
           col.removeEventListener('pointermove', onPointerMove);
           col.removeEventListener('pointerup', onPointerUp);
           col.removeEventListener('pointercancel', onPointerUp);
+          col.removeEventListener('pointerenter', onPointerEnter);
+          col.removeEventListener('pointerleave', onPointerLeave);
         });
         activePointerEvents = [];
 
@@ -253,18 +279,6 @@
         isMobileLayout = false;
       }
     }
-
-    // Temporarily pause scroll animations during page scrolling to avoid stutters
-    const onWindowScroll = () => {
-      if (isMobileLayout) {
-        isUserInteracting = true;
-        clearTimeout(resumeTimeout);
-        resumeTimeout = setTimeout(() => {
-          isUserInteracting = false;
-        }, 2500);
-      }
-    };
-    window.addEventListener('scroll', onWindowScroll, { passive: true });
 
     // Initialize layout setup and listen to window resizes
     setupLayout();

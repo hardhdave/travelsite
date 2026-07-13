@@ -1,0 +1,130 @@
+/* ============================================
+   CURSOR.CSS — Custom Adventure Cursor
+   Premium travel-themed cursor with smooth lerp
+   ============================================ */
+
+/* Hide default cursor on desktop */
+@media (hover: hover) and (pointer: fine) {
+  html.has-custom-cursor,
+  html.has-custom-cursor * {
+    cursor: none !important;
+  }
+}
+
+/* Cursor elements */
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 99999;
+  mix-blend-mode: difference;
+}
+
+/* Hide on touch devices */
+@media (pointer: coarse) {
+  .cursor {
+    display: none !important;
+  }
+}
+
+/* Outer ring */
+.cursor__ring {
+  width: 40px;
+  height: 40px;
+  border: 1.5px solid rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              height 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              top 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              left 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.25s ease,
+              background 0.25s ease,
+              opacity 0.25s ease;
+}
+
+/* Inner dot */
+.cursor__dot {
+  width: 6px;
+  height: 6px;
+  background: #ffffff;
+  border-radius: 50%;
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  transition: transform 0.2s ease,
+              opacity 0.2s ease;
+}
+
+/* ---- Hover States ---- */
+
+/* Links & Buttons — expand ring */
+.cursor--link .cursor__ring {
+  width: 56px;
+  height: 56px;
+  top: -28px;
+  left: -28px;
+  border-color: rgba(167, 123, 52, 0.6);
+  background: rgba(167, 123, 52, 0.06);
+}
+
+.cursor--link .cursor__dot {
+  transform: scale(0.5);
+  opacity: 0.6;
+}
+
+/* Cards — subtle expand */
+.cursor--card .cursor__ring {
+  width: 64px;
+  height: 64px;
+  top: -32px;
+  left: -32px;
+  border-color: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.cursor--card .cursor__dot {
+  transform: scale(1.4);
+}
+
+/* Images — crosshair style */
+.cursor--image .cursor__ring {
+  width: 72px;
+  height: 72px;
+  top: -36px;
+  left: -36px;
+  border-color: rgba(167, 123, 52, 0.4);
+  border-style: dashed;
+}
+
+.cursor--image .cursor__dot {
+  transform: scale(0);
+  opacity: 0;
+}
+
+/* Text inputs — thin line */
+.cursor--text .cursor__ring {
+  width: 4px;
+  height: 32px;
+  top: -16px;
+  left: -2px;
+  border-radius: 2px;
+  border-color: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.cursor--text .cursor__dot {
+  opacity: 0;
+}
+
+/* Clicking state */
+.cursor--clicking .cursor__ring {
+  transform: scale(0.85);
+}
+
+.cursor--clicking .cursor__dot {
+  transform: scale(1.8);
+}
