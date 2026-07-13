@@ -135,7 +135,7 @@ function renderDashboard() {
 
 // ─── ENABLE/DISABLE TOGGLE HELPER ───────────────────
 function toggleBtn(enabled, onclickStr) {
-  const isOn = enabled !== false; // default to enabled if undefined
+  const isOn = enabled !== false;
   return `<button class="icon-btn ${isOn ? 'icon-btn--disable' : 'icon-btn--enable'}"
     title="${isOn ? 'Disable (hide from site)' : 'Enable (show on site)'}"
     onclick="${onclickStr}">${isOn ? '👁️' : '🚫'}</button>`;
@@ -148,454 +148,418 @@ function renderSkiingEditor() {
   el.innerHTML = cats.map((cat, ci) => `
     <div class="admin-category">
       <div class="admin-cat-header">
-        <span class="admin-cat-title">📁 ${cat.title}</span>
-        <button class="cat-add-btn" onclick="openModal('ski-item', ${ci}, null)">+ Add Package</button>
+        <h3>${cat.title}</h3>
+        <button class="add-btn" onclick="openFormModal('ski-item', ${ci}, null)">＋ Add Package</button>
       </div>
-      <div class="items-list">
-        ${cat.items.length === 0 ? '<div class="empty-state"><div class="empty-state-icon">📭</div>No packages yet. Click "Add Package" to get started.</div>' : ''}
+      <div class="admin-items-grid">
         ${cat.items.map((item, ii) => `
-          <div class="item-row ${item.enabled === false ? 'item-row--disabled' : ''}" id="ski-row-${ci}-${ii}">
-            <img class="item-thumb" src="${item.image}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\\'http://www.w3.org/2000/svg\\' viewBox=\\'0 0 100 70\\'%3E%3Crect width=\\'100\\' height=\\'70\\' fill=\\'%23161e35\\'/%3E%3C/svg%3E'" alt="">
-            <div class="item-info">
-              <div class="item-title">${item.title}</div>
-              <div class="item-meta">${item.meta1} · ${item.meta2}</div>
+          <div class="admin-item-card ${item.enabled === false ? 'disabled' : ''}">
+            <div class="admin-item-img"><img src="${item.image}" alt=""></div>
+            <div class="admin-item-info">
+              <h4>${item.title}</h4>
+              <p>${item.description}</p>
+              <div class="admin-item-meta">
+                <span>💰 ${item.price || 'No Price'}</span>
+                <span>🏷️ ${item.badge}</span>
+                <span>⏱️ ${item.meta1}</span>
+              </div>
             </div>
-            <span class="item-badge">${item.badge}</span>
-            ${item.enabled === false ? '<span class="disabled-badge">Hidden</span>' : ''}
-            <div class="item-actions">
-              <button class="icon-btn icon-btn--up" title="Move Up" onclick="moveSki(${ci},${ii},-1)">↑</button>
-              <button class="icon-btn icon-btn--down" title="Move Down" onclick="moveSki(${ci},${ii},1)">↓</button>
-              ${toggleBtn(item.enabled, `toggleSki(${ci},${ii})`)}
-              <button class="icon-btn icon-btn--edit" title="Edit" onclick="openModal('ski-item', ${ci}, ${ii})">✏️</button>
-              <button class="icon-btn icon-btn--delete" title="Delete" onclick="deleteSki(${ci},${ii})">🗑️</button>
+            <div class="admin-item-actions">
+              ${toggleBtn(item.enabled, `toggleItem('skiing', ${ci}, ${ii})`)}
+              <button class="icon-btn" onclick="openFormModal('ski-item', ${ci}, ${ii})">✏️</button>
+              <button class="icon-btn icon-btn--danger" onclick="deleteItem('skiing', ${ci}, ${ii})">🗑️</button>
             </div>
           </div>`).join('')}
       </div>
     </div>`).join('');
 }
 
-function toggleSki(ci, ii) {
-  const cats = SHData.get('skiing');
-  const item = cats[ci].items[ii];
-  item.enabled = item.enabled === false ? true : false;
-  SHData.set('skiing', cats);
-  renderSkiingEditor();
-  toast(item.enabled ? '✅ Package enabled — showing on site' : '🚫 Package disabled — hidden from site', item.enabled ? 'green' : 'blue');
-}
-
-function moveSki(ci, ii, dir) {
-  const cats = SHData.get('skiing');
-  const items = cats[ci].items;
-  const ni = ii + dir;
-  if (ni < 0 || ni >= items.length) return;
-  [items[ii], items[ni]] = [items[ni], items[ii]];
-  SHData.set('skiing', cats);
-  renderSkiingEditor();
-  toast('Reordered ✓');
-}
-
-function deleteSki(ci, ii) {
-  if (!confirm('Delete this skiing package?')) return;
-  const cats = SHData.get('skiing');
-  cats[ci].items.splice(ii, 1);
-  SHData.set('skiing', cats);
-  renderSkiingEditor();
-  toast('Deleted ✓', 'red');
-}
-
-// ─── SNOWBOARDING EDITOR ─────────────────────────────
+// ─── SNOWBOARDING EDITOR ──────────────────────────────
 function renderSnowboardingEditor() {
   const cats = SHData.get('snowboarding');
   const el = document.getElementById('snowboarding-editor');
   el.innerHTML = cats.map((cat, ci) => `
     <div class="admin-category">
       <div class="admin-cat-header">
-        <span class="admin-cat-title">📁 ${cat.title}</span>
-        <button class="cat-add-btn" onclick="openModal('sb-item', ${ci}, null)">+ Add Package</button>
+        <h3>${cat.title}</h3>
+        <button class="add-btn" onclick="openFormModal('sb-item', ${ci}, null)">＋ Add Package</button>
       </div>
-      <div class="items-list">
-        ${cat.items.length === 0 ? '<div class="empty-state"><div class="empty-state-icon">📭</div>No packages yet.</div>' : ''}
+      <div class="admin-items-grid">
         ${cat.items.map((item, ii) => `
-          <div class="item-row ${item.enabled === false ? 'item-row--disabled' : ''}">
-            <img class="item-thumb" src="${item.image}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\\'http://www.w3.org/2000/svg\\' viewBox=\\'0 0 100 70\\'%3E%3Crect width=\\'100\\' height=\\'70\\' fill=\\'%23161e35\\'/%3E%3C/svg%3E'" alt="">
-            <div class="item-info">
-              <div class="item-title">${item.title}</div>
-              <div class="item-meta">${item.meta1} · ${item.meta2}</div>
+          <div class="admin-item-card ${item.enabled === false ? 'disabled' : ''}">
+            <div class="admin-item-img"><img src="${item.image}" alt=""></div>
+            <div class="admin-item-info">
+              <h4>${item.title}</h4>
+              <p>${item.description}</p>
+              <div class="admin-item-meta">
+                <span>💰 ${item.price || 'No Price'}</span>
+                <span>🏷️ ${item.badge}</span>
+                <span>⏱️ ${item.meta1}</span>
+              </div>
             </div>
-            <span class="item-badge">${item.badge}</span>
-            ${item.enabled === false ? '<span class="disabled-badge">Hidden</span>' : ''}
-            <div class="item-actions">
-              <button class="icon-btn icon-btn--up" onclick="moveSb(${ci},${ii},-1)">↑</button>
-              <button class="icon-btn icon-btn--down" onclick="moveSb(${ci},${ii},1)">↓</button>
-              ${toggleBtn(item.enabled, `toggleSb(${ci},${ii})`)}
-              <button class="icon-btn icon-btn--edit" onclick="openModal('sb-item', ${ci}, ${ii})">✏️</button>
-              <button class="icon-btn icon-btn--delete" onclick="deleteSb(${ci},${ii})">🗑️</button>
+            <div class="admin-item-actions">
+              ${toggleBtn(item.enabled, `toggleItem('snowboarding', ${ci}, ${ii})`)}
+              <button class="icon-btn" onclick="openFormModal('sb-item', ${ci}, ${ii})">✏️</button>
+              <button class="icon-btn icon-btn--danger" onclick="deleteItem('snowboarding', ${ci}, ${ii})">🗑️</button>
             </div>
           </div>`).join('')}
       </div>
     </div>`).join('');
 }
 
-function toggleSb(ci, ii) {
-  const cats = SHData.get('snowboarding');
-  const item = cats[ci].items[ii];
-  item.enabled = item.enabled === false ? true : false;
-  SHData.set('snowboarding', cats);
-  renderSnowboardingEditor();
-  toast(item.enabled ? '✅ Package enabled — showing on site' : '🚫 Package disabled — hidden from site', item.enabled ? 'green' : 'blue');
-}
-
-function moveSb(ci, ii, dir) {
-  const cats = SHData.get('snowboarding');
-  const items = cats[ci].items;
-  const ni = ii + dir;
-  if (ni < 0 || ni >= items.length) return;
-  [items[ii], items[ni]] = [items[ni], items[ii]];
-  SHData.set('snowboarding', cats);
-  renderSnowboardingEditor();
-  toast('Reordered ✓');
-}
-
-function deleteSb(ci, ii) {
-  if (!confirm('Delete this snowboarding package?')) return;
-  const cats = SHData.get('snowboarding');
-  cats[ci].items.splice(ii, 1);
-  SHData.set('snowboarding', cats);
-  renderSnowboardingEditor();
-  toast('Deleted ✓', 'red');
-}
-
-// ─── TREKKING EDITOR ─────────────────────────────────
+// ─── TREKKING EDITOR ──────────────────────────────────
 function renderTrekkingEditor() {
   const treks = SHData.get('trekking');
   const el = document.getElementById('trekking-editor');
-  if (treks.length === 0) {
-    el.innerHTML = '<div class="empty-state"><div class="empty-state-icon">🥾</div>No treks yet. Click "Add Trek" to get started.</div>'; return;
-  }
-  el.innerHTML = treks.map((t, i) => `
-    <div class="simple-row ${t.enabled === false ? 'item-row--disabled' : ''}">
-      <img class="item-thumb" src="${t.image}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\\'http://www.w3.org/2000/svg\\' viewBox=\\'0 0 100 70\\'%3E%3Crect width=\\'100\\' height=\\'70\\' fill=\\'%23161e35\\'/%3E%3C/svg%3E'" alt="">
-      <div class="simple-row-info">
-        <div class="simple-row-title">${t.title} ${t.enabled === false ? '<span class="disabled-badge">Hidden</span>' : ''}</div>
-        <div class="simple-row-desc">${t.days} · ${t.altitude} · ${t.distance}</div>
-      </div>
-      <span class="diff-tag diff-tag--${t.difficultyClass}">${t.difficulty}</span>
-      <div class="item-actions">
-        <button class="icon-btn icon-btn--up" onclick="moveTrek(${i},-1)">↑</button>
-        <button class="icon-btn icon-btn--down" onclick="moveTrek(${i},1)">↓</button>
-        ${toggleBtn(t.enabled, `toggleTrek(${i})`)}
-        <button class="icon-btn icon-btn--edit" onclick="openModal('trek',null,${i})">✏️</button>
-        <button class="icon-btn icon-btn--delete" onclick="deleteTrek(${i})">🗑️</button>
-      </div>
-    </div>`).join('');
+  el.innerHTML = `
+    <div class="admin-cat-header">
+      <h3>Manage Treks</h3>
+      <button class="add-btn" onclick="openFormModal('trek', null, null)">＋ Add New Trek</button>
+    </div>
+    <div class="admin-items-grid">
+      ${treks.map((t, ti) => `
+        <div class="admin-item-card ${t.enabled === false ? 'disabled' : ''}">
+          <div class="admin-item-img"><img src="${t.image}" alt=""></div>
+          <div class="admin-item-info">
+            <h4>${t.title}</h4>
+            <p>${t.description}</p>
+            <div class="admin-item-meta">
+              <span>💰 ${t.price || 'No Price'}</span>
+              <span>⛰️ ${t.difficulty}</span>
+              <span>⏱️ ${t.days}</span>
+              <span>📍 ${t.distance}</span>
+            </div>
+          </div>
+          <div class="admin-item-actions">
+            ${toggleBtn(t.enabled, `toggleTrek(${ti})`)}
+            <button class="icon-btn" onclick="openFormModal('trek', null, ${ti})">✏️</button>
+            <button class="icon-btn icon-btn--danger" onclick="deleteTrek(${ti})">🗑️</button>
+          </div>
+        </div>`).join('')}
+    </div>`;
 }
 
-function toggleTrek(i) {
-  const treks = SHData.get('trekking');
-  treks[i].enabled = treks[i].enabled === false ? true : false;
-  SHData.set('trekking', treks);
-  renderTrekkingEditor();
-  toast(treks[i].enabled ? '✅ Trek enabled — showing on site' : '🚫 Trek disabled — hidden from site', treks[i].enabled ? 'green' : 'blue');
-}
-
-function moveTrek(i, dir) {
-  const treks = SHData.get('trekking');
-  const ni = i + dir;
-  if (ni < 0 || ni >= treks.length) return;
-  [treks[i], treks[ni]] = [treks[ni], treks[i]];
-  SHData.set('trekking', treks);
-  renderTrekkingEditor();
-  toast('Reordered ✓');
-}
-
-function deleteTrek(i) {
-  if (!confirm('Delete this trek?')) return;
-  const treks = SHData.get('trekking');
-  treks.splice(i, 1);
-  SHData.set('trekking', treks);
-  renderTrekkingEditor();
-  toast('Deleted ✓', 'red');
-}
-
-// ─── ACTIVITIES EDITOR ───────────────────────────────
+// ─── ACTIVITIES EDITOR ────────────────────────────────
 function renderActivitiesEditor() {
-  const { winter, summer } = SHData.get('activities');
-  renderActivityList('winter-activities-editor', winter, 'winter');
-  renderActivityList('summer-activities-editor', summer, 'summer');
-}
+  const acts = SHData.get('activities');
+  const el = document.getElementById('activities-editor');
 
-function renderActivityList(elId, items, season) {
-  const el = document.getElementById(elId);
-  if (!items || items.length === 0) {
-    el.innerHTML = '<div class="empty-state"><div class="empty-state-icon">🎯</div>No activities yet.</div>'; return;
-  }
-  el.innerHTML = items.map((a, i) => `
-    <div class="simple-row ${a.enabled === false ? 'item-row--disabled' : ''}">
-      <div class="simple-row-info">
-        <div class="simple-row-title">${a.name} ${a.enabled === false ? '<span class="disabled-badge">Hidden</span>' : ''}</div>
-        <div class="simple-row-desc">${a.desc}</div>
+  const defaultImages = {
+    aw1: 'assets/images/skiing-action.png',
+    aw2: 'assets/images/activities-winter.png',
+    aw3: 'assets/images/gallery-gulmarg.png',
+    aw4: 'assets/images/hero-mountains.png',
+    aw5: 'assets/images/gallery-helicopter.png',
+    as1: 'assets/images/trekking-landscape.png',
+    as2: 'assets/images/gallery-sonamarg.png',
+    as3: 'assets/images/gallery-pahalgam.png',
+    as4: 'assets/images/sightseeing-dal-lake.png',
+    as5: 'assets/images/gallery-luxury-stay.png'
+  };
+
+  el.innerHTML = `
+    <div class="admin-category" style="margin-bottom:30px;">
+      <div class="admin-cat-header">
+        <h3>Winter Activities</h3>
+        <button class="add-btn" onclick="openFormModal('activity', 'winter', null)">＋ Add Winter Activity</button>
       </div>
-      <div class="item-actions">
-        <button class="icon-btn icon-btn--up" onclick="moveActivity('${season}',${i},-1)">↑</button>
-        <button class="icon-btn icon-btn--down" onclick="moveActivity('${season}',${i},1)">↓</button>
-        ${toggleBtn(a.enabled, `toggleActivity('${season}',${i})`)}
-        <button class="icon-btn icon-btn--edit" onclick="openModal('activity','${season}',${i})">✏️</button>
-        <button class="icon-btn icon-btn--delete" onclick="deleteActivity('${season}',${i})">🗑️</button>
+      <div class="admin-items-grid">
+        ${(acts.winter || []).map((a, ai) => `
+          <div class="admin-item-card ${a.enabled === false ? 'disabled' : ''}">
+            <div class="admin-item-img"><img src="${a.image || defaultImages[a.id] || 'assets/images/skiing-action.png'}" alt=""></div>
+            <div class="admin-item-info">
+              <h4>${a.name}</h4>
+              <p>${a.desc}</p>
+            </div>
+            <div class="admin-item-actions">
+              ${toggleBtn(a.enabled, `toggleActivity('winter', ${ai})`)}
+              <button class="icon-btn" onclick="openFormModal('activity', 'winter', ${ai})">✏️</button>
+              <button class="icon-btn icon-btn--danger" onclick="deleteActivity('winter', ${ai})">🗑️</button>
+            </div>
+          </div>`).join('')}
       </div>
-    </div>`).join('');
-}
+    </div>
 
-function toggleActivity(season, i) {
-  const acts = SHData.get('activities');
-  const item = acts[season][i];
-  item.enabled = item.enabled === false ? true : false;
-  SHData.set('activities', acts);
-  renderActivitiesEditor();
-  toast(item.enabled ? '✅ Activity enabled — showing on site' : '🚫 Activity disabled — hidden from site', item.enabled ? 'green' : 'blue');
-}
-
-function moveActivity(season, i, dir) {
-  const acts = SHData.get('activities');
-  const arr = acts[season];
-  const ni = i + dir;
-  if (ni < 0 || ni >= arr.length) return;
-  [arr[i], arr[ni]] = [arr[ni], arr[i]];
-  SHData.set('activities', acts);
-  renderActivitiesEditor();
-  toast('Reordered ✓');
-}
-
-function deleteActivity(season, i) {
-  if (!confirm('Delete this activity?')) return;
-  const acts = SHData.get('activities');
-  acts[season].splice(i, 1);
-  SHData.set('activities', acts);
-  renderActivitiesEditor();
-  toast('Deleted ✓', 'red');
+    <div class="admin-category">
+      <div class="admin-cat-header">
+        <h3>Summer Activities</h3>
+        <button class="add-btn" onclick="openFormModal('activity', 'summer', null)">＋ Add Summer Activity</button>
+      </div>
+      <div class="admin-items-grid">
+        ${(acts.summer || []).map((a, ai) => `
+          <div class="admin-item-card ${a.enabled === false ? 'disabled' : ''}">
+            <div class="admin-item-img"><img src="${a.image || defaultImages[a.id] || 'assets/images/trekking-landscape.png'}" alt=""></div>
+            <div class="admin-item-info">
+              <h4>${a.name}</h4>
+              <p>${a.desc}</p>
+            </div>
+            <div class="admin-item-actions">
+              ${toggleBtn(a.enabled, `toggleActivity('summer', ${ai})`)}
+              <button class="icon-btn" onclick="openFormModal('activity', 'summer', ${ai})">✏️</button>
+              <button class="icon-btn icon-btn--danger" onclick="deleteActivity('summer', ${ai})">🗑️</button>
+            </div>
+          </div>`).join('')}
+      </div>
+    </div>`;
 }
 
 // ─── SIGHTSEEING EDITOR ──────────────────────────────
 function renderSightseeingEditor() {
   const items = SHData.get('sightseeing');
   const el = document.getElementById('sightseeing-editor');
-  if (items.length === 0) {
-    el.innerHTML = '<div class="empty-state"><div class="empty-state-icon">📍</div>No destinations yet.</div>'; return;
-  }
-  el.innerHTML = items.map((s, i) => `
-    <div class="simple-row ${s.enabled === false ? 'item-row--disabled' : ''}">
-      <img class="item-thumb" src="${s.image}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\\'http://www.w3.org/2000/svg\\' viewBox=\\'0 0 100 70\\'%3E%3Crect width=\\'100\\' height=\\'70\\' fill=\\'%23161e35\\'/%3E%3C/svg%3E'" alt="">
-      <div class="simple-row-info">
-        <div class="simple-row-title">${s.title} ${s.enabled === false ? '<span class="disabled-badge">Hidden</span>' : ''}</div>
-        <div class="simple-row-desc">${s.desc.substring(0, 80)}...</div>
-      </div>
-      <div class="item-actions">
-        ${toggleBtn(s.enabled, `toggleSightseeing(${i})`)}
-        <button class="icon-btn icon-btn--edit" onclick="openModal('sightseeing',null,${i})">✏️</button>
-        <button class="icon-btn icon-btn--delete" onclick="deleteSightseeing(${i})">🗑️</button>
-      </div>
-    </div>`).join('');
-}
-
-function toggleSightseeing(i) {
-  const items = SHData.get('sightseeing');
-  items[i].enabled = items[i].enabled === false ? true : false;
-  SHData.set('sightseeing', items);
-  renderSightseeingEditor();
-  toast(items[i].enabled ? '✅ Destination enabled' : '🚫 Destination hidden from site', items[i].enabled ? 'green' : 'blue');
-}
-
-function deleteSightseeing(i) {
-  if (!confirm('Delete this destination?')) return;
-  const items = SHData.get('sightseeing');
-  items.splice(i, 1);
-  SHData.set('sightseeing', items);
-  renderSightseeingEditor();
-  toast('Deleted ✓', 'red');
+  el.innerHTML = `
+    <div class="admin-cat-header">
+      <h3>Sightseeing Destinations</h3>
+      <button class="add-btn" onclick="openFormModal('sightseeing', null, null)">＋ Add Destination</button>
+    </div>
+    <div class="admin-items-grid">
+      ${items.map((s, si) => `
+        <div class="admin-item-card ${s.enabled === false ? 'disabled' : ''}">
+          <div class="admin-item-img"><img src="${s.image}" alt=""></div>
+          <div class="admin-item-info">
+            <h4>${s.title}</h4>
+            <p>${s.desc}</p>
+            <div class="admin-item-meta">
+              <span>🆔 Code: ${s.place}</span>
+              <span>📍 Map Label: ${s.label}</span>
+            </div>
+          </div>
+          <div class="admin-item-actions">
+            ${toggleBtn(s.enabled, `toggleSight(${si})`)}
+            <button class="icon-btn" onclick="openFormModal('sightseeing', null, ${si})">✏️</button>
+            <button class="icon-btn icon-btn--danger" onclick="deleteSight(${si})">🗑️</button>
+          </div>
+        </div>`).join('')}
+    </div>`;
 }
 
 // ─── RENTALS EDITOR ──────────────────────────────────
 function renderRentalsEditor() {
   const rentals = SHData.get('rentals');
   const el = document.getElementById('rentals-editor');
-  if (rentals.length === 0) {
-    el.innerHTML = '<div class="empty-state"><div class="empty-state-icon">🎿</div>No rentals yet.</div>'; return;
-  }
-  el.innerHTML = rentals.map((r, i) => `
-    <div class="simple-row ${r.enabled === false ? 'item-row--disabled' : ''}">
-      <div class="simple-row-info">
-        <div class="simple-row-title">${r.title} ${r.comingSoon ? '<span class="item-badge" style="background:rgba(245,158,11,0.15);color:#fbbf24">Coming Soon</span>' : ''} ${r.enabled === false ? '<span class="disabled-badge">Hidden</span>' : ''}</div>
-        <div class="simple-row-desc">${r.desc}</div>
-      </div>
-      <div class="item-actions">
-        <button class="icon-btn icon-btn--up" onclick="moveRental(${i},-1)">↑</button>
-        <button class="icon-btn icon-btn--down" onclick="moveRental(${i},1)">↓</button>
-        ${toggleBtn(r.enabled, `toggleRental(${i})`)}
-        <button class="icon-btn icon-btn--edit" onclick="openModal('rental',null,${i})">✏️</button>
-        <button class="icon-btn icon-btn--delete" onclick="deleteRental(${i})">🗑️</button>
-      </div>
-    </div>`).join('');
+  el.innerHTML = `
+    <div class="admin-cat-header">
+      <h3>Gear Rentals</h3>
+      <button class="add-btn" onclick="openFormModal('rental', null, null)">＋ Add Rental Item</button>
+    </div>
+    <div class="admin-items-grid">
+      ${rentals.map((r, ri) => `
+        <div class="admin-item-card ${r.enabled === false ? 'disabled' : ''}">
+          <div class="admin-item-info" style="padding-left:15px;">
+            <h4>${r.title} ${r.comingSoon ? '<span style="font-size:10px; background:rgba(255,255,255,0.06); padding:2px 8px; border-radius:100px; color:#f59e0b;">Coming Soon</span>' : ''}</h4>
+            <p>${r.desc}</p>
+          </div>
+          <div class="admin-item-actions">
+            ${toggleBtn(r.enabled, `toggleRental(${ri})`)}
+            <button class="icon-btn" onclick="openFormModal('rental', null, ${ri})">✏️</button>
+            <button class="icon-btn icon-btn--danger" onclick="deleteRental(${ri})">🗑️</button>
+          </div>
+        </div>`).join('')}
+    </div>`;
 }
 
-function toggleRental(i) {
-  const rentals = SHData.get('rentals');
-  rentals[i].enabled = rentals[i].enabled === false ? true : false;
-  SHData.set('rentals', rentals);
-  renderRentalsEditor();
-  toast(rentals[i].enabled ? '✅ Rental enabled — showing on site' : '🚫 Rental disabled — hidden from site', rentals[i].enabled ? 'green' : 'blue');
-}
-
-function moveRental(i, dir) {
-  const rentals = SHData.get('rentals');
-  const ni = i + dir;
-  if (ni < 0 || ni >= rentals.length) return;
-  [rentals[i], rentals[ni]] = [rentals[ni], rentals[i]];
-  SHData.set('rentals', rentals);
-  renderRentalsEditor();
-  toast('Reordered ✓');
-}
-
-function deleteRental(i) {
-  if (!confirm('Delete this rental item?')) return;
-  const rentals = SHData.get('rentals');
-  rentals.splice(i, 1);
-  SHData.set('rentals', rentals);
-  renderRentalsEditor();
-  toast('Deleted ✓', 'red');
-}
-
-// ─── PACKAGES EDITOR ─────────────────────────────────
+// ─── TOUR PACKAGES EDITOR ─────────────────────────────
 function renderPackagesEditor() {
   const pkgs = SHData.get('packages');
   const el = document.getElementById('packages-editor');
-  if (pkgs.length === 0) {
-    el.innerHTML = '<div class="empty-state"><div class="empty-state-icon">📦</div>No packages yet.</div>'; return;
-  }
-  el.innerHTML = pkgs.map((p, i) => `
-    <div class="item-row ${p.enabled === false ? 'item-row--disabled' : ''}">
-      <img class="item-thumb" src="${p.image}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\\'http://www.w3.org/2000/svg\\' viewBox=\\'0 0 100 70\\'%3E%3Crect width=\\'100\\' height=\\'70\\' fill=\\'%23161e35\\'/%3E%3C/svg%3E'" alt="">
-      <div class="item-info">
-        <div class="item-title">${p.title}</div>
-        <div class="item-meta">${p.duration} · ${p.accommodation}</div>
-      </div>
-      <span class="item-badge">${p.badge}</span>
-      ${p.enabled === false ? '<span class="disabled-badge">Hidden</span>' : ''}
-      <div class="item-actions">
-        <button class="icon-btn icon-btn--up" onclick="movePackage(${i},-1)">↑</button>
-        <button class="icon-btn icon-btn--down" onclick="movePackage(${i},1)">↓</button>
-        ${toggleBtn(p.enabled, `togglePackage(${i})`)}
-        <button class="icon-btn icon-btn--edit" onclick="openModal('package',null,${i})">✏️</button>
-        <button class="icon-btn icon-btn--delete" onclick="deletePackage(${i})">🗑️</button>
-      </div>
-    </div>`).join('');
-}
-
-function togglePackage(i) {
-  const pkgs = SHData.get('packages');
-  pkgs[i].enabled = pkgs[i].enabled === false ? true : false;
-  SHData.set('packages', pkgs);
-  renderPackagesEditor();
-  toast(pkgs[i].enabled ? '✅ Package enabled — showing on site' : '🚫 Package disabled — hidden from site', pkgs[i].enabled ? 'green' : 'blue');
-}
-
-function movePackage(i, dir) {
-  const pkgs = SHData.get('packages');
-  const ni = i + dir;
-  if (ni < 0 || ni >= pkgs.length) return;
-  [pkgs[i], pkgs[ni]] = [pkgs[ni], pkgs[i]];
-  SHData.set('packages', pkgs);
-  renderPackagesEditor();
-  toast('Reordered ✓');
-}
-
-function deletePackage(i) {
-  if (!confirm('Delete this package?')) return;
-  const pkgs = SHData.get('packages');
-  pkgs.splice(i, 1);
-  SHData.set('packages', pkgs);
-  renderPackagesEditor();
-  toast('Deleted ✓', 'red');
+  el.innerHTML = `
+    <div class="admin-cat-header">
+      <h3>Tour Packages</h3>
+      <button class="add-btn" onclick="openFormModal('package', null, null)">＋ Add Tour Package</button>
+    </div>
+    <div class="admin-items-grid">
+      ${pkgs.map((p, pi) => `
+        <div class="admin-item-card ${p.enabled === false ? 'disabled' : ''}">
+          <div class="admin-item-img"><img src="${p.image}" alt=""></div>
+          <div class="admin-item-info">
+            <h4>${p.title}</h4>
+            <p>${p.description}</p>
+            <div class="admin-item-meta">
+              <span>💰 ${p.price || 'No Price'}</span>
+              <span>🏷️ Badge: ${p.badge}</span>
+              <span>⏱️ Duration: ${p.duration}</span>
+              <span>🛏️ Stay: ${p.accommodation}</span>
+            </div>
+          </div>
+          <div class="admin-item-actions">
+            ${toggleBtn(p.enabled, `togglePackage(${pi})`)}
+            <button class="icon-btn" onclick="openFormModal('package', null, ${pi})">✏️</button>
+            <button class="icon-btn icon-btn--danger" onclick="deletePackage(${pi})">🗑️</button>
+          </div>
+        </div>`).join('')}
+    </div>`;
 }
 
 // ─── TESTIMONIALS EDITOR ─────────────────────────────
 function renderTestimonialsEditor() {
   const tms = SHData.get('testimonials');
   const el = document.getElementById('testimonials-editor');
-  if (tms.length === 0) {
-    el.innerHTML = '<div class="empty-state"><div class="empty-state-icon">💬</div>No testimonials yet.</div>'; return;
-  }
-  el.innerHTML = tms.map((t, i) => `
-    <div class="simple-row ${t.enabled === false ? 'item-row--disabled' : ''}">
-      <div class="simple-row-info" style="display:flex;align-items:center;gap:12px">
-        <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#3b82f6,#06b6d4);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0">${t.initials}</div>
-        <div>
-          <div class="simple-row-title">${t.name} — <span style="color:#fbbf24;font-size:12px">★★★★★</span> ${t.enabled === false ? '<span class="disabled-badge">Hidden</span>' : ''}</div>
-          <div class="simple-row-desc">${t.text.substring(0,80)}...</div>
-        </div>
-      </div>
-      <div class="item-actions">
-        <button class="icon-btn icon-btn--up" onclick="moveTestimonial(${i},-1)">↑</button>
-        <button class="icon-btn icon-btn--down" onclick="moveTestimonial(${i},1)">↓</button>
-        ${toggleBtn(t.enabled, `toggleTestimonial(${i})`)}
-        <button class="icon-btn icon-btn--edit" onclick="openModal('testimonial',null,${i})">✏️</button>
-        <button class="icon-btn icon-btn--delete" onclick="deleteTestimonial(${i})">🗑️</button>
-      </div>
-    </div>`).join('');
+  el.innerHTML = `
+    <div class="admin-cat-header">
+      <h3>Reviews & Testimonials</h3>
+      <button class="add-btn" onclick="openFormModal('testimonial', null, null)">＋ Add Review</button>
+    </div>
+    <div class="admin-items-grid">
+      ${tms.map((t, ti) => `
+        <div class="admin-item-card ${t.enabled === false ? 'disabled' : ''}">
+          <div class="admin-item-info" style="padding-left:15px;">
+            <h4 style="margin-bottom:6px;">${t.name} <span style="font-size:11px; font-weight:normal; color:#888;">(${t.source})</span></h4>
+            <p>${t.text}</p>
+          </div>
+          <div class="admin-item-actions">
+            ${toggleBtn(t.enabled, `toggleTestimonial(${ti})`)}
+            <button class="icon-btn" onclick="openFormModal('testimonial', null, ${ti})">✏️</button>
+            <button class="icon-btn icon-btn--danger" onclick="deleteTestimonial(${ti})">🗑️</button>
+          </div>
+        </div>`).join('')}
+    </div>`;
 }
 
-function toggleTestimonial(i) {
+// ─── TOGGLE AND DELETE IMPLEMENTATIONS ────────────────
+function toggleItem(key, ci, ii) {
+  const cats = SHData.get(key);
+  cats[ci].items[ii].enabled = cats[ci].items[ii].enabled === false ? true : false;
+  SHData.set(key, cats);
+  if (key === 'skiing') renderSkiingEditor(); else renderSnowboardingEditor();
+  toast('Updated status!');
+}
+function deleteItem(key, ci, ii) {
+  if (!confirm('Are you sure you want to delete this package?')) return;
+  const cats = SHData.get(key);
+  cats[ci].items.splice(ii, 1);
+  SHData.set(key, cats);
+  if (key === 'skiing') renderSkiingEditor(); else renderSnowboardingEditor();
+  toast('Deleted package!', 'red');
+}
+
+function toggleTrek(ti) {
+  const treks = SHData.get('trekking');
+  treks[ti].enabled = treks[ti].enabled === false ? true : false;
+  SHData.set('trekking', treks);
+  renderTrekkingEditor();
+  toast('Updated status!');
+}
+function deleteTrek(ti) {
+  if (!confirm('Are you sure you want to delete this trek?')) return;
+  const treks = SHData.get('trekking');
+  treks.splice(ti, 1);
+  SHData.set('trekking', treks);
+  renderTrekkingEditor();
+  toast('Deleted trek!', 'red');
+}
+
+function toggleActivity(type, ai) {
+  const acts = SHData.get('activities');
+  acts[type][ai].enabled = acts[type][ai].enabled === false ? true : false;
+  SHData.set('activities', acts);
+  renderActivitiesEditor();
+  toast('Updated status!');
+}
+function deleteActivity(type, ai) {
+  if (!confirm('Are you sure you want to delete this activity?')) return;
+  const acts = SHData.get('activities');
+  acts[type].splice(ai, 1);
+  SHData.set('activities', acts);
+  renderActivitiesEditor();
+  toast('Deleted activity!', 'red');
+}
+
+function toggleSight(si) {
+  const items = SHData.get('sightseeing');
+  items[si].enabled = items[si].enabled === false ? true : false;
+  SHData.set('sightseeing', items);
+  renderSightseeingEditor();
+  toast('Updated status!');
+}
+function deleteSight(si) {
+  if (!confirm('Are you sure you want to delete this destination?')) return;
+  const items = SHData.get('sightseeing');
+  items.splice(si, 1);
+  SHData.set('sightseeing', items);
+  renderSightseeingEditor();
+  toast('Deleted destination!', 'red');
+}
+
+function toggleRental(ri) {
+  const rentals = SHData.get('rentals');
+  rentals[ri].enabled = rentals[ri].enabled === false ? true : false;
+  SHData.set('rentals', rentals);
+  renderRentalsEditor();
+  toast('Updated status!');
+}
+function deleteRental(ri) {
+  if (!confirm('Are you sure?')) return;
+  const rentals = SHData.get('rentals');
+  rentals.splice(ri, 1);
+  SHData.set('rentals', rentals);
+  renderRentalsEditor();
+  toast('Deleted item!', 'red');
+}
+
+function togglePackage(pi) {
+  const pkgs = SHData.get('packages');
+  pkgs[pi].enabled = pkgs[pi].enabled === false ? true : false;
+  SHData.set('packages', pkgs);
+  renderPackagesEditor();
+  toast('Updated status!');
+}
+function deletePackage(pi) {
+  if (!confirm('Are you sure?')) return;
+  const pkgs = SHData.get('packages');
+  pkgs.splice(pi, 1);
+  SHData.set('packages', pkgs);
+  renderPackagesEditor();
+  toast('Deleted tour package!', 'red');
+}
+
+function toggleTestimonial(ti) {
   const tms = SHData.get('testimonials');
-  tms[i].enabled = tms[i].enabled === false ? true : false;
+  tms[ti].enabled = tms[ti].enabled === false ? true : false;
   SHData.set('testimonials', tms);
   renderTestimonialsEditor();
-  toast(tms[i].enabled ? '✅ Review enabled — showing on site' : '🚫 Review disabled — hidden from site', tms[i].enabled ? 'green' : 'blue');
+  toast('Updated status!');
 }
-
-function moveTestimonial(i, dir) {
+function deleteTestimonial(ti) {
+  if (!confirm('Are you sure?')) return;
   const tms = SHData.get('testimonials');
-  const ni = i + dir;
-  if (ni < 0 || ni >= tms.length) return;
-  [tms[i], tms[ni]] = [tms[ni], tms[i]];
+  tms.splice(ti, 1);
   SHData.set('testimonials', tms);
   renderTestimonialsEditor();
-  toast('Reordered ✓');
+  toast('Deleted review!', 'red');
 }
 
-function deleteTestimonial(i) {
-  if (!confirm('Delete this testimonial?')) return;
-  const tms = SHData.get('testimonials');
-  tms.splice(i, 1);
-  SHData.set('testimonials', tms);
-  renderTestimonialsEditor();
-  toast('Deleted ✓', 'red');
-}
-
-// ─── SETTINGS ────────────────────────────────────────
+// ─── SETTINGS EDITOR ──────────────────────────────────
 function loadSettings() {
   const s = SHData.get('settings');
-  const set = (id, val) => { const el = document.getElementById(id); if (el) el.value = val || ''; };
-  set('s-whatsapp', s.whatsappNumber);
-  set('s-heroTitle', s.heroTitle);
-  set('s-heroSubtitle', s.heroSubtitle);
-  set('s-heroVideo', s.heroVideoUrl);
-  set('s-copyright', s.footerCopyright);
+  const wa = document.getElementById('s-whatsapp');
+  const title = document.getElementById('s-heroTitle');
+  const sub = document.getElementById('s-heroSubtitle');
+  const video = document.getElementById('s-heroVideo');
+  const copy = document.getElementById('s-copyright');
+
+  if (wa) wa.value = s.whatsappNumber || '';
+  if (title) title.value = s.heroTitle || '';
+  if (sub) sub.value = s.heroSubtitle || '';
+  if (video) video.value = s.heroVideoUrl || '';
+  if (copy) copy.value = s.footerCopyright || '';
 }
 
-function saveSettings() {
-  const g = id => document.getElementById(id)?.value || '';
-  const s = SHData.get('settings');
-  s.whatsappNumber = g('s-whatsapp');
-  s.heroTitle = g('s-heroTitle');
-  s.heroSubtitle = g('s-heroSubtitle');
-  s.heroVideoUrl = g('s-heroVideo');
-  s.footerCopyright = g('s-copyright');
+function saveSettings(e) {
+  if (e) e.preventDefault();
+  const s = {
+    whatsappNumber: document.getElementById('s-whatsapp')?.value?.trim() || '',
+    heroTitle: document.getElementById('s-heroTitle')?.value?.trim() || '',
+    heroSubtitle: document.getElementById('s-heroSubtitle')?.value?.trim() || '',
+    heroVideoUrl: document.getElementById('s-heroVideo')?.value?.trim() || '',
+    footerCopyright: document.getElementById('s-copyright')?.value?.trim() || ''
+  };
   SHData.set('settings', s);
-  toast('✅ Settings saved!');
+  toast('✅ Settings saved successfully!');
 }
 
-// ─── MODAL SYSTEM ─────────────────────────────────────
+// ─── MODAL CONTROLLER ─────────────────────────────────
 let _modalCtx = null;
-
-function openModal(type, ctx1, ctx2) {
+function openFormModal(type, ctx1, ctx2) {
   _modalCtx = { type, ctx1, ctx2 };
   const body = document.getElementById('modal-body');
   const title = document.getElementById('modal-title');
@@ -669,6 +633,7 @@ function saveModal() {
       id: ctx2 !== null ? existing.id : 'item-' + Date.now(),
       enabled: existing.enabled !== false,
       title: v('f-title'), description: v('f-desc'), badge: v('f-badge'),
+      price: v('f-price'),
       meta1: v('f-meta1'), meta2: v('f-meta2'), meta3: v('f-meta3'),
       includes: v('f-includes'), image: v('f-image'), waMsg: v('f-wamsg')
     };
@@ -686,6 +651,7 @@ function saveModal() {
       id: ctx2 !== null ? existing.id : 'trek-' + Date.now(),
       enabled: existing.enabled !== false,
       title: v('f-title'), description: v('f-desc'),
+      price: v('f-price'),
       difficulty: v('f-difficulty'), difficultyClass: v('f-difficulty').toLowerCase(),
       days: v('f-days'), altitude: v('f-altitude'), distance: v('f-distance'),
       season: v('f-season'), highlights: v('f-highlights'),
@@ -748,6 +714,7 @@ function saveModal() {
       id: ctx2 !== null ? existing.id : 'pkg-' + Date.now(),
       enabled: existing.enabled !== false,
       title: v('f-title'), description: v('f-desc'), badge: v('f-badge'),
+      price: v('f-price'),
       duration: v('f-duration'), accommodation: v('f-accommodation'),
       transport: v('f-transport'), meals: v('f-meals'),
       destinations: v('f-destinations'), includes: v('f-includes'),
@@ -899,8 +866,8 @@ function packageForm(item) {
   return `
     <div class="form-row">${f('Package Title *','f-title', item.title)}<div class="field"><label>Badge (e.g. Beginner, Elite)</label><input type="text" id="f-badge" value="${escHtml(item.badge||'')}"></div></div>
     ${ft('Description *','f-desc', item.description, 4)}
-    <div class="form-row">${f('Duration (meta 1)','f-meta1',item.meta1)}${f('Level/Type (meta 2)','f-meta2',item.meta2)}</div>
-    <div class="form-row full">${f('Extra Info (meta 3)','f-meta3',item.meta3)}</div>
+    <div class="form-row">${f('Price (e.g. ₹15,000)','f-price', item.price || '')}${f('Duration (meta 1)','f-meta1',item.meta1)}</div>
+    <div class="form-row">${f('Level/Type (meta 2)','f-meta2',item.meta2)}${f('Extra Info (meta 3)','f-meta3',item.meta3)}</div>
     ${tagManagerField('f-includes', item.includes)}
     ${imageUploadField('f-image', item.image)}
     ${f('WhatsApp Message','f-wamsg', item.waMsg,'text',"I'm interested in...")}`;
@@ -911,18 +878,21 @@ function trekForm(item) {
     ${f('Trek Name *','f-title', item.title)}
     ${ft('Description *','f-desc', item.description, 4)}
     <div class="form-row">
+      ${f('Price (e.g. ₹16,500)','f-price', item.price || '')}
+      ${f('Season (e.g. Jun – Sep)','f-season', item.season)}
+    </div>
+    <div class="form-row">
       <div class="field"><label>Difficulty *</label><select id="f-difficulty" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;color:white;padding:11px 14px;width:100%;font-size:14px;outline:none;">
         <option value="Easy" ${item.difficulty==='Easy'?'selected':''}>Easy</option>
         <option value="Moderate" ${item.difficulty==='Moderate'?'selected':''}>Moderate</option>
         <option value="Challenging" ${item.difficulty==='Challenging'?'selected':''}>Challenging</option>
       </select></div>
-      ${f('Season (e.g. Jun – Sep)','f-season', item.season)}
+      ${f('Duration (e.g. 7 Days / 6 Nights)','f-days', item.days)}
     </div>
     <div class="form-row">
-      ${f('Duration (e.g. 7 Days / 6 Nights)','f-days', item.days)}
       ${f('Max Altitude (e.g. 3,800m Max Altitude)','f-altitude', item.altitude)}
+      ${f('Distance (e.g. 72 km Distance)','f-distance', item.distance)}
     </div>
-    ${f('Distance (e.g. 72 km Distance)','f-distance', item.distance)}
     ${tagManagerField('f-highlights', item.highlights, 'Trek Highlights')}
     ${imageUploadField('f-image', item.image)}
     ${f('WhatsApp Message','f-wamsg', item.waMsg,'text',"I'm interested in...")}`;
@@ -961,14 +931,17 @@ function tourPackageForm(item) {
     <div class="form-row">${f('Package Title *','f-title', item.title)}<div class="field"><label>Badge</label><input type="text" id="f-badge" value="${escHtml(item.badge||'')}"></div></div>
     ${ft('Description *','f-desc', item.description, 4)}
     <div class="form-row">
+      ${f('Price (e.g. ₹65,000)','f-price', item.price || '')}
       ${f('Duration (e.g. 7N / 8D)','f-duration', item.duration)}
-      ${f('Accommodation (e.g. 5-Star Hotels)','f-accommodation', item.accommodation)}
     </div>
     <div class="form-row">
+      ${f('Accommodation (e.g. 5-Star Hotels)','f-accommodation', item.accommodation)}
       ${f('Transport (e.g. Luxury SUV)','f-transport', item.transport)}
-      ${f('Meals (e.g. All Meals)','f-meals', item.meals)}
     </div>
-    ${f('Destinations (comma-separated)','f-destinations', item.destinations,'text','e.g. Srinagar,Gulmarg,Pahalgam')}
+    <div class="form-row">
+      ${f('Meals (e.g. All Meals)','f-meals', item.meals)}
+      ${f('Destinations (comma-separated)','f-destinations', item.destinations,'text','e.g. Srinagar,Gulmarg,Pahalgam')}
+    </div>
     ${tagManagerField('f-includes', item.includes)}
     ${imageUploadField('f-image', item.image)}
     ${f('WhatsApp Message','f-wamsg', item.waMsg,'text',"I'm interested in...")}`;

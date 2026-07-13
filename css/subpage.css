@@ -168,7 +168,22 @@ p {
   font-size: var(--text-sm);
   color: var(--text-secondary) !important;
   line-height: 1.6;
-  margin-bottom: auto; /* Pushes meta & CTA to absolute bottom for alignment */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  height: 4.8em; /* Exactly 3 lines */
+  margin-bottom: 8px;
+}
+
+.detail-card__price {
+  font-family: 'Satoshi', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--gold, #c7965a) !important;
+  margin-top: auto; /* Pushes price to bottom above buttons */
+  margin-bottom: 4px;
+  letter-spacing: 0.02em;
 }
 
 .detail-card__meta {
@@ -364,7 +379,23 @@ p {
 .trek-card__desc {
   font-size: var(--text-sm);
   color: var(--text-secondary) !important;
-  line-height: 1.65;
+  line-height: 1.6;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  height: 4.8em; /* Exactly 3 lines */
+  margin-bottom: 8px;
+}
+
+.trek-card__price {
+  font-family: 'Satoshi', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--gold, #c7965a) !important;
+  margin-top: auto; /* Pushes price to bottom above buttons */
+  margin-bottom: 4px;
+  letter-spacing: 0.02em;
 }
 
 .trek-card__stats {
