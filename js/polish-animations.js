@@ -222,9 +222,6 @@
       statsObserver.observe(statsSection);
     }
 
-    // Interactive typography character reveals
-    initTextReveal();
-
     // Tactile magnetic hover feedback for interactive components
     initMagneticButtons();
 
