@@ -944,27 +944,26 @@ body {
 .rentals__grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 1px;
-  background: rgba(196,168,108,0.1);
-  border: 1px solid rgba(196,168,108,0.15);
+  gap: 24px;
 }
 
-
-
 .rentals__card {
-  background: var(--bg-base);
+  background: var(--bg-card, #121214) !important;
   padding: var(--space-10) var(--space-8);
-  border-radius: 16px;
-  border: none;
+  border-radius: 16px !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
   position: relative;
-  transition: background var(--duration-normal) ease;
+  transition: all var(--duration-normal) ease !important;
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
 }
 
 .rentals__card:hover {
-  background: var(--bg-card);
+  background: rgba(255, 255, 255, 0.03) !important;
+  border-color: var(--gold, #c7965a) !important;
+  transform: translateY(-6px) !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45) !important;
 }
 
 .rentals__card-icon {
@@ -1051,26 +1050,25 @@ body {
 .transport__grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 1px;
-  background: rgba(196,168,108,0.1);
-  border: 1px solid rgba(196,168,108,0.15);
+  gap: 24px;
 }
 
-
-
 .transport__card {
-  background: var(--bg-raised);
+  background: var(--bg-card, #121214) !important;
   padding: var(--space-10) var(--space-8);
-  border-radius: 16px;
-  border: none;
+  border-radius: 16px !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
-  transition: background var(--duration-normal) ease;
+  transition: all var(--duration-normal) ease !important;
 }
 
 .transport__card:hover {
-  background: var(--bg-card);
+  background: rgba(255, 255, 255, 0.03) !important;
+  border-color: var(--gold, #c7965a) !important;
+  transform: translateY(-6px) !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45) !important;
 }
 
 .transport__card-icon {
@@ -1776,6 +1774,38 @@ body {
 .packages__card-content .packages__card-desc {
   color: rgba(247, 243, 238, 0.85) !important;
   text-shadow: 0 1px 4px rgba(0,0,0,0.5) !important;
+}
+
+/* Ambient background floating orbs */
+.ambient-orb {
+  position: absolute;
+  width: 50vw;
+  height: 50vw;
+  max-width: 600px;
+  max-height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(196,168,108,0.045) 0%, rgba(0,0,0,0) 70%) !important;
+  filter: blur(95px) !important;
+  pointer-events: none;
+  opacity: 0.85;
+}
+.ambient-orb--1 {
+  top: 15%;
+  left: -200px;
+}
+.ambient-orb--2 {
+  top: 50%;
+  right: -250px;
+}
+.ambient-orb--3 {
+  bottom: 10%;
+  left: 10%;
+}
+
+/* Typography Word Masking for Slide Up Animation */
+.word-wrapper {
+  vertical-align: bottom;
+  margin-right: 0.22em;
 }
 
 

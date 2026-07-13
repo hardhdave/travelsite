@@ -222,6 +222,15 @@
       statsObserver.observe(statsSection);
     }
 
+    // Interactive typography character reveals
+    initTextReveal();
+
+    // Tactile magnetic hover feedback for interactive components
+    initMagneticButtons();
+
+    // Ambient floating backdrop glow filters
+    initAmbientOrbs();
+
     ScrollTrigger.refresh();
   }
 
@@ -263,6 +272,131 @@
           ease: 'elastic.out(1, 0.55)'
         });
       });
+    });
+  }
+
+  function initTextReveal() {
+    const titles = document.querySelectorAll('.section-title.split-text');
+    titles.forEach(title => {
+      if (title.classList.contains('is-split')) return;
+      
+      const contents = title.childNodes;
+      let newHtml = '';
+      contents.forEach(node => {
+        if (node.nodeType === Node.TEXT_NODE) {
+          const words = node.textContent.split(/\s+/).filter(Boolean);
+          newHtml += words.map(w => `<span class="word-wrapper" style="display:inline-block; overflow:hidden;"><span class="word-inner" style="display:inline-block;">${w}</span></span> `).join('');
+        } else if (node.nodeType === Node.ELEMENT_NODE) {
+          if (node.classList.contains('text-gradient')) {
+            const innerWords = node.textContent.split(/\s+/).filter(Boolean);
+            const wrappedInner = innerWords.map(w => `<span class="word-wrapper" style="display:inline-block; overflow:hidden;"><span class="word-inner" style="display:inline-block;">${w}</span></span> `).join('');
+            newHtml += `<span class="text-gradient" style="display:inline-block;">${wrappedInner}</span>`;
+          } else {
+            newHtml += node.outerHTML;
+          }
+        }
+      });
+      
+      title.innerHTML = newHtml;
+      title.classList.add('is-split');
+      
+      const inners = title.querySelectorAll('.word-inner');
+      gsap.fromTo(inners, {
+        yPercent: 100,
+        rotate: 3
+      }, {
+        yPercent: 0,
+        rotate: 0,
+        duration: 0.95,
+        stagger: 0.04,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: title,
+          start: 'top 88%',
+          toggleActions: 'play none none reverse'
+        }
+      });
+    });
+  }
+
+  function initMagneticButtons() {
+    const magnetics = document.querySelectorAll('.btn, .navbar__logo, .navbar__link, .navbar__toggle, .hero__control');
+    magnetics.forEach(el => {
+      el.addEventListener('mousemove', (e) => {
+        const rect = el.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        
+        gsap.to(el, {
+          x: x * 0.35,
+          y: y * 0.35,
+          duration: 0.3,
+          ease: 'power2.out'
+        });
+      });
+      
+      el.addEventListener('mouseleave', () => {
+        gsap.to(el, {
+          x: 0,
+          y: 0,
+          duration: 0.5,
+          ease: 'power3.out'
+        });
+      });
+    });
+  }
+
+  function initAmbientOrbs() {
+    if (!document.querySelector('.why-choose') && !document.querySelector('.experiences')) return;
+    if (document.querySelector('.ambient-orb')) return; // Prevent double injection
+    
+    const container = document.createElement('div');
+    container.style.position = 'fixed';
+    container.style.inset = '0';
+    container.style.pointerEvents = 'none';
+    container.style.zIndex = '0';
+    container.style.overflow = 'hidden';
+    
+    const orb1 = document.createElement('div');
+    orb1.className = 'ambient-orb ambient-orb--1';
+    
+    const orb2 = document.createElement('div');
+    orb2.className = 'ambient-orb ambient-orb--2';
+    
+    const orb3 = document.createElement('div');
+    orb3.className = 'ambient-orb ambient-orb--3';
+    
+    container.appendChild(orb1);
+    container.appendChild(orb2);
+    container.appendChild(orb3);
+    
+    document.body.prepend(container);
+    
+    gsap.to('.ambient-orb--1', {
+      x: 'random(-100, 100)',
+      y: 'random(-100, 100)',
+      duration: 15,
+      repeat: -1,
+      yoyo: true,
+      ease: 'sine.inOut'
+    });
+    
+    gsap.to('.ambient-orb--2', {
+      x: 'random(-120, 120)',
+      y: 'random(-120, 120)',
+      duration: 18,
+      repeat: -1,
+      yoyo: true,
+      ease: 'sine.inOut'
+    });
+
+    gsap.to('.ambient-orb--3', {
+      x: 'random(-80, 80)',
+      y: 'random(-80, 80)',
+      duration: 12,
+      repeat: -1,
+      yoyo: true,
+      ease: 'sine.inOut'
     });
   }
 })();
