@@ -98,11 +98,11 @@
   --section-lift-shadow: 0 -20px 60px rgba(31, 41, 51, 0.05), 0 20px 60px rgba(31, 41, 51, 0.05);
 
   /* ——— Typography ——— */
-  --font-heading:  'Canela', 'Cormorant Garamond', 'Georgia', serif;
-  --font-body:     'Satoshi', 'Inter', sans-serif;
-  --font-accent:   'Satoshi', 'Outfit', sans-serif;
-  --font-serif:    'Canela', 'Cormorant Garamond', serif;
-  --font-display:  'Canela', 'Cormorant Garamond', serif;
+  --font-heading:  'Canela', Georgia, serif;
+  --font-body:     'Satoshi', system-ui, sans-serif;
+  --font-accent:   'Satoshi', system-ui, sans-serif;
+  --font-serif:    'Canela', Georgia, serif;
+  --font-display:  'Canela', Georgia, serif;
 
   /* Type Scale */
   --text-xs:   clamp(0.7rem,  0.8vw,  0.75rem);

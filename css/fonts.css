@@ -1,0 +1,29 @@
+/* ============================================
+   SHRED HIMALAYAS — Self-Hosted Font Declarations
+   Canela (headings) + Satoshi (body)
+   ============================================ */
+
+/* ---------- Canela — Serif Heading Font ---------- */
+@font-face {
+  font-family: 'Canela';
+  src: url('../assets/fonts/canela_light.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Canela';
+  src: url('../assets/fonts/canela_roman.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Canela';
+  src: url('../assets/fonts/canela_bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
