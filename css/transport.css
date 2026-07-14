@@ -80,16 +80,16 @@
 
 /* Individual card backgrounds corresponding to the themes */
 .transport__card:nth-child(1)::before {
-  background-image: url('https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=600&q=80');
+  background-image: url('../assets/images/transport-airport.png');
 }
 .transport__card:nth-child(2)::before {
-  background-image: url('https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=600&q=80');
+  background-image: url('../assets/images/transport-cab.png');
 }
 .transport__card:nth-child(3)::before {
-  background-image: url('https://images.unsplash.com/photo-1532581291347-9c39cf10a73c?auto=format&fit=crop&w=600&q=80');
+  background-image: url('../assets/images/transport-group.png');
 }
 .transport__card:nth-child(4)::before {
-  background-image: url('https://images.unsplash.com/photo-1617469767053-d3b508a0d7e5?auto=format&fit=crop&w=600&q=80');
+  background-image: url('../assets/images/luxury-transport.png');
 }
 
 /* Hover Zoom & Glow Interactions */

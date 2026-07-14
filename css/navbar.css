@@ -477,3 +477,10 @@
     top: auto;
   }
 }
+
+@media (max-width: 768px) {
+  .nav-sheet__grid {
+    grid-template-columns: 1fr;
+  }
+}
+

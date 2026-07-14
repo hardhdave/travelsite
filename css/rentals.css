@@ -71,16 +71,16 @@
 
 /* Individual card backgrounds */
 .rentals__card:nth-child(1)::before {
-  background-image: url('https://images.unsplash.com/photo-1551698618-1fed5d7029b8?auto=format&fit=crop&w=600&q=80');
+  background-image: url('../assets/images/skiing-action.png');
 }
 .rentals__card:nth-child(2)::before {
-  background-image: url('https://images.unsplash.com/photo-1522056690144-a21237930441?auto=format&fit=crop&w=600&q=80');
+  background-image: url('../assets/images/snowboarding-action.png');
 }
 .rentals__card:nth-child(3)::before {
-  background-image: url('https://images.unsplash.com/photo-1486915309851-b0cc1f8a0084?auto=format&fit=crop&w=600&q=80');
+  background-image: url('../assets/images/trekking-landscape.png');
 }
 .rentals__card:nth-child(4)::before {
-  background-image: url('https://images.unsplash.com/photo-1544192240-4a34fed0104c?auto=format&fit=crop&w=600&q=80');
+  background-image: url('../assets/images/rentals-mtb.png');
 }
 
 /* Hover Zoom & Glow Interactions */

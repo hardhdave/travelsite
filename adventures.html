@@ -1225,12 +1225,23 @@
         }
       };
 
-      // â”€â”€ Check URL hash for deep link e.g. adventures.html#trekking â”€â”€
+      // ── Check URL hash or query param for deep link ──
       var hash = (window.location.hash || '').replace('#', '');
-      if (['skiing', 'snowboarding', 'trekking', 'activities'].indexOf(hash) !== -1) {
-        currentTab = hash;
-        switchTab(hash);
+      var params = new URLSearchParams(window.location.search);
+      var queryTab = params.get('tab');
+      var initialTab = queryTab || hash;
+      if (['skiing', 'snowboarding', 'trekking', 'activities'].indexOf(initialTab) !== -1) {
+        currentTab = '';
+        switchTab(initialTab);
       }
+
+      window.addEventListener('hashchange', function () {
+        var newHash = (window.location.hash || '').replace('#', '');
+        if (['skiing', 'snowboarding', 'trekking', 'activities'].indexOf(newHash) !== -1) {
+          switchTab(newHash);
+        }
+      });
+
 
       // â”€â”€ Render all panels via SHData (admin-synced) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
       document.addEventListener('DOMContentLoaded', function () {
@@ -1279,6 +1290,7 @@
       });
 
     }());
+
   </script>
   <script src="js/cursor.js?v=1"></script>
 </body>
