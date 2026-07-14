@@ -190,7 +190,7 @@
 
     // Toggle bento grid layout structure depending on viewport size
     function setupLayout() {
-      const isMobile = window.innerWidth <= 767;
+      const isMobile = false; // Bypassed JS mobile slider to use pure responsive CSS column layout instead
 
       if (isMobile && !isMobileLayout) {
         // Clear bento container and load mobile column frames

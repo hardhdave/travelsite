@@ -4,9 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Adventures — Shred Himalayas</title>
+  <title>Adventures â€” Shred Himalayas</title>
   <meta name="description"
-    content="Explore all adventures by Shred Himalayas — skiing, snowboarding, trekking and adventure activities in the Himalayas of Kashmir.">
+    content="Explore all adventures by Shred Himalayas â€” skiing, snowboarding, trekking and adventure activities in the Himalayas of Kashmir.">
 
   <link rel="preconnect" href="https://api.fontshare.com">
   <link href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400,300&display=swap" rel="stylesheet">
@@ -26,10 +26,10 @@
 
   <style>
     /* ============================================
-       ADVENTURES PAGE — Dark Gold Luxury
+       ADVENTURES PAGE â€” Dark Gold Luxury
     ============================================ */
 
-    /* ── Hero ── */
+    /* â”€â”€ Hero â”€â”€ */
     .adv-hero {
       position: relative;
       min-height: 70vh;
@@ -140,7 +140,7 @@
       flex-shrink: 0;
     }
 
-    /* ── Category Selector Cards ── */
+    /* â”€â”€ Category Selector Cards â”€â”€ */
     .adv-cats {
       position: relative;
       z-index: 3;
@@ -191,7 +191,7 @@
       height: 100%;
       object-fit: cover;
       filter: brightness(0.55) saturate(0.65);
-      /* Brighter — was 0.42 */
+      /* Brighter â€” was 0.42 */
       transition: transform 0.5s ease, filter 0.4s ease;
       display: block;
     }
@@ -298,14 +298,14 @@
       transform: scaleX(1);
     }
 
-    /* ── Tab Content Area ── */
+    /* â”€â”€ Tab Content Area â”€â”€ */
     .adv-content {
       background: var(--bg-base);
       border-top: 1px solid rgba(47, 79, 62, 0.12);
       margin-top: 3px;
     }
 
-    /* ── Panel intro strip ── */
+    /* â”€â”€ Panel intro strip â”€â”€ */
     .adv-panel__intro {
       position: relative;
       background: var(--bg-raised);
@@ -388,7 +388,7 @@
       font-size: 2rem;
       font-weight: 300;
       color: #8bba99 !important;
-      /* Sage green accent — visible on dark bg */
+      /* Sage green accent â€” visible on dark bg */
       line-height: 1;
       margin-bottom: 4px;
       text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
@@ -400,10 +400,10 @@
       letter-spacing: 0.15em;
       text-transform: uppercase;
       color: #a8a39c !important;
-      /* Light muted — visible on dark bg */
+      /* Light muted â€” visible on dark bg */
     }
 
-    /* ── Package Panels ── */
+    /* â”€â”€ Package Panels â”€â”€ */
     .adv-panel {
       display: none;
     }
@@ -425,14 +425,14 @@
       }
     }
 
-    /* ── Package content wrapper ── */
+    /* â”€â”€ Package content wrapper â”€â”€ */
     .adv-packages {
       max-width: var(--container-wide);
       margin: 0 auto;
       padding: 60px var(--container-padding);
     }
 
-    /* ── CTA Strip ── */
+    /* â”€â”€ CTA Strip â”€â”€ */
     .adv-cta {
       background: var(--bg-raised);
       border-top: 1px solid rgba(47, 79, 62, 0.1);
@@ -470,7 +470,7 @@
       flex-shrink: 0;
     }
 
-    /* ── Activities Layout ── */
+    /* â”€â”€ Activities Layout â”€â”€ */
     .adv-activities-wrap {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -504,7 +504,7 @@
       gap: 20px;
     }
 
-    /* ── Activities items override for premium vertical cards with photos ── */
+    /* â”€â”€ Activities items override for premium vertical cards with photos â”€â”€ */
     .adv-packages .activities__item {
       display: flex;
       flex-direction: column;
@@ -691,6 +691,93 @@
         grid-template-columns: 1fr;
       }
     }
+
+    /* â”€â”€ Trekking Card Carousel â”€â”€ */
+    #trekking-packages-container {
+      display: flex !important;
+      flex-direction: row !important;
+      flex-wrap: nowrap !important;
+      overflow-x: auto !important;
+      gap: 24px !important;
+      scroll-behavior: smooth !important;
+      -webkit-overflow-scrolling: touch !important;
+      padding: 20px 0 !important;
+      
+      /* Hide scrollbar */
+      scrollbar-width: none !important;
+      -ms-overflow-style: none !important;
+    }
+
+    #trekking-packages-container::-webkit-scrollbar {
+      display: none !important;
+    }
+
+    #trekking-packages-container .trek-card {
+      flex: 0 0 calc(33.333% - 16px) !important;
+      min-width: 320px !important;
+      scroll-snap-align: start !important;
+      height: auto !important;
+      animation: cardSlideIn 0.6s cubic-bezier(0.25, 1, 0.5, 1) both;
+      transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s ease, border-color 0.4s ease !important;
+    }
+
+    /* Staggered load animation */
+    #trekking-packages-container .trek-card:nth-child(1) { animation-delay: 0.1s; }
+    #trekking-packages-container .trek-card:nth-child(2) { animation-delay: 0.2s; }
+    #trekking-packages-container .trek-card:nth-child(3) { animation-delay: 0.3s; }
+    #trekking-packages-container .trek-card:nth-child(4) { animation-delay: 0.4s; }
+
+    @keyframes cardSlideIn {
+      from {
+        opacity: 0;
+        transform: translateX(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    /* Hover effect (desktop only) */
+    @media (min-width: 1025px) {
+      #trekking-packages-container .trek-card:hover {
+        transform: translateY(-8px) !important;
+        border-color: var(--gold) !important;
+        box-shadow: 0 20px 40px rgba(196, 168, 108, 0.15), 0 12px 24px rgba(0, 0, 0, 0.5) !important;
+      }
+    }
+
+    /* Tablet breakpoint (approx 2 cards visible) */
+    @media (max-width: 1024px) {
+      #trekking-packages-container .trek-card {
+        flex: 0 0 calc(50% - 12px) !important;
+      }
+    }
+
+    /* Mobile breakpoint (1 card visible, snap scroll) */
+    @media (max-width: 768px) {
+      #trekking-packages-container {
+        scroll-snap-type: x mandatory !important;
+        gap: 16px !important;
+        padding: 20px 16px !important;
+        margin-left: calc(-1 * var(--container-padding)) !important;
+        margin-right: calc(-1 * var(--container-padding)) !important;
+      }
+
+      #trekking-packages-container .trek-card {
+        flex: 0 0 85% !important;
+        min-width: 280px !important;
+        max-width: none !important;
+        scroll-snap-align: center !important;
+        transform: scale(0.95) !important;
+        opacity: 0.8 !important;
+      }
+
+      #trekking-packages-container .trek-card.is-active {
+        transform: scale(1.0) !important;
+        opacity: 1.0 !important;
+      }
+    }
   </style>
 </head>
 
@@ -715,6 +802,7 @@
       <div class="navbar__links" id="navLinks">
         <a href="index.html" class="navbar__link">Home</a>
         <a href="adventures.html" class="navbar__link active">Adventures</a>
+        <a href="#" class="navbar__link" onclick="switchTab('activities'); return false;">Activity</a>
         <a href="packages.html" class="navbar__link">Packages</a>
         <a href="index.html#gallery" class="navbar__link">Gallery</a>
         <a href="index.html#about" class="navbar__link">About</a>
@@ -745,6 +833,10 @@
       </a>
       <a href="adventures.html" class="nav-sheet__item active">
         Adventures
+        <svg class="nav-sheet__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+      <a href="#" class="nav-sheet__item" onclick="switchTab('activities'); document.getElementById('navSheet').classList.remove('active'); document.getElementById('navSheetBackdrop').classList.remove('active'); document.body.style.overflow=''; return false;">
+        Activity
         <svg class="nav-sheet__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </a>
       <a href="packages.html" class="nav-sheet__item">
@@ -797,7 +889,7 @@
     <div class="adv-hero__top">
       <p class="adv-hero__label">Shred Himalayas</p>
       <h1 class="adv-hero__title">Explore. Experience. <em>Excel.</em></h1>
-      <p class="adv-hero__sub">From adrenaline-pumping ski runs to peaceful alpine treks — choose your Himalayan
+      <p class="adv-hero__sub">From adrenaline-pumping ski runs to peaceful alpine treks â€” choose your Himalayan
         adventure and create memories that last a lifetime.</p>
       <div class="adv-hero__badges">
         <span class="adv-hero__badge">
@@ -877,7 +969,7 @@
           <span class="cat-card__arrow">→</span>
         </div>
 
-        <div class="cat-card" data-tab="activities" onclick="switchTab('activities')">
+        <!-- <div class="cat-card" data-tab="activities" onclick="switchTab('activities')">
           <img src="assets/images/gallery-pahalgam.png" alt="Adventure Activities" class="cat-card__img">
           <div class="cat-card__overlay"></div>
           <div class="cat-card__body">
@@ -890,25 +982,26 @@
             <p class="cat-card__desc">From biking to rafting — adventure never ends</p>
           </div>
           <span class="cat-card__arrow">→</span>
-        </div>
+        </div> -->
 
       </div>
     </div>
   </section>
 
+
   <!-- ===== CONTENT PANELS ===== -->
   <div class="adv-content">
 
-    <!-- ── SKIING PANEL ── -->
+    <!-- â”€â”€ SKIING PANEL â”€â”€ -->
     <div class="adv-panel is-active" id="panel-skiing">
       <div class="adv-panel__intro">
         <img src="assets/images/skiing-action.png" alt="" class="adv-panel__intro-bg">
         <div class="adv-panel__intro-inner">
           <div class="adv-panel__intro-text">
-            <p class="adv-panel__intro-label">Snow Sports · Gulmarg, Kashmir</p>
+            <p class="adv-panel__intro-label">Snow Sports Â· Gulmarg, Kashmir</p>
             <h2 class="adv-panel__intro-title">Skiing in the Himalayas</h2>
             <p class="adv-panel__intro-desc">Asia's highest gondola, legendary powder runs, and certified instructors
-              for all levels. From first-timers to expert heli-skiers — Gulmarg delivers like nowhere else on Earth.</p>
+              for all levels. From first-timers to expert heli-skiers â€” Gulmarg delivers like nowhere else on Earth.</p>
           </div>
           <div class="adv-panel__intro-stats">
             <div class="adv-intro-stat">
@@ -916,7 +1009,7 @@
               <div class="adv-intro-stat__label">Peak Altitude</div>
             </div>
             <div class="adv-intro-stat">
-              <div class="adv-intro-stat__val">Dec–Mar</div>
+              <div class="adv-intro-stat__val">Decâ€“Mar</div>
               <div class="adv-intro-stat__label">Snow Season</div>
             </div>
             <div class="adv-intro-stat">
@@ -927,7 +1020,7 @@
         </div>
       </div>
       <div class="adv-packages">
-        <!-- Rendered by SHData.renderSkiing() — synced with admin -->
+        <!-- Rendered by SHData.renderSkiing() â€” synced with admin -->
         <div id="skiing-packages-container"></div>
       </div>
       <div class="adv-cta">
@@ -944,15 +1037,15 @@
       </div>
     </div>
 
-    <!-- ── SNOWBOARDING PANEL ── -->
+    <!-- â”€â”€ SNOWBOARDING PANEL â”€â”€ -->
     <div class="adv-panel" id="panel-snowboarding">
       <div class="adv-panel__intro">
         <img src="assets/images/snowboarding-action.png" alt="" class="adv-panel__intro-bg">
         <div class="adv-panel__intro-inner">
           <div class="adv-panel__intro-text">
-            <p class="adv-panel__intro-label">Snow Sports · Gulmarg, Kashmir</p>
+            <p class="adv-panel__intro-label">Snow Sports Â· Gulmarg, Kashmir</p>
             <h2 class="adv-panel__intro-title">Snowboarding in the Himalayas</h2>
-            <p class="adv-panel__intro-desc">From butter-smooth groomers to untouched backcountry powder — Gulmarg is a
+            <p class="adv-panel__intro-desc">From butter-smooth groomers to untouched backcountry powder â€” Gulmarg is a
               snowboarder's dream. Expert coaches and world-class terrain for every rider.</p>
           </div>
           <div class="adv-panel__intro-stats">
@@ -961,7 +1054,7 @@
               <div class="adv-intro-stat__label">to Expert</div>
             </div>
             <div class="adv-intro-stat">
-              <div class="adv-intro-stat__val">Dec–Mar</div>
+              <div class="adv-intro-stat__val">Decâ€“Mar</div>
               <div class="adv-intro-stat__label">Snow Season</div>
             </div>
             <div class="adv-intro-stat">
@@ -972,7 +1065,7 @@
         </div>
       </div>
       <div class="adv-packages">
-        <!-- Rendered by SHData.renderSnowboarding() — synced with admin -->
+        <!-- Rendered by SHData.renderSnowboarding() â€” synced with admin -->
         <div id="snowboarding-packages-container"></div>
       </div>
       <div class="adv-cta">
@@ -989,21 +1082,21 @@
       </div>
     </div>
 
-    <!-- ── TREKKING PANEL ── -->
+    <!-- â”€â”€ TREKKING PANEL â”€â”€ -->
     <div class="adv-panel" id="panel-trekking">
       <div class="adv-panel__intro">
         <img src="assets/images/trekking-landscape.png" alt="" class="adv-panel__intro-bg">
         <div class="adv-panel__intro-inner">
           <div class="adv-panel__intro-text">
-            <p class="adv-panel__intro-label">Himalayan Treks · Kashmir</p>
+            <p class="adv-panel__intro-label">Himalayan Treks Â· Kashmir</p>
             <h2 class="adv-panel__intro-title">Trek Through Living Postcards</h2>
             <p class="adv-panel__intro-desc">Seven alpine lakes, wildflower meadows, glaciers and sacred peaks.
-              Kashmir's trekking routes are among the most breathtaking on Earth — guided by certified local experts.
+              Kashmir's trekking routes are among the most breathtaking on Earth â€” guided by certified local experts.
             </p>
           </div>
           <div class="adv-panel__intro-stats">
             <div class="adv-intro-stat">
-              <div class="adv-intro-stat__val">Jun–Oct</div>
+              <div class="adv-intro-stat__val">Junâ€“Oct</div>
               <div class="adv-intro-stat__label">Trek Season</div>
             </div>
             <div class="adv-intro-stat">
@@ -1018,7 +1111,7 @@
         </div>
       </div>
       <div class="adv-packages">
-        <!-- Rendered by SHData.renderTrekking() — synced with admin -->
+        <!-- Rendered by SHData.renderTrekking() â€” synced with admin -->
         <div id="trekking-packages-container"></div>
       </div>
       <div class="adv-cta">
@@ -1035,15 +1128,15 @@
       </div>
     </div>
 
-    <!-- ── ACTIVITIES PANEL ── -->
+    <!-- â”€â”€ ACTIVITIES PANEL â”€â”€ -->
     <div class="adv-panel" id="panel-activities">
       <div class="adv-panel__intro">
         <img src="assets/images/activities-winter.png" alt="" class="adv-panel__intro-bg">
         <div class="adv-panel__intro-inner">
           <div class="adv-panel__intro-text">
-            <p class="adv-panel__intro-label">All Seasons · Kashmir</p>
+            <p class="adv-panel__intro-label">All Seasons Â· Kashmir</p>
             <h2 class="adv-panel__intro-title">Adventure Activities</h2>
-            <p class="adv-panel__intro-desc">From white-water rafting to mountain biking, sledging to ice climbing —
+            <p class="adv-panel__intro-desc">From white-water rafting to mountain biking, sledging to ice climbing â€”
               Kashmir is an adventure playground every season of the year.</p>
           </div>
           <div class="adv-panel__intro-stats">
@@ -1065,11 +1158,11 @@
       <div class="adv-packages">
         <div class="adv-activities-wrap">
           <div>
-            <p class="adv-activities-col-title">❄ Winter Activities</p>
+            <p class="adv-activities-col-title">â„ Winter Activities</p>
             <div id="activities-winter-container"></div>
           </div>
           <div>
-            <p class="adv-activities-col-title">☀ Summer Activities</p>
+            <p class="adv-activities-col-title">â˜€ Summer Activities</p>
             <div id="activities-summer-container"></div>
           </div>
         </div>
@@ -1101,14 +1194,14 @@
   <script>
     /* ============================================================
        Adventures Page Controller
-       – Uses SHData renderers to stay in sync with admin panel
+       â€“ Uses SHData renderers to stay in sync with admin panel
     ============================================================ */
     (function () {
       'use strict';
 
       var currentTab = 'skiing';
 
-      // ── Tab switch ──────────────────────────────────────────
+      // â”€â”€ Tab switch â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
       window.switchTab = function (tabId) {
         if (currentTab === tabId) return;
         currentTab = tabId;
@@ -1132,26 +1225,49 @@
         }
       };
 
-      // ── Check URL hash for deep link e.g. adventures.html#trekking ──
+      // â”€â”€ Check URL hash for deep link e.g. adventures.html#trekking â”€â”€
       var hash = (window.location.hash || '').replace('#', '');
       if (['skiing', 'snowboarding', 'trekking', 'activities'].indexOf(hash) !== -1) {
         currentTab = hash;
         switchTab(hash);
       }
 
-      // ── Render all panels via SHData (admin-synced) ──────────
+      // â”€â”€ Render all panels via SHData (admin-synced) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
       document.addEventListener('DOMContentLoaded', function () {
 
-        // Skiing — uses SHData.renderSkiing
+        // Skiing â€” uses SHData.renderSkiing
         SHData.renderSkiing('skiing-packages-container');
 
-        // Snowboarding — uses SHData.renderSnowboarding
+        // Snowboarding â€” uses SHData.renderSnowboarding
         SHData.renderSnowboarding('snowboarding-packages-container');
 
-        // Trekking — uses SHData.renderTrekking
+        // Trekking â€” uses SHData.renderTrekking
         SHData.renderTrekking('trekking-packages-container');
 
-        // Activities — uses SHData.renderActivities
+        // Setup observer for active/centered card scaling
+        const container = document.getElementById('trekking-packages-container');
+        if (container && window.IntersectionObserver) {
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-active');
+              } else {
+                entry.target.classList.remove('is-active');
+              }
+            });
+          }, {
+            root: container,
+            threshold: 0.6
+          });
+          
+          setTimeout(function() {
+            container.querySelectorAll('.trek-card').forEach(function(card) {
+              observer.observe(card);
+            });
+          }, 300);
+        }
+
+        // Activities â€” uses SHData.renderActivities
         SHData.renderActivities('activities-winter-container', 'activities-summer-container');
 
         // Footer

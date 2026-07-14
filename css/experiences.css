@@ -877,3 +877,195 @@
     gap: 12px !important;
   }
 }
+
+/* ============================================================
+   MOBILE REDESIGN FOR EXPERIENCES SECTION (max-width: 768px)
+   ============================================================ */
+@media (max-width: 768px) {
+  /* Hide the old tab navigation list and pagination dots */
+  .experiences__nav,
+  .experiences__dots {
+    display: none !important;
+  }
+
+  /* Make sidebar container very compact (just the header) */
+  .experiences__sidebar {
+    padding: 40px 24px 20px !important;
+  }
+  
+  .experiences__sidebar-header {
+    margin-bottom: 0 !important;
+  }
+
+  /* The stage becomes the horizontal scroll row of cards */
+  .experiences__stage {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory !important;
+    scroll-behavior: smooth !important;
+    -webkit-overflow-scrolling: touch !important;
+    
+    margin: 0 !important;
+    padding: 24px 24px 40px !important;
+    gap: 16px !important;
+    height: auto !important;
+    min-height: unset !important;
+    max-height: none !important;
+
+    /* Hide scrollbar */
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+  }
+
+  .experiences__stage::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  /* Each panel acts as a card */
+  .experiences__panel {
+    display: flex !important;
+    flex-direction: column !important;
+    flex: 0 0 82vw !important;
+    max-width: 320px !important;
+    position: relative !important;
+    inset: auto !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    background: #121212 !important; /* Dark luxury card background */
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 20px !important; /* Rounded corners 18-24px */
+    overflow: hidden !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45) !important;
+    scroll-snap-align: center !important;
+    scroll-snap-stop: always !important;
+    
+    /* Active scale setup */
+    transform: scale(0.95) !important;
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
+                box-shadow 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
+                border-color 0.4s cubic-bezier(0.25, 1, 0.5, 1) !important;
+  }
+
+  /* Active Card Scale Up */
+  .experiences__panel.is-active {
+    transform: scale(1) !important;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6) !important;
+    border-color: rgba(167, 123, 52, 0.35) !important;
+  }
+
+  /* Large Image at the top */
+  .experiences__panel-image {
+    position: relative !important;
+    width: 100% !important;
+    height: 180px !important;
+    object-fit: cover !important;
+    border-radius: 0 !important;
+    display: block !important;
+  }
+
+  /* Hide the dark image overlays */
+  .experiences__panel-overlay,
+  .experiences__panel-overlay-bottom {
+    display: none !important;
+  }
+
+  /* Content area below the image */
+  .experiences__panel-content {
+    position: relative !important;
+    inset: auto !important;
+    padding: 24px 20px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    text-align: left !important;
+    background: transparent !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+    flex-grow: 1 !important;
+  }
+
+  /* Tag style */
+  .experiences__panel-tag {
+    font-size: 8px !important;
+    font-family: var(--font-accent);
+    font-weight: 700;
+    letter-spacing: 0.15em !important;
+    text-transform: uppercase !important;
+    color: var(--gold) !important;
+    background: rgba(167, 123, 52, 0.1) !important;
+    border: 1px solid rgba(167, 123, 52, 0.25) !important;
+    padding: 4px 10px !important;
+    border-radius: 100px !important;
+    margin-bottom: 12px !important;
+    display: inline-block !important;
+  }
+
+  /* Heading style */
+  .experiences__panel-heading {
+    font-size: 1.3rem !important;
+    color: #ffffff !important;
+    font-weight: 500 !important;
+    margin: 0 0 10px 0 !important;
+    text-shadow: none !important;
+    line-height: 1.3 !important;
+  }
+
+  /* Description style */
+  .experiences__panel-desc {
+    font-size: 0.82rem !important;
+    color: rgba(255, 255, 255, 0.6) !important;
+    line-height: 1.55 !important;
+    margin: 0 0 20px 0 !important;
+    display: block !important;
+  }
+
+  /* CTA Button style */
+  .experiences__panel-cta {
+    display: inline-flex !important;
+    align-items: center !important;
+    background: var(--gold) !important;
+    color: #ffffff !important;
+    font-family: var(--font-accent);
+    font-size: 9.5px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.15em !important;
+    text-transform: uppercase !important;
+    text-decoration: none !important;
+    padding: 10px 18px !important;
+    border-radius: 6px !important;
+    transform: none !important;
+    opacity: 1 !important;
+    gap: 8px !important;
+    margin-top: auto !important;
+    transition: all 0.3s ease !important;
+  }
+
+  .experiences__panel-cta-icon {
+    width: 14px !important;
+    height: 14px !important;
+    stroke-width: 2.5px !important;
+    transform: none !important;
+  }
+}
+
+/* View Timeline Fade-in Animation */
+@supports (animation-timeline: view()) {
+  .experiences__stage {
+    animation: experiencesFadeIn linear both;
+    animation-timeline: view();
+    animation-range: entry 10% cover 30%;
+  }
+}
+
+@keyframes experiencesFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,12 +1,12 @@
-/* ============================================
-   RENTALS — Equipment Cards
-   ============================================ */
+/* ============================================================
+   RENTALS — Equipment Cards Redesign
+   ============================================================ */
 
 .rentals {
   padding: var(--space-section) 0;
-  /* background: var(--bg-base); */
   position: relative;
   overflow: hidden;
+  background: #121212;
 }
 
 .rentals__header {
@@ -23,195 +23,266 @@
   gap: var(--space-6);
 }
 
+/* Base Card Styles */
 .rentals__card {
-  /* background: #1e1e1e;
-  border: 1px solid rgba(255, 255, 255, 0.08); */
-  border-radius: var(--radius-lg);
-  padding: var(--space-8) var(--space-6);
-  text-align: center;
-  transition: all var(--duration-normal) var(--ease-premium);
-  position: relative;
-  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  background: #18181a !important;
+  border-radius: 16px !important;
+  padding: 54px 30px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  min-height: 320px !important;
+  position: relative !important;
+  overflow: hidden !important;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3) !important;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+              border-color 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+              box-shadow 0.4s cubic-bezier(0.25, 1, 0.5, 1) !important;
+  box-sizing: border-box;
 }
 
-.rentals__card:hover {
-  transform: translateY(-8px);
-  border-color: var(--gold-border-hover);
-  box-shadow: var(--shadow-lg);
+/* Card Pseudo-element Background Images & Overlays */
+.rentals__card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1) !important;
+}
+
+.rentals__card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(18, 18, 20, 0.4) 0%, rgba(10, 10, 12, 0.88) 100%) !important;
+  z-index: 1;
+}
+
+/* Keep card text and icons above background overlay */
+.rentals__card > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Individual card backgrounds */
+.rentals__card:nth-child(1)::before {
+  background-image: url('https://images.unsplash.com/photo-1551698618-1fed5d7029b8?auto=format&fit=crop&w=600&q=80');
+}
+.rentals__card:nth-child(2)::before {
+  background-image: url('https://images.unsplash.com/photo-1522056690144-a21237930441?auto=format&fit=crop&w=600&q=80');
+}
+.rentals__card:nth-child(3)::before {
+  background-image: url('https://images.unsplash.com/photo-1486915309851-b0cc1f8a0084?auto=format&fit=crop&w=600&q=80');
+}
+.rentals__card:nth-child(4)::before {
+  background-image: url('https://images.unsplash.com/photo-1544192240-4a34fed0104c?auto=format&fit=crop&w=600&q=80');
+}
+
+/* Hover Zoom & Glow Interactions */
+@media (hover: hover) {
+  .rentals__card:hover::before {
+    transform: scale(1.06) !important;
+  }
+  
+  .rentals__card:hover {
+    transform: translateY(-8px) !important;
+    border-color: rgba(167, 123, 52, 0.45) !important;
+    box-shadow: 0 16px 40px rgba(167, 123, 52, 0.12),
+                0 0 20px rgba(167, 123, 52, 0.05) !important;
+  }
+  
+  .rentals__card:hover .rentals__card-icon {
+    transform: translateY(-4px) scale(1.05) !important;
+    background-color: rgba(167, 123, 52, 0.2) !important;
+    border-color: rgba(167, 123, 52, 0.5) !important;
+    box-shadow: 0 0 12px rgba(167, 123, 52, 0.3) !important;
+  }
 }
 
 .rentals__card--coming-soon {
-  opacity: 0.6;
+  opacity: 0.8 !important; /* Slightly more visible for background aesthetics */
 }
 
+/* Card Badge */
 .rentals__card-badge {
   position: absolute;
-  top: var(--space-4);
-  right: var(--space-4);
-  background: var(--warm-gold);
-  color: var(--midnight-navy);
-  font-size: 9px;
-  font-weight: var(--weight-bold);
-  letter-spacing: var(--tracking-wider);
+  top: 16px;
+  right: 16px;
+  background: var(--gold) !important;
+  color: #121212 !important;
+  font-size: 8.5px;
+  font-family: var(--font-accent);
+  font-weight: 700;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
-  padding: 3px 10px;
-  border-radius: var(--radius-full);
+  padding: 4px 12px;
+  border-radius: 100px;
+  z-index: 3;
 }
 
+/* Card Icons circular gold theme */
 .rentals__card-icon {
-  width: 72px;
-  height: 72px;
-  margin: 0 auto var(--space-5);
-  background: var(--glass-border);
-  border-radius: var(--radius-xl);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 32px;
-  transition: transform var(--duration-slow) var(--ease-premium);
+  width: 60px !important;
+  height: 60px !important;
+  margin: 0 auto 20px !important;
+  background: rgba(167, 123, 52, 0.1) !important;
+  border: 1px solid rgba(167, 123, 52, 0.25) !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: var(--gold) !important;
+  transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1),
+              background-color 0.35s ease,
+              border-color 0.35s ease !important;
 }
 
-.rentals__card:hover .rentals__card-icon {
-  transform: translateY(-4px);
+.rentals__card-icon svg {
+  width: 24px !important;
+  height: 24px !important;
+  stroke: var(--gold) !important;
+  fill: none !important;
 }
 
+/* Card Texts styling */
 .rentals__card-title {
-  font-size: var(--text-lg);
-  font-weight: var(--weight-semibold);
-  margin-bottom: var(--space-2);
+  font-family: var(--font-heading) !important;
+  font-size: 1.25rem !important;
+  font-weight: 500 !important;
+  color: #ffffff !important;
+  margin-bottom: 8px !important;
 }
 
 .rentals__card-desc {
-  font-size: var(--text-sm);
-  color: var(--mountain-gray);
+  font-size: 0.85rem !important;
+  color: rgba(255, 255, 255, 0.7) !important;
+  line-height: 1.55 !important;
+  margin: 0 !important;
 }
 
+/* ============================================================
+   RESPONSIVE LAYOUTS
+   ============================================================ */
+
+/* Tablet (2-column layout) */
 @media (max-width: 1024px) {
-  .rentals__grid { grid-template-columns: repeat(2, 1fr); }
+  .rentals__grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 16px !important;
+  }
 }
 
-@media (max-width: 768px) {
+/* Mobile (< 768px) Overrides */
+@media (max-width: 767px) {
   .rentals > .container {
-    padding: 32px 24px;
+    padding: 32px 24px !important;
   }
 
   .rentals__header {
-    text-align: left;
-    margin-bottom: 24px;
+    text-align: left !important;
+    margin-bottom: 24px !important;
   }
 
   .rentals__header .section-label {
-    justify-content: flex-start;
+    justify-content: flex-start !important;
   }
 
   .rentals__header .section-subtitle {
-    margin: 0;
+    margin: 0 !important;
   }
 
+  /* Single column full-width */
   .rentals__grid {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    padding: 0;
-    margin: 0;
-    overflow-x: visible;
-    scroll-snap-type: none;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 14px !important;
   }
 
-  .rentals__grid::-webkit-scrollbar {
-    display: none;
-  }
-
+  /* Realign elements horizontally on mobile */
   .rentals__card {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    column-gap: 16px;
-    row-gap: 4px;
-    text-align: left;
-    align-items: center;
-    padding: 16px 20px;
-    background: #1e1e1e;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 16px;
-    min-height: auto;
-    flex: none;
+    display: grid !important;
+    grid-template-columns: auto 1fr !important;
+    column-gap: 18px !important;
+    row-gap: 4px !important;
+    text-align: left !important;
+    align-items: center !important;
+    padding: 20px 24px !important;
+    min-height: unset !important;
+    width: 100% !important;
   }
 
   .rentals__card:hover {
-    transform: none;
-    box-shadow: none;
+    transform: none !important;
+    box-shadow: none !important;
   }
 
   .rentals__card-icon {
-    grid-column: 1;
-    grid-row: 1 / span 2;
-    margin: 0;
-    width: 48px;
-    height: 48px;
-    min-width: 48px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    grid-column: 1 !important;
+    grid-row: 1 / span 2 !important;
+    margin: 0 !important;
+    width: 48px !important;
+    height: 48px !important;
+    min-width: 48px !important;
   }
 
   .rentals__card-icon svg {
-    width: 22px;
-    height: 22px;
+    width: 20px !important;
+    height: 20px !important;
   }
 
   .rentals__card-title {
-    grid-column: 2;
-    grid-row: 1;
-    margin: 0;
-    font-size: 16px;
-    color: #ffffff;
-    line-height: 1.2;
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+    margin: 0 !important;
+    font-size: 1.1rem !important;
+    text-align: left !important;
   }
 
   .rentals__card-desc {
-    grid-column: 2;
-    grid-row: 2;
-    margin: 0;
-    font-size: 13px;
-    color: var(--text-muted);
-    line-height: 1.4;
+    grid-column: 2 !important;
+    grid-row: 2 !important;
+    margin: 0 !important;
+    font-size: 0.82rem !important;
+    text-align: left !important;
   }
 
   .rentals__card-badge {
-    top: 12px;
-    right: 16px;
+    top: 14px !important;
+    right: 20px !important;
   }
 }
 
 @media (max-width: 480px) {
   .rentals > .container {
-    padding: 24px 16px;
+    padding: 24px 16px !important;
   }
 
   .rentals__card {
-    padding: 14px 16px;
-    column-gap: 12px;
+    padding: 18px 20px !important;
+    column-gap: 14px !important;
   }
 
   .rentals__card-icon {
-    width: 40px;
-    height: 40px;
-    min-width: 40px;
+    width: 42px !important;
+    height: 42px !important;
+    min-width: 42px !important;
   }
 
   .rentals__card-icon svg {
-    width: 18px;
-    height: 18px;
+    width: 18px !important;
+    height: 18px !important;
   }
 
   .rentals__card-title {
-    font-size: 15px;
+    font-size: 1rem !important;
   }
 
   .rentals__card-desc {
-    font-size: 12px;
+    font-size: 0.78rem !important;
   }
 }

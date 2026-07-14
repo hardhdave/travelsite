@@ -8,7 +8,12 @@ body {
   color: var(--text-primary) !important;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: var(--text-primary) !important;
   font-family: var(--font-heading);
   font-weight: var(--weight-light);
@@ -28,21 +33,36 @@ p {
 /* ---- Navbar subpage scrolled override ---- */
 .navbar--scrolled {
   background: rgba(8, 8, 8, 0.94) !important;
-  border-bottom: 1px solid rgba(196,168,108,0.2) !important;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.3) !important;
+  border-bottom: 1px solid rgba(196, 168, 108, 0.2) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
 }
 
-.navbar--scrolled .navbar__logo { color: var(--text-primary) !important; }
-.navbar--scrolled .navbar__link { color: rgba(245,240,232,0.65) !important; }
+.navbar--scrolled .navbar__logo {
+  color: var(--text-primary) !important;
+}
+
+.navbar--scrolled .navbar__link {
+  color: rgba(245, 240, 232, 0.65) !important;
+}
+
 .navbar--scrolled .navbar__link:hover,
-.navbar--scrolled .navbar__link.active { color: var(--gold) !important; }
+.navbar--scrolled .navbar__link.active {
+  color: var(--gold) !important;
+}
+
 .navbar--scrolled .navbar__logo-icon {
-  background: rgba(196,168,108,0.1) !important;
+  background: rgba(196, 168, 108, 0.1) !important;
   border: 1px solid var(--gold-border) !important;
   color: var(--gold) !important;
 }
-.navbar--scrolled .navbar__link::after { background: var(--gold) !important; }
-.navbar--scrolled .navbar__toggle span { background: var(--text-primary) !important; }
+
+.navbar--scrolled .navbar__link::after {
+  background: var(--gold) !important;
+}
+
+.navbar--scrolled .navbar__toggle span {
+  background: var(--text-primary) !important;
+}
 
 /* ---- Section Spacing ---- */
 .subpage-section {
@@ -53,8 +73,8 @@ p {
 
 .subpage-section--alt {
   background: var(--bg-raised) !important;
-  border-top: 1px solid rgba(196,168,108,0.1);
-  border-bottom: 1px solid rgba(196,168,108,0.1);
+  border-top: 1px solid rgba(196, 168, 108, 0.1);
+  border-bottom: 1px solid rgba(196, 168, 108, 0.1);
 }
 
 /* ---- Category Group ---- */
@@ -75,7 +95,7 @@ p {
   color: var(--gold) !important;
   padding-bottom: 14px;
   margin-bottom: 32px;
-  border-bottom: 1px solid rgba(196,168,108,0.2);
+  border-bottom: 1px solid rgba(196, 168, 108, 0.2);
   display: flex;
   align-items: center;
   gap: 14px;
@@ -95,7 +115,7 @@ p {
 /* ---- Detailed Package Card (Premium Vertical) ---- */
 .detail-card {
   background: var(--bg-card) !important;
-  border: 1px solid rgba(196,168,108,0.12) !important;
+  border: 1px solid rgba(196, 168, 108, 0.12) !important;
   border-radius: 24px !important;
   overflow: hidden;
   transition: all var(--duration-normal) var(--ease-premium);
@@ -172,7 +192,8 @@ p {
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  height: 4.8em; /* Exactly 3 lines */
+  height: 4.8em;
+  /* Exactly 3 lines */
   margin-bottom: 8px;
 }
 
@@ -181,7 +202,8 @@ p {
   font-size: 1.15rem;
   font-weight: 700;
   color: var(--gold, #c7965a) !important;
-  margin-top: auto; /* Pushes price to bottom above buttons */
+  margin-top: auto;
+  /* Pushes price to bottom above buttons */
   margin-bottom: 4px;
   letter-spacing: 0.02em;
 }
@@ -199,10 +221,10 @@ p {
   font-family: var(--font-accent);
   font-size: 9.5px;
   color: var(--text-secondary) !important;
-  background: rgba(255,255,255,0.03) !important;
+  background: rgba(255, 255, 255, 0.03) !important;
   padding: 5px 10px;
   border-radius: 0 !important;
-  border: 1px solid rgba(255,255,255,0.06) !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
   letter-spacing: 0.05em;
 }
 
@@ -218,7 +240,7 @@ p {
   font-size: 8.5px;
   font-weight: var(--weight-medium);
   color: var(--gold) !important;
-  background: rgba(196,168,108,0.06) !important;
+  background: rgba(196, 168, 108, 0.06) !important;
   padding: 4px 8px;
   border-radius: 0 !important;
   border: 1px solid var(--gold-border) !important;
@@ -256,7 +278,7 @@ p {
   background: var(--gold-light) !important;
   color: #0a0a0a !important;
   border-color: var(--gold-light) !important;
-  box-shadow: 0 8px 30px rgba(196,168,108,0.25) !important;
+  box-shadow: 0 8px 30px rgba(196, 168, 108, 0.25) !important;
 }
 
 .btn--outline {
@@ -293,7 +315,7 @@ p {
 /* ---- Trek Detail Card ---- */
 .trek-card {
   background: var(--bg-card) !important;
-  border: 1px solid rgba(196,168,108,0.12) !important;
+  border: 1px solid rgba(196, 168, 108, 0.12) !important;
   border-radius: 24px !important;
   overflow: hidden;
   transition: all var(--duration-normal) var(--ease-premium);
@@ -303,8 +325,8 @@ p {
 
 .trek-card:hover {
   transform: translateY(-4px);
-  border-color: rgba(196,168,108,0.35) !important;
-  box-shadow: 0 16px 48px rgba(0,0,0,0.4);
+  border-color: rgba(196, 168, 108, 0.35) !important;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
 }
 
 .trek-card__image-wrap {
@@ -341,15 +363,15 @@ p {
 }
 
 .trek-card__difficulty--easy {
-  background: rgba(196,168,108,0.12) !important;
+  background: rgba(196, 168, 108, 0.12) !important;
   color: var(--gold) !important;
   border: 1px solid var(--gold-border) !important;
 }
 
 .trek-card__difficulty--moderate {
-  background: rgba(196,168,108,0.15) !important;
+  background: rgba(196, 168, 108, 0.15) !important;
   color: var(--gold-light) !important;
-  border: 1px solid rgba(196,168,108,0.4) !important;
+  border: 1px solid rgba(196, 168, 108, 0.4) !important;
 }
 
 .trek-card__difficulty--challenging {
@@ -384,7 +406,8 @@ p {
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  height: 4.8em; /* Exactly 3 lines */
+  height: 4.8em;
+  /* Exactly 3 lines */
   margin-bottom: 8px;
 }
 
@@ -393,7 +416,8 @@ p {
   font-size: 1.15rem;
   font-weight: 700;
   color: var(--gold, #c7965a) !important;
-  margin-top: auto; /* Pushes price to bottom above buttons */
+  margin-top: auto;
+  /* Pushes price to bottom above buttons */
   margin-bottom: 4px;
   letter-spacing: 0.02em;
 }
@@ -411,10 +435,10 @@ p {
   font-family: var(--font-accent);
   font-size: 10px;
   color: var(--text-secondary) !important;
-  background: rgba(255,255,255,0.04) !important;
+  background: rgba(255, 255, 255, 0.04) !important;
   padding: 4px 10px;
   border-radius: 0 !important;
-  border: 1px solid rgba(255,255,255,0.07) !important;
+  border: 1px solid rgba(255, 255, 255, 0.07) !important;
 }
 
 .trek-card__highlights {
@@ -441,7 +465,7 @@ p {
 /* ---- Tour Package Card (large) ---- */
 .tour-card {
   border-radius: 0 !important;
-  border: 1px solid rgba(196,168,108,0.12);
+  border: 1px solid rgba(196, 168, 108, 0.12);
   overflow: hidden;
   position: relative;
   min-height: 420px;
@@ -453,8 +477,8 @@ p {
 
 .tour-card:hover {
   transform: translateY(-4px);
-  border-color: rgba(196,168,108,0.35);
-  box-shadow: 0 16px 48px rgba(0,0,0,0.5);
+  border-color: rgba(196, 168, 108, 0.35);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
 }
 
 .tour-card__image {
@@ -476,8 +500,8 @@ p {
   position: absolute;
   inset: 0;
   background: linear-gradient(180deg,
-    transparent 20%,
-    rgba(8,8,8,0.9) 100%);
+      transparent 20%,
+      rgba(8, 8, 8, 0.9) 100%);
   z-index: 1;
 }
 
@@ -498,7 +522,7 @@ p {
   font-weight: 700;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  background: rgba(196,168,108,0.1) !important;
+  background: rgba(196, 168, 108, 0.1) !important;
   color: var(--gold) !important;
   padding: 4px 12px;
   border-radius: 0 !important;
@@ -530,10 +554,10 @@ p {
   font-size: 10px;
   font-weight: var(--weight-medium);
   color: var(--text-secondary) !important;
-  background: rgba(255,255,255,0.06) !important;
+  background: rgba(255, 255, 255, 0.06) !important;
   padding: 3px 12px;
   border-radius: 0 !important;
-  border: 1px solid rgba(255,255,255,0.1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
   letter-spacing: 0.05em;
 }
 
@@ -561,8 +585,8 @@ p {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1px;
-  background: rgba(196,168,108,0.1);
-  border: 1px solid rgba(196,168,108,0.15);
+  background: rgba(196, 168, 108, 0.1);
+  border: 1px solid rgba(196, 168, 108, 0.15);
   margin-bottom: 64px;
 }
 
@@ -611,7 +635,7 @@ p {
 /* ---- Info Box ---- */
 .info-box {
   background: var(--bg-card) !important;
-  border: 1px solid rgba(196,168,108,0.15) !important;
+  border: 1px solid rgba(196, 168, 108, 0.15) !important;
   border-radius: 0 !important;
   padding: 32px;
 }
@@ -655,16 +679,29 @@ p {
 
 /* ---- Responsive ---- */
 @media (max-width: 1100px) {
-  .detail-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .detail-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
 }
 
 @media (max-width: 1024px) {
-  .detail-grid--cards { grid-template-columns: repeat(2, 1fr); gap: 24px; }
-  .detail-grid--three-cards { grid-template-columns: repeat(2, 1fr); }
-  .stats-row { grid-template-columns: repeat(2, 1fr); }
+  .detail-grid--cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .detail-grid--three-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .stats-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width: 768px) {
+
   /* Horizontal swipe layout on mobile for premium look and less scrolling */
   .detail-grid,
   .detail-grid--cards,
@@ -684,7 +721,7 @@ p {
     padding-bottom: 24px !important;
     scrollbar-width: none !important;
   }
-  
+
   .detail-grid::-webkit-scrollbar,
   .detail-grid--cards::-webkit-scrollbar,
   .detail-grid--three-cards::-webkit-scrollbar {
@@ -694,28 +731,37 @@ p {
   .detail-card,
   .trek-card,
   .tour-card,
-  .detail-grid > div,
-  .detail-grid--cards > div,
-  .detail-grid--three-cards > div {
+  .detail-grid>div,
+  .detail-grid--cards>div,
+  .detail-grid--three-cards>div {
     flex: 0 0 85% !important;
     flex-shrink: 0 !important;
     scroll-snap-align: start !important;
     max-width: 320px !important;
     height: auto !important;
   }
-  
-  .stats-row { grid-template-columns: 1fr 1fr; gap: 1px; }
-  .info-box__list { grid-template-columns: 1fr; }
+
+  .stats-row {
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+  }
+
+  .info-box__list {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 480px) {
-  .stats-row { grid-template-columns: 1fr 1fr; }
+  .stats-row {
+    grid-template-columns: 1fr 1fr;
+  }
+
   .detail-card,
   .trek-card,
   .tour-card,
-  .detail-grid > div,
-  .detail-grid--cards > div,
-  .detail-grid--three-cards > div {
+  .detail-grid>div,
+  .detail-grid--cards>div,
+  .detail-grid--three-cards>div {
     flex: 0 0 88% !important;
     flex-shrink: 0 !important;
   }
@@ -953,7 +999,7 @@ p {
     grid-template-columns: 1fr;
     min-height: auto;
   }
-  
+
   .sh-modal__image-side {
     height: 160px;
     min-height: auto;
@@ -966,7 +1012,7 @@ p {
     top: 10px;
     right: 10px;
   }
-  
+
   .sh-modal__content-side {
     padding: 16px 20px 24px;
     gap: 12px;
@@ -983,7 +1029,7 @@ p {
     font-size: 1.15rem !important;
     margin-bottom: 10px !important;
   }
-  
+
   .sh-modal__meta-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 8px;
@@ -1025,4 +1071,3 @@ p {
     font-size: 13px;
   }
 }
-

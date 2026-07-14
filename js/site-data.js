@@ -11,8 +11,8 @@ const SHData = (function () {
   const defaults = {
     settings: {
       whatsappNumber: '919999999999',
-      heroTitle: 'Experience Kashmir Beyond The Ordinary',
-      heroSubtitle: 'Luxury Adventures, Ski Experiences, Treks and Bespoke Himalayan Journeys Crafted By Local Experts.',
+      heroTitle: 'Himalayas, by locals.',
+      heroSubtitle: 'Premium private journeys across Ladakh, Zanskar, Spiti, Himachal and Bhutan.',
       heroVideoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-snowy-mountain-peak-under-blue-sky-41584-large.mp4',
       footerCopyright: '© 2024 Shred Himalayas. All rights reserved. Crafted with love in Kashmir.'
     },
@@ -477,6 +477,10 @@ const SHData = (function () {
               </div>
               <div class="sh-modal__cta" style="margin-top: 24px;">
                 <a href="https://wa.me/${wa_num}?text=${encodeURIComponent(itemData.waMsg || '')}" class="btn btn--primary sh-modal__enquire" target="_blank" style="padding: 12px 28px;"><span>Enquire Now</span></a>
+                <button class="btn sh-modal__pdf-btn" data-pdf-title="${itemData.title}" style="padding: 12px 20px; background: transparent; border: 1px solid rgba(196,168,108,0.45); color: #c4a86c; display:flex; align-items:center; justify-content:center; gap:8px; border-radius:8px; font-size:13px; cursor:pointer; transition: all 0.25s ease; width:100%; margin-top:10px;">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  <span>Download PDF</span>
+                </button>
               </div>
             </div>`;
         } else if (itemType === 'package') {
@@ -527,6 +531,10 @@ const SHData = (function () {
               </div>
               <div class="sh-modal__cta" style="margin-top: 24px;">
                 <a href="https://wa.me/${wa_num}?text=${encodeURIComponent(itemData.waMsg || '')}" class="btn btn--primary sh-modal__enquire" target="_blank" style="padding: 12px 28px;"><span>Enquire Now</span></a>
+                <button class="btn sh-modal__pdf-btn" data-pdf-title="${itemData.title}" style="padding: 12px 20px; background: transparent; border: 1px solid rgba(196,168,108,0.45); color: #c4a86c; display:flex; align-items:center; justify-content:center; gap:8px; border-radius:8px; font-size:13px; cursor:pointer; transition: all 0.25s ease; width:100%; margin-top:10px;">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  <span>Download PDF</span>
+                </button>
               </div>
             </div>`;
         } else {
@@ -565,9 +573,14 @@ const SHData = (function () {
               </div>
               <div class="sh-modal__cta" style="margin-top: 24px;">
                 <a href="https://wa.me/${wa_num}?text=${encodeURIComponent(itemData.waMsg || '')}" class="btn btn--primary sh-modal__enquire" target="_blank" style="padding: 12px 28px;"><span>Enquire Now</span></a>
+                <button class="btn sh-modal__pdf-btn" data-pdf-title="${itemData.title}" style="padding: 12px 20px; background: transparent; border: 1px solid rgba(196,168,108,0.45); color: #c4a86c; display:flex; align-items:center; justify-content:center; gap:8px; border-radius:8px; font-size:13px; cursor:pointer; transition: all 0.25s ease; width:100%; margin-top:10px;">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  <span>Download PDF</span>
+                </button>
               </div>
             </div>`;
         }
+
 
         if (contentEl && overlay) {
           contentEl.innerHTML = html;
@@ -576,11 +589,81 @@ const SHData = (function () {
         }
       }
     });
+
+    // ── PDF Download Handler (single reusable listener for all popups) ──
+    function loadScript(src) {
+      return new Promise(function (resolve, reject) {
+        if (document.querySelector('script[src="' + src + '"]')) { resolve(); return; }
+        var s = document.createElement('script');
+        s.src = src;
+        s.onload = resolve;
+        s.onerror = reject;
+        document.head.appendChild(s);
+      });
+    }
+
+    document.addEventListener('click', function (e) {
+      var btn = e.target.closest('.sh-modal__pdf-btn');
+      if (!btn) return;
+      if (btn.disabled) return;
+
+      var title = (btn.getAttribute('data-pdf-title') || 'Shred-Himalayas').trim();
+      var filename = title.replace(/[^a-zA-Z0-9\s-]/g, '').replace(/\s+/g, '-') + '.pdf';
+      var modal = document.getElementById('shModal');
+      if (!modal) return;
+
+      // Loading state
+      btn.disabled = true;
+      var origHTML = btn.innerHTML;
+      btn.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="animation:spin 1s linear infinite"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg><span>Generating…</span>';
+
+      // Inject spinner keyframe once
+      if (!document.getElementById('sh-pdf-spin-style')) {
+        var st = document.createElement('style');
+        st.id = 'sh-pdf-spin-style';
+        st.textContent = '@keyframes spin{to{transform:rotate(360deg)}}';
+        document.head.appendChild(st);
+      }
+
+      // Hide UI-only elements during capture
+      var closeBtn = document.getElementById('shModalClose');
+      var pdfBtns = modal.querySelectorAll('.sh-modal__pdf-btn');
+      if (closeBtn) closeBtn.style.opacity = '0';
+      pdfBtns.forEach(function(b){ b.style.opacity = '0'; });
+
+      loadScript('https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js')
+        .then(function () {
+          var opt = {
+            margin:        [10, 10, 10, 10],
+            filename:      filename,
+            image:         { type: 'jpeg', quality: 0.96 },
+            html2canvas:   { scale: 2, useCORS: true, logging: false, backgroundColor: '#12160F' },
+            jsPDF:         { unit: 'mm', format: 'a4', orientation: 'portrait' },
+            pagebreak:     { mode: ['avoid-all', 'css', 'legacy'] }
+          };
+          return html2pdf().set(opt).from(modal).save();
+        })
+        .then(function () {
+          if (closeBtn) closeBtn.style.opacity = '';
+          pdfBtns.forEach(function(b){ b.style.opacity = ''; });
+          btn.innerHTML = origHTML;
+          btn.disabled = false;
+        })
+        .catch(function (err) {
+          console.error('PDF generation failed:', err);
+          if (closeBtn) closeBtn.style.opacity = '';
+          pdfBtns.forEach(function(b){ b.style.opacity = ''; });
+          btn.innerHTML = origHTML;
+          btn.disabled = false;
+        });
+    });
   }
 
   // Public API
-  return { get, set, reset, defaults,
+  return {
+    get, set, reset, defaults,
     renderSkiing, renderSnowboarding, renderTrekking,
     renderPackages, renderActivities, renderRentals,
-    renderTestimonials, renderHero, renderFooter, updateWhatsApp };
+    renderTestimonials, renderHero, renderFooter, updateWhatsApp
+  };
 })();

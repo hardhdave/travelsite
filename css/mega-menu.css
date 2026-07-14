@@ -84,7 +84,7 @@
     opacity 0.4s var(--ease-premium),
     transform 0.4s var(--ease-premium);
   will-change: opacity, transform;
-  padding-top: 70px; /* offset for navbar height */
+  padding-top: 54px; /* offset for navbar height */
   overflow: hidden;
 }
 
