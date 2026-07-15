@@ -1,0 +1,185 @@
+/* ============================================
+   FLOATING WHATSAPP CHAT POPUP STYLE
+   ============================================ */
+
+.chat-popup {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 360px;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.16);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  z-index: 10000;
+  box-sizing: border-box;
+  font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  opacity: 0;
+  transform: translateY(30px) scale(0.95);
+  pointer-events: none;
+  visibility: hidden;
+  transition: opacity 0.35s cubic-bezier(0.25, 1, 0.5, 1),
+              transform 0.35s cubic-bezier(0.25, 1, 0.5, 1),
+              visibility 0.35s;
+}
+
+/* Visibility State classes */
+.chat-popup.chat-popup--visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+  visibility: visible;
+}
+
+/* Close Button */
+.chat-popup__close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  color: #888888;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s, color 0.2s;
+  padding: 0;
+  z-index: 2;
+}
+
+.chat-popup__close:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  color: #333333;
+}
+
+.chat-popup__close:focus {
+  outline: 2px solid #25D366;
+  outline-offset: 1px;
+}
+
+.chat-popup__close svg {
+  width: 18px;
+  height: 18px;
+  stroke-width: 2;
+}
+
+/* Header Content Layout */
+.chat-popup__body {
+  display: flex;
+  align-items: start;
+  gap: 14px;
+  margin-bottom: 20px;
+  padding-right: 16px; /* Avoid overlapping with close button */
+}
+
+/* Avatar Group */
+.chat-popup__avatar-container {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.chat-popup__avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+  display: block;
+}
+
+.chat-popup__status-dot {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 13px;
+  height: 13px;
+  background-color: #25D366;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+/* Texts */
+.chat-popup__info {
+  flex: 1;
+  min-width: 0;
+  text-align: left;
+}
+
+.chat-popup__title {
+  font-size: 15.5px;
+  font-weight: 700;
+  color: #111111;
+  margin: 0 0 5px 0;
+  line-height: 1.3;
+}
+
+.chat-popup__desc {
+  font-size: 13px;
+  font-weight: 400;
+  color: #555555;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* CTA Button */
+.chat-popup__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  background-color: #25D366;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 13.5px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  padding: 13px 20px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  box-sizing: border-box;
+  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.22);
+  transition: background-color 0.25s, transform 0.25s, box-shadow 0.25s;
+}
+
+.chat-popup__btn:hover {
+  background-color: #20ba5a;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.35);
+}
+
+.chat-popup__btn:focus {
+  outline: 2px solid #20ba5a;
+  outline-offset: 2px;
+}
+
+.chat-popup__btn:active {
+  transform: translateY(0);
+}
+
+.chat-popup__btn svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+/* Responsive Media Queries */
+@media (max-width: 768px) {
+  .chat-popup {
+    bottom: 16px;
+    right: 16px;
+    left: 16px;
+    width: auto;
+    border-radius: 16px;
+    padding: 18px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  }
+}
