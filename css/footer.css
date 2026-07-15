@@ -32,9 +32,9 @@ body{
   display: flex;
   align-items: center;
   gap: var(--space-3);
-  font-family: var(--font-heading);
+  font-family: var(--font-logo);
   font-size: clamp(1.1rem, 1.5vw, 1.4rem);
-  font-weight: var(--weight-light);
+  font-weight: 600;
   letter-spacing: 0.1em;
   color: var(--text-primary);
 }

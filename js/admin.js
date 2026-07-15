@@ -96,6 +96,7 @@ function renderPage(page) {
     case 'sightseeing': renderSightseeingEditor(); break;
     case 'rentals': renderRentalsEditor(); break;
     case 'packages': renderPackagesEditor(); break;
+    case 'itineraries': renderItinerariesEditor(); break;
     case 'testimonials': renderTestimonialsEditor(); break;
     case 'settings': loadSettings(); break;
   }
@@ -140,6 +141,7 @@ function renderDashboard() {
     { icon:'📍', title:'Sightseeing', page:'sightseeing', count: sightseeing.length + ' spots' },
     { icon:'🎿', title:'Rentals', page:'rentals', count: rentals.length + ' items' },
     { icon:'📦', title:'Packages', page:'packages', count: packages.length + ' tours' },
+    { icon:'📄', title:'Itineraries', page:'itineraries', count: packages.filter(function(p){return p.itineraryPdf;}).length + ' PDFs' },
     { icon:'💬', title:'Testimonials', page:'testimonials', count: testimonials.length + ' reviews' },
     { icon:'⚙️', title:'Settings', page:'settings', count: 'Site config' }
   ];
@@ -746,6 +748,117 @@ function testimonialForm(item) {
   return '<div class="form-row">' + field('Reviewer Name *','f-name',item.name) + field('Initials (e.g. AK)','f-initials',item.initials,'text','AK') + '</div>' +
     field('Source (e.g. Google Review ★ 5.0)','f-source',item.source) +
     fieldTA('Review Text *','f-text',item.text,5);
+}
+
+// ─── ITINERARY EDITOR ─────────────────────────────────
+function renderItinerariesEditor() {
+  var pkgs = SHData.get('packages') || [];
+  var el = document.getElementById('itineraries-editor');
+  if (!el) return;
+  
+  if (!pkgs.length) {
+    el.innerHTML = emptyState('No packages available. Add some packages first.');
+    return;
+  }
+
+  el.innerHTML = pkgs.map(function(p, pi) {
+    var hasPdf = p.itineraryPdf && p.itineraryPdf.length > 0;
+    var filename = p.itineraryPdfName || (hasPdf ? 'uploaded-itinerary.pdf' : '');
+    var currentPdfHtml = hasPdf 
+      ? '<div class="pdf-status" style="margin-bottom:12px; font-size:13px; color:var(--gold); display:flex; align-items:center; gap:6px;">📄 <span>' + escHtml(filename) + '</span></div>'
+      : '<div class="pdf-status" style="margin-bottom:12px; font-size:13px; color:var(--t3); font-style:italic;">No PDF uploaded</div>';
+    
+    var uploadBtnLabel = hasPdf ? 'Replace PDF' : 'Upload PDF';
+    var removeBtnHtml = hasPdf 
+      ? '<button type="button" class="tbtn tbtn--danger" onclick="removeItinerary(' + pi + ')">Remove</button>'
+      : '';
+
+    return '<div class="settings-card" style="margin-bottom:16px;">' +
+      '<div class="settings-card-header"><div class="settings-card-icon">📦</div><h3>Package: ' + escHtml(p.title) + '</h3></div>' +
+      '<div class="field">' +
+      '<label>Itinerary PDF (Accepts PDF files only, Max 10MB)</label>' +
+      currentPdfHtml +
+      '<div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">' +
+      '<button type="button" class="save-btn" onclick="triggerPdfUpload(' + pi + ')">📁 ' + uploadBtnLabel + '</button>' +
+      removeBtnHtml +
+      '<input type="file" id="pdf-file-' + pi + '" accept="application/pdf" style="display:none" onchange="handlePdfUpload(' + pi + ')">' +
+      '</div>' +
+      '<div id="upload-loading-' + pi + '" style="display:none; margin-top:12px; font-size:12.5px; color:var(--gold);">' +
+      '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="animation:spin 1s linear infinite; vertical-align:middle; margin-right:6px;"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>' +
+      '<span>Uploading itinerary...</span>' +
+      '</div>' +
+      '</div>' +
+      '</div>';
+  }).join('');
+}
+
+function triggerPdfUpload(pi) {
+  var fileEl = document.getElementById('pdf-file-' + pi);
+  if (fileEl) fileEl.click();
+}
+
+function handlePdfUpload(pi) {
+  var fileEl = document.getElementById('pdf-file-' + pi);
+  if (!fileEl || !fileEl.files[0]) return;
+  var file = fileEl.files[0];
+
+  // Validation: accepts PDF only
+  if (file.type !== 'application/pdf' && !file.name.endsWith('.pdf')) {
+    showToast('Invalid file type. Please select a PDF file.', false);
+    fileEl.value = '';
+    return;
+  }
+
+  // Validation: size limit (10MB)
+  var maxSize = 10 * 1024 * 1024; // 10MB
+  if (file.size > maxSize) {
+    showToast('File is too large. Maximum size is 10 MB.', false);
+    fileEl.value = '';
+    return;
+  }
+
+  // Show loading state
+  var loadingEl = document.getElementById('upload-loading-' + pi);
+  if (loadingEl) loadingEl.style.display = 'block';
+
+  // Read file as Base64 Data URL
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    var dataUrl = e.target.result;
+    
+    // Save PDF in package data
+    var pkgs = SHData.get('packages');
+    pkgs[pi].itineraryPdf = dataUrl;
+    pkgs[pi].itineraryPdfName = file.name;
+    SHData.set('packages', pkgs);
+    
+    // Hide loading
+    if (loadingEl) loadingEl.style.display = 'none';
+    
+    showToast('Itinerary PDF uploaded successfully');
+    renderItinerariesEditor();
+  };
+  reader.onerror = function() {
+    if (loadingEl) loadingEl.style.display = 'none';
+    showToast('Failed to upload PDF', false);
+  };
+  
+  // Simulate minor delay for loading state visibility
+  setTimeout(function() {
+    reader.readAsDataURL(file);
+  }, 600);
+}
+
+function removeItinerary(pi) {
+  if (!confirm('Remove this itinerary PDF?')) return;
+  
+  var pkgs = SHData.get('packages');
+  pkgs[pi].itineraryPdf = '';
+  pkgs[pi].itineraryPdfName = '';
+  SHData.set('packages', pkgs);
+  
+  showToast('Itinerary PDF removed');
+  renderItinerariesEditor();
 }
 
 // ─── BOOT ─────────────────────────────────────────────

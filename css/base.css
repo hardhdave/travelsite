@@ -70,17 +70,17 @@ h4,
 h5,
 h6 {
   font-family: var(--font-heading);
-  font-weight: var(--weight-regular);
+  font-weight: var(--weight-bold);
   line-height: var(--leading-tight);
   letter-spacing: var(--tracking-tight);
   color: var(--text-primary);
 }
 
-h1 { font-size: var(--text-7xl); font-weight: var(--weight-light); }
+h1 { font-size: var(--text-7xl); }
 h2 { font-size: var(--text-5xl); }
-h3 { font-size: var(--text-4xl); font-weight: var(--weight-light); }
+h3 { font-size: var(--text-4xl); }
 h4 { font-size: var(--text-3xl); }
-h5 { font-size: var(--text-2xl); font-weight: var(--weight-medium); }
+h5 { font-size: var(--text-2xl); }
 h6 { font-size: var(--text-xl); }
 
 button,

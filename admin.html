@@ -4,11 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Admin Panel — Shred Himalayas</title>
-<link rel="preconnect" href="https://api.fontshare.com">
-<link href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400,300&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/fonts.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Inter:wght@400;500&family=Manrope:wght@700&display=swap" rel="stylesheet">
 <style>
-:root{--gold:#B8925A;--gold-glow:rgba(184,146,90,0.18);--gold-border:rgba(184,146,90,0.28);--font-h:'Canela',Georgia,serif;--font-b:'Satoshi',system-ui,sans-serif;--sw:260px;--th:64px;--r:12px;--rs:8px;--rx:5px;--d:.22s;--e:cubic-bezier(.16,1,.3,1)}
+:root{--gold:#B8925A;--gold-glow:rgba(184,146,90,0.18);--gold-border:rgba(184,146,90,0.28);--font-h:'Manrope',system-ui,sans-serif;--font-b:'Inter',system-ui,sans-serif;--font-l:'Cormorant Garamond',Georgia,serif;--sw:260px;--th:64px;--r:12px;--rs:8px;--rx:5px;--d:.22s;--e:cubic-bezier(.16,1,.3,1)}
 [data-theme=dark]{--bg:#080810;--sbg:#06060e;--tbg:rgba(6,6,14,.92);--cbg:rgba(255,255,255,.025);--cbgh:rgba(255,255,255,.045);--cb:rgba(255,255,255,.07);--cbH:rgba(255,255,255,.14);--t:#f0f0f8;--t2:#a0a0b8;--t3:#50505e;--ib:rgba(255,255,255,.04);--ib2:rgba(255,255,255,.09);--div:rgba(255,255,255,.06);--mb:#0a0a14;--nab:rgba(184,146,90,.10);--nhb:rgba(255,255,255,.04);--sc:rgba(255,255,255,.10);--bb:rgba(255,255,255,.06);--bt:#a0a0b8;--g:#22c55e;--re:#ef4444;--am:#f59e0b;--sh:0 24px 64px rgba(0,0,0,.7)}
 [data-theme=light]{--bg:#f4f4f9;--sbg:#fff;--tbg:rgba(255,255,255,.92);--cbg:#fff;--cbgh:#f8f8fd;--cb:rgba(0,0,0,.08);--cbH:rgba(0,0,0,.16);--t:#18182a;--t2:#5a5a72;--t3:#a8a8c0;--ib:rgba(0,0,0,.03);--ib2:rgba(0,0,0,.10);--div:rgba(0,0,0,.07);--mb:#fff;--nab:rgba(184,146,90,.10);--nhb:rgba(0,0,0,.04);--sc:rgba(0,0,0,.12);--bb:rgba(0,0,0,.06);--bt:#5a5a72;--g:#16a34a;--re:#dc2626;--am:#d97706;--sh:0 24px 64px rgba(0,0,0,.12)}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -28,7 +28,7 @@ h1,h2,h3,h4,h5,h6{font-family:var(--font-h)}
 .lbrand{display:flex;align-items:center;gap:11px;margin-bottom:32px}
 .lbrand-ico{width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,var(--gold),#8B6030);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px var(--gold-glow)}
 .lbrand-ico svg{width:20px;height:20px;stroke:#fff}
-.lbrand-name{font-family:var(--font-h);font-size:18px;font-weight:700;letter-spacing:-.02em}
+.lbrand-name{font-family:var(--font-l);font-size:18px;font-weight:600;letter-spacing:-.02em}
 .lbrand-name span{color:var(--gold)}
 .lbadge{display:inline-flex;align-items:center;gap:6px;background:var(--gold-glow);border:1px solid var(--gold-border);border-radius:100px;padding:4px 12px 4px 8px;font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px}
 .lbadge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--gold);animation:pulse 2s ease infinite}
@@ -58,7 +58,7 @@ h1,h2,h3,h4,h5,h6{font-family:var(--font-h)}
 .t-brand{display:flex;align-items:center;gap:9px;flex-shrink:0}
 .t-brand-ico{width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,var(--gold),#8B6030);display:flex;align-items:center;justify-content:center}
 .t-brand-ico svg{width:16px;height:16px;stroke:#fff}
-.t-brand-name{font-family:var(--font-h);font-size:15.5px;font-weight:700;white-space:nowrap;letter-spacing:-.02em}
+.t-brand-name{font-family:var(--font-l);font-size:15.5px;font-weight:600;white-space:nowrap;letter-spacing:-.02em}
 .t-brand-name span{color:var(--gold)}
 .t-pill{display:inline-flex;padding:3px 10px;background:var(--gold-glow);border:1px solid var(--gold-border);border-radius:100px;font-size:10px;font-weight:700;color:var(--gold);letter-spacing:.08em;text-transform:uppercase}
 .t-sp{flex:1}
@@ -345,6 +345,9 @@ section-bar,.section-bar{display:flex;align-items:center;justify-content:space-b
           <div class="nv" data-page="packages" onclick="navigate(this)">
             <svg class="nv-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg><span>All Packages</span>
           </div>
+          <div class="nv" data-page="itineraries" onclick="navigate(this)">
+            <svg class="nv-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg><span>Itineraries</span>
+          </div>
         </div>
         <div class="sb-sec">
           <span class="sb-lbl">Content</span>
@@ -413,6 +416,10 @@ section-bar,.section-bar{display:flex;align-items:center;justify-content:space-b
         <div class="pg-hd"><div class="pg-ht"><div class="pg-ico">&#128230;</div><div><h1>Tour Packages</h1><p>Manage all tour packages.</p></div></div></div>
         <div class="section-bar"><h2>All Packages</h2><button class="add-btn" onclick="openModal('package',null,null)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Add Package</button></div>
         <div class="items-list" id="packages-editor"></div>
+      </div>
+      <div class="pg" id="page-itineraries">
+        <div class="pg-hd"><div class="pg-ht"><div class="pg-ico">📄</div><div><h1>Package Itinerary Management</h1><p>Manage itinerary PDFs for each tour package.</p></div></div></div>
+        <div class="settings-grid" id="itineraries-editor"></div>
       </div>
       <div class="pg" id="page-testimonials">
         <div class="pg-hd"><div class="pg-ht"><div class="pg-ico">&#128172;</div><div><h1>Testimonials</h1><p>Manage customer reviews shown on the homepage.</p></div></div></div>

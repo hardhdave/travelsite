@@ -249,7 +249,10 @@ const SHData = (function () {
     const pkgs = get('packages').filter(p => p.enabled !== false);
     const wa_num = get('settings').whatsappNumber;
     el.innerHTML = pkgs.map(p => {
-      const safeData = encodeURIComponent(JSON.stringify(p)).replace(/'/g, "%27");
+      // Strip heavy PDF data from DOM attribute to keep HTML light
+      const leanPkg = Object.assign({}, p);
+      delete leanPkg.itineraryPdf;
+      const safeData = encodeURIComponent(JSON.stringify(leanPkg)).replace(/'/g, "%27");
       return `
       <div class="detail-card reveal" style="min-height:300px;">
         <div class="detail-card__image-wrap">
@@ -484,37 +487,52 @@ const SHData = (function () {
               </div>
             </div>`;
         } else if (itemType === 'package') {
-          const includes = (itemData.includes || '').split(',').filter(Boolean);
-          const dests = (itemData.destinations || '').split(',').filter(Boolean);
+          // Look up latest package data from storage to access the PDF itinerary
+          const latestPkgs = get('packages') || [];
+          const matchedPkg = latestPkgs.find(p => p.id === itemData.id) || itemData;
+
+          const includes = (matchedPkg.includes || '').split(',').filter(Boolean);
+          const dests = (matchedPkg.destinations || '').split(',').filter(Boolean);
+          
+          const hasItinerary = matchedPkg.itineraryPdf && matchedPkg.itineraryPdf.length > 0;
+          const itineraryBtnHtml = hasItinerary
+            ? `<button class="btn sh-modal__itinerary-btn" data-pdf-url="${matchedPkg.itineraryPdf}" style="padding: 12px 20px; background: transparent; border: 1px solid rgba(196,168,108,0.45); color: #c4a86c; display:flex; align-items:center; justify-content:center; gap:8px; border-radius:8px; font-size:13px; cursor:pointer; transition: all 0.25s ease; width:100%; margin-top:10px;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                <span>Show Itinerary</span>
+              </button>`
+            : `<div class="sh-modal__itinerary-status" style="margin-top: 10px; text-align: center; font-size: 13px; color: rgba(255,255,255,0.5); border: 1px dashed rgba(196,168,108,0.25); padding: 12px; border-radius: 8px; font-family:'Satoshi',sans-serif;">
+                No itinerary has been added for this package yet.
+              </div>`;
+
           html = `
             <div class="sh-modal__image-side">
-              <img src="${itemData.image}" alt="${itemData.title}" class="sh-modal__img">
-              <span class="sh-modal__badge">${itemData.badge || 'Tour'}</span>
+              <img src="${matchedPkg.image}" alt="${matchedPkg.title}" class="sh-modal__img">
+              <span class="sh-modal__badge">${matchedPkg.badge || 'Tour'}</span>
             </div>
             <div class="sh-modal__content-side">
-              <h2 class="sh-modal__title">${itemData.title}</h2>
+              <h2 class="sh-modal__title">${matchedPkg.title}</h2>
               <div class="sh-modal__price-tag" style="font-size: 1.35rem; font-weight: 700; color: var(--gold, #c7965a); margin-bottom: 16px; font-family: 'Satoshi', sans-serif;">
-                Starting from ${itemData.price || 'Contact for Price'}
+                Starting from ${matchedPkg.price || 'Contact for Price'}
               </div>
               <div class="sh-modal__meta-grid">
                 <div class="sh-modal__meta-item">
                   <span class="sh-modal__meta-label">Duration</span>
-                  <span class="sh-modal__meta-value">${itemData.duration}</span>
+                  <span class="sh-modal__meta-value">${matchedPkg.duration}</span>
                 </div>
                 <div class="sh-modal__meta-item">
                   <span class="sh-modal__meta-label">Accommodation</span>
-                  <span class="sh-modal__meta-value">${itemData.accommodation}</span>
+                  <span class="sh-modal__meta-value">${matchedPkg.accommodation}</span>
                 </div>
                 <div class="sh-modal__meta-item">
                   <span class="sh-modal__meta-label">Transport</span>
-                  <span class="sh-modal__meta-value">${itemData.transport}</span>
+                  <span class="sh-modal__meta-value">${matchedPkg.transport}</span>
                 </div>
                 <div class="sh-modal__meta-item">
                   <span class="sh-modal__meta-label">Meals</span>
-                  <span class="sh-modal__meta-value">${itemData.meals}</span>
+                  <span class="sh-modal__meta-value">${matchedPkg.meals}</span>
                 </div>
               </div>
-              <p class="sh-modal__desc">${itemData.description}</p>
+              <p class="sh-modal__desc">${matchedPkg.description}</p>
               
               <div class="sh-modal__extra" style="margin-bottom: 16px;">
                 <h4 class="sh-modal__extra-title">Destinations</h4>
@@ -530,11 +548,8 @@ const SHData = (function () {
                 </div>
               </div>
               <div class="sh-modal__cta" style="margin-top: 24px;">
-                <a href="https://wa.me/${wa_num}?text=${encodeURIComponent(itemData.waMsg || '')}" class="btn btn--primary sh-modal__enquire" target="_blank" style="padding: 12px 28px;"><span>Enquire Now</span></a>
-                <button class="btn sh-modal__pdf-btn" data-pdf-title="${itemData.title}" style="padding: 12px 20px; background: transparent; border: 1px solid rgba(196,168,108,0.45); color: #c4a86c; display:flex; align-items:center; justify-content:center; gap:8px; border-radius:8px; font-size:13px; cursor:pointer; transition: all 0.25s ease; width:100%; margin-top:10px;">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                  <span>Download PDF</span>
-                </button>
+                <a href="https://wa.me/${wa_num}?text=${encodeURIComponent(matchedPkg.waMsg || '')}" class="btn btn--primary sh-modal__enquire" target="_blank" style="padding: 12px 28px;"><span>Enquire Now</span></a>
+                ${itineraryBtnHtml}
               </div>
             </div>`;
         } else {
@@ -601,6 +616,15 @@ const SHData = (function () {
         document.head.appendChild(s);
       });
     }
+
+    document.addEventListener('click', function (e) {
+      var btn = e.target.closest('.sh-modal__itinerary-btn');
+      if (!btn) return;
+      var pdfUrl = btn.getAttribute('data-pdf-url');
+      if (pdfUrl) {
+        window.open(pdfUrl, '_blank');
+      }
+    });
 
     document.addEventListener('click', function (e) {
       var btn = e.target.closest('.sh-modal__pdf-btn');
