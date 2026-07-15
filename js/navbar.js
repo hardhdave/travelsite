@@ -13,6 +13,7 @@
     sheet.classList.add('active');
     backdrop.classList.add('active');
     navToggle.classList.add('active');
+    navToggle.setAttribute('aria-expanded', 'true');
     document.body.style.overflow = 'hidden';
   }
 
@@ -20,6 +21,7 @@
     sheet.classList.remove('active');
     backdrop.classList.remove('active');
     navToggle.classList.remove('active');
+    navToggle.setAttribute('aria-expanded', 'false');
     document.body.style.overflow = '';
   }
 
@@ -44,25 +46,105 @@
     }, { passive: true });
   }
 
-  /* ── Active link highlighting on scroll ── */
-  const sections    = document.querySelectorAll('section[id]');
-  const navLinksAll = document.querySelectorAll('.navbar__link');
+  /* ── Active link highlighting on scroll (Home Page Only) ── */
+  const path = window.location.pathname;
+  const isHomePage = path.indexOf('index.html') !== -1 || 
+                     path.endsWith('/') || 
+                     (!path.includes('adventures.html') && 
+                      !path.includes('packages.html') && 
+                      !path.includes('skiing.html') && 
+                      !path.includes('treks.html'));
 
-  window.addEventListener('scroll', () => {
-    let current = '';
-    sections.forEach(section => {
-      if (window.scrollY >= section.offsetTop - 200) {
-        current = section.getAttribute('id');
-      }
-    });
+  if (isHomePage) {
+    const sections = document.querySelectorAll('section[id]');
+    const allLinks = document.querySelectorAll('.navbar__link, .nav-sheet__item');
 
-    navLinksAll.forEach(link => {
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        if (window.scrollY >= section.offsetTop - 200) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      allLinks.forEach(link => {
+        const href = link.getAttribute('href');
+        if (!href) return;
+
+        // Reset active state for hash links and Home link
+        const isHashLink = href.includes('#');
+        const isHomeLink = href === 'index.html' || href === '/' || href.endsWith('index.html');
+
+        if (isHashLink || isHomeLink) {
+          link.classList.remove('active');
+        }
+
+        if (current) {
+          if (href === '#' + current || href === 'index.html#' + current) {
+            link.classList.add('active');
+          }
+        } else {
+          // If not scrolled to any section, highlight Home
+          if (isHomeLink) {
+            link.classList.add('active');
+          }
+        }
+      });
+    }, { passive: true });
+  }
+
+  /* ── Active Page Highlighting on Load / Manual Override ── */
+  function initActiveState(overrideHash) {
+    const currentPath = window.location.pathname;
+    const hash = overrideHash !== undefined ? overrideHash : window.location.hash;
+    const isAdventures = currentPath.includes('adventures.html');
+    const isPackages = currentPath.includes('packages.html');
+    const isSkiing = currentPath.includes('skiing.html');
+    const isTreks = currentPath.includes('treks.html');
+    const isHome = !isAdventures && !isPackages && !isSkiing && !isTreks;
+
+    const allLinks = document.querySelectorAll('.navbar__link, .nav-sheet__item');
+    allLinks.forEach(link => {
       link.classList.remove('active');
       const href = link.getAttribute('href');
-      if (href === '#' + current || href === 'index.html#' + current) {
-        link.classList.add('active');
+      if (!href) return;
+
+      if (isAdventures) {
+        // If hash is activities or tab parameter is activities, highlight Activity
+        const params = new URLSearchParams(window.location.search);
+        const isAct = hash === '#activities' || params.get('tab') === 'activities';
+        if (isAct) {
+          if (href.includes('#activities')) {
+            link.classList.add('active');
+          }
+        } else {
+          // Highlight Adventures link (not Activity)
+          if ((href.includes('adventures.html') || href === 'adventures.html') && !href.includes('#')) {
+            link.classList.add('active');
+          }
+        }
+      } else if (isPackages) {
+        if (href.includes('packages.html')) {
+          link.classList.add('active');
+        }
+      } else if (isSkiing || isTreks) {
+        // Skiing/Treks are sub-adventures, highlight Adventures
+        if ((href.includes('adventures.html') || href === 'adventures.html') && !href.includes('#')) {
+          link.classList.add('active');
+        }
+      } else if (isHome) {
+        // For Home page, highlight index.html or Home by default (scroll will update sections)
+        if (href === 'index.html' || href === '/' || href.endsWith('index.html')) {
+          link.classList.add('active');
+        }
       }
     });
-  }, { passive: true });
+  }
+
+  // Expose function for dynamic updates (e.g. from tab switcher)
+  window.updateNavbarActiveState = initActiveState;
+
+  // Run initial setup
+  initActiveState();
 
 })();

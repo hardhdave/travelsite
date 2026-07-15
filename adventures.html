@@ -802,7 +802,7 @@
       <div class="navbar__links" id="navLinks">
         <a href="index.html" class="navbar__link">Home</a>
         <a href="adventures.html" class="navbar__link active">Adventures</a>
-        <a href="#" class="navbar__link" onclick="switchTab('activities'); return false;">Activity</a>
+        <a href="#activities" class="navbar__link">Activity</a>
         <a href="packages.html" class="navbar__link">Packages</a>
         <a href="index.html#gallery" class="navbar__link">Gallery</a>
         <a href="index.html#about" class="navbar__link">About</a>
@@ -811,7 +811,7 @@
 
       <div class="navbar__actions"></div>
 
-      <button class="navbar__toggle" id="navToggle" aria-label="Toggle menu">
+      <button class="navbar__toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navSheet">
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -835,7 +835,7 @@
         Adventures
         <svg class="nav-sheet__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </a>
-      <a href="#" class="nav-sheet__item" onclick="switchTab('activities'); document.getElementById('navSheet').classList.remove('active'); document.getElementById('navSheetBackdrop').classList.remove('active'); document.body.style.overflow=''; return false;">
+      <a href="#activities" class="nav-sheet__item">
         Activity
         <svg class="nav-sheet__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </a>
@@ -1223,6 +1223,11 @@
             target.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
           }, 50);
         }
+
+        // Sync navbar active highlighting
+        if (typeof window.updateNavbarActiveState === 'function') {
+          window.updateNavbarActiveState('#' + tabId);
+        }
       };
 
       // ── Check URL hash or query param for deep link ──
@@ -1239,6 +1244,8 @@
         var newHash = (window.location.hash || '').replace('#', '');
         if (['skiing', 'snowboarding', 'trekking', 'activities'].indexOf(newHash) !== -1) {
           switchTab(newHash);
+        } else if (!newHash) {
+          switchTab('skiing');
         }
       });
 
