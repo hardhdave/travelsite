@@ -28,8 +28,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 5 * 60 * 1000);
   }
 
-  // Initial show after 2.5 seconds on page load
-  setTimeout(showPopup, 2500);
+  // Initial show after 5 seconds on page load
+  setTimeout(showPopup, 5000);
 
   // Handle closing the popup (cancel action)
   const closeButton = chatPopup.querySelector('.chat-popup__close');

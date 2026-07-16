@@ -15,10 +15,10 @@ export interface ChatPopupProps {
 
 export const ChatPopup: React.FC<ChatPopupProps> = ({
   title = 'Planning a trip? Ask a local.',
-  description = "Hey, I'm Stanzin. Planning Himalayan passes and stays can get overwhelming. Let's sketch a calm, custom route on WhatsApp.",
+  description = "Hey, I'm Akash. Planning Himalayan passes and stays can get overwhelming. Let's sketch a calm, custom route on WhatsApp.",
   buttonText = 'CHAT WITH US',
   whatsappLink = 'https://wa.me/9999999999',
-  avatarImage,
+  avatarImage = 'assets/images/akash-avatar.jpg',
 }) => {
   const [isVisible, setIsVisible] = useState(false);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -41,10 +41,10 @@ export const ChatPopup: React.FC<ChatPopupProps> = ({
   };
 
   useEffect(() => {
-    // Initial display after 2.5 seconds on mount
+    // Initial display after 5 seconds on mount
     timerRef.current = setTimeout(() => {
       showPopup();
-    }, 2500);
+    }, 5000);
 
     return () => {
       if (timerRef.current) {

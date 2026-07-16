@@ -780,6 +780,7 @@
       }
     }
   </style>
+  <link rel="stylesheet" href="css/theme.css?v=1">
 </head>
 
 <body>
@@ -803,7 +804,7 @@
       <div class="navbar__links" id="navLinks">
         <a href="index.html" class="navbar__link">Home</a>
         <a href="adventures.html" class="navbar__link active">Adventures</a>
-        <a href="#activities" class="navbar__link">Activity</a>
+        <a href="activities.html" class="navbar__link">Activities</a>
         <a href="packages.html" class="navbar__link">Packages</a>
         <a href="index.html#gallery" class="navbar__link">Gallery</a>
         <a href="index.html#about" class="navbar__link">About</a>
@@ -836,10 +837,22 @@
         Adventures
         <svg class="nav-sheet__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </a>
-      <a href="#activities" class="nav-sheet__item">
-        Activity
-        <svg class="nav-sheet__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </a>
+      <div class="nav-sheet__item-wrapper">
+        <button class="nav-sheet__item nav-sheet__item--dropdown-toggle" id="mobileActivitiesToggle" aria-haspopup="true" aria-expanded="false">
+          Activities
+          <svg class="nav-sheet__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="nav-sheet__submenu" id="mobileActivitiesSubmenu">
+          <a href="activities.html?season=winter" class="nav-sheet__submenu-item">
+            Winter Activities
+            <span class="nav-sheet__submenu-dot nav-sheet__submenu-dot--winter"></span>
+          </a>
+          <a href="activities.html?season=summer" class="nav-sheet__submenu-item">
+            Summer Activities
+            <span class="nav-sheet__submenu-dot nav-sheet__submenu-dot--summer"></span>
+          </a>
+        </div>
+      </div>
       <a href="packages.html" class="nav-sheet__item">
         Packages
         <svg class="nav-sheet__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
@@ -970,20 +983,7 @@
           <span class="cat-card__arrow">→</span>
         </div>
 
-        <!-- <div class="cat-card" data-tab="activities" onclick="switchTab('activities')">
-          <img src="assets/images/gallery-pahalgam.png" alt="Adventure Activities" class="cat-card__img">
-          <div class="cat-card__overlay"></div>
-          <div class="cat-card__body">
-            <div class="cat-card__icon">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8">
-                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
-              </svg>
-            </div>
-            <h3 class="cat-card__title">Adventure Activities</h3>
-            <p class="cat-card__desc">From biking to rafting — adventure never ends</p>
-          </div>
-          <span class="cat-card__arrow">→</span>
-        </div> -->
+        <!-- Activity card removed and moved to separate activities.html page -->
 
       </div>
     </div>
@@ -1129,58 +1129,7 @@
       </div>
     </div>
 
-    <!-- â”€â”€ ACTIVITIES PANEL â”€â”€ -->
-    <div class="adv-panel" id="panel-activities">
-      <div class="adv-panel__intro">
-        <img src="assets/images/activities-winter.png" alt="" class="adv-panel__intro-bg">
-        <div class="adv-panel__intro-inner">
-          <div class="adv-panel__intro-text">
-            <p class="adv-panel__intro-label">All Seasons Â· Kashmir</p>
-            <h2 class="adv-panel__intro-title">Adventure Activities</h2>
-            <p class="adv-panel__intro-desc">From white-water rafting to mountain biking, sledging to ice climbing â€”
-              Kashmir is an adventure playground every season of the year.</p>
-          </div>
-          <div class="adv-panel__intro-stats">
-            <div class="adv-intro-stat">
-              <div class="adv-intro-stat__val">10+</div>
-              <div class="adv-intro-stat__label">Activities</div>
-            </div>
-            <div class="adv-intro-stat">
-              <div class="adv-intro-stat__val">All</div>
-              <div class="adv-intro-stat__label">Age Groups</div>
-            </div>
-            <div class="adv-intro-stat">
-              <div class="adv-intro-stat__val">Year</div>
-              <div class="adv-intro-stat__label">Round</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="adv-packages">
-        <div class="adv-activities-wrap">
-          <div>
-            <p class="adv-activities-col-title">â„ Winter Activities</p>
-            <div id="activities-winter-container"></div>
-          </div>
-          <div>
-            <p class="adv-activities-col-title">â˜€ Summer Activities</p>
-            <div id="activities-summer-container"></div>
-          </div>
-        </div>
-      </div>
-      <div class="adv-cta">
-        <div class="adv-cta__inner">
-          <div class="adv-cta__text">
-            <h3>Plan a multi-activity package</h3>
-            <p>Mix and match activities into a bespoke Himalayan adventure package.</p>
-          </div>
-          <div class="adv-cta__btns">
-            <a href="index.html#contact" class="btn btn--secondary"><span>Custom Enquiry</span></a>
-            <a href="packages.html" class="btn btn--primary"><span>All Packages</span></a>
-          </div>
-        </div>
-      </div>
-    </div>
+    <!-- Activities panel removed and moved to separate activities.html page -->
 
   </div><!-- /adv-content -->
 
@@ -1195,14 +1144,14 @@
   <script>
     /* ============================================================
        Adventures Page Controller
-       â€“ Uses SHData renderers to stay in sync with admin panel
+       – Uses SHData renderers to stay in sync with admin panel
     ============================================================ */
     (function () {
       'use strict';
 
       var currentTab = 'skiing';
 
-      // â”€â”€ Tab switch â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+      // ── Tab switch ──────────────────────────────────────────
       window.switchTab = function (tabId) {
         if (currentTab === tabId) return;
         currentTab = tabId;
@@ -1236,14 +1185,14 @@
       var params = new URLSearchParams(window.location.search);
       var queryTab = params.get('tab');
       var initialTab = queryTab || hash;
-      if (['skiing', 'snowboarding', 'trekking', 'activities'].indexOf(initialTab) !== -1) {
+      if (['skiing', 'snowboarding', 'trekking'].indexOf(initialTab) !== -1) {
         currentTab = '';
         switchTab(initialTab);
       }
 
       window.addEventListener('hashchange', function () {
         var newHash = (window.location.hash || '').replace('#', '');
-        if (['skiing', 'snowboarding', 'trekking', 'activities'].indexOf(newHash) !== -1) {
+        if (['skiing', 'snowboarding', 'trekking'].indexOf(newHash) !== -1) {
           switchTab(newHash);
         } else if (!newHash) {
           switchTab('skiing');
@@ -1251,16 +1200,16 @@
       });
 
 
-      // â”€â”€ Render all panels via SHData (admin-synced) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+      // ── Render all panels via SHData (admin-synced) ──────────
       document.addEventListener('DOMContentLoaded', function () {
 
-        // Skiing â€” uses SHData.renderSkiing
+        // Skiing — uses SHData.renderSkiing
         SHData.renderSkiing('skiing-packages-container');
 
-        // Snowboarding â€” uses SHData.renderSnowboarding
+        // Snowboarding — uses SHData.renderSnowboarding
         SHData.renderSnowboarding('snowboarding-packages-container');
 
-        // Trekking â€” uses SHData.renderTrekking
+        // Trekking — uses SHData.renderTrekking
         SHData.renderTrekking('trekking-packages-container');
 
         // Setup observer for active/centered card scaling
@@ -1286,8 +1235,7 @@
           }, 300);
         }
 
-        // Activities â€” uses SHData.renderActivities
-        SHData.renderActivities('activities-winter-container', 'activities-summer-container');
+        // Activities rendering removed from adventures.html
 
         // Footer
         SHData.renderFooter();

@@ -55,10 +55,10 @@ function App() {
       {/* The Floating WhatsApp Chat Popup Component */}
       <ChatPopup
         title="Planning a trip? Ask a local."
-        description="Hey, I'm Stanzin. Planning Himalayan passes and stays can get overwhelming. Let's sketch a calm, custom route on WhatsApp."
-        buttonText="CHAT WITH STANZIN"
+        description="Hey, I'm Akash. Planning Himalayan passes and stays can get overwhelming. Let's sketch a calm, custom route on WhatsApp."
+        buttonText="CHAT WITH AKASH"
         whatsappLink="https://wa.me/1234567890"
-        // avatarImage="/assets/images/stanzin-avatar.png" // Provide your avatar image path here
+        avatarImage="assets/images/akash-avatar.jpg"
       />
     </div>
   );

@@ -86,18 +86,18 @@ const SHData = (function () {
 
     activities: {
       winter: [
-        { id: 'aw1', name: 'Skiing & Snowboarding', desc: 'World-class powder runs in Gulmarg', image: 'assets/images/skiing-action.png' },
-        { id: 'aw2', name: 'Sledging & Tobogganing', desc: 'Family-friendly winter fun', image: 'assets/images/activities-winter.png' },
-        { id: 'aw3', name: 'Snow Trekking', desc: 'Guided winter trail expeditions', image: 'assets/images/gallery-gulmarg.png' },
-        { id: 'aw4', name: 'Ice Climbing', desc: 'Frozen waterfall ascents', image: 'assets/images/hero-mountains.png' },
-        { id: 'aw5', name: 'Heliskiing', desc: 'Exclusive backcountry access by helicopter', image: 'assets/images/gallery-helicopter.png' }
+        { id: 'aw1', name: 'Skiing & Snowboarding', desc: 'World-class powder runs in Gulmarg with certified instructors for all skill levels.', image: 'assets/images/skiing-action.png', badge: 'Winter', price: '₹14,999', waMsg: "I'm interested in Skiing & Snowboarding activities" },
+        { id: 'aw2', name: 'Sledging & Tobogganing', desc: 'Family-friendly winter fun on snowy slopes — perfect for all ages.', image: 'assets/images/activities-winter.png', badge: 'Family Fun', price: '₹2,500', waMsg: "I'm interested in Sledging & Tobogganing" },
+        { id: 'aw3', name: 'Snow Trekking', desc: 'Guided winter trail expeditions through pristine Himalayan snow landscapes.', image: 'assets/images/gallery-gulmarg.png', badge: 'Trekking', price: '₹4,999', waMsg: "I'm interested in Snow Trekking" },
+        { id: 'aw4', name: 'Ice Climbing', desc: 'Scale frozen waterfalls with expert local guides and professional safety gear.', image: 'assets/images/hero-mountains.png', badge: 'Adventure', price: '₹6,999', waMsg: "I'm interested in Ice Climbing" },
+        { id: 'aw5', name: 'Heliskiing', desc: 'Exclusive backcountry access by helicopter to untouched Himalayan powder runs.', image: 'assets/images/gallery-helicopter.png', badge: 'Exclusive', price: '₹1,49,999', waMsg: "I'm interested in Heliskiing" }
       ],
       summer: [
-        { id: 'as1', name: 'Camping', desc: 'Starlit nights in alpine meadows', image: 'assets/images/trekking-landscape.png' },
-        { id: 'as2', name: 'River Rafting', desc: 'White-water rapids on the Lidder', image: 'assets/images/gallery-sonamarg.png' },
-        { id: 'as3', name: 'Horse Riding', desc: 'Mountain trail rides through meadows', image: 'assets/images/gallery-pahalgam.png' },
-        { id: 'as4', name: 'Mountain Biking', desc: 'Scenic Himalayan cycling routes', image: 'assets/images/sightseeing-dal-lake.png' },
-        { id: 'as5', name: 'Trout Fishing', desc: 'Pristine river fishing experiences', image: 'assets/images/gallery-luxury-stay.png' }
+        { id: 'as1', name: 'Camping', desc: 'Starlit nights in pristine alpine meadows surrounded by Himalayan peaks.', image: 'assets/images/trekking-landscape.png', badge: 'Outdoor', price: '₹3,500', waMsg: "I'm interested in Camping" },
+        { id: 'as2', name: 'River Rafting', desc: 'White-water rapids adventure on the Lidder River with professional safety equipment.', image: 'assets/images/gallery-sonamarg.png', badge: 'Adventure', price: '₹2,999', waMsg: "I'm interested in River Rafting" },
+        { id: 'as3', name: 'Horse Riding', desc: 'Scenic mountain trail rides through lush meadows with experienced local guides.', image: 'assets/images/gallery-pahalgam.png', badge: 'Leisure', price: '₹1,999', waMsg: "I'm interested in Horse Riding" },
+        { id: 'as4', name: 'Mountain Biking', desc: 'Thrilling Himalayan cycling routes through scenic valleys and mountain trails.', image: 'assets/images/sightseeing-dal-lake.png', badge: 'Cycling', price: '₹2,499', waMsg: "I'm interested in Mountain Biking" },
+        { id: 'as5', name: 'Trout Fishing', desc: 'Pristine river fishing experiences in crystal-clear Himalayan streams.', image: 'assets/images/gallery-luxury-stay.png', badge: 'Leisure', price: '₹1,500', waMsg: "I'm interested in Trout Fishing" }
       ]
     },
 
@@ -272,9 +272,10 @@ const SHData = (function () {
     }).join('');
   }
 
-  /* -- Activities -- */
+  /* -- Activities (rich cards with price & enquiry, synced with admin) -- */
   function renderActivities(winterId, summerId) {
     const acts = get('activities');
+    const wa_num = get('settings').whatsappNumber;
     const defaultImages = {
       aw1: 'assets/images/skiing-action.png',
       aw2: 'assets/images/activities-winter.png',
@@ -287,32 +288,90 @@ const SHData = (function () {
       as4: 'assets/images/sightseeing-dal-lake.png',
       as5: 'assets/images/gallery-luxury-stay.png'
     };
-    const winter = (acts.winter || []).filter(a => a.enabled !== false);
-    const summer = (acts.summer || []).filter(a => a.enabled !== false);
+    // MIGRATION: Force-upgrade stored activities data to include new fields (price, badge, waMsg)
+    // This runs once and updates localStorage so old data gets enriched with defaults
+    const ACTS_MIGRATION_KEY = 'sh_acts_migrated_v2';
+    const stored = load();
+    if (stored && !localStorage.getItem(ACTS_MIGRATION_KEY)) {
+      const defActsFull = JSON.parse(JSON.stringify(defaults.activities));
+      ['winter', 'summer'].forEach(function(season) {
+        if (stored.activities && stored.activities[season]) {
+          stored.activities[season] = stored.activities[season].map(function(a) {
+            const def = defActsFull[season].find(function(d) { return d.id === a.id; }) || {};
+            const merged = Object.assign({}, def);
+            Object.keys(a).forEach(function(k) {
+              if (a[k] !== undefined && a[k] !== null && a[k] !== '') {
+                merged[k] = a[k];
+              }
+            });
+            return merged;
+          });
+        }
+      });
+      save(stored);
+      localStorage.setItem(ACTS_MIGRATION_KEY, '1');
+    }
+
+    // Merge stored activities with defaults to fill any missing fields (migration for old data)
+    const defActs = JSON.parse(JSON.stringify(defaults.activities));
+
+    function mergeWithDefaults(storedList, defaultList) {
+      if (!storedList || storedList.length === 0) return defaultList;
+      return storedList.map(function(a) {
+        const def = defaultList.find(function(d) { return d.id === a.id; }) || {};
+        // Merge: use defaults first, then override with stored values — but skip empty stored values
+        const merged = Object.assign({}, def);
+        Object.keys(a).forEach(function(k) {
+          if (a[k] !== undefined && a[k] !== null && a[k] !== '') {
+            merged[k] = a[k];
+          }
+        });
+        return merged;
+      });
+    }
+    const winter = mergeWithDefaults(acts.winter, defActs.winter).filter(a => a.enabled !== false);
+    const summer = mergeWithDefaults(acts.summer, defActs.summer).filter(a => a.enabled !== false);
     const wEl = document.getElementById(winterId);
     const sEl = document.getElementById(summerId);
 
-    if (wEl) wEl.innerHTML = winter.map(a => `
-      <div class="activities__item reveal">
-        <div class="activities__item-img-wrap">
-          <img src="${a.image || defaultImages[a.id] || 'assets/images/skiing-action.png'}" alt="${a.name}" class="activities__item-img">
-        </div>
-        <div class="activities__item-body">
-          <div class="activities__item-name">${a.name}</div>
-          <div class="activities__item-desc">${a.desc}</div>
-        </div>
-      </div>`).join('');
 
-    if (sEl) sEl.innerHTML = summer.map(a => `
-      <div class="activities__item reveal">
+
+    function actCard(a, fallbackImg) {
+      const imgSrc = a.image || defaultImages[a.id] || fallbackImg;
+      const priceLine = a.price ? `<div class="activities__item-price">Starting from <strong>${a.price}</strong></div>` : '';
+      const enquireHref = wa(wa_num, a.waMsg || `I'm interested in ${a.name}`);
+      return `
+      <div class="activities__item">
         <div class="activities__item-img-wrap">
-          <img src="${a.image || defaultImages[a.id] || 'assets/images/trekking-landscape.png'}" alt="${a.name}" class="activities__item-img">
+          <img src="${imgSrc}" alt="${a.name}" class="activities__item-img" loading="lazy">
+          ${a.badge ? `<span class="activities__item-badge">${a.badge}</span>` : ''}
         </div>
         <div class="activities__item-body">
           <div class="activities__item-name">${a.name}</div>
           <div class="activities__item-desc">${a.desc}</div>
+          ${priceLine}
+          <div class="activities__item-cta">
+            <a href="${enquireHref}" class="btn btn--primary" target="_blank" rel="noopener"><span>Enquire Now</span></a>
+          </div>
         </div>
-      </div>`).join('');
+      </div>`;
+    }
+
+    if (wEl) {
+      if (winter.length === 0) {
+        wEl.innerHTML = '<div class="activities__empty">No winter activities available at the moment.</div>';
+      } else {
+        wEl.innerHTML = winter.map(a => actCard(a, 'assets/images/skiing-action.png')).join('');
+      }
+    }
+
+    if (sEl) {
+      if (summer.length === 0) {
+        sEl.innerHTML = '<div class="activities__empty">No summer activities available at the moment.</div>';
+      } else {
+        sEl.innerHTML = summer.map(a => actCard(a, 'assets/images/trekking-landscape.png')).join('');
+      }
+    }
   }
 
   /* -- Rentals -- */
@@ -409,7 +468,10 @@ const SHData = (function () {
       function closeModal() {
         if (overlay) {
           overlay.classList.remove('is-active');
+          document.body.classList.remove('no-scroll');
+          document.documentElement.classList.remove('no-scroll');
           document.body.style.overflow = '';
+          document.documentElement.style.overflow = '';
         }
       }
 
@@ -418,6 +480,24 @@ const SHData = (function () {
         overlay.addEventListener('click', function (e) {
           if (e.target === overlay) closeModal();
         });
+        // Prevent background wheel scroll when user scrolls on modal backdrop or modal edges
+        overlay.addEventListener('wheel', function (e) {
+          const modal = document.getElementById('shModal');
+          if (!modal) return;
+          const isInsideModal = e.target.closest('#shModal');
+          if (!isInsideModal) {
+            e.preventDefault();
+            return;
+          }
+          // Prevent scroll boundary propagation inside modal
+          const scrollTop = modal.scrollTop;
+          const scrollHeight = modal.scrollHeight;
+          const height = modal.clientHeight;
+          const delta = e.deltaY;
+          if ((delta < 0 && scrollTop <= 0) || (delta > 0 && scrollTop + height >= scrollHeight - 1)) {
+            e.preventDefault();
+          }
+        }, { passive: false });
       }
       document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape') closeModal();
@@ -439,51 +519,51 @@ const SHData = (function () {
 
       function openModal(itemData, itemType) {
         const wa_num = get('settings').whatsappNumber;
+
+        // Helper: build the itinerary button or placeholder
+        function itineraryBtnHtml(pdf, name) {
+          if (pdf && pdf.length > 100) {
+            return `<button class="btn sh-modal__itinerary-btn" data-pdf-url="${pdf}" data-pdf-name="${name||'itinerary.pdf'}" style="padding:12px 20px;background:transparent;border:1px solid rgba(196,168,108,0.45);color:#c4a86c;display:flex;align-items:center;justify-content:center;gap:8px;border-radius:8px;font-size:13px;cursor:pointer;transition:all 0.25s ease;width:100%;margin-top:10px;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              <span>View Itinerary PDF</span>
+            </button>`;
+          }
+          return `<div style="margin-top:10px;text-align:center;font-size:12px;color:rgba(255,255,255,0.4);border:1px dashed rgba(196,168,108,0.2);padding:10px;border-radius:8px;">No itinerary uploaded for this item.</div>`;
+        }
+
         let html = '';
 
         if (itemType === 'trek') {
-          const highlights = (itemData.highlights || '').split(',').filter(Boolean);
+          // Fresh lookup to get itinerary PDF
+          const latestTreks = get('trekking') || [];
+          const matched = latestTreks.find(t => t.id === itemData.id) || itemData;
+          const highlights = (matched.highlights || '').split(',').filter(Boolean);
           html = `
             <div class="sh-modal__image-side">
-              <img src="${itemData.image}" alt="${itemData.title}" class="sh-modal__img">
-              <span class="sh-modal__badge">${itemData.difficulty}</span>
+              <img src="${matched.image}" alt="${matched.title}" class="sh-modal__img">
+              <span class="sh-modal__badge">${matched.difficulty}</span>
             </div>
             <div class="sh-modal__content-side">
-              <h2 class="sh-modal__title">${itemData.title}</h2>
-              <div class="sh-modal__price-tag" style="font-size: 1.35rem; font-weight: 700; color: var(--gold, #c7965a); margin-bottom: 16px; font-family: 'Satoshi', sans-serif;">
-                Starting from ${itemData.price || 'Contact for Price'}
+              <h2 class="sh-modal__title">${matched.title}</h2>
+              <div class="sh-modal__price-tag" style="font-size:1.35rem;font-weight:700;color:var(--gold,#c7965a);margin-bottom:16px;">
+                Starting from ${matched.price || 'Contact for Price'}
               </div>
               <div class="sh-modal__meta-grid">
-                <div class="sh-modal__meta-item">
-                  <span class="sh-modal__meta-label">Duration</span>
-                  <span class="sh-modal__meta-value">${itemData.days}</span>
-                </div>
-                <div class="sh-modal__meta-item">
-                  <span class="sh-modal__meta-label">Max Altitude</span>
-                  <span class="sh-modal__meta-value">${itemData.altitude}</span>
-                </div>
-                <div class="sh-modal__meta-item">
-                  <span class="sh-modal__meta-label">Distance</span>
-                  <span class="sh-modal__meta-value">${itemData.distance}</span>
-                </div>
-                <div class="sh-modal__meta-item">
-                  <span class="sh-modal__meta-label">Best Season</span>
-                  <span class="sh-modal__meta-value">${itemData.season}</span>
-                </div>
+                <div class="sh-modal__meta-item"><span class="sh-modal__meta-label">Duration</span><span class="sh-modal__meta-value">${matched.days}</span></div>
+                <div class="sh-modal__meta-item"><span class="sh-modal__meta-label">Max Altitude</span><span class="sh-modal__meta-value">${matched.altitude}</span></div>
+                <div class="sh-modal__meta-item"><span class="sh-modal__meta-label">Distance</span><span class="sh-modal__meta-value">${matched.distance}</span></div>
+                <div class="sh-modal__meta-item"><span class="sh-modal__meta-label">Best Season</span><span class="sh-modal__meta-value">${matched.season}</span></div>
               </div>
-              <p class="sh-modal__desc">${itemData.description}</p>
+              <p class="sh-modal__desc">${matched.description}</p>
               <div class="sh-modal__extra">
                 <h4 class="sh-modal__extra-title">Trek Highlights</h4>
                 <div class="sh-modal__tags-container">
                   ${highlights.map(h => `<span class="sh-modal__tag">${h.trim()}</span>`).join('')}
                 </div>
               </div>
-              <div class="sh-modal__cta" style="margin-top: 24px;">
-                <a href="https://wa.me/${wa_num}?text=${encodeURIComponent(itemData.waMsg || '')}" class="btn btn--primary sh-modal__enquire" target="_blank" style="padding: 12px 28px;"><span>Enquire Now</span></a>
-                <button class="btn sh-modal__pdf-btn" data-pdf-title="${itemData.title}" style="padding: 12px 20px; background: transparent; border: 1px solid rgba(196,168,108,0.45); color: #c4a86c; display:flex; align-items:center; justify-content:center; gap:8px; border-radius:8px; font-size:13px; cursor:pointer; transition: all 0.25s ease; width:100%; margin-top:10px;">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                  <span>Download PDF</span>
-                </button>
+              <div class="sh-modal__cta" style="margin-top:24px;">
+                <a href="https://wa.me/${wa_num}?text=${encodeURIComponent(matched.waMsg || '')}" class="btn btn--primary sh-modal__enquire" target="_blank" style="padding:12px 28px;"><span>Enquire Now</span></a>
+                ${itineraryBtnHtml(matched.itineraryPdf, matched.itineraryPdfName)}
               </div>
             </div>`;
         } else if (itemType === 'package') {
@@ -493,16 +573,6 @@ const SHData = (function () {
 
           const includes = (matchedPkg.includes || '').split(',').filter(Boolean);
           const dests = (matchedPkg.destinations || '').split(',').filter(Boolean);
-          
-          const hasItinerary = matchedPkg.itineraryPdf && matchedPkg.itineraryPdf.length > 0;
-          const itineraryBtnHtml = hasItinerary
-            ? `<button class="btn sh-modal__itinerary-btn" data-pdf-url="${matchedPkg.itineraryPdf}" style="padding: 12px 20px; background: transparent; border: 1px solid rgba(196,168,108,0.45); color: #c4a86c; display:flex; align-items:center; justify-content:center; gap:8px; border-radius:8px; font-size:13px; cursor:pointer; transition: all 0.25s ease; width:100%; margin-top:10px;">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                <span>Show Itinerary</span>
-              </button>`
-            : `<div class="sh-modal__itinerary-status" style="margin-top: 10px; text-align: center; font-size: 13px; color: rgba(255,255,255,0.5); border: 1px dashed rgba(196,168,108,0.25); padding: 12px; border-radius: 8px; font-family:'Satoshi',sans-serif;">
-                No itinerary has been added for this package yet.
-              </div>`;
 
           html = `
             <div class="sh-modal__image-side">
@@ -549,49 +619,64 @@ const SHData = (function () {
               </div>
               <div class="sh-modal__cta" style="margin-top: 24px;">
                 <a href="https://wa.me/${wa_num}?text=${encodeURIComponent(matchedPkg.waMsg || '')}" class="btn btn--primary sh-modal__enquire" target="_blank" style="padding: 12px 28px;"><span>Enquire Now</span></a>
-                ${itineraryBtnHtml}
+                ${itineraryBtnHtml(matchedPkg.itineraryPdf, matchedPkg.itineraryPdfName)}
               </div>
             </div>`;
         } else {
-          // Activity (skiing/snowboarding) modal layout
-          const includes = (itemData.includes || '').split(',').filter(Boolean);
+          // Skiing / Snowboarding / activity modal — fresh lookup by ID
+          const allSkiing = get('skiing') || [];
+          const allSnow = get('snowboarding') || [];
+          const allActs = get('activities') || { winter: [], summer: [] };
+          const allSights = get('sightseeing') || [];
+          let matched = itemData;
+          // Search skiing categories
+          for (let c of allSkiing) { const f = (c.items||[]).find(i => i.id === itemData.id); if (f) { matched = f; break; } }
+          // Search snowboarding categories
+          if (matched === itemData) {
+            for (let c of allSnow) { const f = (c.items||[]).find(i => i.id === itemData.id); if (f) { matched = f; break; } }
+          }
+          // Search winter & summer activities
+          if (matched === itemData) {
+            const list = [...(allActs.winter || []), ...(allActs.summer || [])];
+            const f = list.find(i => i.id === itemData.id);
+            if (f) matched = f;
+          }
+          // Search sightseeing places
+          if (matched === itemData) {
+            const f = allSights.find(i => i.id === itemData.id);
+            if (f) matched = f;
+          }
+          const itemTitle = matched.title || matched.name || '';
+          const itemDesc = matched.description || matched.desc || '';
+          const itemBadge = matched.badge || matched.label || 'Sightseeing';
+          const includes = (matched.includes || '').split(',').filter(Boolean);
+
           html = `
             <div class="sh-modal__image-side">
-              <img src="${itemData.image}" alt="${itemData.title}" class="sh-modal__img">
-              <span class="sh-modal__badge">${itemData.badge}</span>
+              <img src="${matched.image}" alt="${itemTitle}" class="sh-modal__img">
+              <span class="sh-modal__badge">${itemBadge}</span>
             </div>
             <div class="sh-modal__content-side">
-              <h2 class="sh-modal__title">${itemData.title}</h2>
-              <div class="sh-modal__price-tag" style="font-size: 1.35rem; font-weight: 700; color: var(--gold, #c7965a); margin-bottom: 16px; font-family: 'Satoshi', sans-serif;">
-                Starting from ${itemData.price || 'Contact for Price'}
+              <h2 class="sh-modal__title">${itemTitle}</h2>
+              <div class="sh-modal__price-tag" style="font-size:1.35rem;font-weight:700;color:var(--gold,#c7965a);margin-bottom:16px;">
+                Starting from ${matched.price || 'Contact for Price'}
               </div>
               <div class="sh-modal__meta-grid">
-                <div class="sh-modal__meta-item">
-                  <span class="sh-modal__meta-label">Duration</span>
-                  <span class="sh-modal__meta-value">${itemData.meta1}</span>
-                </div>
-                <div class="sh-modal__meta-item">
-                  <span class="sh-modal__meta-label">Guide</span>
-                  <span class="sh-modal__meta-value">${itemData.meta2}</span>
-                </div>
-                <div class="sh-modal__meta-item">
-                  <span class="sh-modal__meta-label">Terrain</span>
-                  <span class="sh-modal__meta-value">${itemData.meta3}</span>
-                </div>
+                ${matched.meta1 ? `<div class="sh-modal__meta-item"><span class="sh-modal__meta-label">Duration</span><span class="sh-modal__meta-value">${matched.meta1}</span></div>` : ''}
+                ${matched.meta2 ? `<div class="sh-modal__meta-item"><span class="sh-modal__meta-label">Guide</span><span class="sh-modal__meta-value">${matched.meta2}</span></div>` : ''}
+                ${matched.meta3 ? `<div class="sh-modal__meta-item"><span class="sh-modal__meta-label">Terrain</span><span class="sh-modal__meta-value">${matched.meta3}</span></div>` : ''}
               </div>
-              <p class="sh-modal__desc">${itemData.description}</p>
+              <p class="sh-modal__desc">${itemDesc}</p>
+              ${includes.length ? `
               <div class="sh-modal__extra">
                 <h4 class="sh-modal__extra-title">What's Included</h4>
                 <div class="sh-modal__tags-container">
                   ${includes.map(inc => `<span class="sh-modal__tag">${inc.trim()}</span>`).join('')}
                 </div>
-              </div>
-              <div class="sh-modal__cta" style="margin-top: 24px;">
-                <a href="https://wa.me/${wa_num}?text=${encodeURIComponent(itemData.waMsg || '')}" class="btn btn--primary sh-modal__enquire" target="_blank" style="padding: 12px 28px;"><span>Enquire Now</span></a>
-                <button class="btn sh-modal__pdf-btn" data-pdf-title="${itemData.title}" style="padding: 12px 20px; background: transparent; border: 1px solid rgba(196,168,108,0.45); color: #c4a86c; display:flex; align-items:center; justify-content:center; gap:8px; border-radius:8px; font-size:13px; cursor:pointer; transition: all 0.25s ease; width:100%; margin-top:10px;">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                  <span>Download PDF</span>
-                </button>
+              </div>` : ''}
+              <div class="sh-modal__cta" style="margin-top:24px;">
+                <a href="https://wa.me/${wa_num}?text=${encodeURIComponent(matched.waMsg || '')}" class="btn btn--primary sh-modal__enquire" target="_blank" style="padding:12px 28px;"><span>Enquire Now</span></a>
+                ${itineraryBtnHtml(matched.itineraryPdf, matched.itineraryPdfName)}
               </div>
             </div>`;
         }
@@ -600,7 +685,10 @@ const SHData = (function () {
         if (contentEl && overlay) {
           contentEl.innerHTML = html;
           overlay.classList.add('is-active');
+          document.body.classList.add('no-scroll');
+          document.documentElement.classList.add('no-scroll');
           document.body.style.overflow = 'hidden';
+          document.documentElement.style.overflow = 'hidden';
         }
       }
     });
@@ -617,11 +705,29 @@ const SHData = (function () {
       });
     }
 
+    // ── Itinerary PDF: open in new tab (works for base64 and URL) ──
     document.addEventListener('click', function (e) {
       var btn = e.target.closest('.sh-modal__itinerary-btn');
       if (!btn) return;
       var pdfUrl = btn.getAttribute('data-pdf-url');
-      if (pdfUrl) {
+      var pdfName = btn.getAttribute('data-pdf-name') || 'itinerary.pdf';
+      if (!pdfUrl) return;
+      // base64 PDF — open as blob URL in new tab
+      if (pdfUrl.startsWith('data:application/pdf')) {
+        try {
+          var byteStr = atob(pdfUrl.split(',')[1]);
+          var ab = new ArrayBuffer(byteStr.length);
+          var ia = new Uint8Array(ab);
+          for (var i = 0; i < byteStr.length; i++) ia[i] = byteStr.charCodeAt(i);
+          var blob = new Blob([ab], { type: 'application/pdf' });
+          var blobUrl = URL.createObjectURL(blob);
+          var win = window.open(blobUrl, '_blank');
+          if (win) win.document.title = pdfName;
+        } catch(err) {
+          // Fallback: open raw data URL
+          window.open(pdfUrl, '_blank');
+        }
+      } else {
         window.open(pdfUrl, '_blank');
       }
     });

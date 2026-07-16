@@ -8,7 +8,8 @@
 /* Why Choose Us: Pure White */
 .why-choose {
   background: #ffffff !important;
-  padding: clamp(48px, 7vw, 100px) 0 clamp(40px, 6vw, 80px) 0 !important; /* Reduced from 100px/80px */
+  padding: clamp(48px, 7vw, 100px) 0 clamp(40px, 6vw, 80px) 0 !important;
+  /* Reduced from 100px/80px */
   border-top: 1px solid rgba(15, 23, 42, 0.08) !important;
   box-shadow: none !important;
 }
@@ -16,14 +17,16 @@
 /* Skiing Section: Soft light Gray-Blue */
 .skiing {
   background: #f8fafc !important;
-  padding: clamp(48px, 7vw, 100px) 0 !important; /* Reduced from 100px */
+  padding: clamp(48px, 7vw, 100px) 0 !important;
+  /* Reduced from 100px */
   border-top: 1px solid rgba(15, 23, 42, 0.06) !important;
   border-bottom: 1px solid rgba(15, 23, 42, 0.06) !important;
   position: relative;
 }
 
 .skiing__bg {
-  display: none !important; /* Remove dark background images completely */
+  display: none !important;
+  /* Remove dark background images completely */
 }
 
 .skiing__inner {
@@ -34,18 +37,21 @@
 /* Trekking Section: Pure White */
 .trekking {
   background: #ffffff !important;
-  padding: clamp(48px, 7vw, 100px) 0 !important; /* Reduced from 100px */
+  padding: clamp(48px, 7vw, 100px) 0 !important;
+  /* Reduced from 100px */
   position: relative;
 }
 
 .trekking__parallax {
-  display: none !important; /* Hide old dark parallax layers */
+  display: none !important;
+  /* Hide old dark parallax layers */
 }
 
 /* Activities Section: Soft Light Gray */
 .activities {
   background: #f8fafc !important;
-  padding: clamp(48px, 7vw, 100px) 0 !important; /* Reduced from 100px */
+  padding: clamp(48px, 7vw, 100px) 0 !important;
+  /* Reduced from 100px */
   border-top: 1px solid rgba(15, 23, 42, 0.06) !important;
   border-bottom: 1px solid rgba(15, 23, 42, 0.06) !important;
 }
@@ -53,13 +59,15 @@
 /* Sightseeing Section: Pure White */
 .sightseeing {
   background: #ffffff !important;
-  padding: clamp(48px, 7vw, 100px) 0 !important; /* Reduced from 100px */
+  padding: clamp(48px, 7vw, 100px) 0 !important;
+  /* Reduced from 100px */
 }
 
 /* Rentals Section: Soft Light Gray */
 .rentals {
   background: #f8fafc !important;
-  padding: clamp(48px, 7vw, 100px) 0 !important; /* Reduced from 100px */
+  padding: clamp(48px, 7vw, 100px) 0 !important;
+  /* Reduced from 100px */
   border-top: 1px solid rgba(15, 23, 42, 0.06) !important;
   border-bottom: 1px solid rgba(15, 23, 42, 0.06) !important;
 }
@@ -67,17 +75,20 @@
 /* Transport Section: Pure White */
 .transport {
   background: #ffffff !important;
-  padding: clamp(48px, 7vw, 100px) 0 !important; /* Reduced from 100px */
+  padding: clamp(48px, 7vw, 100px) 0 !important;
+  /* Reduced from 100px */
 }
 
 .transport__bg {
-  display: none !important; /* Remove transport dark background */
+  display: none !important;
+  /* Remove transport dark background */
 }
 
 /* Packages Section: Soft Light Gray */
 .packages {
   background: #f8fafc !important;
-  padding: clamp(48px, 7vw, 100px) 0 !important; /* Reduced from 100px */
+  padding: clamp(48px, 7vw, 100px) 0 !important;
+  /* Reduced from 100px */
   border-top: 1px solid rgba(15, 23, 42, 0.06) !important;
   border-bottom: 1px solid rgba(15, 23, 42, 0.06) !important;
 }
@@ -85,13 +96,15 @@
 /* Testimonials: Pure White */
 .testimonials {
   background: #ffffff !important;
-  padding: clamp(48px, 7vw, 100px) 0 !important; /* Reduced from 100px */
+  padding: clamp(48px, 7vw, 100px) 0 !important;
+  /* Reduced from 100px */
 }
 
 /* Gallery: Soft Light Gray */
 .gallery {
   background: #f8fafc !important;
-  padding: clamp(48px, 7vw, 100px) 0 !important; /* Reduced from 100px */
+  padding: clamp(48px, 7vw, 100px) 0 !important;
+  /* Reduced from 100px */
   border-top: 1px solid rgba(15, 23, 42, 0.06) !important;
   border-bottom: 1px solid rgba(15, 23, 42, 0.06) !important;
 }
@@ -99,13 +112,15 @@
 /* About Us: Pure White */
 .about {
   background: #ffffff !important;
-  padding: clamp(48px, 7vw, 100px) 0 !important; /* Reduced from 100px */
+  padding: clamp(48px, 7vw, 100px) 0 !important;
+  /* Reduced from 100px */
 }
 
 /* ---------- Typography Readability & Contrast Polish ---------- */
-body, 
+body,
 section {
-  color: #0f172a !important; /* Force deep slate body text */
+  color: #0f172a !important;
+  /* Force deep slate body text */
 }
 
 .section-label {
@@ -152,7 +167,8 @@ section {
 .why-choose__grid {
   counter-reset: why-counter;
   gap: 24px !important;
-  margin-top: 32px !important; /* Reduced from 48px */
+  margin-top: 32px !important;
+  /* Reduced from 48px */
 }
 
 .why-choose__card {
@@ -279,7 +295,8 @@ section {
 /* ---------- 3. Trekking Section ---------- */
 .trekking__masonry {
   gap: 24px !important;
-  margin-top: 32px !important; /* Reduced from 48px */
+  margin-top: 32px !important;
+  /* Reduced from 48px */
 }
 
 .trekking__card {
@@ -342,7 +359,8 @@ section {
 /* ---------- 4. Activities Section ---------- */
 .activities__split {
   gap: 40px !important;
-  margin-top: 32px !important; /* Reduced from 48px */
+  margin-top: 32px !important;
+  /* Reduced from 48px */
 }
 
 .activities__season {
@@ -401,7 +419,8 @@ section {
 .rentals__grid,
 .transport__grid {
   gap: 24px !important;
-  margin-top: 32px !important; /* Reduced from 48px */
+  margin-top: 32px !important;
+  /* Reduced from 48px */
 }
 
 .rentals__card,
@@ -460,7 +479,8 @@ section {
 /* ---------- 7. Tour Packages Grid ---------- */
 .packages__grid {
   gap: 24px !important;
-  margin-top: 32px !important; /* Reduced from 48px */
+  margin-top: 32px !important;
+  /* Reduced from 48px */
 }
 
 .packages__card {
@@ -565,7 +585,8 @@ section {
 /* ---------- 9. Gallery Masonry ---------- */
 .gallery__masonry {
   gap: 20px !important;
-  margin-top: 32px !important; /* Reduced from 48px */
+  margin-top: 32px !important;
+  /* Reduced from 48px */
 }
 
 .gallery__item {
@@ -574,7 +595,7 @@ section {
   background: #ffffff !important;
   border-radius: 4px !important;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.01) !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.01) !important;
 }
 
 .gallery__item:hover {

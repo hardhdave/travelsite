@@ -20,8 +20,8 @@
   pointer-events: none;
   visibility: hidden;
   transition: opacity 0.35s cubic-bezier(0.25, 1, 0.5, 1),
-              transform 0.35s cubic-bezier(0.25, 1, 0.5, 1),
-              visibility 0.35s;
+    transform 0.35s cubic-bezier(0.25, 1, 0.5, 1),
+    visibility 0.35s;
 }
 
 /* Visibility State classes */
@@ -74,7 +74,8 @@
   align-items: start;
   gap: 14px;
   margin-bottom: 20px;
-  padding-right: 16px; /* Avoid overlapping with close button */
+  padding-right: 16px;
+  /* Avoid overlapping with close button */
 }
 
 /* Avatar Group */
@@ -102,7 +103,7 @@
   background-color: #25D366;
   border: 2px solid #ffffff;
   border-radius: 50%;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 /* Texts */

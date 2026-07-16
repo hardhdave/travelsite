@@ -18,7 +18,7 @@
   <link rel="stylesheet" href="css/base.css?v=5">
 
   <link rel="stylesheet" href="css/navbar.css?v=4">
-  <link rel="stylesheet" href="css/hero.css">
+  <link rel="stylesheet" href="css/hero.css?v=20">
   <link rel="stylesheet" href="css/why-choose.css?v=5">
   <link rel="stylesheet" href="css/experiences.css?v=13">
   <link rel="stylesheet" href="css/skiing.css?v=2">
@@ -41,6 +41,7 @@
 
   <!-- Favicon -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232F4F3E' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='m8 3 4 8 5-5 5 15H2L8 3z'/></svg>">
+  <link rel="stylesheet" href="css/theme.css?v=1">
 </head>
 <body>
 
@@ -90,7 +91,7 @@
       <div class="navbar__links" id="navLinks">
         <a href="index.html" class="navbar__link active">Home</a>
         <a href="adventures.html" class="navbar__link">Adventures</a>
-        <a href="adventures.html#activities" class="navbar__link">Activity</a>
+        <a href="activities.html" class="navbar__link">Activities</a>
         <a href="packages.html" class="navbar__link">Packages</a>
         <a href="index.html#gallery" class="navbar__link">Gallery</a>
         <a href="index.html#about" class="navbar__link">About</a>
@@ -123,10 +124,22 @@
         Adventures
         <svg class="nav-sheet__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </a>
-      <a href="adventures.html#activities" class="nav-sheet__item">
-        Activity
-        <svg class="nav-sheet__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </a>
+      <div class="nav-sheet__item-wrapper">
+        <button class="nav-sheet__item nav-sheet__item--dropdown-toggle" id="mobileActivitiesToggle" aria-haspopup="true" aria-expanded="false">
+          Activities
+          <svg class="nav-sheet__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="nav-sheet__submenu" id="mobileActivitiesSubmenu">
+          <a href="activities.html?season=winter" class="nav-sheet__submenu-item">
+            Winter Activities
+            <span class="nav-sheet__submenu-dot nav-sheet__submenu-dot--winter"></span>
+          </a>
+          <a href="activities.html?season=summer" class="nav-sheet__submenu-item">
+            Summer Activities
+            <span class="nav-sheet__submenu-dot nav-sheet__submenu-dot--summer"></span>
+          </a>
+        </div>
+      </div>
       <a href="packages.html" class="nav-sheet__item">
         Packages
         <svg class="nav-sheet__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
@@ -1113,17 +1126,12 @@
     </button>
     <div class="chat-popup__body">
       <div class="chat-popup__avatar-container">
-        <!-- High quality custom SVG guide avatar representing a local expert -->
-        <svg class="chat-popup__avatar" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="background-color: #f7f5f0; border: 1px solid #A77B34; box-sizing: border-box;">
-          <circle cx="50" cy="38" r="18" fill="#A77B34" opacity="0.85" />
-          <path d="M50,14 C58,14 62,20 62,28 C62,36 57,42 50,42 C43,42 38,36 38,28 C38,20 42,14 50,14 Z" fill="#1C1C1C" />
-          <path d="M22,78 C22,60 34,52 50,52 C66,52 78,60 78,78 Z" fill="#1C1C1C" />
-        </svg>
+        <img src="assets/images/akash-avatar.jpg" alt="Akash" class="chat-popup__avatar" style="border: 2px solid #C4A86C; box-sizing: border-box;">
         <span class="chat-popup__status-dot"></span>
       </div>
       <div class="chat-popup__info">
         <h3 id="chat-popup-heading" class="chat-popup__title">Planning a trip? Ask a local.</h3>
-        <p class="chat-popup__desc">Hey, I'm Stanzin. Planning Himalayan passes and stays can get overwhelming. Let's sketch a calm, custom route on WhatsApp.</p>
+        <p class="chat-popup__desc">Hey, I'm Akash. Planning Himalayan passes and stays can get overwhelming. Let's sketch a calm, custom route on WhatsApp.</p>
       </div>
     </div>
     <a href="https://wa.me/9999999999" target="_blank" rel="noopener noreferrer" class="chat-popup__btn">
@@ -1147,7 +1155,7 @@
   <script src="js/scroll-animations.js?v=7"></script>
   <script src="js/horizontal-scroll.js?v=5"></script>
   <script src="js/polish-animations.js?v=15"></script>
-  <script src="js/why-choose-slider.js?v=4"></script>
+  <script src="js/why-choose-slider.js?v=5"></script>
   <script src="js/map.js?v=3"></script>
   <script src="js/gallery.js?v=4"></script>
   <script>

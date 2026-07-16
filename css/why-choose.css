@@ -435,21 +435,12 @@
     margin-bottom: 16px;
   }
 
-  /* Mobile Grid: Single vertical column with fixed-height scroll */
+  /* Mobile Grid: Single vertical column with vertical auto-scroll ticker */
   .why-choose__bento {
     grid-template-columns: 1fr !important;
-    height: 480px !important;
-    overflow-y: auto !important;
-    overscroll-behavior-y: contain !important;
-    -webkit-overflow-scrolling: touch !important;
-    
-    /* Hide scrollbar */
-    scrollbar-width: none !important;
-    -ms-overflow-style: none !important;
-  }
-
-  .why-choose__bento::-webkit-scrollbar {
-    display: none !important;
+    height: 420px !important;
+    overflow: hidden !important;
+    pointer-events: none !important;
   }
 
   .wc-card {

@@ -1,0 +1,33 @@
+/* Unified client palette: final visual layer */
+:root {
+  --forest: #2F4F3E;
+  --earth: #8B5E34;
+  --sand: #F2E8D5;
+  --gold-accent: #B7A017;
+  --sky: #87AFC7;
+  --charcoal-deep: #1F2933;
+}
+html, body { background: var(--sand) !important; color: var(--charcoal-deep) !important; }
+body::before, body::after { background: transparent !important; }
+.navbar, .navbar.scrolled, header.site-header { background: var(--charcoal-deep) !important; color: #fff !important; }
+.navbar a, .navbar__logo, .navbar__logo-text { color: #fff !important; }
+.navbar a:hover, .navbar__link.active, .navbar__logo span { color: var(--gold-accent) !important; }
+footer, .site-footer { background: var(--forest) !important; color: #fff !important; }
+section:not(.hero):not(.page-hero):not([class*="hero"]) { background-color: var(--sand) !important; }
+.card, [class*="card"], .package-card, .experience-card, .activity-card, .testimonial-card {
+  background: rgba(255,255,255,.58) !important;
+  border-color: rgba(47,79,62,.16) !important;
+  box-shadow: 0 14px 34px rgba(31,41,51,.10) !important;
+}
+[class*="card"]:hover { border-color: rgba(183,160,23,.55) !important; box-shadow: 0 18px 42px rgba(47,79,62,.18) !important; }
+.btn-primary, .button-primary, .cta-button, .btn-gold, [class*="primary-btn"] {
+  background: var(--gold-accent) !important; border-color: var(--gold-accent) !important; color: #fff !important;
+}
+.btn-primary:hover, .button-primary:hover, .cta-button:hover, .btn-gold:hover { background: var(--forest) !important; border-color: var(--forest) !important; }
+a:not(.navbar__logo):not(.btn-primary):not(.button-primary):not(.cta-button) { color: var(--forest); }
+a:not(.navbar__logo):not(.btn-primary):not(.button-primary):not(.cta-button):hover { color: var(--gold-accent); }
+.eyebrow, .section-kicker, .tag, .badge { color: var(--earth) !important; }
+hr, .divider { border-color: rgba(139,94,52,.3) !important; }
+.page-hero, .hero, [class*="hero"] { background-color: var(--forest); }
+.dark-section, .premium-section, [class*="premium"] { background-color: var(--forest) !important; color: #fff; }
+input, textarea, select { background: rgba(255,255,255,.75) !important; border-color: rgba(47,79,62,.2) !important; }

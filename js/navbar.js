@@ -37,6 +37,20 @@
     sheet.querySelectorAll('a').forEach(a => {
       a.addEventListener('click', closeSheet);
     });
+
+    // Mobile Activities Dropdown Accordion Toggle
+    const mobileToggle = document.getElementById('mobileActivitiesToggle');
+    const mobileSubmenu = document.getElementById('mobileActivitiesSubmenu');
+    if (mobileToggle && mobileSubmenu) {
+      mobileToggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const isOpen = mobileSubmenu.classList.contains('is-open');
+        mobileSubmenu.classList.toggle('is-open', !isOpen);
+        mobileToggle.classList.toggle('active', !isOpen);
+        mobileToggle.setAttribute('aria-expanded', !isOpen ? 'true' : 'false');
+      });
+    }
   }
 
   /* ── Scroll: add .scrolled class to navbar ── */
@@ -101,27 +115,30 @@
     const isPackages = currentPath.includes('packages.html');
     const isSkiing = currentPath.includes('skiing.html');
     const isTreks = currentPath.includes('treks.html');
-    const isHome = !isAdventures && !isPackages && !isSkiing && !isTreks;
+    const isActivities = currentPath.includes('activities.html');
+    const isHome = !isAdventures && !isPackages && !isSkiing && !isTreks && !isActivities;
 
-    const allLinks = document.querySelectorAll('.navbar__link, .nav-sheet__item');
+    const allLinks = document.querySelectorAll('.navbar__link, .nav-sheet__item, .nav-sheet__item--dropdown-toggle');
     allLinks.forEach(link => {
       link.classList.remove('active');
       const href = link.getAttribute('href');
-      if (!href) return;
+      
+      if (!href) {
+        // If we are on activities page, keep the toggle highlight active
+        if (isActivities && link.id === 'mobileActivitiesToggle') {
+          link.classList.add('active');
+        }
+        return;
+      }
 
       if (isAdventures) {
-        // If hash is activities or tab parameter is activities, highlight Activity
-        const params = new URLSearchParams(window.location.search);
-        const isAct = hash === '#activities' || params.get('tab') === 'activities';
-        if (isAct) {
-          if (href.includes('#activities')) {
-            link.classList.add('active');
-          }
-        } else {
-          // Highlight Adventures link (not Activity)
-          if ((href.includes('adventures.html') || href === 'adventures.html') && !href.includes('#')) {
-            link.classList.add('active');
-          }
+        // Highlight Adventures link
+        if ((href.includes('adventures.html') || href === 'adventures.html') && !href.includes('#')) {
+          link.classList.add('active');
+        }
+      } else if (isActivities) {
+        if (href.includes('activities.html')) {
+          link.classList.add('active');
         }
       } else if (isPackages) {
         if (href.includes('packages.html')) {

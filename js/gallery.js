@@ -21,7 +21,10 @@
           lightboxImage.src = img.src;
           lightboxImage.alt = img.alt;
           lightbox.classList.add('active');
+          document.body.classList.add('no-scroll');
+          document.documentElement.classList.add('no-scroll');
           document.body.style.overflow = 'hidden';
+          document.documentElement.style.overflow = 'hidden';
         }
       }
     });
@@ -30,7 +33,10 @@
   // Close lightbox
   function closeLightbox() {
     lightbox.classList.remove('active');
+    document.body.classList.remove('no-scroll');
+    document.documentElement.classList.remove('no-scroll');
     document.body.style.overflow = '';
+    document.documentElement.style.overflow = '';
   }
 
   if (lightboxClose) {

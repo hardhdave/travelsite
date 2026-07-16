@@ -5,7 +5,8 @@
 .cta {
   position: relative;
   background: var(--bg-base);
-  padding: clamp(40px, 6vw, 80px) 0; /* Reduced from 80px */
+  padding: clamp(40px, 6vw, 80px) 0;
+  /* Reduced from 80px */
   border-top: 1px solid rgba(31, 41, 51, 0.05);
   overflow: hidden;
 }
@@ -47,12 +48,10 @@
 .cta__image-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(31, 41, 51, 0.15) 0%,
-    rgba(31, 41, 51, 0.45) 50%,
-    rgba(31, 41, 51, 0.92) 100%
-  );
+  background: linear-gradient(180deg,
+      rgba(31, 41, 51, 0.15) 0%,
+      rgba(31, 41, 51, 0.45) 50%,
+      rgba(31, 41, 51, 0.92) 100%);
   z-index: 1;
 }
 
@@ -266,13 +265,11 @@
 .cta__bg-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    180deg,
-    var(--bg-base, #1C1C1C) 0%,
-    rgba(28, 28, 28, 0.45) 40%,
-    rgba(28, 28, 28, 0.45) 60%,
-    var(--bg-base, #1C1C1C) 100%
-  );
+  background: linear-gradient(180deg,
+      var(--bg-base, #1C1C1C) 0%,
+      rgba(28, 28, 28, 0.45) 40%,
+      rgba(28, 28, 28, 0.45) 60%,
+      var(--bg-base, #1C1C1C) 100%);
   z-index: 1;
 }
 
@@ -346,14 +343,18 @@
 /* Responsive Breakpoints */
 @media (max-width: 991px) {
   .cta {
-    padding: 40px 0; /* Reduced from 60px */
+    padding: 40px 0;
+    /* Reduced from 60px */
   }
+
   .cta__grid {
     grid-template-columns: 1fr;
   }
+
   .cta__form-side {
     padding: 40px;
   }
+
   .cta__image-side {
     min-height: 400px;
     padding: 40px;
@@ -368,15 +369,19 @@
 
 @media (max-width: 480px) {
   .cta {
-    padding: 32px 0; /* Reduced from 40px */
+    padding: 32px 0;
+    /* Reduced from 40px */
   }
+
   .cta__image-side {
     min-height: 300px;
     padding: 30px;
   }
+
   .cta__form-side {
     padding: 30px;
   }
+
   .cta__direct-buttons {
     flex-direction: column;
     gap: 10px;

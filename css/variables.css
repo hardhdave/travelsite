@@ -1,101 +1,109 @@
 /* ============================================
-   SHRED HIMALAYAS — Light Neutral Luxury Design Tokens
+   SHRED HIMALAYAS — Earthy Nature Luxury Design Tokens
+   Forest Green · Sand Beige · Sunset Gold · Charcoal
    ============================================ */
 
 :root {
-  /* ——— Core Brand Colors (Charcoal primary, Gold Accent) ——— */
-  --gold:            #A77B34; /* Premium Gold Accent */
-  --gold-light:      #b88d44; /* Lighter gold for hover/gradients */
-  --gold-dark:       #8a6224; /* Darker gold */
-  --gold-subtle:     rgba(167, 123, 52, 0.08);
-  --gold-border:     rgba(167, 123, 52, 0.28);
-  --gold-border-hover: rgba(167, 123, 52, 0.6);
-
-  --forest-green:     #1C1C1C;
-  --earth-brown:      #A77B34;
+  /* ——— Core Brand Colors ——— */
+  --forest-green:     #2F4F3E;
+  --forest-green-rgb: 47, 79, 62;
+  --earth-brown:      #8B5E34;
+  --earth-brown-rgb:  139, 94, 52;
+  --sand-beige:       #F2E8D5;
+  --sand-beige-rgb:   242, 235, 213;
+  --sunset-gold:      #B7A017;
+  --sunset-gold-rgb:  212, 160, 23;
   --sky-blue:         #87AFC7;
   --charcoal:         #1F2933;
+  --charcoal-rgb:     31, 38, 51;
 
-  /* ——— Background Scale (Dark Luxury Charcoal) ——— */
-  --bg-deepest:      #121212; /* Darker charcoal/black for overlays/shadows */
-  --bg-base:         #1C1C1C; /* Main page background (#1C1C1C) */
-  --bg-raised:       #1C1C1C; /* Main page background (#1C1C1C) */
-  --bg-card:         #181818; /* Card background (#181818) */
-  --bg-hover:        #242424; /* Hover state for list items and tags */
-  --bg-overlay:      rgba(0, 0, 0, 0.6); /* Black translucent overlay */
+  /* ——— Accent (Sunset Gold scale) ——— */
+  --gold:             #B7A017;
+  --gold-light:       #E0B432;
+  --gold-dark:        #B8890F;
+  --gold-subtle:      rgba(212, 160, 23, 0.10);
+  --gold-border:      rgba(212, 160, 23, 0.30);
+  --gold-border-hover:rgba(212, 160, 23, 0.65);
 
-  /* ——— Cream Section Tokens (Retained for legacy/compatibility) ——— */
-  --bg-cream:        #1C1C1C;
-  --bg-cream-dark:   #1C1C1C;
-  --bg-cream-card:   #181818;
-  --text-on-cream:       #F2F2F2;
-  --text-secondary-on-cream: #A77B34;
-  --text-muted-on-cream:     #A8A8A8;
-  --border-on-cream:   rgba(255, 255, 255, 0.08);
-  --gold-border-on-cream: rgba(167, 123, 52, 0.25);
+  /* ——— Background Scale (Sand Beige Warm Palette) ——— */
+  --bg-deepest:      #2F4F3E;
+  --bg-base:         #F2E8D5;
+  --bg-raised:       #EDE5CF;
+  --bg-card:         #FDFBF5;
+  --bg-hover:        #E8DFCB;
+  --bg-overlay:      rgba(47, 79, 62, 0.75);
 
-  /* ——— Text Scale (High Contrast Light & Gold Accents) ——— */
-  --text-primary:    #F2F2F2; /* Primary body text and headers */
-  --text-secondary:  #A77B34; /* Subheadings / category tags (Gold Accent) */
-  --text-muted:      #A8A8A8; /* Caption and minor labels */
-  --text-gold:       #A77B34;
+  /* ——— Cream Section Tokens (Legacy compat → mapped to Sand) ——— */
+  --bg-cream:        #F2E8D5;
+  --bg-cream-dark:   #EDE5CF;
+  --bg-cream-card:   #FDFBF5;
+  --text-on-cream:       #1F2933;
+  --text-secondary-on-cream: #8B5E34;
+  --text-muted-on-cream:     #6B7B6D;
+  --border-on-cream:   rgba(47, 79, 62, 0.10);
+  --gold-border-on-cream: rgba(212, 160, 23, 0.25);
+
+  /* ——— Text Scale (High Contrast on Sand Beige) ——— */
+  --text-primary:    #1F2933;
+  --text-secondary:  #8B5E34;
+  --text-muted:      #6B7B6D;
+  --text-gold:       #B7A017;
   --text-white:      #FFFFFF;
 
   /* ——— Border / Divider ——— */
-  --border-subtle:   rgba(255, 255, 255, 0.08);
-  --border-medium:   rgba(255, 255, 255, 0.14);
-  --border-strong:   rgba(255, 255, 255, 0.22);
+  --border-subtle:   rgba(47, 79, 62, 0.10);
+  --border-medium:   rgba(47, 79, 62, 0.18);
+  --border-strong:   rgba(47, 79, 62, 0.28);
 
   /* ——— Glass / Card Effects ——— */
-  --glass-dark:      rgba(20, 20, 20, 0.6); /* Translucent dark glass */
-  --glass-dark-hover:rgba(20, 20, 20, 0.8);
-  --glass-gold:      rgba(167, 123, 52, 0.05);
-  --glass-shadow:    0 8px 32px rgba(0, 0, 0, 0.3);
+  --glass-dark:      rgba(47, 79, 62, 0.08);
+  --glass-dark-hover:rgba(47, 79, 62, 0.14);
+  --glass-gold:      rgba(212, 160, 23, 0.06);
+  --glass-shadow:    0 8px 32px rgba(47, 79, 62, 0.12);
 
-  /* ——— Legacy aliases (for compatibility) ——— */
+  /* ——— Legacy aliases (compatibility) ——— */
   --midnight-navy:        var(--bg-base);
-  --midnight-navy-rgb:    28, 28, 28;
+  --midnight-navy-rgb:    242, 235, 213;
   --glacier-blue:         var(--gold);
-  --glacier-blue-rgb:     167, 123, 52;
+  --glacier-blue-rgb:     212, 160, 23;
   --snow-white:           var(--text-primary);
-  --snow-white-rgb:       242, 242, 242;
+  --snow-white-rgb:       31, 38, 51;
   --mountain-gray:        var(--text-secondary);
-  --mountain-gray-rgb:    167, 123, 52;
-  --forest-green-rgb:     28, 28, 28;
+  --mountain-gray-rgb:    139, 94, 52;
   --deep-navy:            var(--bg-raised);
   --dark-slate:           var(--bg-card);
   --ice-blue:             var(--sky-blue);
   --warm-gold:            var(--gold);
-  --sunset-amber:         #A77B34;
+  --sunset-amber:         #B7A017;
   --alpine-white:         var(--text-primary);
   --charcoal-hex:         var(--charcoal);
   --storm-gray:           var(--text-muted);
   --soft-navy:            var(--bg-raised);
 
   /* ——— Gradients ——— */
-  --gradient-premium:      linear-gradient(135deg, #1C1C1C, #181818);
+  --gradient-premium:      linear-gradient(135deg, #2F4F3E, #253D30);
   --gradient-hero-overlay: linear-gradient(180deg,
-      rgba(0,0,0,0.4) 0%,
-      rgba(0,0,0,0.15)  40%,
-      rgba(0,0,0,0.7) 100%);
-  --gradient-card:         linear-gradient(145deg, #181818, #1A1A1A);
+      rgba(47, 79, 62, 0.4) 0%,
+      rgba(47, 79, 62, 0.15) 40%,
+      rgba(31, 38, 51, 0.75) 100%);
+  --gradient-card:         linear-gradient(145deg, #FDFBF5, #F7F2E4);
   --gradient-glacier:      linear-gradient(135deg, var(--gold-dark), var(--gold));
-  --gradient-forest:       linear-gradient(135deg, #1C1C1C, #181818);
-  --gradient-winter:       linear-gradient(180deg, #1C1C1C 0%, #1C1C1C 100%);
-  --gradient-summer:       linear-gradient(180deg, #1C1C1C 0%, #1C1C1C 100%);
-  --gradient-text:         linear-gradient(135deg, #F2F2F2, #A77B34);
+  --gradient-forest:       linear-gradient(135deg, #2F4F3E, #3A6350);
+  --gradient-winter:       linear-gradient(180deg, #F2E8D5 0%, #EDE5CF 100%);
+  --gradient-summer:       linear-gradient(180deg, #EDE5CF 0%, #F2E8D5 100%);
+  --gradient-text:         linear-gradient(135deg, #2F4F3E, #B7A017);
   --gradient-gold-shine:   linear-gradient(90deg,
-      transparent, rgba(167,123,52,0.12), transparent);
+      transparent, rgba(212, 160, 23, 0.15), transparent);
 
   /* ——— Glass Effects ——— */
-  --glass-bg:          rgba(255, 255, 255, 0.82);
-  --glass-bg-light:    rgba(255, 255, 255, 0.65);
+  --glass-bg:          rgba(242, 235, 213, 0.85);
+  --glass-bg-light:    rgba(253, 251, 245, 0.70);
   --glass-border:      rgba(47, 79, 62, 0.15);
   --glass-border-hover:rgba(47, 79, 62, 0.35);
 
   /* ——— Section shadows ——— */
   --section-overlap:    clamp(54px, 8vw, 118px);
-  --section-lift-shadow: 0 -20px 60px rgba(31, 41, 51, 0.05), 0 20px 60px rgba(31, 41, 51, 0.05);
+  --section-lift-shadow: 0 -20px 60px rgba(47, 79, 62, 0.05), 0 20px 60px rgba(47, 79, 62, 0.05);
 
   /* ——— Typography ——— */
   --font-logo:     'Cormorant Garamond', Georgia, serif;
@@ -172,14 +180,14 @@
   --radius-2xl:  32px;
   --radius-full: 9999px;
 
-  /* ——— Shadows (Refined for Light Backgrounds) ——— */
-  --shadow-sm:          0 2px 6px rgba(31, 41, 51, 0.04);
-  --shadow-md:          0 4px 12px rgba(31, 41, 51, 0.06);
-  --shadow-lg:          0 8px 24px rgba(31, 41, 51, 0.08);
-  --shadow-xl:          0 16px 36px rgba(31, 41, 51, 0.12);
-  --shadow-glow:        0 0 20px rgba(183, 160, 23, 0.12);
-  --shadow-glow-strong: 0 0 35px rgba(183, 160, 23, 0.22);
-  --shadow-gold:        0 4px 16px rgba(183, 160, 23, 0.15);
+  /* ——— Shadows (Refined for Sand Beige Backgrounds) ——— */
+  --shadow-sm:          0 2px 6px rgba(47, 79, 62, 0.06);
+  --shadow-md:          0 4px 12px rgba(47, 79, 62, 0.08);
+  --shadow-lg:          0 8px 24px rgba(47, 79, 62, 0.10);
+  --shadow-xl:          0 16px 36px rgba(47, 79, 62, 0.14);
+  --shadow-glow:        0 0 20px rgba(212, 160, 23, 0.15);
+  --shadow-glow-strong: 0 0 35px rgba(212, 160, 23, 0.28);
+  --shadow-gold:        0 4px 16px rgba(212, 160, 23, 0.20);
 
   /* ——— Transitions ——— */
   --ease-smooth:  cubic-bezier(0.25, 0.46, 0.45, 0.94);

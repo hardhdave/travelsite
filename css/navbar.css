@@ -4,7 +4,8 @@
 
 .navbar {
   position: fixed;
-  top: 32px; /* sits right below the 32px-high top ticker */
+  top: 32px;
+  /* sits right below the 32px-high top ticker */
   left: 0;
   right: 0;
   margin-left: auto;
@@ -155,7 +156,9 @@
   display: none !important;
 }
 
-.navbar__cta-mobile { display: none; }
+.navbar__cta-mobile {
+  display: none;
+}
 
 /* ── Mobile Menu Toggle ── */
 .navbar__toggle {
@@ -189,7 +192,9 @@
   border-color: rgba(255, 255, 255, 0.28);
 }
 
-.navbar__toggle span { display: none !important; }
+.navbar__toggle span {
+  display: none !important;
+}
 
 
 /* ============================================================
@@ -222,19 +227,21 @@
   position: fixed;
   left: 12px;
   right: 12px;
-  bottom: 12px; /* Bottom of the screen like iOS sheet */
+  bottom: 12px;
+  /* Bottom of the screen like iOS sheet */
   z-index: 999;
   background: #0f0f11;
   border: 1.5px solid rgba(255, 255, 255, 0.08);
   border-radius: 28px;
   padding: 14px 14px 18px;
-  transform: translateY(calc(100% + 24px)); /* slide up from completely off-screen */
+  transform: translateY(calc(100% + 24px));
+  /* slide up from completely off-screen */
   opacity: 0;
   pointer-events: none;
   visibility: hidden;
   transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
-              opacity 0.4s ease,
-              visibility 0.5s ease;
+    opacity 0.4s ease,
+    visibility 0.5s ease;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
 }
 
@@ -409,6 +416,7 @@
   0% {
     transform: translate3d(0, 0, 0);
   }
+
   100% {
     transform: translate3d(-50%, 0, 0);
   }
@@ -438,9 +446,14 @@
 
 /* ── Desktop: hide sheet & toggle, show centered links ── */
 @media (min-width: 1025px) {
-  .navbar__toggle { display: none; }
+  .navbar__toggle {
+    display: none;
+  }
+
   .nav-sheet,
-  .nav-sheet-backdrop { display: none !important; }
+  .nav-sheet-backdrop {
+    display: none !important;
+  }
 }
 
 /* ── Mobile & Tablet ── */
@@ -480,7 +493,8 @@
   .nav-sheet {
     left: 8px;
     right: 8px;
-    bottom: 8px; /* sits at bottom of screen on smaller devices */
+    bottom: 8px;
+    /* sits at bottom of screen on smaller devices */
     top: auto;
   }
 }
@@ -497,14 +511,16 @@
     padding: 4px 8px;
     font-size: 11px;
   }
+
   .navbar__links {
     gap: 4px;
   }
+
   .navbar__logo-text {
     font-size: 14px;
   }
+
   .navbar__logo-text span {
     font-size: 10px;
   }
 }
-

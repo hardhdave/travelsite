@@ -3,7 +3,8 @@
    ============================================ */
 
 .sightseeing {
-  padding: clamp(3rem, 6vw, 5rem) 0; /* Reduced from var(--space-20) = 5rem */
+  padding: clamp(3rem, 6vw, 5rem) 0;
+  /* Reduced from var(--space-20) = 5rem */
   position: relative;
   overflow: hidden;
   background: var(--bg-base);
@@ -12,7 +13,8 @@
 
 .sightseeing__header {
   text-align: center;
-  margin-bottom: var(--space-8); /* Reduced from var(--space-12) */
+  margin-bottom: var(--space-8);
+  /* Reduced from var(--space-12) */
   max-width: var(--container-narrow);
   margin-left: auto;
   margin-right: auto;
@@ -140,10 +142,25 @@
 }
 
 /* Pin Positions */
-.sightseeing__pin--gulmarg { top: 30%; left: 25%; }
-.sightseeing__pin--srinagar { top: 38%; left: 50%; }
-.sightseeing__pin--pahalgam { top: 58%; left: 65%; }
-.sightseeing__pin--sonamarg { top: 25%; left: 72%; }
+.sightseeing__pin--gulmarg {
+  top: 30%;
+  left: 25%;
+}
+
+.sightseeing__pin--srinagar {
+  top: 38%;
+  left: 50%;
+}
+
+.sightseeing__pin--pahalgam {
+  top: 58%;
+  left: 65%;
+}
+
+.sightseeing__pin--sonamarg {
+  top: 25%;
+  left: 72%;
+}
 
 /* Info Card: Premium Light Translucent Glass */
 .sightseeing__info-card {
@@ -221,17 +238,27 @@
 }
 
 @keyframes pingPulse {
-  0% { transform: scale(1); opacity: 1; }
-  100% { transform: scale(2.2); opacity: 0; }
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
 }
 
 @media (max-width: 768px) {
   .sightseeing__map-container {
     aspect-ratio: 4/3;
   }
+
   .sightseeing {
-    padding: 2rem 0; /* Compact mobile padding */
+    padding: 2rem 0;
+    /* Compact mobile padding */
   }
+
   .sightseeing__info-card {
     grid-template-columns: 1fr;
     padding: var(--space-6) !important;

@@ -494,10 +494,18 @@ function openModal(type, ctx1, ctx2) {
 
   body.innerHTML = html;
   document.getElementById('modalBackdrop').classList.add('open');
+  document.body.classList.add('no-scroll');
+  document.documentElement.classList.add('no-scroll');
+  document.body.style.overflow = 'hidden';
+  document.documentElement.style.overflow = 'hidden';
 }
 
 function closeModal() {
   document.getElementById('modalBackdrop').classList.remove('open');
+  document.body.classList.remove('no-scroll');
+  document.documentElement.classList.remove('no-scroll');
+  document.body.style.overflow = '';
+  document.documentElement.style.overflow = '';
   _modalCtx = null;
 }
 function closeModalOnBackdrop(e) {
@@ -515,12 +523,14 @@ function saveModal() {
     var dataKey = type === 'ski-item' ? 'skiing' : 'snowboarding';
     var cats = SHData.get(dataKey);
     var existing = isEdit ? cats[ctx1].items[ctx2] : {};
+    var pdf = resolvePdfForSave(existing);
     var newItem = {
       id: isEdit ? existing.id : 'item-' + Date.now(),
       enabled: existing.enabled !== false,
       title: v('f-title'), description: v('f-desc'), badge: v('f-badge'),
       price: v('f-price'), meta1: v('f-meta1'), meta2: v('f-meta2'), meta3: v('f-meta3'),
-      includes: v('f-includes'), image: v('f-image'), waMsg: v('f-wamsg')
+      includes: v('f-includes'), image: v('f-image'), waMsg: v('f-wamsg'),
+      itineraryPdf: pdf.itineraryPdf, itineraryPdfName: pdf.itineraryPdfName
     };
     if (!newItem.title) { showToast('Title is required', false); return; }
     if (isEdit) cats[ctx1].items[ctx2] = newItem; else cats[ctx1].items.push(newItem);
@@ -531,6 +541,7 @@ function saveModal() {
     var treks = SHData.get('trekking');
     var existing = isEdit ? treks[ctx2] : {};
     var diff = v('f-difficulty');
+    var pdf = resolvePdfForSave(existing);
     var newT = {
       id: isEdit ? existing.id : 'trek-' + Date.now(),
       enabled: existing.enabled !== false,
@@ -538,7 +549,8 @@ function saveModal() {
       difficulty: diff, difficultyClass: diff.toLowerCase(),
       days: v('f-days'), altitude: v('f-altitude'), distance: v('f-distance'),
       season: v('f-season'), highlights: v('f-highlights'),
-      image: v('f-image'), waMsg: v('f-wamsg')
+      image: v('f-image'), waMsg: v('f-wamsg'),
+      itineraryPdf: pdf.itineraryPdf, itineraryPdfName: pdf.itineraryPdfName
     };
     if (!newT.title) { showToast('Title is required', false); return; }
     if (isEdit) treks[ctx2] = newT; else treks.push(newT);
@@ -550,7 +562,8 @@ function saveModal() {
     var newA = {
       id: isEdit ? existing.id : 'act-' + Date.now(),
       enabled: existing.enabled !== false,
-      name: v('f-name'), desc: v('f-desc'), image: v('f-image')
+      name: v('f-name'), desc: v('f-desc'), image: v('f-image'),
+      badge: v('f-badge'), price: v('f-price'), waMsg: v('f-wamsg')
     };
     if (!newA.name) { showToast('Name is required', false); return; }
     if (isEdit) acts[ctx1][ctx2] = newA; else acts[ctx1].push(newA);
@@ -559,11 +572,13 @@ function saveModal() {
   else if (type === 'sightseeing') {
     var sights = SHData.get('sightseeing');
     var existing = isEdit ? sights[ctx2] : {};
+    var pdf = resolvePdfForSave(existing);
     var newS = {
       id: isEdit ? existing.id : 'sg-' + Date.now(),
       enabled: existing.enabled !== false,
       place: v('f-place'), label: v('f-label'), title: v('f-title'),
-      desc: v('f-desc'), image: v('f-image')
+      desc: v('f-desc'), image: v('f-image'),
+      itineraryPdf: pdf.itineraryPdf, itineraryPdfName: pdf.itineraryPdfName
     };
     if (!newS.title) { showToast('Title is required', false); return; }
     if (isEdit) sights[ctx2] = newS; else sights.push(newS);
@@ -585,6 +600,7 @@ function saveModal() {
   else if (type === 'package') {
     var pkgs = SHData.get('packages');
     var existing = isEdit ? pkgs[ctx2] : {};
+    var pdf = resolvePdfForSave(existing);
     var newP = {
       id: isEdit ? existing.id : 'pkg-' + Date.now(),
       enabled: existing.enabled !== false,
@@ -592,7 +608,8 @@ function saveModal() {
       price: v('f-price'), duration: v('f-duration'), accommodation: v('f-accommodation'),
       transport: v('f-transport'), meals: v('f-meals'),
       destinations: v('f-destinations'), includes: v('f-includes'),
-      image: v('f-image'), waMsg: v('f-wamsg')
+      image: v('f-image'), waMsg: v('f-wamsg'),
+      itineraryPdf: pdf.itineraryPdf, itineraryPdfName: pdf.itineraryPdfName
     };
     if (!newP.title) { showToast('Title is required', false); return; }
     if (isEdit) pkgs[ctx2] = newP; else pkgs.push(newP);
@@ -695,6 +712,61 @@ function _setTags(id, tags) {
 function addCustomTag(id) { var input=document.getElementById(id+'-custom'); var val=(input||{}).value; if(!val||!val.trim()) return; var tags=_getTags(id); val=val.trim(); if(!tags.includes(val)){tags.push(val);_setTags(id,tags);} if(input) input.value=''; }
 function removeTag(id, tag) { _setTags(id, _getTags(id).filter(function(t){return t!==tag;})); }
 
+// ─── PDF UPLOAD FIELD (reusable for all card forms) ───
+function pdfUploadField(item) {
+  var hasPdf = item.itineraryPdf && item.itineraryPdf.length > 100;
+  var displayName = item.itineraryPdfName || (hasPdf ? 'itinerary.pdf' : '');
+  return '<div class="field"><label>📄 Itinerary PDF (max 10 MB)</label>' +
+    '<input type="hidden" id="f-pdf" value="">' +
+    '<input type="hidden" id="f-pdf-name" value="' + escHtml(displayName) + '">' +
+    '<div id="f-pdf-status">' +
+    (hasPdf
+      ? '<div style="margin-bottom:8px;font-size:13px;color:var(--gold);display:flex;align-items:center;gap:6px;">📄 <span>' + escHtml(displayName) + '</span></div>'
+      : '<div style="margin-bottom:8px;font-size:13px;color:var(--t3);font-style:italic;">No itinerary uploaded</div>') +
+    '</div>' +
+    '<div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">' +
+    '<button type="button" class="import-btn" onclick="triggerPdfField()">📁 ' + (hasPdf ? 'Replace' : 'Upload') + ' PDF</button>' +
+    (hasPdf ? '<button type="button" class="import-btn" style="background:rgba(255,80,80,0.12);color:#ff6b6b;border-color:rgba(255,80,80,0.25);" onclick="removePdfField()">Remove PDF</button>' : '') +
+    '<input type="file" id="f-pdf-file" accept="application/pdf" style="display:none" onchange="handlePdfField()">' +
+    '</div></div>';
+}
+function triggerPdfField() { var el = document.getElementById('f-pdf-file'); if (el) el.click(); }
+function handlePdfField() {
+  var fileEl = document.getElementById('f-pdf-file');
+  if (!fileEl || !fileEl.files[0]) return;
+  var file = fileEl.files[0];
+  if (file.type !== 'application/pdf' && !file.name.toLowerCase().endsWith('.pdf')) {
+    showToast('Please select a PDF file', false); fileEl.value = ''; return;
+  }
+  if (file.size > 10 * 1024 * 1024) {
+    showToast('File too large (max 10MB)', false); fileEl.value = ''; return;
+  }
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    document.getElementById('f-pdf').value = e.target.result;
+    document.getElementById('f-pdf-name').value = file.name;
+    var status = document.getElementById('f-pdf-status');
+    if (status) status.innerHTML = '<div style="margin-bottom:8px;font-size:13px;color:var(--gold);display:flex;align-items:center;gap:6px;">📄 <span>' + escHtml(file.name) + ' ✓</span></div>';
+    showToast('PDF attached');
+  };
+  reader.readAsDataURL(file);
+}
+function removePdfField() {
+  document.getElementById('f-pdf').value = '__REMOVED__';
+  document.getElementById('f-pdf-name').value = '';
+  var status = document.getElementById('f-pdf-status');
+  if (status) status.innerHTML = '<div style="margin-bottom:8px;font-size:13px;color:var(--t3);font-style:italic;">PDF will be removed on save</div>';
+}
+function resolvePdfForSave(existing) {
+  var pdfEl = document.getElementById('f-pdf');
+  var pdfVal = pdfEl ? (pdfEl.value || '') : '';
+  var nameEl = document.getElementById('f-pdf-name');
+  var pdfName = nameEl ? (nameEl.value || '').trim() : '';
+  if (pdfVal === '__REMOVED__') return { itineraryPdf: '', itineraryPdfName: '' };
+  if (pdfVal.length > 100) return { itineraryPdf: pdfVal, itineraryPdfName: pdfName };
+  return { itineraryPdf: existing.itineraryPdf || '', itineraryPdfName: existing.itineraryPdfName || '' };
+}
+
 // ─── FORM BUILDERS ────────────────────────────────────
 function packageForm(item) {
   return '<div class="form-row">' + field('Package Title *','f-title',item.title) + field('Badge (e.g. Beginner, Elite)','f-badge',item.badge) + '</div>' +
@@ -703,6 +775,7 @@ function packageForm(item) {
     '<div class="form-row">' + field('Level/Type (meta 2)','f-meta2',item.meta2) + field('Extra Info (meta 3)','f-meta3',item.meta3) + '</div>' +
     tagManagerField('f-includes', item.includes, 'What\'s Included') +
     imageUploadField('f-image', item.image) +
+    pdfUploadField(item) +
     field('WhatsApp Message','f-wamsg',item.waMsg,'text',"I'm interested in...");
 }
 function trekForm(item) {
@@ -713,11 +786,13 @@ function trekForm(item) {
     '<div class="form-row">' + field('Max Altitude (e.g. 3,800m)','f-altitude',item.altitude) + field('Distance (e.g. 72 km)','f-distance',item.distance) + '</div>' +
     tagManagerField('f-highlights', item.highlights, 'Trek Highlights') +
     imageUploadField('f-image', item.image) +
+    pdfUploadField(item) +
     field('WhatsApp Message','f-wamsg',item.waMsg,'text',"I'm interested in...");
 }
 function activityForm(item) {
-  return field('Activity Name *','f-name',item.name) +
-    field('Short Description','f-desc',item.desc) +
+  return '<div class="form-row">' + field('Activity Name *','f-name',item.name) + field('Badge (e.g. Adventure, Leisure)','f-badge',item.badge) + '</div>' +
+    field('Short Description *','f-desc',item.desc) +
+    '<div class="form-row">' + field('Price (e.g. ₹2,999)','f-price',item.price) + field('WhatsApp Message','f-wamsg',item.waMsg,'text',"I'm interested in...") + '</div>' +
     imageUploadField('f-image', item.image);
 }
 function sightseeingForm(item) {
@@ -725,7 +800,8 @@ function sightseeingForm(item) {
     field('Map Label','f-label',item.label) +
     field('Display Title *','f-title',item.title) +
     fieldTA('Description','f-desc',item.desc,3) +
-    imageUploadField('f-image', item.image);
+    imageUploadField('f-image', item.image) +
+    pdfUploadField(item);
 }
 function rentalForm(item) {
   return field('Rental Item Title *','f-title',item.title) +
@@ -742,6 +818,7 @@ function tourPackageForm(item) {
     '<div class="form-row">' + field('Meals','f-meals',item.meals) + field('Destinations (comma-separated)','f-destinations',item.destinations,'text','Srinagar,Gulmarg,...') + '</div>' +
     tagManagerField('f-includes', item.includes, 'What\'s Included') +
     imageUploadField('f-image', item.image) +
+    pdfUploadField(item) +
     field('WhatsApp Message','f-wamsg',item.waMsg,'text',"I'm interested in...");
 }
 function testimonialForm(item) {

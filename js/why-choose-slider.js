@@ -1,8 +1,7 @@
 /* ============================================================
-   WHY-CHOOSE-SLIDER.JS - Mobile Bento Grid Alternating Vertical Scroll
-   Supports continuous autoscroll marquee, pointer-based manual swiping/dragging,
-   momentum glide on release, and seamless wrap-around looping.
-   Per-column pause: only the column being interacted with pauses.
+   WHY-CHOOSE-SLIDER.JS - Mobile Bento Grid Vertical Auto-Scroll Ticker
+   Implements an infinite vertical marquee loop on mobile viewports.
+   Manual swiping/dragging is disabled to prevent conflicts with page scrolling.
    ============================================================ */
 (function () {
   'use strict';
@@ -11,278 +10,67 @@
     const bento = document.querySelector('.why-choose__bento');
     if (!bento) return;
 
-    // Capture the original card elements as they appear on desktop/tablet layout
-    let originalCards = Array.from(bento.querySelectorAll('.wc-card'));
-    if (!originalCards.length) return;
-
-    let isMobileLayout = false;
-    let columns = [];
     let marqueeActive = false;
     let animationId = null;
+    let cloned = false;
+    let originalCards = [];
 
-    // Per-column interaction state (independent pause per column)
-    let colInteracting = [false, false];
+    function checkAndSetup() {
+      const isMobile = window.innerWidth < 768;
 
-    // Tracker arrays for columns
-    let yPositions = [0, 0];
-    let halfHeights = [0, 0];
-    let activePointerEvents = []; // tracks event listeners for removal
+      if (isMobile) {
+        if (marqueeActive) return;
 
-    const scrollSpeed = 0.6; // Speed of autoscroll (pixels per frame)
-
-    // Helper to keep translate coordinates within seamless bounds [-halfHeight, 0]
-    function wrapY(y, halfHeight) {
-      while (y < -halfHeight) y += halfHeight;
-      while (y > 0) y -= halfHeight;
-      return y;
-    }
-
-    // Animation frame loop for continuous smooth autoscroll
-    function animateMarquee() {
-      if (!marqueeActive) return;
-
-      if (columns.length === 2) {
-        // Column 1 (Index 0) scrolls UP (y decreases) — only if not interacting
-        if (!colInteracting[0]) {
-          yPositions[0] -= scrollSpeed;
-          yPositions[0] = wrapY(yPositions[0], halfHeights[0]);
-          columns[0].style.transform = `translate3d(0, ${yPositions[0]}px, 0)`;
+        // If we haven't cloned cards for marquee, clone now
+        if (!cloned) {
+          originalCards = Array.from(bento.querySelectorAll('.wc-card'));
+          originalCards.forEach(card => {
+            bento.appendChild(card.cloneNode(true));
+          });
+          cloned = true;
         }
 
-        // Column 2 (Index 1) scrolls DOWN (y increases) — only if not interacting
-        if (!colInteracting[1]) {
-          yPositions[1] += scrollSpeed;
-          yPositions[1] = wrapY(yPositions[1], halfHeights[1]);
-          columns[1].style.transform = `translate3d(0, ${yPositions[1]}px, 0)`;
-        }
-      }
+        const scrollSpeed = 0.55; // Smooth, premium slow speed
+        let halfHeight = bento.scrollHeight / 2;
 
-      animationId = requestAnimationFrame(animateMarquee);
-    }
+        marqueeActive = true;
 
-    function startMarquee() {
-      if (marqueeActive) return;
-      marqueeActive = true;
-      animationId = requestAnimationFrame(animateMarquee);
-    }
+        function tick() {
+          if (!marqueeActive) return;
 
-    function stopMarquee() {
-      marqueeActive = false;
-      cancelAnimationFrame(animationId);
-    }
-
-    // Set up dragging listeners on a column
-    function bindDragEvents(col, colIdx) {
-      let startTouchY = 0;
-      let startPosY = 0;
-      let lastTouchY = 0;
-      let dragVelocity = 0;
-      let lastTouchTime = 0;
-      let isDragging = false;
-      let resumeTimeout = null;
-
-      const onPointerDown = (e) => {
-        // Capture pointer events to track movement even outside card bounds
-        try {
-          col.setPointerCapture(e.pointerId);
-        } catch (err) {}
-
-        isDragging = true;
-        colInteracting[colIdx] = true;
-        clearTimeout(resumeTimeout);
-
-        startTouchY = e.clientY;
-        startPosY = yPositions[colIdx];
-        lastTouchY = startTouchY;
-        lastTouchTime = Date.now();
-        dragVelocity = 0;
-      };
-
-      const onPointerMove = (e) => {
-        if (!isDragging) return;
-
-        const currentTouchY = e.clientY;
-        const deltaY = currentTouchY - startTouchY;
-        const now = Date.now();
-        const dt = now - lastTouchTime;
-
-        if (dt > 0) {
-          dragVelocity = (currentTouchY - lastTouchY) / dt;
-        }
-
-        let newY = startPosY + deltaY;
-        newY = wrapY(newY, halfHeights[colIdx]);
-
-        yPositions[colIdx] = newY;
-        col.style.transform = `translate3d(0, ${newY}px, 0)`;
-
-        lastTouchY = currentTouchY;
-        lastTouchTime = now;
-      };
-
-      const onPointerUp = (e) => {
-        if (!isDragging) return;
-        isDragging = false;
-
-        try {
-          col.releasePointerCapture(e.pointerId);
-        } catch (err) {}
-
-        // Apply brief momentum glide based on drag speed on release
-        if (Math.abs(dragVelocity) > 0.1) {
-          let momentumY = yPositions[colIdx];
-          let velocity = dragVelocity * 16; // scale to frame delta
-          
-          const frictionDecel = () => {
-            if (isDragging) return; // cancel glide if user touches again
-            
-            momentumY += velocity;
-            momentumY = wrapY(momentumY, halfHeights[colIdx]);
-            yPositions[colIdx] = momentumY;
-            col.style.transform = `translate3d(0, ${momentumY}px, 0)`;
-            
-            velocity *= 0.92; // friction reduction
-            if (Math.abs(velocity) > 0.15) {
-              requestAnimationFrame(frictionDecel);
-            } else {
-              // Resume this column's auto-scroll when momentum ends
-              colInteracting[colIdx] = false;
-            }
-          };
-          requestAnimationFrame(frictionDecel);
-        } else {
-          // No momentum — resume this column immediately
-          colInteracting[colIdx] = false;
-        }
-      };
-
-      // Desktop hover: pause only this column on hover
-      const onPointerEnter = (e) => {
-        // Only apply hover-pause for non-touch (mouse) devices
-        if (e.pointerType === 'mouse' && !isDragging) {
-          colInteracting[colIdx] = true;
-        }
-      };
-
-      const onPointerLeave = (e) => {
-        if (e.pointerType === 'mouse' && !isDragging) {
-          colInteracting[colIdx] = false;
-        }
-      };
-
-      col.addEventListener('pointerdown', onPointerDown);
-      col.addEventListener('pointermove', onPointerMove);
-      col.addEventListener('pointerup', onPointerUp);
-      col.addEventListener('pointercancel', onPointerUp);
-      col.addEventListener('pointerenter', onPointerEnter);
-      col.addEventListener('pointerleave', onPointerLeave);
-
-      // Keep references to clean up listeners on resize
-      activePointerEvents.push({
-        col,
-        onPointerDown,
-        onPointerMove,
-        onPointerUp,
-        onPointerEnter,
-        onPointerLeave
-      });
-    }
-
-    // Toggle bento grid layout structure depending on viewport size
-    function setupLayout() {
-      const isMobile = false; // Bypassed JS mobile slider to use pure responsive CSS column layout instead
-
-      if (isMobile && !isMobileLayout) {
-        // Clear bento container and load mobile column frames
-        bento.innerHTML = '';
-        bento.classList.add('wc-mobile-layout');
-
-        const colUp = document.createElement('div');
-        colUp.className = 'wc-column wc-column--up';
-
-        const colDown = document.createElement('div');
-        colDown.className = 'wc-column wc-column--down';
-
-        // Distribute cards: Odd indices in Column 1, Even indices in Column 2
-        originalCards.forEach((card, idx) => {
-          const clone = card.cloneNode(true);
-          clone.classList.remove('reveal');
-          
-          if (idx % 2 === 0) {
-            colUp.appendChild(clone);
-          } else {
-            colDown.appendChild(clone);
+          bento.scrollTop += scrollSpeed;
+          if (bento.scrollTop >= halfHeight) {
+            bento.scrollTop = 0;
           }
-        });
+          animationId = requestAnimationFrame(tick);
+        }
 
-        // Duplicate contents to enable infinite scrolling loops
-        const colUpChildren = Array.from(colUp.children);
-        colUpChildren.forEach(child => {
-          colUp.appendChild(child.cloneNode(true));
-        });
+        animationId = requestAnimationFrame(tick);
+      } else {
+        // Restore desktop layout and cancel ticker if layout changed
+        if (marqueeActive) {
+          marqueeActive = false;
+          cancelAnimationFrame(animationId);
 
-        const colDownChildren = Array.from(colDown.children);
-        colDownChildren.forEach(child => {
-          colDown.appendChild(child.cloneNode(true));
-        });
+          bento.scrollTop = 0;
 
-        bento.appendChild(colUp);
-        bento.appendChild(colDown);
-
-        columns = [colUp, colDown];
-        activePointerEvents = [];
-
-        // Bind drag listeners to each column independently
-        bindDragEvents(colUp, 0);
-        bindDragEvents(colDown, 1);
-
-        isMobileLayout = true;
-
-        // Force a brief paint cycle before measuring heights and starting animations
-        setTimeout(() => {
-          if (columns.length === 2) {
-            halfHeights[0] = columns[0].scrollHeight / 2;
-            halfHeights[1] = columns[1].scrollHeight / 2;
-
-            yPositions[0] = 0;
-            // Column 2 starts at the half point to scroll down smoothly
-            yPositions[1] = -halfHeights[1];
-
-            columns[0].style.transform = `translate3d(0, ${yPositions[0]}px, 0)`;
-            columns[1].style.transform = `translate3d(0, ${yPositions[1]}px, 0)`;
-
-            startMarquee();
+          // Remove cloned elements
+          if (cloned) {
+            const allCards = bento.querySelectorAll('.wc-card');
+            allCards.forEach((card, idx) => {
+              if (idx >= originalCards.length) {
+                card.remove();
+              }
+            });
+            cloned = false;
           }
-        }, 150);
-      } else if (!isMobile && isMobileLayout) {
-        stopMarquee();
-
-        // Clean up event listeners
-        activePointerEvents.forEach(({ col, onPointerDown, onPointerMove, onPointerUp, onPointerEnter, onPointerLeave }) => {
-          col.removeEventListener('pointerdown', onPointerDown);
-          col.removeEventListener('pointermove', onPointerMove);
-          col.removeEventListener('pointerup', onPointerUp);
-          col.removeEventListener('pointercancel', onPointerUp);
-          col.removeEventListener('pointerenter', onPointerEnter);
-          col.removeEventListener('pointerleave', onPointerLeave);
-        });
-        activePointerEvents = [];
-
-        // Reset layout structure back to default desktop/tablet grid
-        bento.innerHTML = '';
-        bento.classList.remove('wc-mobile-layout');
-        originalCards.forEach(card => {
-          bento.appendChild(card);
-        });
-
-        columns = [];
-        isMobileLayout = false;
+        }
       }
     }
 
     // Initialize layout setup and listen to window resizes
-    setupLayout();
-    window.addEventListener('resize', setupLayout);
+    checkAndSetup();
+    window.addEventListener('resize', checkAndSetup);
   }
 
   // Initialize once DOM is ready

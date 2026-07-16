@@ -24,6 +24,7 @@
   <link rel="stylesheet" href="css/cursor.css?v=1">
   <link rel="icon"
     href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232F4F3E' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='m8 3 4 8 5-5 5 15H2L8 3z'/></svg>">
+  <link rel="stylesheet" href="css/theme.css?v=1">
 </head>
 
 <body>
@@ -47,7 +48,7 @@
       <div class="navbar__links" id="navLinks">
         <a href="index.html" class="navbar__link">Home</a>
         <a href="adventures.html" class="navbar__link">Adventures</a>
-        <a href="adventures.html#activities" class="navbar__link">Activity</a>
+        <a href="activities.html" class="navbar__link">Activities</a>
         <a href="packages.html" class="navbar__link">Packages</a>
         <a href="index.html#gallery" class="navbar__link">Gallery</a>
         <a href="index.html#about" class="navbar__link">About</a>
@@ -80,10 +81,22 @@
         Adventures
         <svg class="nav-sheet__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </a>
-      <a href="adventures.html#activities" class="nav-sheet__item">
-        Activity
-        <svg class="nav-sheet__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </a>
+      <div class="nav-sheet__item-wrapper">
+        <button class="nav-sheet__item nav-sheet__item--dropdown-toggle" id="mobileActivitiesToggle" aria-haspopup="true" aria-expanded="false">
+          Activities
+          <svg class="nav-sheet__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="nav-sheet__submenu" id="mobileActivitiesSubmenu">
+          <a href="activities.html?season=winter" class="nav-sheet__submenu-item">
+            Winter Activities
+            <span class="nav-sheet__submenu-dot nav-sheet__submenu-dot--winter"></span>
+          </a>
+          <a href="activities.html?season=summer" class="nav-sheet__submenu-item">
+            Summer Activities
+            <span class="nav-sheet__submenu-dot nav-sheet__submenu-dot--summer"></span>
+          </a>
+        </div>
+      </div>
       <a href="packages.html" class="nav-sheet__item">
         Packages
         <svg class="nav-sheet__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
