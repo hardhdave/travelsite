@@ -1,33 +1,263 @@
-/* Unified client palette: final visual layer */
+/* ============================================
+   UNIFIED BRAND PALETTE & TEXT HIGHLIGHT FIX
+   Sand Beige Background · Forest Green Cards · Sunset Gold Accents
+   ============================================ */
+
 :root {
   --forest: #2F4F3E;
+  --forest-rgb: 47, 79, 62;
   --earth: #8B5E34;
   --sand: #F2E8D5;
   --gold-accent: #B7A017;
   --sky: #87AFC7;
   --charcoal-deep: #1F2933;
 }
-html, body { background: var(--sand) !important; color: var(--charcoal-deep) !important; }
-body::before, body::after { background: transparent !important; }
-.navbar, .navbar.scrolled, header.site-header { background: var(--charcoal-deep) !important; color: #fff !important; }
-.navbar a, .navbar__logo, .navbar__logo-text { color: #fff !important; }
-.navbar a:hover, .navbar__link.active, .navbar__logo span { color: var(--gold-accent) !important; }
-footer, .site-footer { background: var(--forest) !important; color: #fff !important; }
-section:not(.hero):not(.page-hero):not([class*="hero"]) { background-color: var(--sand) !important; }
-.card, [class*="card"], .package-card, .experience-card, .activity-card, .testimonial-card {
-  background: rgba(255,255,255,.58) !important;
-  border-color: rgba(47,79,62,.16) !important;
-  box-shadow: 0 14px 34px rgba(31,41,51,.10) !important;
+
+/* 1. Global Page Background (Single Color for Whole Site) */
+html, 
+body {
+  background-color: var(--sand) !important;
+  color: var(--charcoal-deep) !important;
 }
-[class*="card"]:hover { border-color: rgba(183,160,23,.55) !important; box-shadow: 0 18px 42px rgba(47,79,62,.18) !important; }
-.btn-primary, .button-primary, .cta-button, .btn-gold, [class*="primary-btn"] {
-  background: var(--gold-accent) !important; border-color: var(--gold-accent) !important; color: #fff !important;
+
+body::before, 
+body::after {
+  background: transparent !important;
 }
-.btn-primary:hover, .button-primary:hover, .cta-button:hover, .btn-gold:hover { background: var(--forest) !important; border-color: var(--forest) !important; }
-a:not(.navbar__logo):not(.btn-primary):not(.button-primary):not(.cta-button) { color: var(--forest); }
-a:not(.navbar__logo):not(.btn-primary):not(.button-primary):not(.cta-button):hover { color: var(--gold-accent); }
-.eyebrow, .section-kicker, .tag, .badge { color: var(--earth) !important; }
-hr, .divider { border-color: rgba(139,94,52,.3) !important; }
-.page-hero, .hero, .adv-hero { background-color: var(--forest); }
-.dark-section, .premium-section, [class*="premium"] { background-color: var(--forest) !important; color: #fff; }
-input, textarea, select { background: rgba(255,255,255,.75) !important; border-color: rgba(47,79,62,.2) !important; }
+
+section,
+.why-choose,
+.skiing,
+.trekking,
+.activities,
+.sightseeing,
+.rentals,
+.transport,
+.packages,
+.testimonials,
+.gallery,
+.about {
+  background-color: var(--sand) !important;
+  background-image: none !important;
+  color: var(--charcoal-deep) !important;
+  border-color: rgba(47, 79, 62, 0.12) !important;
+}
+
+/* 2. Unified Premium Card Backgrounds (Forest Green for all cards) */
+.why-choose__card,
+.wc-card,
+.skiing__package-card,
+.trekking__card,
+.rentals__card,
+.transport__card,
+.packages__card,
+.testimonials__card,
+.detail-card,
+.trek-card,
+.tour-card,
+.activities__item,
+.experience-card,
+.activity-card {
+  background: var(--forest) !important;
+  background-color: var(--forest) !important;
+  border: 1px solid rgba(212, 160, 23, 0.25) !important;
+  box-shadow: 0 12px 32px rgba(31, 38, 51, 0.12) !important;
+  border-radius: 12px !important;
+  color: var(--sand) !important;
+}
+
+/* 3. Text Highlight Fix: Force text backgrounds inside cards to be transparent */
+.why-choose__card *,
+.wc-card *,
+.skiing__package-card *,
+.trekking__card *,
+.rentals__card *,
+.transport__card *,
+.packages__card *,
+.testimonials__card *,
+.detail-card *,
+.trek-card *,
+.tour-card *,
+.activities__item *,
+.experience-card *,
+.activity-card * {
+  background: transparent !important;
+  background-color: transparent !important;
+  color: var(--sand) !important;
+}
+
+/* 4. Inside Card Highlights & Icons */
+.wc-card__num,
+.why-choose__card::after,
+.skiing__package-arrow,
+.testimonials__star {
+  color: var(--gold-accent) !important;
+}
+
+.wc-card__icon svg,
+.why-choose__icon svg,
+.rentals__card-icon svg,
+.transport__card-icon svg {
+  color: var(--gold-accent) !important;
+}
+
+/* Card titles and text contrast */
+.why-choose__card-title,
+.why-choose__card-desc,
+.wc-card__title,
+.wc-card__desc,
+.skiing__package-name,
+.trekking__card-title,
+.packages__card-title,
+.packages__card-desc,
+.testimonials__text,
+.testimonials__author-name,
+.rentals__card-title,
+.rentals__card-desc,
+.transport__card-title,
+.transport__card-desc {
+  color: var(--sand) !important;
+}
+
+.testimonials__avatar {
+  background: var(--gold-accent) !important;
+  color: var(--charcoal-deep) !important;
+}
+
+/* 5. Buttons and Call-to-Actions */
+.btn--primary,
+.btn-primary,
+.button-primary,
+.cta-button {
+  background: var(--gold-accent) !important;
+  background-color: var(--gold-accent) !important;
+  border: 1px solid var(--gold-accent) !important;
+  color: var(--charcoal-deep) !important;
+  font-weight: 700 !important;
+  border-radius: 6px !important;
+}
+
+.btn--primary:hover,
+.btn-primary:hover,
+.button-primary:hover,
+.cta-button:hover {
+  background: var(--forest) !important;
+  background-color: var(--forest) !important;
+  border-color: var(--forest) !important;
+  color: var(--sand) !important;
+}
+
+.btn--secondary,
+.btn-secondary,
+.button-secondary {
+  background: transparent !important;
+  border: 1px solid var(--forest) !important;
+  color: var(--forest) !important;
+  border-radius: 6px !important;
+}
+
+.btn--secondary:hover,
+.btn-secondary:hover,
+.button-secondary:hover {
+  background: var(--forest) !important;
+  color: var(--sand) !important;
+}
+
+/* Buttons inside Forest Green cards */
+.packages__card .btn--primary,
+.trekking__card .btn--primary {
+  background: var(--gold-accent) !important;
+  color: var(--charcoal-deep) !important;
+}
+
+.packages__card .btn--primary:hover,
+.trekking__card .btn--primary:hover {
+  background: var(--sand) !important;
+  color: var(--forest) !important;
+}
+
+/* 6. Section Typography & Headings */
+.section-title {
+  color: var(--charcoal-deep) !important;
+  font-family: var(--font-heading) !important;
+}
+
+.section-subtitle {
+  color: #5A6B5C !important;
+}
+
+.section-label {
+  color: var(--earth) !important;
+}
+
+.section-title .text-gradient {
+  background: linear-gradient(135deg, var(--forest), var(--gold-accent)) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+
+/* 7. Navbar & Header Overrides */
+.navbar {
+  background: rgba(31, 41, 51, 0.15) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+}
+
+.navbar.scrolled {
+  background: var(--charcoal-deep) !important;
+}
+
+.navbar a,
+.navbar__logo,
+.navbar__logo-text {
+  color: #fff !important;
+}
+
+.navbar a:hover,
+.navbar__link.active,
+.navbar__logo span {
+  color: var(--gold-accent) !important;
+}
+
+/* 8. Footer Overrides */
+footer,
+.site-footer {
+  background: var(--forest) !important;
+  color: var(--sand) !important;
+}
+
+footer a,
+.site-footer a {
+  color: rgba(242, 232, 213, 0.7) !important;
+}
+
+footer a:hover,
+.site-footer a:hover {
+  color: var(--gold-accent) !important;
+}
+
+/* Inputs and Forms */
+input, 
+textarea, 
+select {
+  background: rgba(255, 255, 255, 0.15) !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  color: #fff !important;
+}
+
+input:focus, 
+textarea:focus {
+  border-color: var(--gold-accent) !important;
+}
+
+/* 9. Hero Parallax and Specific Pages */
+.page-hero,
+.hero,
+.adv-hero {
+  background-color: var(--forest) !important;
+}
+
+.hero__slider {
+  background: var(--forest) !important;
+}
