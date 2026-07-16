@@ -28,6 +28,6 @@ a:not(.navbar__logo):not(.btn-primary):not(.button-primary):not(.cta-button) { c
 a:not(.navbar__logo):not(.btn-primary):not(.button-primary):not(.cta-button):hover { color: var(--gold-accent); }
 .eyebrow, .section-kicker, .tag, .badge { color: var(--earth) !important; }
 hr, .divider { border-color: rgba(139,94,52,.3) !important; }
-.page-hero, .hero, [class*="hero"] { background-color: var(--forest); }
+.page-hero, .hero, .adv-hero { background-color: var(--forest); }
 .dark-section, .premium-section, [class*="premium"] { background-color: var(--forest) !important; color: #fff; }
 input, textarea, select { background: rgba(255,255,255,.75) !important; border-color: rgba(47,79,62,.2) !important; }
