@@ -58,7 +58,7 @@
 }
 
 .chat-popup__close:focus {
-  outline: 2px solid #25D366;
+  outline: 2px solid var(--gold-accent, #D79A17);
   outline-offset: 1px;
 }
 
@@ -100,7 +100,7 @@
   right: 0;
   width: 13px;
   height: 13px;
-  background-color: #25D366;
+  background-color: var(--gold-accent, #D79A17);
   border: 2px solid #ffffff;
   border-radius: 50%;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -129,15 +129,14 @@
   line-height: 1.5;
 }
 
-/* CTA Button */
 .chat-popup__btn {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
   width: 100%;
-  background-color: #25D366;
-  color: #ffffff;
+  background-color: var(--gold-accent, #D79A17);
+  color: var(--charcoal-deep, #1F2933);
   text-decoration: none;
   font-size: 13.5px;
   font-weight: 700;
@@ -147,18 +146,19 @@
   border: none;
   cursor: pointer;
   box-sizing: border-box;
-  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.22);
+  box-shadow: 0 4px 14px rgba(215, 154, 23, 0.22);
   transition: background-color 0.25s, transform 0.25s, box-shadow 0.25s;
 }
 
 .chat-popup__btn:hover {
-  background-color: #20ba5a;
+  background-color: var(--forest, #2F4F3E);
+  color: var(--sand, #F2E8D5);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.35);
+  box-shadow: 0 6px 20px rgba(47, 79, 62, 0.35);
 }
 
 .chat-popup__btn:focus {
-  outline: 2px solid #20ba5a;
+  outline: 2px solid var(--gold-accent, #D79A17);
   outline-offset: 2px;
 }
 

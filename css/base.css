@@ -262,7 +262,7 @@ section {
 /* Primary = Gold filled */
 .btn--primary {
   background: var(--gold);
-  color: #ffffff;
+  color: var(--charcoal);
   border: 1px solid var(--gold);
   font-weight: var(--weight-bold);
   letter-spacing: var(--tracking-wider);

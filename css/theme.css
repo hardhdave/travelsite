@@ -56,14 +56,35 @@ section,
 .trek-card,
 .tour-card,
 .activities__item,
-.experience-card,
-.activity-card {
+.experience-card,.activity-card {
   background: var(--forest) !important;
   background-color: var(--forest) !important;
   border: 1px solid rgba(215, 154, 23, 0.25) !important;
-  box-shadow: 0 12px 32px rgba(31, 38, 51, 0.12) !important;
   border-radius: 16px !important;
   color: var(--sand) !important;
+  
+  /* Modern soft shadows & transition for cards */
+  box-shadow: 0 10px 30px rgba(31, 41, 51, 0.06) !important;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+/* Card Hover Lift Effects */
+.why-choose__card:hover,
+.wc-card:hover,
+.skiing__package-card:hover,
+.trekking__card:hover,
+.rentals__card:hover,
+.transport__card:hover,
+.packages__card:hover,
+.testimonials__card:hover,
+.detail-card:hover,
+.trek-card:hover,
+.tour-card:hover,
+.activities__item:hover,
+.experience-card:hover,
+.activity-card:hover {
+  transform: translateY(-5px) !important;
+  box-shadow: 0 20px 40px rgba(31, 41, 51, 0.12) !important;
 }
 
 /* 3. Text Highlight Fix: Force text backgrounds inside cards to be transparent */
@@ -90,7 +111,8 @@ section,
 .wc-card__num,
 .why-choose__card::after,
 .skiing__package-arrow,
-.testimonials__star {
+.testimonials__star,
+.testimonials__author-source {
   color: var(--gold-accent) !important;
 }
 
@@ -135,6 +157,7 @@ section,
   color: var(--charcoal-deep) !important;
   font-weight: 700 !important;
   border-radius: 12px !important;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease !important;
 }
 
 .btn--primary:hover,
@@ -145,6 +168,8 @@ section,
   background-color: var(--forest) !important;
   border-color: var(--forest) !important;
   color: var(--sand) !important;
+  transform: scale(1.02) translateY(-2px) !important;
+  box-shadow: 0 6px 18px rgba(215, 154, 23, 0.25) !important;
 }
 
 .btn--secondary,
@@ -154,6 +179,7 @@ section,
   border: 1px solid var(--forest) !important;
   color: var(--forest) !important;
   border-radius: 12px !important;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease !important;
 }
 
 .btn--secondary:hover,
@@ -161,6 +187,8 @@ section,
 .button-secondary:hover {
   background: var(--forest) !important;
   color: var(--sand) !important;
+  transform: scale(1.02) translateY(-2px) !important;
+  box-shadow: 0 6px 18px rgba(47, 79, 62, 0.2) !important;
 }
 
 /* Buttons inside Forest Green cards */
@@ -174,6 +202,8 @@ section,
 .trekking__card .btn--primary:hover {
   background: var(--sand) !important;
   color: var(--forest) !important;
+  transform: scale(1.02) translateY(-2px) !important;
+  box-shadow: 0 6px 18px rgba(215, 154, 23, 0.25) !important;
 }
 
 /* 6. Section Typography & Headings */
@@ -217,6 +247,12 @@ section,
 .navbar a:hover,
 .navbar__link.active,
 .navbar__logo span {
+  color: var(--gold-accent) !important;
+}
+
+/* Mobile active link indicator */
+.nav-sheet__item.active {
+  border-color: var(--gold-accent) !important;
   color: var(--gold-accent) !important;
 }
 
@@ -268,4 +304,32 @@ textarea:focus {
 .cta__form-side {
   background: var(--charcoal-deep) !important;
   border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.experiences__sidebar {
+  background-color: var(--charcoal-deep) !important;
+}
+
+/* 11. Cohesive Section Spacing & Outlines */
+section {
+  padding-top: clamp(80px, 10vw, 140px) !important;
+  padding-bottom: clamp(80px, 10vw, 140px) !important;
+}
+
+.why-choose__inner {
+  border-color: rgba(139, 94, 52, 0.3) !important;
+}
+
+.sh-modal {
+  border-color: rgba(139, 94, 52, 0.3) !important;
+}
+
+/* 12. Focus States for Accessibility */
+button:focus,
+a:focus,
+input:focus,
+textarea:focus,
+select:focus {
+  outline: 2px solid var(--gold-accent) !important;
+  outline-offset: 2px !important;
 }
