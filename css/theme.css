@@ -8,7 +8,7 @@
   --forest-rgb: 47, 79, 62;
   --earth: #8B5E34;
   --sand: #F2E8D5;
-  --gold-accent: #B7A017;
+  --gold-accent: #D79A17;
   --sky: #87AFC7;
   --charcoal-deep: #1F2933;
 }
@@ -60,9 +60,9 @@ section,
 .activity-card {
   background: var(--forest) !important;
   background-color: var(--forest) !important;
-  border: 1px solid rgba(212, 160, 23, 0.25) !important;
+  border: 1px solid rgba(215, 154, 23, 0.25) !important;
   box-shadow: 0 12px 32px rgba(31, 38, 51, 0.12) !important;
-  border-radius: 12px !important;
+  border-radius: 16px !important;
   color: var(--sand) !important;
 }
 
@@ -134,7 +134,7 @@ section,
   border: 1px solid var(--gold-accent) !important;
   color: var(--charcoal-deep) !important;
   font-weight: 700 !important;
-  border-radius: 6px !important;
+  border-radius: 12px !important;
 }
 
 .btn--primary:hover,
@@ -153,7 +153,7 @@ section,
   background: transparent !important;
   border: 1px solid var(--forest) !important;
   color: var(--forest) !important;
-  border-radius: 6px !important;
+  border-radius: 12px !important;
 }
 
 .btn--secondary:hover,
@@ -229,7 +229,7 @@ footer,
 
 footer a,
 .site-footer a {
-  color: rgba(242, 232, 213, 0.7) !important;
+  color: rgba(242, 232, 213, 0.85) !important;
 }
 
 footer a:hover,
@@ -244,6 +244,7 @@ select {
   background: rgba(255, 255, 255, 0.15) !important;
   border: 1px solid rgba(255, 255, 255, 0.25) !important;
   color: #fff !important;
+  border-radius: 10px !important;
 }
 
 input:focus, 
@@ -260,4 +261,11 @@ textarea:focus {
 
 .hero__slider {
   background: var(--forest) !important;
+}
+
+/* 10. Dark Section Overrides (using Charcoal) */
+.cta__grid,
+.cta__form-side {
+  background: var(--charcoal-deep) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
 }

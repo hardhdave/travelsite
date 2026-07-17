@@ -11,19 +11,19 @@
   --earth-brown-rgb:  139, 94, 52;
   --sand-beige:       #F2E8D5;
   --sand-beige-rgb:   242, 235, 213;
-  --sunset-gold:      #B7A017;
-  --sunset-gold-rgb:  212, 160, 23;
+  --sunset-gold:      #D79A17;
+  --sunset-gold-rgb:  215, 154, 23;
   --sky-blue:         #87AFC7;
   --charcoal:         #1F2933;
-  --charcoal-rgb:     31, 38, 51;
+  --charcoal-rgb:     31, 41, 51;
 
   /* ——— Accent (Sunset Gold scale) ——— */
-  --gold:             #B7A017;
-  --gold-light:       #E0B432;
-  --gold-dark:        #B8890F;
-  --gold-subtle:      rgba(212, 160, 23, 0.10);
-  --gold-border:      rgba(212, 160, 23, 0.30);
-  --gold-border-hover:rgba(212, 160, 23, 0.65);
+  --gold:             #D79A17;
+  --gold-light:       #E8C15A;
+  --gold-dark:        #B58010;
+  --gold-subtle:      rgba(215, 154, 23, 0.10);
+  --gold-border:      rgba(215, 154, 23, 0.30);
+  --gold-border-hover:rgba(215, 154, 23, 0.65);
 
   /* ——— Background Scale (Sand Beige Warm Palette) ——— */
   --bg-deepest:      #2F4F3E;
@@ -41,13 +41,13 @@
   --text-secondary-on-cream: #8B5E34;
   --text-muted-on-cream:     #6B7B6D;
   --border-on-cream:   rgba(47, 79, 62, 0.10);
-  --gold-border-on-cream: rgba(212, 160, 23, 0.25);
+  --gold-border-on-cream: rgba(215, 154, 23, 0.25);
 
   /* ——— Text Scale (High Contrast on Sand Beige) ——— */
   --text-primary:    #1F2933;
   --text-secondary:  #8B5E34;
   --text-muted:      #6B7B6D;
-  --text-gold:       #B7A017;
+  --text-gold:       #D79A17;
   --text-white:      #FFFFFF;
 
   /* ——— Border / Divider ——— */
@@ -58,23 +58,23 @@
   /* ——— Glass / Card Effects ——— */
   --glass-dark:      rgba(47, 79, 62, 0.08);
   --glass-dark-hover:rgba(47, 79, 62, 0.14);
-  --glass-gold:      rgba(212, 160, 23, 0.06);
+  --glass-gold:      rgba(215, 154, 23, 0.06);
   --glass-shadow:    0 8px 32px rgba(47, 79, 62, 0.12);
 
   /* ——— Legacy aliases (compatibility) ——— */
   --midnight-navy:        var(--bg-base);
   --midnight-navy-rgb:    242, 235, 213;
   --glacier-blue:         var(--gold);
-  --glacier-blue-rgb:     212, 160, 23;
+  --glacier-blue-rgb:     215, 154, 23;
   --snow-white:           var(--text-primary);
-  --snow-white-rgb:       31, 38, 51;
+  --snow-white-rgb:       31, 41, 51;
   --mountain-gray:        var(--text-secondary);
   --mountain-gray-rgb:    139, 94, 52;
   --deep-navy:            var(--bg-raised);
   --dark-slate:           var(--bg-card);
   --ice-blue:             var(--sky-blue);
   --warm-gold:            var(--gold);
-  --sunset-amber:         #B7A017;
+  --sunset-amber:         #D79A17;
   --alpine-white:         var(--text-primary);
   --charcoal-hex:         var(--charcoal);
   --storm-gray:           var(--text-muted);
@@ -91,9 +91,9 @@
   --gradient-forest:       linear-gradient(135deg, #2F4F3E, #3A6350);
   --gradient-winter:       linear-gradient(180deg, #F2E8D5 0%, #EDE5CF 100%);
   --gradient-summer:       linear-gradient(180deg, #EDE5CF 0%, #F2E8D5 100%);
-  --gradient-text:         linear-gradient(135deg, #2F4F3E, #B7A017);
+  --gradient-text:         linear-gradient(135deg, #2F4F3E, #D79A17);
   --gradient-gold-shine:   linear-gradient(90deg,
-      transparent, rgba(212, 160, 23, 0.15), transparent);
+      transparent, rgba(215, 154, 23, 0.15), transparent);
 
   /* ——— Glass Effects ——— */
   --glass-bg:          rgba(242, 235, 213, 0.85);

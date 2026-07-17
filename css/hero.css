@@ -28,11 +28,12 @@
   width: 100%;
   height: 100%;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-start;
   opacity: 0;
   pointer-events: none;
   transition: opacity 1.4s cubic-bezier(0.25, 1, 0.5, 1);
+  padding-top: 180px;
 }
 
 .hero__slide.active {
@@ -163,13 +164,17 @@
 }
 
 .hero__buttons {
+  position: absolute;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  z-index: 5;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   gap: 16px;
   flex-wrap: wrap;
   opacity: 0;
-  transform: translateY(20px);
   transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1) 0.9s;
 }
 
@@ -192,10 +197,14 @@
 /* Active Slide Animations */
 .hero__slide.active .hero__label,
 .hero__slide.active .hero__title,
-.hero__slide.active .hero__subtitle,
-.hero__slide.active .hero__buttons {
+.hero__slide.active .hero__subtitle {
   opacity: 1;
   transform: translateY(0);
+}
+
+.hero__slide.active .hero__buttons {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
 }
 
 /* Slide Controls */
@@ -337,16 +346,15 @@
   }
 
   .hero__slide {
-    align-items: flex-end;
-    /* Align content to the bottom */
+    align-items: flex-start;
     justify-content: flex-start;
-    padding-bottom: 40px;
-    /* Leave space for gesture bar and padding */
+    padding-top: 130px;
+    padding-bottom: 0;
   }
 
   .hero .hero__content {
     margin-top: 0;
-    margin-bottom: 0;
+    /* margin-bottom: 0; */
     padding: 0 24px;
     align-items: flex-start;
     text-align: left;
@@ -355,8 +363,7 @@
   }
 
   .hero .hero__label {
-    display: none !important;
-    /* Hide label to match screenshot */
+    display: flex !important;
   }
 
   .hero .hero__title {
@@ -395,13 +402,22 @@
   }
 
   .hero .hero__buttons {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
     display: flex !important;
     flex-direction: row !important;
     /* Side-by-side buttons */
-    width: 100%;
-    max-width: 100%;
+    width: calc(100% - 48px);
+    max-width: 440px;
     gap: 12px;
     margin: 0;
+    justify-content: center;
+  }
+
+  .hero__slide.active .hero__buttons {
+    transform: translateX(-50%) translateY(0) !important;
   }
 
   .hero .hero__buttons .btn {

@@ -1,6 +1,6 @@
-/* ============================================
-   SHRED HIMALAYAS — Polish
-   Luxury Dark Gold — Complete Overhaul
+﻿/* ============================================
+   SHRED HIMALAYAS â€” Polish
+   Luxury Dark Gold â€” Complete Overhaul
    ============================================ */
 
 /* ======== LOADING SCREEN ======== */
@@ -1787,7 +1787,7 @@ body {
 }
 
 /* =====================================================
-   PACKAGE CARDS — button & badge contrast fix
+   PACKAGE CARDS â€” button & badge contrast fix
    Warm cream stands out on dark mountain photo overlay
    ===================================================== */
 .packages__card-content .btn--primary {
@@ -1864,12 +1864,12 @@ body {
   vertical-align: bottom;
   margin-right: 0.22em;
 }
-/* Client palette finish � visual-only theme layer */
+/* Client palette finish — visual-only theme layer */
 :root {
   --palette-forest: #2F4F3E;
   --palette-earth: #8B5E34;
   --palette-sand: #F2E8D5;
-  --palette-gold: #B7A017;
+  --palette-gold: #D79A17;
   --palette-sky: #87AFC7;
   --palette-charcoal: #1F2933;
 }
@@ -1914,3 +1914,5 @@ footer a:hover { color: var(--palette-sky); }
 @supports not (background: color-mix(in srgb, white, black)) {
   section:nth-of-type(even) { background: #F7F1E8; }
 }
+
+

@@ -232,7 +232,7 @@
   z-index: 999;
   background: #0f0f11;
   border: 1.5px solid rgba(255, 255, 255, 0.08);
-  border-radius: 28px;
+  border-radius: 18px;
   padding: 14px 14px 18px;
   transform: translateY(calc(100% + 24px));
   /* slide up from completely off-screen */
@@ -327,6 +327,10 @@
   background: rgba(255, 255, 255, 0.06);
   border: 2px solid #ffffff !important;
   color: #ffffff;
+}
+
+.nav-sheet__item--full {
+  grid-column: 1 / -1;
 }
 
 .nav-sheet__arrow {
