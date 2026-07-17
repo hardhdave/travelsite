@@ -316,6 +316,13 @@ section {
   padding-bottom: clamp(80px, 10vw, 140px) !important;
 }
 
+.hero,
+.experiences {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+
 .why-choose__inner {
   border-color: rgba(139, 94, 52, 0.3) !important;
 }
