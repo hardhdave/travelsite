@@ -196,3 +196,32 @@
 
   .page-hero__title { font-size: var(--text-4xl); }
 }
+
+/* Dark Forest Green Background Text Contrast Fix */
+.page-hero {
+  color: #ffffff !important;
+}
+
+.page-hero__breadcrumb a {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.page-hero__breadcrumb a:hover {
+  color: var(--gold) !important;
+}
+
+.page-hero__breadcrumb-sep {
+  color: rgba(255, 255, 255, 0.4) !important;
+}
+
+.page-hero__breadcrumb-current {
+  color: var(--gold) !important;
+}
+
+.page-hero__title {
+  color: #ffffff !important;
+}
+
+.page-hero__subtitle {
+  color: rgba(255, 255, 255, 0.8) !important;
+}

@@ -1,4 +1,4 @@
-﻿/* ============================================
+/* ============================================
    SHRED HIMALAYAS â€” Polish
    Luxury Dark Gold â€” Complete Overhaul
    ============================================ */
@@ -8,7 +8,7 @@
   position: fixed;
   inset: 0;
   z-index: var(--z-loader);
-  background: var(--bg-deepest);
+  background: var(--charcoal);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -52,13 +52,13 @@
 
 .loader__ring-bg {
   fill: none;
-  stroke: rgba(47, 79, 62, 0.12);
+  stroke: rgba(255, 255, 255, 0.08);
   stroke-width: 2;
 }
 
 .loader__ring-progress {
   fill: none;
-  stroke: #2F4F3E;
+  stroke: var(--gold);
   stroke-width: 2;
   stroke-linecap: butt;
   stroke-dasharray: 283;
@@ -91,7 +91,7 @@
   font-weight: var(--weight-light);
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: var(--text-primary);
+  color: #ffffff;
   margin-bottom: 8px;
   text-align: center;
 }
@@ -1866,7 +1866,7 @@ body {
 }
 /* Client palette finish — visual-only theme layer */
 :root {
-  --palette-forest: #2F4F3E;
+  --palette-forest: #4A7C61;
   --palette-earth: #8B5E34;
   --palette-sand: #F2E8D5;
   --palette-gold: #D79A17;

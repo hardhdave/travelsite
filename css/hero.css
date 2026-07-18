@@ -194,6 +194,25 @@
   box-shadow: 0 8px 24px rgba(196, 168, 108, 0.25) !important;
 }
 
+.hero__buttons .btn--secondary {
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.15em !important;
+  text-transform: uppercase !important;
+}
+
+.hero__buttons .btn--secondary:hover {
+  background: rgba(255, 255, 255, 0.2) !important;
+  border-color: #ffffff !important;
+  color: #ffffff !important;
+  box-shadow: 0 8px 30px rgba(255, 255, 255, 0.15) !important;
+}
+
 /* Active Slide Animations */
 .hero__slide.active .hero__label,
 .hero__slide.active .hero__title,

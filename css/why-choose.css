@@ -37,11 +37,13 @@
   padding: 54px 60px !important;
   position: relative;
   z-index: 2;
-  background: rgba(18, 18, 20, 0.8) !important;
-  border: 1px solid rgba(167, 123, 52, 0.3) !important; /* Thin gold border */
-  border-radius: 22px !important; /* Large rounded corners 18-22px */
+  background: var(--forest-green) !important;
+  border: 1px solid rgba(167, 123, 52, 0.3) !important;
+  /* Thin gold border */
+  border-radius: 22px !important;
+  /* Large rounded corners 18-22px */
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55),
-              0 0 40px rgba(167, 123, 52, 0.03) !important;
+    0 0 40px rgba(167, 123, 52, 0.03) !important;
   backdrop-filter: blur(20px) !important;
   -webkit-backdrop-filter: blur(20px) !important;
   box-sizing: border-box;
@@ -54,7 +56,8 @@
   gap: 40px !important;
   align-items: center !important;
   margin-bottom: 40px !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important; /* Subtle divider below heading */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  /* Subtle divider below heading */
   padding-bottom: 44px !important;
 }
 
@@ -135,8 +138,15 @@
 }
 
 @keyframes wcPulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.4; }
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.4;
+  }
 }
 
 /* ============================================================
@@ -145,11 +155,15 @@
 .why-choose__bento {
   display: grid !important;
   grid-template-columns: 1fr 1fr !important;
-  gap: 0 !important; /* Zero gap so divider lines match perfectly */
+  gap: 0 !important;
+  /* Zero gap so divider lines match perfectly */
+  background: var(--charcoal) !important;
+  border-radius: 14px !important;
+  overflow: hidden !important;
 }
 
 /* Base Card Redesign to Row List Style */
-.wc-card {
+#why-choose .wc-card {
   display: grid !important;
   grid-template-columns: auto 1fr !important;
   grid-template-areas:
@@ -161,7 +175,7 @@
   align-items: center !important;
   gap: 4px 24px !important;
   padding: 32px 30px !important;
-  background: transparent !important;
+  background: var(--charcoal) !important;
   border: none !important;
   border-radius: 0 !important;
   box-shadow: none !important;
@@ -170,11 +184,11 @@
   height: auto !important;
   box-sizing: border-box !important;
   transition: background-color 0.35s ease, box-shadow 0.35s ease !important;
-  
+
   /* Reset grid layouts from old styles */
   grid-column: auto !important;
   grid-row: auto !important;
-  
+
   /* Separator Border lines */
   border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
 }
@@ -195,9 +209,11 @@
   grid-area: icon !important;
   width: 42px !important;
   height: 42px !important;
-  border-radius: 50% !important; /* circular */
+  border-radius: 50% !important;
+  /* circular */
   background: rgba(167, 123, 52, 0.1) !important;
-  border: 1px solid rgba(167, 123, 52, 0.3) !important; /* gold border */
+  border: 1px solid rgba(167, 123, 52, 0.3) !important;
+  /* gold border */
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -205,9 +221,9 @@
   flex-shrink: 0 !important;
   margin: 0 !important;
   transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1),
-              background-color 0.35s ease,
-              border-color 0.35s ease,
-              box-shadow 0.35s ease !important;
+    background-color 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease !important;
 }
 
 .wc-card__icon svg {
@@ -317,11 +333,11 @@
    SMOOTH HOVER ANIMATION INTERACTION (Supported devices)
    ============================================================ */
 @media (hover: hover) {
-  .wc-card:hover {
+  #why-choose .wc-card:hover {
     background-color: rgba(255, 255, 255, 0.02) !important;
     box-shadow: inset 0 0 35px rgba(167, 123, 52, 0.04) !important;
   }
-  
+
   /* Icon gently scales and glows */
   .wc-card:hover .wc-card__icon {
     transform: scale(1.1) !important;
@@ -329,7 +345,7 @@
     border-color: rgba(167, 123, 52, 0.6) !important;
     box-shadow: 0 0 14px rgba(167, 123, 52, 0.3) !important;
   }
-  
+
   .wc-card:hover .wc-card__icon svg {
     transform: scale(1.05) !important;
   }
@@ -352,7 +368,8 @@
   display: grid !important;
   grid-template-columns: repeat(4, 1fr) !important;
   gap: 30px !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.08) !important; /* Divider line above stats */
+  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+  /* Divider line above stats */
   margin-top: 40px !important;
   padding-top: 48px !important;
 }
@@ -397,7 +414,7 @@
   .why-choose__inner {
     padding: 44px 40px !important;
   }
-  
+
   .why-choose__header {
     gap: 30px !important;
     padding-bottom: 36px !important;
@@ -412,7 +429,8 @@
 
   .why-choose__inner {
     padding: 36px 24px !important;
-    border-radius: 18px !important; /* Slightly smaller corners on mobile */
+    border-radius: 18px !important;
+    /* Slightly smaller corners on mobile */
     margin: 0 16px !important;
     width: calc(100% - 32px) !important;
   }
@@ -444,10 +462,13 @@
   }
 
   .wc-card {
+    
     grid-column: span 1 !important;
-    border-right: none !important; /* No vertical border in single column */
+    border-right: none !important;
+    /* No vertical border in single column */
     border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
-    padding: 24px 10px !important; /* Snugger padding for compact screens */
+    padding: 24px 10px !important;
+    /* Snugger padding for compact screens */
     gap: 4px 18px !important;
   }
 
