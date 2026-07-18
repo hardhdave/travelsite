@@ -1,27 +1,26 @@
 /* ============================================
-   UNIFIED PREMIUM BRAND THEME OVERRIDES
-   Alabaster Sand Background · Obsidian Pine Cards · Refined Champagne Gold Accents
+   UNIFIED BRAND PALETTE & TEXT HIGHLIGHT FIX
+   Sand Beige Background · Forest Green Cards · Sunset Gold Accents
    ============================================ */
 
 :root {
-  --forest: var(--forest-green);
-  --forest-rgb: var(--forest-green-rgb);
-  --earth: var(--earth-brown);
-  --sand: var(--sand-beige);
-  --gold-accent: var(--gold);
-  --sky: var(--sky-blue);
-  --charcoal-deep: var(--charcoal);
+  --forest: #2F4F3E;
+  --forest-rgb: 47, 79, 62;
+  --earth: #8B5E34;
+  --sand: #F2E8D5;
+  --gold-accent: #D79A17;
+  --sky: #87AFC7;
+  --charcoal-deep: #1F2933;
 }
 
 /* 1. Global Page Background (Single Color for Whole Site) */
-html,
+html, 
 body {
   background-color: var(--sand) !important;
   color: var(--charcoal-deep) !important;
-  transition: background-color var(--duration-fast) var(--ease-smooth);
 }
 
-body::before,
+body::before, 
 body::after {
   background: transparent !important;
 }
@@ -41,7 +40,7 @@ section,
   background-color: var(--sand) !important;
   background-image: none !important;
   color: var(--charcoal-deep) !important;
-  border-color: rgba(16, 22, 20, 0.08) !important;
+  border-color: rgba(47, 79, 62, 0.12) !important;
 }
 
 /* 2. Unified Premium Card Backgrounds (Forest Green for all cards) */
@@ -57,20 +56,16 @@ section,
 .trek-card,
 .tour-card,
 .activities__item,
-.experience-card,
-.activity-card {
+.experience-card,.activity-card {
   background: var(--forest) !important;
   background-color: var(--forest) !important;
-  border: 1px solid rgba(197, 168, 128, 0.15) !important;
-  border-radius: var(--radius-lg) !important;
+  border: 1px solid rgba(215, 154, 23, 0.25) !important;
+  border-radius: 16px !important;
   color: var(--sand) !important;
-  padding: 32px 28px !important;
-
-  /* Modern soft layered shadows & premium transition */
-  box-shadow: var(--shadow-sm) !important;
-  transition: transform var(--duration-normal) var(--ease-premium),
-    box-shadow var(--duration-normal) var(--ease-premium),
-    border-color var(--duration-normal) var(--ease-premium) !important;
+  
+  /* Modern soft shadows & transition for cards */
+  box-shadow: 0 10px 30px rgba(31, 41, 51, 0.06) !important;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 /* Card Hover Lift Effects */
@@ -88,9 +83,8 @@ section,
 .activities__item:hover,
 .experience-card:hover,
 .activity-card:hover {
-  transform: translateY(-6px) !important;
-  box-shadow: var(--shadow-xl) !important;
-  border-color: rgba(197, 168, 128, 0.4) !important;
+  transform: translateY(-5px) !important;
+  box-shadow: 0 20px 40px rgba(31, 41, 51, 0.12) !important;
 }
 
 /* 3. Text Highlight Fix: Force text backgrounds inside cards to be transparent */
@@ -149,8 +143,7 @@ section,
 
 .testimonials__avatar {
   background: var(--gold-accent) !important;
-  color: var(--forest) !important;
-  font-weight: 700 !important;
+  color: var(--charcoal-deep) !important;
 }
 
 /* 5. Buttons and Call-to-Actions */
@@ -161,17 +154,10 @@ section,
   background: var(--gold-accent) !important;
   background-color: var(--gold-accent) !important;
   border: 1px solid var(--gold-accent) !important;
-  color: var(--forest) !important;
-  font-weight: var(--weight-semibold) !important;
-  border-radius: var(--radius-md) !important;
-  font-family: var(--font-accent) !important;
-  letter-spacing: var(--tracking-wide) !important;
-  padding: 14px 28px !important;
-  transition: transform var(--duration-fast) var(--ease-premium),
-    background-color var(--duration-fast) var(--ease-premium),
-    color var(--duration-fast) var(--ease-premium),
-    border-color var(--duration-fast) var(--ease-premium),
-    box-shadow var(--duration-fast) var(--ease-premium) !important;
+  color: var(--charcoal-deep) !important;
+  font-weight: 700 !important;
+  border-radius: 12px !important;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease !important;
 }
 
 .btn--primary:hover,
@@ -182,8 +168,8 @@ section,
   background-color: var(--forest) !important;
   border-color: var(--forest) !important;
   color: var(--sand) !important;
-  transform: translateY(-2px) !important;
-  box-shadow: var(--shadow-gold) !important;
+  transform: scale(1.02) translateY(-2px) !important;
+  box-shadow: 0 6px 18px rgba(215, 154, 23, 0.25) !important;
 }
 
 .btn--secondary,
@@ -192,15 +178,8 @@ section,
   background: transparent !important;
   border: 1px solid var(--forest) !important;
   color: var(--forest) !important;
-  border-radius: var(--radius-md) !important;
-  font-family: var(--font-accent) !important;
-  letter-spacing: var(--tracking-wide) !important;
-  padding: 14px 28px !important;
-  transition: transform var(--duration-fast) var(--ease-premium),
-    background-color var(--duration-fast) var(--ease-premium),
-    color var(--duration-fast) var(--ease-premium),
-    border-color var(--duration-fast) var(--ease-premium),
-    box-shadow var(--duration-fast) var(--ease-premium) !important;
+  border-radius: 12px !important;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease !important;
 }
 
 .btn--secondary:hover,
@@ -208,40 +187,37 @@ section,
 .button-secondary:hover {
   background: var(--forest) !important;
   color: var(--sand) !important;
-  transform: translateY(-2px) !important;
-  box-shadow: var(--shadow-md) !important;
+  transform: scale(1.02) translateY(-2px) !important;
+  box-shadow: 0 6px 18px rgba(47, 79, 62, 0.2) !important;
 }
 
 /* Buttons inside Forest Green cards */
 .packages__card .btn--primary,
 .trekking__card .btn--primary {
   background: var(--gold-accent) !important;
-  color: var(--forest) !important;
+  color: var(--charcoal-deep) !important;
 }
 
 .packages__card .btn--primary:hover,
 .trekking__card .btn--primary:hover {
   background: var(--sand) !important;
   color: var(--forest) !important;
-  transform: translateY(-2px) !important;
-  box-shadow: var(--shadow-gold) !important;
+  transform: scale(1.02) translateY(-2px) !important;
+  box-shadow: 0 6px 18px rgba(215, 154, 23, 0.25) !important;
 }
 
 /* 6. Section Typography & Headings */
 .section-title {
   color: var(--charcoal-deep) !important;
   font-family: var(--font-heading) !important;
-  letter-spacing: var(--tracking-tight) !important;
 }
 
 .section-subtitle {
-  color: var(--text-secondary) !important;
-  font-family: var(--font-body) !important;
+  color: #5A6B5C !important;
 }
 
 .section-label {
   color: var(--earth) !important;
-  letter-spacing: var(--tracking-widest) !important;
 }
 
 .section-title .text-gradient {
@@ -253,34 +229,19 @@ section,
 
 /* 7. Navbar & Header Overrides */
 .navbar {
-  background: rgba(250, 249, 246, 0.75) !important;
-  /* Frosted Alabaster navbar */
+  background: rgba(31, 41, 51, 0.15) !important;
   backdrop-filter: blur(20px) !important;
   -webkit-backdrop-filter: blur(20px) !important;
-  border-bottom: 1px solid rgba(16, 22, 20, 0.05) !important;
-  box-shadow: var(--shadow-sm) !important;
-  transition: all var(--duration-fast) var(--ease-smooth) !important;
 }
 
 .navbar.scrolled {
-  background: var(--forest) !important;
-  /* Premium Obsidian navbar on scroll */
-  border-bottom: 1px solid rgba(197, 168, 128, 0.15) !important;
-  box-shadow: var(--shadow-md) !important;
+  background: var(--charcoal-deep) !important;
 }
 
 .navbar a,
 .navbar__logo,
 .navbar__logo-text {
-  color: var(--charcoal-deep) !important;
-  /* Dark links on Alabaster background */
-}
-
-.navbar.scrolled a,
-.navbar.scrolled .navbar__logo,
-.navbar.scrolled .navbar__logo-text {
-  color: var(--sand) !important;
-  /* Light links on Obsidian background */
+  color: #fff !important;
 }
 
 .navbar a:hover,
@@ -300,14 +261,11 @@ footer,
 .site-footer {
   background: var(--forest) !important;
   color: var(--sand) !important;
-  border-top: 1px solid rgba(197, 168, 128, 0.15) !important;
-  padding: var(--space-16) 0 var(--space-8) !important;
 }
 
 footer a,
 .site-footer a {
-  color: rgba(250, 249, 246, 0.75) !important;
-  transition: color var(--duration-fast) var(--ease-smooth) !important;
+  color: rgba(242, 232, 213, 0.85) !important;
 }
 
 footer a:hover,
@@ -315,39 +273,22 @@ footer a:hover,
   color: var(--gold-accent) !important;
 }
 
-/* 9. Context-Aware Premium Inputs and Forms */
-.cta__input,
-.cta__select,
-.cta__textarea,
-.sh-modal input,
-.sh-modal textarea,
-.sh-modal select {
-  background: rgba(255, 255, 255, 0.04) !important;
-  border: 1px solid rgba(255, 255, 255, 0.12) !important;
-  color: #ffffff !important;
-  border-radius: var(--radius-md) !important;
-  padding: 12px 16px !important;
-  font-size: 14px !important;
-  transition: all var(--duration-fast) var(--ease-smooth) !important;
+/* Inputs and Forms */
+input, 
+textarea, 
+select {
+  background: rgba(255, 255, 255, 0.15) !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  color: #fff !important;
+  border-radius: 10px !important;
 }
 
-.cta__input:focus,
-.cta__select:focus,
-.cta__textarea:focus,
-.sh-modal input:focus,
-.sh-modal textarea:focus,
-.sh-modal select:focus {
+input:focus, 
+textarea:focus {
   border-color: var(--gold-accent) !important;
-  background: rgba(255, 255, 255, 0.08) !important;
-  box-shadow: 0 0 0 3px rgba(197, 168, 128, 0.25) !important;
 }
 
-.cta__input::placeholder,
-.cta__textarea::placeholder {
-  color: rgba(255, 255, 255, 0.4) !important;
-}
-
-/* 10. Hero Parallax and Specific Pages */
+/* 9. Hero Parallax and Specific Pages */
 .page-hero,
 .hero,
 .adv-hero {
@@ -358,24 +299,21 @@ footer a:hover,
   background: var(--forest) !important;
 }
 
-/* 11. Dark Section Overrides (using Charcoal/Obsidian) */
+/* 10. Dark Section Overrides (using Charcoal) */
 .cta__grid,
 .cta__form-side {
   background: var(--charcoal-deep) !important;
-  border-color: rgba(197, 168, 128, 0.15) !important;
-  border-radius: var(--radius-lg) !important;
-  box-shadow: var(--shadow-xl) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
 }
 
 .experiences__sidebar {
   background-color: var(--charcoal-deep) !important;
-  border-right: 1px solid rgba(197, 168, 128, 0.1) !important;
 }
 
-/* 12. Cohesive Section Spacing & Outlines */
+/* 11. Cohesive Section Spacing & Outlines */
 section {
-  padding-top: var(--space-24) !important;
-  padding-bottom: var(--space-24) !important;
+  padding-top: clamp(80px, 10vw, 140px) !important;
+  padding-bottom: clamp(80px, 10vw, 140px) !important;
 }
 
 .hero,
@@ -384,18 +322,16 @@ section {
   padding-bottom: 0 !important;
 }
 
+
 .why-choose__inner {
-  border-color: rgba(197, 168, 128, 0.15) !important;
+  border-color: rgba(139, 94, 52, 0.3) !important;
 }
 
 .sh-modal {
-  border-color: rgba(197, 168, 128, 0.2) !important;
-  border-radius: var(--radius-lg) !important;
-  background: var(--forest) !important;
-  color: var(--sand) !important;
+  border-color: rgba(139, 94, 52, 0.3) !important;
 }
 
-/* 13. Focus States for Accessibility */
+/* 12. Focus States for Accessibility */
 button:focus,
 a:focus,
 input:focus,

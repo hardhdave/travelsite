@@ -2,11 +2,11 @@
    NAVBAR.JS — Bottom-sheet menu & scroll binds
    ============================================ */
 
-(function () {
-  const navbar = document.getElementById('navbar');
+(function() {
+  const navbar    = document.getElementById('navbar');
   const navToggle = document.getElementById('navToggle');
-  const sheet = document.getElementById('navSheet');
-  const backdrop = document.getElementById('navSheetBackdrop');
+  const sheet     = document.getElementById('navSheet');
+  const backdrop  = document.getElementById('navSheetBackdrop');
 
   /* ── Open / close sheet ── */
   function openSheet() {
@@ -62,12 +62,12 @@
 
   /* ── Active link highlighting on scroll (Home Page Only) ── */
   const path = window.location.pathname;
-  const isHomePage = path.indexOf('index.html') !== -1 ||
-    path.endsWith('/') ||
-    (!path.includes('adventures.html') &&
-      !path.includes('packages.html') &&
-      !path.includes('skiing.html') &&
-      !path.includes('treks.html'));
+  const isHomePage = path.indexOf('index.html') !== -1 || 
+                     path.endsWith('/') || 
+                     (!path.includes('adventures.html') && 
+                      !path.includes('packages.html') && 
+                      !path.includes('skiing.html') && 
+                      !path.includes('treks.html'));
 
   if (isHomePage) {
     const sections = document.querySelectorAll('section[id]');
@@ -122,7 +122,7 @@
     allLinks.forEach(link => {
       link.classList.remove('active');
       const href = link.getAttribute('href');
-
+      
       if (!href) {
         // If we are on activities page, keep the toggle highlight active
         if (isActivities && link.id === 'mobileActivitiesToggle') {
