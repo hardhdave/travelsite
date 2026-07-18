@@ -990,6 +990,19 @@
     box-sizing: border-box !important;
     width: 100% !important;
     flex-grow: 1 !important;
+    /* Prevent animation on the content container itself */
+    transform: none !important;
+    opacity: 1 !important;
+    transition: none !important;
+  }
+
+  /* Reset animations/transitions for content children on mobile */
+  .experiences__panel-tag,
+  .experiences__panel-heading,
+  .experiences__panel-stats {
+    transform: none !important;
+    opacity: 1 !important;
+    transition: none !important;
   }
 
   /* Tag style */
