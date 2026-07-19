@@ -1,37 +1,37 @@
 /* ============================================
    SHRED HIMALAYAS — Premium Design Tokens
-   Forest Green · Earth Brown · Sand Beige
-   Sunset Gold · Sky Blue · Charcoal
+   Kashmiri Palette: Chinar Leaves · Saffron Fields · Walnut Wood
+   Deep Pine · Saffron Amber · Chinar Red · Warm Ivory · Walnut Brown
    ============================================ */
 
 :root {
   /* ——— Core Brand Colors ——— */
-  --primary:          #1E3E62;
-  --primary-rgb:      30, 62, 98;
+  --primary:          #12241C;
+  --primary-rgb:      18, 36, 28;
   --forest-green:     var(--primary);
   --forest-green-rgb: var(--primary-rgb);
-  --earth-brown:      #8B5E34;
-  --earth-brown-rgb:  139, 94, 52;
-  --sand-beige:       #F2E8D5;
-  --sand-beige-rgb:   242, 232, 213;
-  --sunset-gold:      #D7A017;
-  --sunset-gold-rgb:  215, 160, 23;
-  --sky-blue:         #87AFC7;
-  --sky-blue-rgb:     135, 175, 199;
-  --charcoal:         #1F2933;
-  --charcoal-rgb:     31, 41, 51;
+  --earth-brown:      #2A1F1A;
+  --earth-brown-rgb:  42, 31, 26;
+  --sand-beige:       #F7F2EA;
+  --sand-beige-rgb:   247, 242, 234;
+  --sunset-gold:      #E08A2C;
+  --sunset-gold-rgb:  224, 138, 44;
+  --sky-blue:         #B23A2E;
+  --sky-blue-rgb:     178, 58, 46;
+  --charcoal:         #12241C;
+  --charcoal-rgb:     18, 36, 28;
 
-  /* ——— Primary Blue Scale (replacing Forest Green) ——— */
-  --primary-50:  #F0F4F8;
-  --primary-100: #D9E2EC;
-  --primary-200: #BCCCDC;
-  --primary-300: #9FB3C8;
-  --primary-400: #627D98;
-  --primary-500: #1E3E62;
-  --primary-600: #18324F;
-  --primary-700: #12253B;
-  --primary-800: #0C1927;
-  --primary-900: #060C13;
+  /* ——— Primary Pine Scale ——— */
+  --primary-50:  #EAF0EC;
+  --primary-100: #C4D5CA;
+  --primary-200: #9BBAA7;
+  --primary-300: #729F84;
+  --primary-400: #3F6B50;
+  --primary-500: #12241C;
+  --primary-600: #0F1E17;
+  --primary-700: #0C1812;
+  --primary-800: #08120D;
+  --primary-900: #040C08;
 
   --forest-50:  var(--primary-50);
   --forest-100: var(--primary-100);
@@ -44,79 +44,82 @@
   --forest-800: var(--primary-800);
   --forest-900: var(--primary-900);
 
-  /* ——— Gold Scale ——— */
-  --gold-50:  #FDF8EB;
-  --gold-100: #FAEDCC;
-  --gold-200: #F3D999;
-  --gold-300: #ECC466;
-  --gold-400: #E5B033;
-  --gold-500: #D7A017;
-  --gold-600: #B88612;
-  --gold-700: #996D0E;
-  --gold-800: #7A5509;
-  --gold-900: #5C3E05;
+  /* ——— Saffron Amber Scale ——— */
+  --gold-50:  #FDF3E7;
+  --gold-100: #FAE2C0;
+  --gold-200: #F4C88A;
+  --gold-300: #ECAC5A;
+  --gold-400: #E69838;
+  --gold-500: #E08A2C;
+  --gold-600: #C07020;
+  --gold-700: #9E5718;
+  --gold-800: #7C4010;
+  --gold-900: #5A2D08;
 
   /* ——— Accent (Legacy compat) ——— */
-  --gold:             #D7A017;
-  --gold-light:       #E5B033;
-  --gold-dark:        #B88612;
-  --gold-subtle:      rgba(215, 160, 23, 0.08);
-  --gold-border:      rgba(215, 160, 23, 0.25);
-  --gold-border-hover:rgba(215, 160, 23, 0.50);
+  --gold:             #E08A2C;
+  --gold-light:       #E69838;
+  --gold-dark:        #C07020;
+  --gold-subtle:      rgba(224, 138, 44, 0.08);
+  --gold-border:      rgba(224, 138, 44, 0.25);
+  --gold-border-hover:rgba(224, 138, 44, 0.50);
 
   /* ——— Background Scale ——— */
   --bg-deepest:      var(--primary);
-  --bg-base:         #F2E8D5;
-  --bg-raised:       #FAF6EE;
-  --bg-card:         #FFFFFF;
+  --bg-base:         #F7F2EA;
+  --bg-raised:       #FDFAF5;
+  --bg-card:         #EDE4D6;
   --bg-card-premium: var(--primary);
-  --bg-hover:        #F0E4CE;
-  --bg-surface:      #F7F2E8;
-  --bg-overlay:      rgba(var(--primary-rgb), 0.75);
+  --bg-hover:        #E6DDD0;
+  --bg-surface:      #F7F2EA;
+  --bg-overlay:      rgba(18, 36, 28, 0.75);
 
   /* ——— Cream Section Tokens (Legacy compat) ——— */
-  --bg-cream:        #F2E8D5;
-  --bg-cream-dark:   #EDE5CF;
-  --bg-cream-card:   #FFFFFF;
-  --text-on-cream:       #1F2933;
+  --bg-cream:        #F7F2EA;
+  --bg-cream-dark:   #EDE4D6;
+  --bg-cream-card:   #EDE4D6;
+  --text-on-cream:       #12241C;
   --text-secondary-on-cream: #4A5568;
-  --text-muted-on-cream:     #718096;
-  --border-on-cream:   rgba(139, 94, 52, 0.12);
-  --gold-border-on-cream: rgba(215, 160, 23, 0.20);
+  --text-muted-on-cream:     #8C8072;
+  --border-on-cream:   rgba(42, 31, 26, 0.12);
+  --gold-border-on-cream: rgba(224, 138, 44, 0.20);
 
   /* ——— Text Scale ——— */
-  --text-primary:    #1F2933;
-  --text-secondary:  #4A5568;
-  --text-muted:      #718096;
-  --text-gold:       #D7A017;
-  --text-white:      #FFFFFF;
-  --text-on-dark:    #F2E8D5;
+  --text-primary:    #12241C;
+  --text-secondary:  #3F4F45;
+  --text-muted:      #8C8072;
+  --text-gold:       #E08A2C;
+  --text-white:      #F7F2EA;
+  --text-on-dark:    #F7F2EA;
 
   /* ——— Border / Divider ——— */
-  --border-subtle:   rgba(139, 94, 52, 0.08);
-  --border-medium:   rgba(139, 94, 52, 0.15);
-  --border-strong:   rgba(139, 94, 52, 0.25);
+  --border-subtle:   rgba(42, 31, 26, 0.08);
+  --border-medium:   rgba(42, 31, 26, 0.15);
+  --border-strong:   rgba(42, 31, 26, 0.28);
 
   /* ——— Glass / Card Effects ——— */
-  --glass-dark:      rgba(var(--primary-rgb), 0.06);
-  --glass-dark-hover:rgba(var(--primary-rgb), 0.12);
-  --glass-gold:      rgba(215, 160, 23, 0.06);
-  --glass-shadow:    0 8px 32px rgba(var(--primary-rgb), 0.10);
+  --glass-dark:      rgba(18, 36, 28, 0.06);
+  --glass-dark-hover:rgba(18, 36, 28, 0.12);
+  --glass-gold:      rgba(224, 138, 44, 0.06);
+  --glass-shadow:    0 8px 32px rgba(18, 36, 28, 0.14);
+
+  /* ——— Navbar Glass ——— */
+  --navbar-glass-bg: rgba(18, 36, 28, 0.55);
 
   /* ——— Legacy aliases (compatibility) ——— */
   --midnight-navy:        var(--bg-base);
-  --midnight-navy-rgb:    242, 232, 213;
+  --midnight-navy-rgb:    247, 242, 234;
   --glacier-blue:         var(--gold);
-  --glacier-blue-rgb:     215, 160, 23;
+  --glacier-blue-rgb:     224, 138, 44;
   --snow-white:           var(--text-primary);
-  --snow-white-rgb:       31, 41, 51;
+  --snow-white-rgb:       18, 36, 28;
   --mountain-gray:        var(--text-secondary);
-  --mountain-gray-rgb:    74, 85, 104;
+  --mountain-gray-rgb:    63, 79, 69;
   --deep-navy:            var(--bg-raised);
   --dark-slate:           var(--bg-card);
   --ice-blue:             var(--sky-blue);
   --warm-gold:            var(--gold);
-  --sunset-amber:         #D7A017;
+  --sunset-amber:         #E08A2C;
   --alpine-white:         var(--text-primary);
   --charcoal-hex:         var(--charcoal);
   --storm-gray:           var(--text-muted);
@@ -130,19 +133,19 @@
   --charcoal-deep:        var(--charcoal);
 
   /* ——— Gradients ——— */
-  --gradient-premium:      linear-gradient(135deg, #2F4F3E, #243D30);
+  --gradient-premium:      linear-gradient(135deg, #12241C, #2A1F1A);
   --gradient-hero-overlay: linear-gradient(180deg,
-      rgba(26, 31, 20, 0.45) 0%,
-      rgba(26, 31, 20, 0.15) 40%,
-      rgba(26, 31, 20, 0.75) 100%);
-  --gradient-card:         linear-gradient(145deg, #FFFFFF, #FAF6EE);
+      rgba(18, 36, 28, 0.45) 0%,
+      rgba(18, 36, 28, 0.15) 40%,
+      rgba(18, 36, 28, 0.78) 100%);
+  --gradient-card:         linear-gradient(145deg, #EDE4D6, #F7F2EA);
   --gradient-glacier:      linear-gradient(135deg, var(--gold-dark), var(--gold));
-  --gradient-forest:       linear-gradient(135deg, #2F4F3E, #3A6350);
-  --gradient-winter:       linear-gradient(180deg, #F2E8D5 0%, #FAF6EE 100%);
-  --gradient-summer:       linear-gradient(180deg, #FAF6EE 0%, #F2E8D5 100%);
-  --gradient-text:         linear-gradient(135deg, #2F4F3E, #D7A017);
+  --gradient-forest:       linear-gradient(135deg, #12241C, #1E3D2A);
+  --gradient-winter:       linear-gradient(180deg, #F7F2EA 0%, #EDE4D6 100%);
+  --gradient-summer:       linear-gradient(180deg, #EDE4D6 0%, #F7F2EA 100%);
+  --gradient-text:         linear-gradient(135deg, #12241C, #E08A2C);
   --gradient-gold-shine:   linear-gradient(90deg,
-      transparent, rgba(215, 160, 23, 0.12), transparent);
+      transparent, rgba(224, 138, 44, 0.12), transparent);
 
   /* ——— Glass Effects ——— */
   --glass-bg:          rgba(255, 255, 255, 0.80);
