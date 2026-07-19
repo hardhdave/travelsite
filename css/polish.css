@@ -8,7 +8,7 @@
   position: fixed;
   inset: 0;
   z-index: var(--z-loader);
-  background: var(--charcoal);
+  background: #0f131a;
   display: flex;
   flex-direction: column;
   align-items: center;

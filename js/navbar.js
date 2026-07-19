@@ -8,13 +8,40 @@
   const sheet     = document.getElementById('navSheet');
   const backdrop  = document.getElementById('navSheetBackdrop');
 
+  // ── iOS-safe scroll freeze helpers ──
+  // iOS Safari ignores overflow:hidden on body — use position:fixed technique
+  var _scrollY = 0;
+
+  function lockScroll() {
+    if (window._isIOS) {
+      _scrollY = window.pageYOffset || document.documentElement.scrollTop;
+      document.body.style.top = '-' + _scrollY + 'px';
+      document.body.classList.add('ios-scroll-locked');
+      document.documentElement.classList.add('ios-scroll-locked');
+    } else {
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  function unlockScroll() {
+    if (window._isIOS) {
+      document.body.classList.remove('ios-scroll-locked');
+      document.documentElement.classList.remove('ios-scroll-locked');
+      document.body.style.top = '';
+      // Restore scroll position without animation
+      window.scrollTo(0, _scrollY);
+    } else {
+      document.body.style.overflow = '';
+    }
+  }
+
   /* ── Open / close sheet ── */
   function openSheet() {
     sheet.classList.add('active');
     backdrop.classList.add('active');
     navToggle.classList.add('active');
     navToggle.setAttribute('aria-expanded', 'true');
-    document.body.style.overflow = 'hidden';
+    lockScroll();
   }
 
   function closeSheet() {
@@ -22,8 +49,9 @@
     backdrop.classList.remove('active');
     navToggle.classList.remove('active');
     navToggle.setAttribute('aria-expanded', 'false');
-    document.body.style.overflow = '';
+    unlockScroll();
   }
+
 
   if (navToggle && sheet) {
     navToggle.addEventListener('click', () => {

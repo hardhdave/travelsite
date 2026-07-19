@@ -6,8 +6,10 @@
 
 :root {
   /* ——— Core Brand Colors ——— */
-  --forest-green:     #2F4F3E;
-  --forest-green-rgb: 47, 79, 62;
+  --primary:          #1E3E62;
+  --primary-rgb:      30, 62, 98;
+  --forest-green:     var(--primary);
+  --forest-green-rgb: var(--primary-rgb);
   --earth-brown:      #8B5E34;
   --earth-brown-rgb:  139, 94, 52;
   --sand-beige:       #F2E8D5;
@@ -19,17 +21,28 @@
   --charcoal:         #1F2933;
   --charcoal-rgb:     31, 41, 51;
 
-  /* ——— Forest Green Scale ——— */
-  --forest-50:  #EDF3F0;
-  --forest-100: #D4E3DB;
-  --forest-200: #A9C7B7;
-  --forest-300: #7EAB93;
-  --forest-400: #538F6F;
-  --forest-500: #2F4F3E;
-  --forest-600: #274232;
-  --forest-700: #1F3427;
-  --forest-800: #17271D;
-  --forest-900: #0F1A12;
+  /* ——— Primary Blue Scale (replacing Forest Green) ——— */
+  --primary-50:  #F0F4F8;
+  --primary-100: #D9E2EC;
+  --primary-200: #BCCCDC;
+  --primary-300: #9FB3C8;
+  --primary-400: #627D98;
+  --primary-500: #1E3E62;
+  --primary-600: #18324F;
+  --primary-700: #12253B;
+  --primary-800: #0C1927;
+  --primary-900: #060C13;
+
+  --forest-50:  var(--primary-50);
+  --forest-100: var(--primary-100);
+  --forest-200: var(--primary-200);
+  --forest-300: var(--primary-300);
+  --forest-400: var(--primary-400);
+  --forest-500: var(--primary-500);
+  --forest-600: var(--primary-600);
+  --forest-700: var(--primary-700);
+  --forest-800: var(--primary-800);
+  --forest-900: var(--primary-900);
 
   /* ——— Gold Scale ——— */
   --gold-50:  #FDF8EB;
@@ -52,14 +65,14 @@
   --gold-border-hover:rgba(215, 160, 23, 0.50);
 
   /* ——— Background Scale ——— */
-  --bg-deepest:      #2F4F3E;
+  --bg-deepest:      var(--primary);
   --bg-base:         #F2E8D5;
   --bg-raised:       #FAF6EE;
   --bg-card:         #FFFFFF;
-  --bg-card-premium: #2F4F3E;
+  --bg-card-premium: var(--primary);
   --bg-hover:        #F0E4CE;
   --bg-surface:      #F7F2E8;
-  --bg-overlay:      rgba(47, 79, 62, 0.75);
+  --bg-overlay:      rgba(var(--primary-rgb), 0.75);
 
   /* ——— Cream Section Tokens (Legacy compat) ——— */
   --bg-cream:        #F2E8D5;
@@ -85,10 +98,10 @@
   --border-strong:   rgba(139, 94, 52, 0.25);
 
   /* ——— Glass / Card Effects ——— */
-  --glass-dark:      rgba(47, 79, 62, 0.06);
-  --glass-dark-hover:rgba(47, 79, 62, 0.12);
+  --glass-dark:      rgba(var(--primary-rgb), 0.06);
+  --glass-dark-hover:rgba(var(--primary-rgb), 0.12);
   --glass-gold:      rgba(215, 160, 23, 0.06);
-  --glass-shadow:    0 8px 32px rgba(47, 79, 62, 0.10);
+  --glass-shadow:    0 8px 32px rgba(var(--primary-rgb), 0.10);
 
   /* ——— Legacy aliases (compatibility) ——— */
   --midnight-navy:        var(--bg-base);
@@ -246,3 +259,5 @@
   --z-particles:  50;
   --z-loader:     9999;
 }
+
+

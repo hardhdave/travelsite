@@ -16,6 +16,7 @@ html {
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
+  background-color: var(--sand-beige) !important;
 }
 
 body {
@@ -24,16 +25,22 @@ body {
   font-weight: var(--weight-regular);
   line-height: var(--leading-normal);
   color: var(--text-primary);
-  background-color: var(--bg-base);
+  background-color: var(--sand-beige) !important;
   overflow-x: hidden;
   min-height: 100vh;
+  /* iOS momentum scrolling for the main page */
+  -webkit-overflow-scrolling: touch;
 }
 
 /* ---------- Modal Background Scroll Freeze ---------- */
+/* NOTE: overflow:hidden on body/html is ignored by iOS Safari.
+   iOS-safe freeze is handled by the ios-scroll-locked class in
+   ios-compat.css + the JS scroll-position fix in navbar.js/gallery.js */
 html.no-scroll,
 body.no-scroll {
   overflow: hidden !important;
-  overscroll-behavior: none !important;
+  /* overscroll-behavior is not supported in older Safari — use as enhancement */
+  overscroll-behavior: none;
   touch-action: none;
 }
 
@@ -75,9 +82,13 @@ select {
   appearance: none;
 }
 
+/* Prevent iOS Safari auto-zoom on input focus (requires font-size >= 16px) */
+/* Applied globally since ios-compat.css also enforces this */
 @media (max-width: 768px) {
   input, select, textarea {
     font-size: 16px !important;
+    /* Prevent iOS tap zoom */
+    touch-action: manipulation;
   }
 }
 

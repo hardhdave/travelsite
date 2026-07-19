@@ -37,6 +37,7 @@ section,
 .testimonials,
 .gallery,
 .about {
+  background-color: var(--sand-beige) !important;
   color: var(--charcoal) !important;
   border-color: var(--border-subtle) !important;
   background-image: none !important;
@@ -48,8 +49,6 @@ section,
 /* NORMAL CARDS: White background, earthy borders */
 .skiing__package-card,
 .trekking__card,
-.rentals__card,
-.transport__card,
 .testimonials__card,
 .detail-card,
 .trek-card,
@@ -65,8 +64,6 @@ section,
 /* Normal card hover */
 .skiing__package-card:hover,
 .trekking__card:hover,
-.rentals__card:hover,
-.transport__card:hover,
 .testimonials__card:hover,
 .detail-card:hover,
 .trek-card:hover {
@@ -101,8 +98,6 @@ section,
 .skiing__package-card *,
 .trekking__card-content,
 .trekking__card-content *,
-.rentals__card *,
-.transport__card *,
 .testimonials__card *,
 .detail-card__body *,
 .trek-card__body *,
@@ -114,8 +109,6 @@ section,
 
 /* Restore correct text hierarchy in cards */
 .trekking__card-title,
-.rentals__card-title,
-.transport__card-title,
 .testimonials__author-name,
 .detail-card__title,
 .trek-card__title {
@@ -123,8 +116,6 @@ section,
 }
 
 .trekking__card-info span,
-.rentals__card-desc,
-.transport__card-desc,
 .testimonials__text,
 .detail-card__desc,
 .trek-card__desc {
@@ -288,24 +279,38 @@ section,
 footer,
 .site-footer,
 .footer {
-  background: var(--forest-green) !important;
-  color: var(--sand-beige) !important;
+  background: #4A7C59 !important; /* Lighter Forest Green */
+  color: #ffffff !important;
 }
 
 footer a,
 .site-footer a,
-.footer a {
-  color: rgba(242, 232, 213, 0.80) !important;
+.footer a,
+.footer__link,
+.footer__bottom-link {
+  color: rgba(255, 255, 255, 0.9) !important;
 }
 
 footer a:hover,
 .site-footer a:hover,
-.footer a:hover {
-  color: var(--sunset-gold) !important;
+.footer a:hover,
+.footer__link:hover,
+.footer__bottom-link:hover {
+  color: var(--sand-beige) !important;
 }
 
-.footer__column-title {
-  color: var(--sunset-gold) !important;
+.footer__column-title,
+.footer__logo {
+  color: var(--sand-beige) !important;
+}
+
+.footer__brand-desc,
+.footer__copyright {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.footer__social-link svg {
+  color: var(--sand-beige) !important;
 }
 
 
@@ -381,8 +386,8 @@ textarea:focus,
 
 .cta__grid,
 .cta__form-side {
-  background: var(--charcoal) !important;
-  border-color: rgba(255, 255, 255, 0.08) !important;
+  background: var(--sand-beige) !important;
+  border-color: var(--border-subtle) !important;
   border-radius: var(--radius-lg) !important;
 }
 
@@ -390,24 +395,26 @@ textarea:focus,
 .cta__form-side textarea,
 .cta__form-side select,
 .cta__form-side .cta__input {
-  background: rgba(255, 255, 255, 0.08) !important;
-  border: 1px solid rgba(255, 255, 255, 0.15) !important;
-  color: #fff !important;
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border-medium) !important;
+  color: var(--text-primary) !important;
 }
 
 .cta__form-side input:focus,
 .cta__form-side textarea:focus,
 .cta__form-side .cta__input:focus {
-  border-color: var(--sunset-gold) !important;
-  box-shadow: 0 0 0 3px rgba(215, 160, 23, 0.15) !important;
+  border-color: var(--forest-green) !important;
+  box-shadow: 0 0 0 3px rgba(47, 79, 62, 0.12) !important;
 }
 
 .cta__form-side .cta__input::placeholder {
-  color: rgba(255, 255, 255, 0.45) !important;
+  color: var(--text-muted) !important;
 }
 
-.experiences__sidebar {
-  background-color: var(--charcoal) !important;
+.experiences,
+.experiences__sidebar,
+.experiences__stage {
+  background-color: var(--sand-beige) !important;
 }
 
 
@@ -458,4 +465,168 @@ section a:not(.btn):not(.navbar__link):not(.footer__link):not(.nav-sheet__item) 
 
 section a:not(.btn):not(.navbar__link):not(.footer__link):not(.nav-sheet__item):hover {
   color: var(--sunset-gold);
+}
+
+/* Experiences Sidebar Light Theme Fixes */
+.experiences__sidebar-title {
+  color: var(--charcoal) !important;
+}
+
+.experiences__sidebar-label {
+  color: #A77B34 !important;
+}
+
+.experiences__nav-btn {
+  border-bottom-color: var(--border-medium) !important;
+}
+
+.experiences__nav-num {
+  color: var(--text-muted) !important;
+}
+
+.experiences__nav-title {
+  color: var(--text-secondary) !important;
+}
+
+.experiences__nav-sub {
+  color: var(--text-muted) !important;
+}
+
+.experiences__nav-arrow {
+  border-color: var(--border-medium) !important;
+  color: var(--text-muted) !important;
+}
+
+.experiences__nav-btn.is-active .experiences__nav-title {
+  color: var(--charcoal) !important;
+}
+
+.experiences__nav-btn.is-active .experiences__nav-sub {
+  color: #A77B34 !important;
+}
+
+.experiences__nav-btn:not(.is-active):hover .experiences__nav-title {
+  color: var(--charcoal) !important;
+}
+
+.experiences__nav-btn:not(.is-active):hover .experiences__nav-arrow {
+  border-color: var(--border-subtle) !important;
+  color: var(--text-secondary) !important;
+}
+
+.experiences__sidebar::after {
+  background: linear-gradient(to bottom, transparent, var(--border-medium) 30%, var(--border-medium) 70%, transparent) !important;
+}
+
+/* Page Hero Light Theme Override */
+.page-hero {
+  background-color: var(--sand-beige) !important;
+}
+
+.page-hero::before {
+  background: none !important;
+}
+
+.page-hero__title {
+  color: var(--charcoal) !important;
+}
+
+.page-hero__subtitle {
+  color: var(--text-secondary) !important;
+}
+
+.page-hero__label {
+  color: #A77B34 !important;
+  background: rgba(139, 94, 52, 0.1) !important;
+  border-color: rgba(139, 94, 52, 0.2) !important;
+}
+
+.page-hero__breadcrumb a {
+  color: var(--text-secondary) !important;
+}
+
+.page-hero__breadcrumb a:hover {
+  color: var(--charcoal) !important;
+}
+
+.page-hero__breadcrumb-sep {
+  color: var(--border-medium) !important;
+}
+
+.page-hero__breadcrumb-current {
+  color: var(--charcoal) !important;
+}
+
+.page-hero__media::after {
+  background: linear-gradient(to top, var(--sand-beige), transparent) !important;
+}
+
+.page-hero__media {
+  border-color: var(--border-medium) !important;
+}
+
+/* Seasonal Toggle Light Theme Override */
+.seasonal-toggle-capsule {
+  background: var(--bg-card) !important;
+  border-color: var(--border-medium) !important;
+}
+
+.seasonal-toggle-btn {
+  color: var(--text-secondary) !important;
+}
+
+.seasonal-toggle-btn:hover {
+  color: var(--charcoal) !important;
+}
+
+.seasonal-toggle-btn.active {
+  color: #ffffff !important;
+}
+
+/* Activities CTA Light Theme Override */
+.activities-cta__text h3 {
+  color: var(--charcoal) !important;
+}
+
+.activities-cta__text p {
+  color: var(--text-secondary) !important;
+}
+
+.activities-cta {
+  border-top-color: var(--border-medium) !important;
+}
+
+/* Packages Page CTA Text Visibility Fix */
+.cta__content .cta__title {
+  color: #ffffff !important;
+}
+
+.cta__content .cta__subtitle {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.cta__content .section-label {
+  color: var(--gold) !important;
+}
+
+/* Loading Screen Light Theme Override */
+#sh-loader {
+  background-color: var(--sand-beige) !important;
+}
+
+.loader__brand {
+  color: var(--charcoal) !important;
+}
+
+.loader__sub {
+  color: #A77B34 !important;
+  opacity: 1 !important;
+}
+
+.loader__ring-bg {
+  stroke: var(--border-medium) !important;
+}
+
+.loader__mountain svg {
+  fill: rgba(139, 94, 52, 0.05) !important;
 }

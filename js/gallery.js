@@ -11,8 +11,46 @@
 
   const container = document.getElementById('galleryMasonry');
 
+  // ── iOS-safe scroll freeze helpers ──
+  // iOS Safari ignores overflow:hidden on body — use position:fixed technique
+  var _scrollY = 0;
+
+  function lockScroll() {
+    if (window._isIOS) {
+      _scrollY = window.pageYOffset || document.documentElement.scrollTop;
+      document.body.style.top = '-' + _scrollY + 'px';
+      document.body.classList.add('ios-scroll-locked');
+      document.documentElement.classList.add('ios-scroll-locked');
+    } else {
+      document.body.classList.add('no-scroll');
+      document.documentElement.classList.add('no-scroll');
+      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+    }
+  }
+
+  function unlockScroll() {
+    if (window._isIOS) {
+      document.body.classList.remove('ios-scroll-locked');
+      document.documentElement.classList.remove('ios-scroll-locked');
+      document.body.style.top = '';
+      window.scrollTo(0, _scrollY);
+    } else {
+      document.body.classList.remove('no-scroll');
+      document.documentElement.classList.remove('no-scroll');
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+    }
+  }
+
   // Event Delegation for lightbox click (supports cloned mobile items)
+  // NOTE: iOS Safari won't fire 'click' on non-interactive elements unless
+  // they have cursor:pointer in CSS OR a touchstart listener is attached.
+  // The touchstart listener below acts as the iOS click-enabler.
   if (container) {
+    // iOS click-enabler: empty touchstart makes the element "interactive"
+    container.addEventListener('touchstart', function() {}, { passive: true });
+
     container.addEventListener('click', (e) => {
       const item = e.target.closest('.gallery__item');
       if (item) {
@@ -21,10 +59,7 @@
           lightboxImage.src = img.src;
           lightboxImage.alt = img.alt;
           lightbox.classList.add('active');
-          document.body.classList.add('no-scroll');
-          document.documentElement.classList.add('no-scroll');
-          document.body.style.overflow = 'hidden';
-          document.documentElement.style.overflow = 'hidden';
+          lockScroll();
         }
       }
     });
@@ -33,10 +68,7 @@
   // Close lightbox
   function closeLightbox() {
     lightbox.classList.remove('active');
-    document.body.classList.remove('no-scroll');
-    document.documentElement.classList.remove('no-scroll');
-    document.body.style.overflow = '';
-    document.documentElement.style.overflow = '';
+    unlockScroll();
   }
 
   if (lightboxClose) {

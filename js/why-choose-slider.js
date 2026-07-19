@@ -32,16 +32,18 @@
 
         const scrollSpeed = 0.55; // Smooth, premium slow speed
         let halfHeight = bento.scrollHeight / 2;
+        let currentScrollTop = bento.scrollTop;
 
         marqueeActive = true;
 
         function tick() {
           if (!marqueeActive) return;
 
-          bento.scrollTop += scrollSpeed;
-          if (bento.scrollTop >= halfHeight) {
-            bento.scrollTop = 0;
+          currentScrollTop += scrollSpeed;
+          if (currentScrollTop >= halfHeight) {
+            currentScrollTop = 0;
           }
+          bento.scrollTop = Math.floor(currentScrollTop);
           animationId = requestAnimationFrame(tick);
         }
 

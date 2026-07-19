@@ -66,14 +66,6 @@ function navigate(el) {
   closeSB();
 }
 
-// ─── THEME ──────────────────────────────────────────
-function toggleTheme() {
-  var h = document.documentElement;
-  var c = h.getAttribute('data-theme');
-  var n = c === 'dark' ? 'light' : 'dark';
-  h.setAttribute('data-theme', n);
-  localStorage.setItem('sh-admin-theme', n);
-}
 
 function toggleSB() {
   document.getElementById('sidebar').classList.toggle('open');
@@ -938,8 +930,4 @@ function removeItinerary(pi) {
   renderItinerariesEditor();
 }
 
-// ─── BOOT ─────────────────────────────────────────────
-document.addEventListener('DOMContentLoaded', function() {
-  var theme = localStorage.getItem('sh-admin-theme') || 'dark';
-  document.documentElement.setAttribute('data-theme', theme);
-});
+

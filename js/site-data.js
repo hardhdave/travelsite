@@ -423,7 +423,10 @@ const SHData = (function () {
     if (sub) sub.textContent = s.heroSubtitle;
     if (vid && s.heroVideoUrl) {
       const src = vid.querySelector('source');
-      if (src) src.setAttribute('src', s.heroVideoUrl);
+      if (src) {
+        src.setAttribute('src', s.heroVideoUrl);
+        vid.load(); // Safari compatibility: trigger reload of the video element
+      }
     }
   }
 
@@ -465,13 +468,43 @@ const SHData = (function () {
       const closeBtn = document.getElementById('shModalClose');
       const contentEl = document.getElementById('shModalContent');
 
-      function closeModal() {
-        if (overlay) {
-          overlay.classList.remove('is-active');
+      // ── iOS-safe scroll freeze helpers ──
+      var _scrollY = 0;
+      var _isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+                   (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+
+      function lockScroll() {
+        if (_isIOS) {
+          _scrollY = window.pageYOffset || document.documentElement.scrollTop;
+          document.body.style.top = '-' + _scrollY + 'px';
+          document.body.classList.add('ios-scroll-locked');
+          document.documentElement.classList.add('ios-scroll-locked');
+        } else {
+          document.body.classList.add('no-scroll');
+          document.documentElement.classList.add('no-scroll');
+          document.body.style.overflow = 'hidden';
+          document.documentElement.style.overflow = 'hidden';
+        }
+      }
+
+      function unlockScroll() {
+        if (_isIOS) {
+          document.body.classList.remove('ios-scroll-locked');
+          document.documentElement.classList.remove('ios-scroll-locked');
+          document.body.style.top = '';
+          window.scrollTo(0, _scrollY);
+        } else {
           document.body.classList.remove('no-scroll');
           document.documentElement.classList.remove('no-scroll');
           document.body.style.overflow = '';
           document.documentElement.style.overflow = '';
+        }
+      }
+
+      function closeModal() {
+        if (overlay) {
+          overlay.classList.remove('is-active');
+          unlockScroll();
         }
       }
 
@@ -685,10 +718,7 @@ const SHData = (function () {
         if (contentEl && overlay) {
           contentEl.innerHTML = html;
           overlay.classList.add('is-active');
-          document.body.classList.add('no-scroll');
-          document.documentElement.classList.add('no-scroll');
-          document.body.style.overflow = 'hidden';
-          document.documentElement.style.overflow = 'hidden';
+          lockScroll();
         }
       }
     });

@@ -15,8 +15,8 @@
   display: grid;
   grid-template-columns: 1.15fr 1fr;
   gap: 0;
-  background: var(--charcoal);
-  border: 1px solid rgba(255,255,255,0.08);
+  background: var(--sand-beige);
+  border: 1px solid var(--border-subtle);
   box-shadow: var(--shadow-xl);
   overflow: hidden;
   border-radius: var(--radius-lg);
@@ -95,7 +95,7 @@
   justify-content: center;
   align-items: flex-start;
   text-align: left;
-  background: var(--charcoal);
+  background: var(--sand-beige);
 }
 
 .cta__title {

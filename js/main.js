@@ -8,9 +8,15 @@ if (hasGsapScroll) {
   gsap.registerPlugin(ScrollTrigger);
 }
 
+// ---- iOS Detection ----
+// Lenis smooth scroll conflicts with iOS Safari's native momentum scrolling
+// and rubber-band behaviour. On touch-only devices it provides no benefit.
+var _isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+             (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+
 // ---- Lenis Smooth Scroll ----
 let lenis;
-if (typeof window.Lenis !== 'undefined') {
+if (typeof window.Lenis !== 'undefined' && !_isIOS) {
   lenis = new window.Lenis({
     duration: 1.2,
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -33,9 +39,18 @@ if (typeof window.Lenis !== 'undefined') {
     }
     requestAnimationFrame(raf);
   }
+} else if (_isIOS) {
+  // On iOS: use native scroll. GSAP ScrollTrigger works fine with native scroll.
+  if (hasGsapScroll) {
+    // Sync ScrollTrigger with native scroll
+    window.addEventListener('scroll', ScrollTrigger.update, { passive: true });
+  }
 } else {
   console.warn('Lenis smooth scroll library is not defined. Falling back to native scrolling.');
 }
+
+// Expose iOS flag globally for other scripts to use
+window._isIOS = _isIOS;
 
 // ---- Preloader / DOM Ready ----
 document.addEventListener('DOMContentLoaded', () => {
@@ -50,3 +65,4 @@ window.addEventListener('load', () => {
 
 // Enable immediate CSS :active tap feedback on WebKit / iOS touch screens
 document.addEventListener('touchstart', () => {}, { passive: true });
+

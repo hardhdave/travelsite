@@ -164,7 +164,16 @@
       scrollDown.addEventListener('click', () => {
         const expSection = document.getElementById('experiences');
         if (expSection) {
-          expSection.scrollIntoView({ behavior: 'smooth' });
+          // scrollIntoView with smooth behaviour isn't reliable on iOS < 15.4
+          // Use a cross-browser safe approach: window.scrollTo with offsetTop
+          if ('scrollBehavior' in document.documentElement.style) {
+            // Modern browsers (Chrome, Firefox, Safari 15.4+)
+            expSection.scrollIntoView({ behavior: 'smooth' });
+          } else {
+            // Fallback for older iOS Safari — instant scroll to element
+            var targetY = expSection.getBoundingClientRect().top + (window.pageYOffset || window.scrollY);
+            window.scrollTo({ top: targetY, behavior: 'smooth' });
+          }
         }
       });
       scrollDown.style.cursor = 'pointer';

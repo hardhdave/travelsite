@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
@@ -8,9 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Inter:wght@400;500&family=Manrope:wght@700&display=swap" rel="stylesheet">
 <style>
-:root{--gold:#D7A017;--gold-glow:rgba(215,160,23,0.15);--gold-border:rgba(215,160,23,0.25);--gold-dark:#B88612;--font-h:'Manrope',system-ui,sans-serif;--font-b:'Inter',system-ui,sans-serif;--font-l:'Cormorant Garamond',Georgia,serif;--sw:260px;--th:64px;--r:14px;--rs:10px;--rx:6px;--d:.22s;--e:cubic-bezier(.16,1,.3,1)}
-[data-theme=dark]{--bg:#1F2933;--sbg:#182029;--tbg:rgba(24,32,41,.92);--cbg:#2A3540;--cbgh:#323F4D;--cb:rgba(255,255,255,.08);--cbH:rgba(255,255,255,.15);--t:#F2E8D5;--t2:#A9B2BC;--t3:#718096;--ib:rgba(0,0,0,.15);--ib2:rgba(255,255,255,.06);--div:rgba(255,255,255,.06);--mb:#182029;--nab:rgba(215,160,23,.10);--nhb:rgba(255,255,255,.04);--sc:rgba(255,255,255,.10);--bb:rgba(255,255,255,.06);--bt:#A9B2BC;--g:#528F75;--re:#ef4444;--am:#f59e0b;--sh:0 24px 64px rgba(0,0,0,.45);--focus:#528F75;--focus-glow:rgba(82,143,117,0.2)}
-[data-theme=light]{--bg:#F2E8D5;--sbg:#FFFFFF;--tbg:rgba(255,255,255,.92);--cbg:#FFFFFF;--cbgh:#FAF6EE;--cb:rgba(139,94,52,.12);--cbH:rgba(47,79,62,.25);--t:#1F2933;--t2:#4A5568;--t3:#718096;--ib:#FAF6EE;--ib2:rgba(139,94,52,.15);--div:rgba(139,94,52,.10);--mb:#FFFFFF;--nab:rgba(47,79,62,.08);--nhb:rgba(47,79,62,.04);--sc:rgba(47,79,62,.12);--bb:rgba(47,79,62,.06);--bt:#4A5568;--g:#2F4F3E;--re:#C53030;--am:#D7A017;--sh:0 12px 32px rgba(47,79,62,.06);--focus:#2F4F3E;--focus-glow:rgba(47,79,62,0.15)}
+:root{--gold:#D7A017;--gold-glow:rgba(215,160,23,0.15);--gold-border:rgba(215,160,23,0.25);--gold-dark:#B88612;--font-h:'Manrope',system-ui,sans-serif;--font-b:'Inter',system-ui,sans-serif;--font-l:'Cormorant Garamond',Georgia,serif;--sw:260px;--th:64px;--r:14px;--rs:10px;--rx:6px;--d:.22s;--e:cubic-bezier(.16,1,.3,1);--bg:#1F2933;--sbg:#182029;--tbg:rgba(24,32,41,.92);--cbg:#2A3540;--cbgh:#323F4D;--cb:rgba(255,255,255,.08);--cbH:rgba(255,255,255,.15);--t:#F2E8D5;--t2:#A9B2BC;--t3:#718096;--ib:rgba(0,0,0,.15);--ib2:rgba(255,255,255,.06);--div:rgba(255,255,255,.06);--mb:#182029;--nab:rgba(215,160,23,.10);--nhb:rgba(255,255,255,.04);--sc:rgba(255,255,255,.10);--bb:rgba(255,255,255,.06);--bt:#A9B2BC;--g:#528F75;--re:#ef4444;--am:#f59e0b;--sh:0 24px 64px rgba(0,0,0,.45);--focus:#528F75;--focus-glow:rgba(82,143,117,0.2)}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%}
 body{font-family:var(--font-b);background:var(--bg);color:var(--t);overflow:hidden;-webkit-font-smoothing:antialiased;transition:background var(--d),color var(--d)}
@@ -63,11 +61,7 @@ h1,h2,h3,h4,h5,h6{font-family:var(--font-h)}
 .t-pill{display:inline-flex;padding:3px 10px;background:var(--gold-glow);border:1px solid var(--gold-border);border-radius:100px;font-size:10px;font-weight:700;color:var(--gold);letter-spacing:.08em;text-transform:uppercase}
 .t-sp{flex:1}
 .t-acts{display:flex;align-items:center;gap:8px}
-.theme-tog{display:flex;align-items:center;background:var(--cbg);border:1px solid var(--cb);border-radius:100px;padding:4px;cursor:pointer;transition:all var(--d)}
-.theme-tog-track{display:flex;align-items:center;position:relative}
-.theme-tog-opt{display:flex;align-items:center;justify-content:center;width:30px;height:28px;border-radius:100px;font-size:14px;position:relative;z-index:1}
-.theme-tog-thumb{position:absolute;top:0;left:0;width:30px;height:28px;border-radius:100px;background:linear-gradient(135deg,var(--gold),#8B6030);box-shadow:0 2px 8px var(--gold-glow);transition:transform var(--d) var(--e)}
-[data-theme=light] .theme-tog-thumb{transform:translateX(30px)}
+
 .tbtn{display:flex;align-items:center;gap:6px;padding:7px 14px;border-radius:var(--rx);font-size:12.5px;font-weight:600;cursor:pointer;transition:all var(--d);border:1px solid var(--cb);background:var(--cbg);color:var(--t);font-family:var(--font-b);white-space:nowrap}
 .tbtn:hover{background:var(--cbgh);border-color:var(--cbH)}.tbtn svg{width:14px;height:14px;flex-shrink:0}
 .tbtn--danger:hover{background:rgba(239,68,68,.1);color:#f87171;border-color:rgba(239,68,68,.25)}
@@ -289,13 +283,7 @@ section-bar,.section-bar{display:flex;align-items:center;justify-content:space-b
     <span class="t-pill">Admin</span>
     <div class="t-sp"></div>
     <div class="t-acts">
-      <div class="theme-tog" onclick="toggleTheme()" title="Toggle light/dark theme">
-        <div class="theme-tog-track">
-          <div class="theme-tog-thumb"></div>
-          <div class="theme-tog-opt">&#127769;</div>
-          <div class="theme-tog-opt">&#9728;&#65039;</div>
-        </div>
-      </div>
+
       <button class="tbtn tbtn--prev" onclick="window.open('index.html','_blank')">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
         <span>Preview Site</span>
@@ -467,8 +455,7 @@ section-bar,.section-bar{display:flex;align-items:center;justify-content:space-b
 <div id="toast"></div>
 
 <script>
-(function(){var s=localStorage.getItem('sh-admin-theme')||'dark';document.documentElement.setAttribute('data-theme',s)})();
-function toggleTheme(){var h=document.documentElement,c=h.getAttribute('data-theme'),n=c==='dark'?'light':'dark';h.setAttribute('data-theme',n);localStorage.setItem('sh-admin-theme',n)}
+
 function toggleSB(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('sbOv').classList.toggle('open')}
 function closeSB(){document.getElementById('sidebar').classList.remove('open');document.getElementById('sbOv').classList.remove('open')}
 var CREDS={user:'jammu&kashmir',pass:'admin@2000'};

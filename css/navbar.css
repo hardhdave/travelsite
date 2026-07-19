@@ -229,6 +229,8 @@
   position: fixed;
   left: 12px;
   right: 12px;
+  /* constant() is the older iOS 11.0-11.2 syntax; env() is modern */
+  bottom: calc(12px + constant(safe-area-inset-bottom));
   bottom: calc(12px + env(safe-area-inset-bottom));
   /* Bottom of the screen like iOS sheet */
   z-index: 999;
@@ -245,6 +247,10 @@
     opacity 0.4s ease,
     visibility 0.5s ease;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+  /* iOS momentum scrolling for sheet content */
+  -webkit-overflow-scrolling: touch;
+  /* Prevent sheet from rubber-banding into page */
+  overscroll-behavior: contain;
 }
 
 .nav-sheet.active {
@@ -499,7 +505,9 @@
   .nav-sheet {
     left: 8px;
     right: 8px;
-    bottom: 8px;
+    /* constant() fallback for older iOS 11 */
+    bottom: calc(8px + constant(safe-area-inset-bottom));
+    bottom: calc(8px + env(safe-area-inset-bottom));
     /* sits at bottom of screen on smaller devices */
     top: auto;
   }

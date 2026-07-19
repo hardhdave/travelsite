@@ -44,8 +44,16 @@
       if (dots[currentIndex]) dots[currentIndex].classList.add('is-active');
 
       // Scroll nav button into view on mobile
-      if (!skipScroll && navBtns[currentIndex]) {
-        navBtns[currentIndex].scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' });
+      // scrollIntoView with inline:'center' is unreliable on iOS Safari
+      // Use manual scroll calculation instead
+      if (!skipScroll && navBtns[currentIndex] && navContainer) {
+        var btn = navBtns[currentIndex];
+        var containerScrollLeft = navContainer.scrollLeft;
+        var containerWidth = navContainer.offsetWidth;
+        var btnOffsetLeft = btn.offsetLeft;
+        var btnWidth = btn.offsetWidth;
+        var targetScroll = btnOffsetLeft - (containerWidth / 2) + (btnWidth / 2);
+        navContainer.scrollTo({ left: targetScroll, behavior: 'smooth' });
       }
     }
 
