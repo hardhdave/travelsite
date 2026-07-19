@@ -95,7 +95,8 @@
                      (!path.includes('adventures.html') && 
                       !path.includes('packages.html') && 
                       !path.includes('skiing.html') && 
-                      !path.includes('treks.html'));
+                      !path.includes('treks.html') &&
+                      !path.includes('activities.html'));
 
   if (isHomePage) {
     const sections = document.querySelectorAll('section[id]');

@@ -186,8 +186,8 @@ section,
 .btn-secondary,
 .button-secondary {
   background: transparent !important;
-  border: 1px solid var(--forest-green) !important;
-  color: var(--forest-green) !important;
+  border: 1px solid var(--sunset-gold) !important;
+  color: var(--sunset-gold) !important;
   border-radius: var(--radius-md) !important;
   transition: all 0.25s var(--ease-premium) !important;
 }
@@ -195,8 +195,8 @@ section,
 .btn--secondary:hover,
 .btn-secondary:hover,
 .button-secondary:hover {
-  background: var(--forest-green) !important;
-  color: #fff !important;
+  background: var(--sunset-gold) !important;
+  color: var(--charcoal) !important;
   transform: translateY(-2px) !important;
   box-shadow: var(--shadow-lg) !important;
 }
@@ -279,7 +279,8 @@ section,
 footer,
 .site-footer,
 .footer {
-  background: #4A7C59 !important; /* Lighter Forest Green */
+  background: #4A7C59 !important;
+  /* Lighter Forest Green */
   color: #ffffff !important;
 }
 
@@ -336,14 +337,17 @@ textarea::placeholder,
 input[type="date"] {
   position: relative;
 }
+
 input[type="date"]::-webkit-datetime-edit {
   color: transparent !important;
 }
+
 input[type="date"]:focus::-webkit-datetime-edit,
 input[type="date"]:valid::-webkit-datetime-edit,
 input[type="date"]:not([value=""])::-webkit-datetime-edit {
   color: var(--charcoal) !important;
 }
+
 input[type="date"]::before {
   content: attr(placeholder);
   color: var(--text-muted) !important;
@@ -353,6 +357,7 @@ input[type="date"]::before {
   transform: translateY(-50%);
   pointer-events: none;
 }
+
 input[type="date"]:focus::before,
 input[type="date"]:valid::before,
 input[type="date"]:not([value=""]):before {
@@ -581,6 +586,20 @@ section a:not(.btn):not(.navbar__link):not(.footer__link):not(.nav-sheet__item):
 
 .seasonal-toggle-btn.active {
   color: #ffffff !important;
+}
+
+
+/* WhatsApp CTA Button Sunset Gold Override */
+.cta__whatsapp {
+  background: rgba(215, 160, 23, 0.08) !important;
+  color: var(--sunset-gold) !important;
+  border: 1px solid rgba(215, 160, 23, 0.3) !important;
+}
+
+.cta__whatsapp:hover {
+  background: rgba(215, 160, 23, 0.15) !important;
+  border-color: rgba(215, 160, 23, 0.6) !important;
+  color: var(--gold-dark) !important;
 }
 
 /* Activities CTA Light Theme Override */
