@@ -154,6 +154,7 @@
   letter-spacing: 0.25em !important;
   text-transform: uppercase !important;
   padding: 4px 12px !important;
+  -webkit-backdrop-filter: blur(4px) !important;
   backdrop-filter: blur(4px) !important;
 }
 
@@ -230,6 +231,7 @@
     display: flex !important;
     flex-direction: row !important;
     overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
     scroll-snap-type: x mandatory !important;
     gap: 12px !important;
     scroll-behavior: smooth !important;

@@ -1,224 +1,213 @@
 /* ============================================
-   EDITORIAL-THEME.CSS — High-Contrast Grayscale Theme
-   Minimalist Editorial Design for Landings & Subpages
+   EDITORIAL-THEME.CSS — Earthy Nature Premium
+   Warm Sand · White Cards · Forest Accents
    ============================================ */
 
-/* ---------- Core Section Backgrounds & Layout Alternation ---------- */
+/* ---------- Section Background Alternation ---------- */
 
-/* Why Choose Us: Pure White */
 .why-choose {
-  background: #ffffff !important;
-  padding: clamp(48px, 7vw, 100px) 0 clamp(40px, 6vw, 80px) 0 !important;
-  /* Reduced from 100px/80px */
-  border-top: 1px solid rgba(15, 23, 42, 0.08) !important;
+  background: var(--bg-raised) !important;
+  padding: clamp(48px, 7vw, 100px) 0 clamp(40px, 6vw, 80px) !important;
+  border-top: 1px solid var(--border-subtle) !important;
   box-shadow: none !important;
 }
 
-/* Skiing Section: Soft light Gray-Blue */
 .skiing {
-  background: #f8fafc !important;
+  background: var(--bg-base) !important;
   padding: clamp(48px, 7vw, 100px) 0 !important;
-  /* Reduced from 100px */
-  border-top: 1px solid rgba(15, 23, 42, 0.06) !important;
-  border-bottom: 1px solid rgba(15, 23, 42, 0.06) !important;
+  border-top: 1px solid var(--border-subtle) !important;
+  border-bottom: 1px solid var(--border-subtle) !important;
   position: relative;
 }
 
-.skiing__bg {
-  display: none !important;
-  /* Remove dark background images completely */
-}
+.skiing__bg { display: none !important; }
 
-.skiing__inner {
-  position: relative;
-  z-index: 2;
-}
+.skiing__inner { position: relative; z-index: 2; }
 
-/* Trekking Section: Pure White */
 .trekking {
-  background: #ffffff !important;
+  background: var(--bg-raised) !important;
   padding: clamp(48px, 7vw, 100px) 0 !important;
-  /* Reduced from 100px */
   position: relative;
 }
 
-.trekking__parallax {
-  display: none !important;
-  /* Hide old dark parallax layers */
-}
+.trekking__parallax { display: none !important; }
 
-/* Activities Section: Soft Light Gray */
 .activities {
-  background: #f8fafc !important;
+  background: var(--bg-base) !important;
   padding: clamp(48px, 7vw, 100px) 0 !important;
-  /* Reduced from 100px */
-  border-top: 1px solid rgba(15, 23, 42, 0.06) !important;
-  border-bottom: 1px solid rgba(15, 23, 42, 0.06) !important;
+  border-top: 1px solid var(--border-subtle) !important;
+  border-bottom: 1px solid var(--border-subtle) !important;
 }
 
-/* Sightseeing Section: Pure White */
 .sightseeing {
-  background: #ffffff !important;
+  background: var(--bg-raised) !important;
   padding: clamp(48px, 7vw, 100px) 0 !important;
-  /* Reduced from 100px */
 }
 
-/* Rentals Section: Soft Light Gray */
 .rentals {
-  background: #f8fafc !important;
+  background: var(--bg-base) !important;
   padding: clamp(48px, 7vw, 100px) 0 !important;
-  /* Reduced from 100px */
-  border-top: 1px solid rgba(15, 23, 42, 0.06) !important;
-  border-bottom: 1px solid rgba(15, 23, 42, 0.06) !important;
+  border-top: 1px solid var(--border-subtle) !important;
+  border-bottom: 1px solid var(--border-subtle) !important;
 }
 
-/* Transport Section: Pure White */
 .transport {
-  background: #ffffff !important;
+  background: var(--bg-raised) !important;
   padding: clamp(48px, 7vw, 100px) 0 !important;
-  /* Reduced from 100px */
 }
 
-.transport__bg {
-  display: none !important;
-  /* Remove transport dark background */
-}
+.transport__bg { display: none !important; }
 
-/* Packages Section: Soft Light Gray */
 .packages {
-  background: #f8fafc !important;
+  background: var(--bg-base) !important;
   padding: clamp(48px, 7vw, 100px) 0 !important;
-  /* Reduced from 100px */
-  border-top: 1px solid rgba(15, 23, 42, 0.06) !important;
-  border-bottom: 1px solid rgba(15, 23, 42, 0.06) !important;
+  border-top: 1px solid var(--border-subtle) !important;
+  border-bottom: 1px solid var(--border-subtle) !important;
 }
 
-/* Testimonials: Pure White */
 .testimonials {
-  background: #ffffff !important;
+  background: var(--bg-raised) !important;
   padding: clamp(48px, 7vw, 100px) 0 !important;
-  /* Reduced from 100px */
 }
 
-/* Gallery: Soft Light Gray */
 .gallery {
-  background: #f8fafc !important;
+  background: var(--bg-base) !important;
   padding: clamp(48px, 7vw, 100px) 0 !important;
-  /* Reduced from 100px */
-  border-top: 1px solid rgba(15, 23, 42, 0.06) !important;
-  border-bottom: 1px solid rgba(15, 23, 42, 0.06) !important;
+  border-top: 1px solid var(--border-subtle) !important;
+  border-bottom: 1px solid var(--border-subtle) !important;
 }
 
-/* About Us: Pure White */
 .about {
-  background: #ffffff !important;
+  background: var(--bg-raised) !important;
   padding: clamp(48px, 7vw, 100px) 0 !important;
-  /* Reduced from 100px */
 }
 
-/* ---------- Typography Readability & Contrast Polish ---------- */
+
+/* ---------- Typography — Warm Earthy Hierarchy ---------- */
+
 body,
 section {
-  color: #0f172a !important;
-  /* Force deep slate body text */
+  color: var(--text-primary) !important;
 }
 
 .section-label {
-  color: #000000 !important;
+  color: var(--earth-brown) !important;
   font-family: var(--font-accent);
   font-size: var(--text-xs);
-  font-weight: 700 !important;
-  letter-spacing: 0.25em !important;
+  font-weight: var(--weight-semibold) !important;
+  letter-spacing: 0.2em !important;
   text-transform: uppercase;
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
   margin-bottom: var(--space-4);
-  opacity: 0.9;
+}
+
+.section-label::before {
+  background: var(--earth-brown) !important;
 }
 
 .section-title {
   font-family: var(--font-heading);
   font-size: clamp(1.8rem, 4vw, 2.8rem) !important;
-  font-weight: 900 !important;
-  line-height: 1.2 !important;
-  color: #0f172a !important;
+  font-weight: var(--weight-bold) !important;
+  line-height: 1.15 !important;
+  color: var(--charcoal) !important;
   margin-bottom: var(--space-4);
 }
 
-/* Overrides text gradients to clean high-end slate-black headers */
 .section-title .text-gradient {
-  background: none !important;
-  -webkit-text-fill-color: initial !important;
-  color: #000000 !important;
+  background: linear-gradient(135deg, var(--forest-green), var(--sunset-gold)) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
   display: inline !important;
-  font-weight: 900 !important;
+  font-weight: var(--weight-bold) !important;
 }
 
 .section-subtitle {
-  color: #475569 !important;
+  color: var(--text-secondary) !important;
   font-size: var(--text-base) !important;
   max-width: 600px;
   line-height: 1.6 !important;
   margin-bottom: 0;
 }
 
-/* ---------- 1. Why Choose Us Section ---------- */
+
+/* ---------- 1. Why Choose Us — White Cards ---------- */
+
 .why-choose__grid {
   counter-reset: why-counter;
-  gap: 24px !important;
+  gap: 20px !important;
   margin-top: 32px !important;
-  /* Reduced from 48px */
 }
 
 .why-choose__card {
   position: relative;
   counter-increment: why-counter;
-  background: #ffffff !important;
-  border: 1px solid rgba(15, 23, 42, 0.08) !important;
-  border-radius: 4px !important;
-  padding: 40px 30px !important;
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border-subtle) !important;
+  border-radius: var(--radius-lg) !important;
+  padding: 36px 28px !important;
   text-align: left !important;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.015) !important;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  box-shadow: var(--shadow-sm) !important;
+  transition: all 0.35s var(--ease-premium) !important;
 }
 
 .why-choose__card::after {
   content: "0" counter(why-counter);
   position: absolute;
-  top: 36px;
-  right: 30px;
+  top: 32px;
+  right: 28px;
   font-family: var(--font-heading);
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   font-weight: 800;
-  color: rgba(15, 23, 42, 0.07);
+  color: rgba(47, 79, 62, 0.07);
   letter-spacing: -0.02em;
 }
 
 .why-choose__card:hover {
-  transform: translateY(-6px) !important;
-  border-color: #000000 !important;
-  box-shadow: 0 16px 36px rgba(15, 23, 42, 0.05) !important;
+  transform: translateY(-5px) !important;
+  border-color: var(--forest-green) !important;
+  box-shadow: var(--shadow-lg) !important;
 }
 
 .why-choose__card-title {
-  color: #0f172a !important;
-  font-weight: 800 !important;
-  font-size: 1.15rem !important;
-  margin: 20px 0 10px 0 !important;
+  color: var(--charcoal) !important;
+  font-weight: var(--weight-semibold) !important;
+  font-size: 1.1rem !important;
+  margin: 18px 0 8px 0 !important;
 }
 
 .why-choose__card-desc {
-  color: #475569 !important;
-  font-size: 0.9rem !important;
+  color: var(--text-secondary) !important;
+  font-size: 0.88rem !important;
   line-height: 1.6 !important;
 }
 
-.why-choose__icon svg {
-  color: #000000 !important;
+.why-choose__icon {
+  border: 1px solid rgba(139, 94, 52, 0.2) !important;
+  border-radius: var(--radius-md) !important;
+  background: rgba(47, 79, 62, 0.04) !important;
 }
 
-/* ---------- 2. Skiing & Snowboarding Section ---------- */
+.why-choose__icon svg {
+  color: var(--forest-green) !important;
+}
+
+.why-choose__card:hover .why-choose__icon {
+  background: var(--forest-green) !important;
+  color: #fff !important;
+  border-color: var(--forest-green) !important;
+}
+
+.why-choose__card:hover .why-choose__icon svg {
+  color: #fff !important;
+}
+
+
+/* ---------- 2. Skiing & Snowboarding ---------- */
+
 .skiing__layout {
   grid-template-columns: 1.1fr 0.9fr !important;
   gap: 48px !important;
@@ -226,141 +215,149 @@ section {
 }
 
 .skiing__hero-image {
-  border: 1px solid rgba(15, 23, 42, 0.08) !important;
-  padding: 12px !important;
-  background: #ffffff !important;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.03) !important;
-  border-radius: 4px !important;
+  border: 1px solid var(--border-medium) !important;
+  padding: 0 !important;
+  background: var(--bg-card) !important;
+  box-shadow: var(--shadow-lg) !important;
+  border-radius: var(--radius-lg) !important;
   position: relative;
+  overflow: hidden !important;
+}
+
+.skiing__hero-image img {
+  border-radius: var(--radius-lg) !important;
+  filter: brightness(0.88) saturate(0.9) !important;
 }
 
 .skiing__hero-badge {
-  background: #000000 !important;
-  color: #ffffff !important;
+  background: var(--forest-green) !important;
+  color: #fff !important;
   font-family: var(--font-accent);
-  font-weight: 800 !important;
-  border-radius: 2px !important;
+  font-weight: 700 !important;
+  border-radius: var(--radius-sm) !important;
   font-size: 10px !important;
-  padding: 6px 12px !important;
-  top: 24px !important;
-  left: 24px !important;
-}
-
-.skiing__packages {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  padding: 6px 14px !important;
+  border: none !important;
 }
 
 .skiing__category-title {
-  color: #000000 !important;
-  font-family: var(--font-heading);
-  font-weight: 800 !important;
-  font-size: 1.1rem !important;
-  letter-spacing: -0.01em;
+  color: var(--earth-brown) !important;
+  font-family: var(--font-accent);
+  font-weight: var(--weight-semibold) !important;
+  font-size: var(--text-xs) !important;
+  letter-spacing: 0.2em;
   margin-bottom: 20px !important;
   text-transform: uppercase;
+  border-bottom: 1px solid var(--border-subtle) !important;
+  padding-bottom: var(--space-4) !important;
 }
 
 .skiing__package-card {
-  background: #ffffff !important;
-  border: 1px solid rgba(15, 23, 42, 0.08) !important;
-  border-radius: 4px !important;
-  padding: 22px 26px !important;
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border-subtle) !important;
+  border-radius: var(--radius-md) !important;
+  padding: 18px 22px !important;
   display: flex !important;
   justify-content: space-between !important;
   align-items: center !important;
-  color: #0f172a !important;
-  margin-bottom: 14px !important;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.01) !important;
+  color: var(--charcoal) !important;
+  margin-bottom: 10px !important;
+  transition: all 0.3s var(--ease-premium) !important;
+  box-shadow: var(--shadow-sm) !important;
 }
 
 .skiing__package-card:hover {
-  border-color: #000000 !important;
-  transform: translateX(6px) !important;
-  background: #ffffff !important;
+  border-color: var(--forest-green) !important;
+  transform: translateX(4px) !important;
+  box-shadow: var(--shadow-md) !important;
+  background: var(--bg-card) !important;
 }
 
 .skiing__package-name {
-  font-weight: 700 !important;
+  font-weight: var(--weight-medium) !important;
   font-size: 0.95rem !important;
+  color: var(--charcoal) !important;
 }
 
 .skiing__package-arrow {
-  color: #000000 !important;
+  color: var(--forest-green) !important;
   font-weight: bold !important;
 }
 
-/* ---------- 3. Trekking Section ---------- */
+
+/* ---------- 3. Trekking Cards ---------- */
+
 .trekking__masonry {
   gap: 24px !important;
   margin-top: 32px !important;
-  /* Reduced from 48px */
 }
 
 .trekking__card {
-  background: #ffffff !important;
-  border: 1px solid rgba(15, 23, 42, 0.08) !important;
-  border-radius: 4px !important;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.015) !important;
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border-subtle) !important;
+  border-radius: var(--radius-lg) !important;
+  box-shadow: var(--shadow-sm) !important;
   overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  transition: all 0.35s var(--ease-premium) !important;
 }
 
 .trekking__card:hover {
-  transform: translateY(-8px) !important;
-  border-color: #000000 !important;
-  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.06) !important;
+  transform: translateY(-6px) !important;
+  border-color: var(--forest-green) !important;
+  box-shadow: var(--shadow-xl) !important;
+}
+
+.trekking__card-image {
+  filter: brightness(0.85) saturate(0.9) !important;
+}
+
+.trekking__card:hover .trekking__card-image {
+  filter: brightness(0.92) saturate(1) !important;
 }
 
 .trekking__card-difficulty {
-  top: 20px !important;
-  left: 20px !important;
-  border-radius: 2px !important;
-  font-weight: 800 !important;
+  border-radius: var(--radius-sm) !important;
+  font-weight: 700 !important;
   font-size: 10px !important;
   text-transform: uppercase !important;
   border: 1px solid rgba(255, 255, 255, 0.4) !important;
-  background: rgba(0, 0, 0, 0.6) !important;
+  background: rgba(47, 79, 62, 0.85) !important;
   color: #ffffff !important;
   backdrop-filter: blur(4px);
 }
 
 .trekking__card-content {
-  padding: 24px !important;
-  background: #ffffff !important;
-  border-top: 1px solid rgba(15, 23, 42, 0.06) !important;
+  padding: 22px !important;
+  background: var(--bg-card) !important;
+  border-top: 1px solid var(--border-subtle) !important;
   position: relative !important;
 }
 
 .trekking__card-title {
-  color: #0f172a !important;
-  font-weight: 800 !important;
-  font-size: 1.15rem !important;
-  margin-bottom: 12px !important;
+  color: var(--charcoal) !important;
+  font-weight: var(--weight-semibold) !important;
+  font-size: 1.1rem !important;
+  margin-bottom: 10px !important;
 }
 
 .trekking__card-info {
   display: flex !important;
   gap: 20px !important;
-  color: #475569 !important;
+  color: var(--text-secondary) !important;
   font-size: 0.85rem !important;
-  font-weight: 600 !important;
+  font-weight: 500 !important;
 }
 
 .trekking__card-info svg {
-  color: #000000 !important;
-  width: 16px !important;
-  height: 16px !important;
-  margin-right: 4px !important;
+  color: var(--earth-brown) !important;
 }
 
-/* ---------- 4. Activities Section ---------- */
+
+/* ---------- 4. Activities ---------- */
+
 .activities__split {
   gap: 40px !important;
   margin-top: 32px !important;
-  /* Reduced from 48px */
 }
 
 .activities__season {
@@ -371,262 +368,322 @@ section {
 }
 
 .activities__season--winter {
-  border-right: 1px solid rgba(15, 23, 42, 0.08) !important;
+  border-right: 1px solid var(--border-subtle) !important;
   padding-right: 40px !important;
 }
 
 .activities__season-label {
-  color: #000000 !important;
+  color: var(--earth-brown) !important;
   font-family: var(--font-accent);
-  font-weight: 800 !important;
+  font-weight: var(--weight-semibold) !important;
   font-size: var(--text-xs) !important;
-  letter-spacing: 0.1em !important;
+  letter-spacing: 0.15em !important;
+  background: rgba(139, 94, 52, 0.08) !important;
+  border: 1px solid rgba(139, 94, 52, 0.2) !important;
+  border-radius: var(--radius-sm) !important;
 }
 
 .activities__season-title {
-  color: #000000 !important;
+  color: var(--charcoal) !important;
   font-family: var(--font-heading);
-  font-weight: 900 !important;
-  font-size: 1.4rem !important;
-  margin-bottom: 30px !important;
+  font-weight: var(--weight-bold) !important;
+  font-size: 1.35rem !important;
+  margin-bottom: 28px !important;
 }
 
 .activities__item {
-  border-bottom: 1px solid rgba(15, 23, 42, 0.06) !important;
-  padding: 20px 0 !important;
-  transition: all 0.3s ease !important;
+  border-bottom: 1px solid var(--border-subtle) !important;
+  padding: 18px 0 !important;
+  transition: all 0.25s ease !important;
 }
 
 .activities__item:hover {
-  transform: translateX(6px) !important;
+  transform: translateX(4px) !important;
+  border-bottom-color: var(--border-medium) !important;
+}
+
+.activities__item-icon {
+  border: 1px solid rgba(139, 94, 52, 0.2) !important;
+  border-radius: var(--radius-md) !important;
+  color: var(--earth-brown) !important;
+  background: rgba(139, 94, 52, 0.06) !important;
 }
 
 .activities__item-name {
-  color: #000000 !important;
-  font-weight: 800 !important;
-  font-size: 1.02rem !important;
+  color: var(--charcoal) !important;
+  font-weight: var(--weight-semibold) !important;
+  font-size: 0.98rem !important;
   margin-bottom: 4px !important;
 }
 
 .activities__item-desc {
-  color: #475569 !important;
-  font-size: 0.88rem !important;
+  color: var(--text-secondary) !important;
+  font-size: 0.85rem !important;
 }
 
-/* Editorial Map styling removed — centralized in sightseeing.css */
 
 /* ---------- 6. Equipment Rentals & Transportation ---------- */
+
 .rentals__grid,
 .transport__grid {
   gap: 24px !important;
   margin-top: 32px !important;
-  /* Reduced from 48px */
 }
 
 .rentals__card,
 .transport__card {
-  background: #ffffff !important;
-  border: 1px solid rgba(15, 23, 42, 0.08) !important;
-  border-radius: 4px !important;
-  padding: 40px 30px !important;
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border-subtle) !important;
+  border-radius: var(--radius-lg) !important;
+  padding: 36px 28px !important;
   text-align: center !important;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.015) !important;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  box-shadow: var(--shadow-sm) !important;
+  transition: all 0.3s var(--ease-premium) !important;
 }
 
 .rentals__card:hover,
 .transport__card:hover {
-  border-color: #000000 !important;
-  transform: translateY(-6px) !important;
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.04) !important;
+  border-color: var(--forest-green) !important;
+  transform: translateY(-5px) !important;
+  box-shadow: var(--shadow-lg) !important;
 }
 
 .rentals__card-icon,
 .transport__card-icon {
-  width: 58px !important;
-  height: 58px !important;
-  background: #f1f5f9 !important;
-  border-radius: 50% !important;
+  width: 56px !important;
+  height: 56px !important;
+  background: rgba(139, 94, 52, 0.06) !important;
+  border-radius: var(--radius-md) !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  margin: 0 auto 24px auto !important;
-  color: #000000 !important;
+  margin: 0 auto 20px auto !important;
+  color: var(--earth-brown) !important;
+  border: 1px solid rgba(139, 94, 52, 0.15) !important;
+  transition: all 0.3s ease !important;
+}
+
+.rentals__card:hover .rentals__card-icon,
+.transport__card:hover .transport__card-icon {
+  background: var(--forest-green) !important;
+  color: #fff !important;
+  border-color: var(--forest-green) !important;
 }
 
 .rentals__card-title,
 .transport__card-title {
-  color: #0f172a !important;
-  font-weight: 800 !important;
-  font-size: 1.15rem !important;
-  margin-bottom: 12px !important;
+  color: var(--charcoal) !important;
+  font-weight: var(--weight-semibold) !important;
+  font-size: 1.1rem !important;
+  margin-bottom: 10px !important;
 }
 
 .rentals__card-desc,
 .transport__card-desc {
-  color: #475569 !important;
-  font-size: 0.9rem !important;
+  color: var(--text-secondary) !important;
+  font-size: 0.88rem !important;
   line-height: 1.6 !important;
 }
 
 .rentals__card-badge {
-  background: #000000 !important;
-  color: #ffffff !important;
-  border-radius: 2px !important;
+  background: var(--forest-green) !important;
+  color: #fff !important;
+  border-radius: var(--radius-sm) !important;
   font-weight: 700 !important;
+  border: none !important;
 }
 
-/* ---------- 7. Tour Packages Grid ---------- */
+
+/* ---------- 7. Tour Packages ---------- */
+
 .packages__grid {
   gap: 24px !important;
   margin-top: 32px !important;
-  /* Reduced from 48px */
 }
 
 .packages__card {
-  background: #ffffff !important;
-  border: 1px solid rgba(15, 23, 42, 0.08) !important;
-  border-radius: 4px !important;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.015) !important;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border-subtle) !important;
+  border-radius: var(--radius-lg) !important;
+  box-shadow: var(--shadow-sm) !important;
+  transition: all 0.35s var(--ease-premium) !important;
   overflow: hidden;
 }
 
 .packages__card:hover {
-  transform: translateY(-8px) !important;
-  border-color: #000000 !important;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06) !important;
+  transform: translateY(-6px) !important;
+  border-color: var(--forest-green) !important;
+  box-shadow: var(--shadow-xl) !important;
+}
+
+.packages__card-image {
+  filter: brightness(0.82) saturate(0.85) !important;
+}
+
+.packages__card:hover .packages__card-image {
+  filter: brightness(0.9) saturate(0.95) !important;
 }
 
 .packages__card-tag {
-  background: #000000 !important;
-  color: #ffffff !important;
-  border-radius: 2px !important;
-  font-weight: 800 !important;
+  background: rgba(47, 79, 62, 0.85) !important;
+  color: #fff !important;
+  border-radius: var(--radius-sm) !important;
+  font-weight: 700 !important;
   font-size: 9px !important;
   text-transform: uppercase !important;
-  top: 20px !important;
-  left: 20px !important;
+  border: none !important;
+  padding: 5px 12px !important;
+  backdrop-filter: blur(4px) !important;
 }
 
 .packages__card-content {
-  padding: 28px 24px !important;
-  background: #ffffff !important;
-  border-top: 1px solid rgba(15, 23, 42, 0.06) !important;
+  padding: 24px !important;
+  background: transparent !important;
+  border-top: none !important;
 }
 
 .packages__card-title {
-  color: #0f172a !important;
-  font-weight: 800 !important;
-  font-size: 1.15rem !important;
-  margin-bottom: 12px !important;
+  color: #fff !important;
+  font-weight: var(--weight-semibold) !important;
+  font-size: 1.1rem !important;
+  margin-bottom: 8px !important;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.5) !important;
 }
 
 .packages__card-desc {
-  color: #475569 !important;
-  font-size: 0.9rem !important;
+  color: rgba(255, 255, 255, 0.85) !important;
+  font-size: 0.88rem !important;
   line-height: 1.6 !important;
-  margin-bottom: 24px !important;
+  margin-bottom: 16px !important;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.4) !important;
 }
 
-/* ---------- 8. Testimonials Section ---------- */
+
+/* ---------- 8. Testimonials — White Cards ---------- */
+
 .testimonials__card {
-  background: #f8fafc !important;
-  border: 1px solid rgba(15, 23, 42, 0.08) !important;
-  border-radius: 4px !important;
-  padding: 44px !important;
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border-subtle) !important;
+  border-radius: var(--radius-lg) !important;
+  padding: 36px !important;
   position: relative !important;
   text-align: left !important;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.015) !important;
+  box-shadow: var(--shadow-sm) !important;
+}
+
+.testimonials__card:hover {
+  border-color: var(--forest-green) !important;
+  box-shadow: var(--shadow-md) !important;
 }
 
 .testimonials__card::before {
-  content: '“';
+  content: '\201C';
   position: absolute;
-  top: 12px;
-  left: 36px;
+  top: 8px;
+  left: 30px;
   font-family: var(--font-serif);
-  font-size: 7rem;
+  font-size: 6rem;
   line-height: 1;
-  color: rgba(15, 23, 42, 0.05);
+  color: rgba(47, 79, 62, 0.06);
   font-style: italic;
   font-weight: 700;
   pointer-events: none;
 }
 
 .testimonials__star {
-  color: #000000 !important;
+  color: var(--sunset-gold) !important;
 }
 
 .testimonials__text {
-  color: #1e293b !important;
+  color: var(--text-secondary) !important;
   font-size: 1rem !important;
   line-height: 1.7 !important;
-  margin: 16px 0 24px 0 !important;
+  margin: 14px 0 20px 0 !important;
   position: relative;
   z-index: 2;
 }
 
 .testimonials__avatar {
-  background: #000000 !important;
-  color: #ffffff !important;
+  background: var(--forest-green) !important;
+  color: #fff !important;
   font-weight: 700 !important;
+  border-radius: 50% !important;
+  border: none !important;
 }
 
 .testimonials__author-name {
-  color: #000000 !important;
-  font-weight: 700 !important;
+  color: var(--charcoal) !important;
+  font-weight: var(--weight-semibold) !important;
 }
 
 .testimonials__author-source {
-  color: #475569 !important;
+  color: var(--text-muted) !important;
 }
 
-/* ---------- 9. Gallery Masonry ---------- */
+
+/* ---------- 9. Gallery ---------- */
+
 .gallery__masonry {
-  gap: 20px !important;
+  gap: 16px !important;
   margin-top: 32px !important;
-  /* Reduced from 48px */
 }
 
 .gallery__item {
-  border: 1px solid rgba(15, 23, 42, 0.08) !important;
-  padding: 8px !important;
-  background: #ffffff !important;
-  border-radius: 4px !important;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.01) !important;
+  border: 1px solid var(--border-subtle) !important;
+  padding: 0 !important;
+  background: var(--bg-card) !important;
+  border-radius: var(--radius-lg) !important;
+  transition: all 0.35s var(--ease-premium) !important;
+  box-shadow: var(--shadow-sm) !important;
+  overflow: hidden !important;
+}
+
+.gallery__item img {
+  filter: brightness(0.88) saturate(0.85) !important;
+  border-radius: var(--radius-lg) !important;
+}
+
+.gallery__item:hover img {
+  filter: brightness(0.95) saturate(1) !important;
 }
 
 .gallery__item:hover {
-  border-color: #000000 !important;
+  border-color: var(--forest-green) !important;
   transform: scale(1.02) !important;
   z-index: 5 !important;
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05) !important;
+  box-shadow: var(--shadow-xl) !important;
 }
 
 .gallery__item-overlay {
-  background: rgba(0, 0, 0, 0.6) !important;
+  background: linear-gradient(to top, rgba(47,79,62,0.75) 0%, transparent 60%) !important;
+  border-radius: var(--radius-lg) !important;
 }
 
 .gallery__item-label {
-  font-weight: 700 !important;
+  font-weight: 600 !important;
   font-size: 11px !important;
   letter-spacing: 0.1em !important;
-  border-radius: 2px !important;
+  color: #fff !important;
 }
 
+
 /* ---------- 10. About Us & Timeline ---------- */
+
 .about__portrait {
-  border: 1px solid rgba(15, 23, 42, 0.08) !important;
-  padding: 12px !important;
-  background: #ffffff !important;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.03) !important;
-  border-radius: 4px !important;
+  border: 1px solid var(--border-medium) !important;
+  padding: 0 !important;
+  background: var(--bg-card) !important;
+  box-shadow: var(--shadow-lg) !important;
+  border-radius: var(--radius-lg) !important;
+  overflow: hidden !important;
+}
+
+.about__portrait-image {
+  filter: grayscale(10%) brightness(0.9) !important;
 }
 
 .about__timeline {
-  border-left: 2px solid rgba(15, 23, 42, 0.06) !important;
+  border-left: 2px solid var(--border-medium) !important;
   padding-left: 28px !important;
   margin-left: 10px !important;
 }
@@ -641,58 +698,94 @@ section {
   position: absolute !important;
   left: -36px !important;
   top: 6px !important;
-  width: 14px !important;
-  height: 14px !important;
+  width: 12px !important;
+  height: 12px !important;
   border-radius: 50% !important;
-  background: #000000 !important;
-  border: 3px solid #ffffff !important;
-  box-shadow: 0 0 0 2px rgba(15, 23, 42, 0.08) !important;
+  background: var(--forest-green) !important;
+  border: 3px solid var(--bg-raised) !important;
+  box-shadow: 0 0 0 2px var(--border-subtle) !important;
 }
 
 .about__timeline-year {
-  color: #000000 !important;
-  font-weight: 800 !important;
-  font-size: 1.1rem !important;
+  color: var(--earth-brown) !important;
+  font-weight: var(--weight-bold) !important;
+  font-size: 1.05rem !important;
 }
 
 .about__timeline-text {
-  color: #475569 !important;
-  font-size: 0.9rem !important;
+  color: var(--text-secondary) !important;
+  font-size: 0.88rem !important;
 }
 
-/* ---------- Buttons & Action Triggers ---------- */
+
+/* ---------- Buttons — Gold Primary, Forest Secondary ---------- */
+
 .btn--primary {
-  background: #000000 !important;
-  color: #ffffff !important;
-  border: 1px solid #000000 !important;
-  border-radius: 4px !important;
+  background: var(--sunset-gold) !important;
+  color: var(--charcoal) !important;
+  border: 1px solid var(--sunset-gold) !important;
+  border-radius: var(--radius-md) !important;
+  font-weight: var(--weight-bold) !important;
 }
 
 .btn--primary:hover {
-  background: #ffffff !important;
-  color: #000000 !important;
+  background: var(--gold-dark) !important;
+  color: #fff !important;
+  border-color: var(--gold-dark) !important;
+  box-shadow: var(--shadow-gold) !important;
+  transform: translateY(-2px) !important;
 }
 
 .btn--secondary {
   background: transparent !important;
-  color: #000000 !important;
-  border: 1px solid rgba(15, 23, 42, 0.25) !important;
-  border-radius: 4px !important;
+  color: var(--forest-green) !important;
+  border: 1px solid var(--forest-green) !important;
+  border-radius: var(--radius-md) !important;
 }
 
 .btn--secondary:hover {
-  background: #000000 !important;
-  color: #ffffff !important;
-  border-color: #000000 !important;
+  background: var(--forest-green) !important;
+  color: #fff !important;
+  border-color: var(--forest-green) !important;
+  box-shadow: var(--shadow-lg) !important;
+  transform: translateY(-2px) !important;
 }
 
-/* Responsive details */
+.packages__card-content .btn--primary {
+  background: var(--sunset-gold) !important;
+  color: var(--charcoal) !important;
+  border: 1px solid var(--sunset-gold) !important;
+  border-radius: var(--radius-md) !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+}
+
+.packages__card-content .btn--primary:hover {
+  background: var(--gold-dark) !important;
+  color: #fff !important;
+  border-color: var(--gold-dark) !important;
+}
+
+
+/* ---------- Responsive ---------- */
+
 @media (max-width: 992px) {
   .activities__season--winter {
     border-right: none !important;
-    border-bottom: 1px solid rgba(15, 23, 42, 0.08) !important;
+    border-bottom: 1px solid var(--border-subtle) !important;
     padding-right: 0 !important;
     padding-bottom: 30px !important;
     margin-bottom: 30px !important;
   }
+}
+
+@media (max-width: 600px) {
+  .why-choose__card {
+    padding: 24px 18px !important;
+    border-radius: var(--radius-md) !important;
+  }
+
+  .why-choose__card-title { font-size: 0.98rem !important; }
+  .why-choose__card-desc { font-size: 0.82rem !important; }
 }

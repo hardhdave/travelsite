@@ -1,29 +1,29 @@
 /* ============================================
-   UNIFIED BRAND PALETTE & TEXT HIGHLIGHT FIX
-   Sand Beige Background · Forest Green Cards · Sunset Gold Accents
+   UNIFIED DESIGN SYSTEM — Earthy Nature Premium
+   Sand Beige · White Cards · Forest Green Accents
+   Sunset Gold CTAs · Earth Brown Icons
+   
+   60% Neutral (Sand + White)
+   30% Forest Green + Charcoal
+   10% Gold + Brown + Sky Blue
    ============================================ */
 
-:root {
-  --forest: #4A7C61;
-  --forest-rgb: 74, 124, 97;
-  --earth: #8B5E34;
-  --sand: #F2E8D5;
-  --gold-accent: #D79A17;
-  --sky: #87AFC7;
-  --charcoal-deep: #1F2933;
-}
 
-/* 1. Global Page Background (Single Color for Whole Site) */
-html, 
+/* ——— 1. Global Page Foundation ——— */
+
+html,
 body {
-  background-color: var(--sand) !important;
-  color: var(--charcoal-deep) !important;
+  background-color: var(--sand-beige) !important;
+  color: var(--charcoal) !important;
 }
 
-body::before, 
+body::before,
 body::after {
   background: transparent !important;
 }
+
+
+/* ——— 2. Section Backgrounds — Alternating Warm Tones ——— */
 
 section,
 .why-choose,
@@ -37,205 +37,232 @@ section,
 .testimonials,
 .gallery,
 .about {
-  background-color: var(--sand) !important;
+  color: var(--charcoal) !important;
+  border-color: var(--border-subtle) !important;
   background-image: none !important;
-  color: var(--charcoal-deep) !important;
-  border-color: rgba(47, 79, 62, 0.12) !important;
 }
 
-/* 2. Unified Premium Card Backgrounds (Forest Green for all cards) */
-.why-choose__card,
-.wc-card,
+
+/* ——— 3. Card System — White (Normal) vs Forest Green (Premium) ——— */
+
+/* NORMAL CARDS: White background, earthy borders */
 .skiing__package-card,
 .trekking__card,
 .rentals__card,
 .transport__card,
-.packages__card,
 .testimonials__card,
 .detail-card,
 .trek-card,
-.tour-card,
-.activities__item,
-.experience-card,.activity-card {
-  background: var(--forest) !important;
-  background-color: var(--forest) !important;
-  border: 1px solid rgba(215, 154, 23, 0.25) !important;
-  border-radius: 16px !important;
-  color: var(--sand) !important;
-  
-  /* Modern soft shadows & transition for cards */
-  box-shadow: 0 10px 30px rgba(31, 41, 51, 0.06) !important;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+.activities__item {
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border-subtle) !important;
+  border-radius: var(--radius-lg) !important;
+  color: var(--charcoal) !important;
+  box-shadow: var(--shadow-sm) !important;
+  transition: transform 0.3s var(--ease-premium), box-shadow 0.3s var(--ease-premium), border-color 0.3s ease !important;
 }
 
-/* Card Hover Lift Effects */
-.why-choose__card:hover,
-.wc-card:hover,
+/* Normal card hover */
 .skiing__package-card:hover,
 .trekking__card:hover,
 .rentals__card:hover,
 .transport__card:hover,
-.packages__card:hover,
 .testimonials__card:hover,
 .detail-card:hover,
-.trek-card:hover,
-.tour-card:hover,
-.activities__item:hover,
-.experience-card:hover,
-.activity-card:hover {
+.trek-card:hover {
   transform: translateY(-5px) !important;
-  box-shadow: 0 20px 40px rgba(31, 41, 51, 0.12) !important;
+  box-shadow: var(--shadow-lg) !important;
+  border-color: var(--forest-green) !important;
 }
 
-/* 3. Text Highlight Fix: Force text backgrounds inside cards to be transparent */
-.why-choose__card *,
-.wc-card *,
+.activities__item:hover {
+  transform: translateX(4px) !important;
+  border-color: var(--border-medium) !important;
+}
+
+/* PREMIUM CARDS: Forest Green with white text */
+.why-choose__card,
+.wc-card,
+.packages__card {
+  /* Packages keep photo overlay style, not green bg */
+  transition: transform 0.35s var(--ease-premium), box-shadow 0.35s var(--ease-premium), border-color 0.35s ease !important;
+}
+
+/* Tour/experience cards keep their photo overlay style */
+.tour-card,
+.experience-card,
+.activity-card {
+  transition: transform 0.35s var(--ease-premium), box-shadow 0.35s var(--ease-premium), border-color 0.35s ease !important;
+}
+
+
+/* ——— 4. Text Inside Normal Cards ——— */
+
 .skiing__package-card *,
-.trekking__card *,
+.trekking__card-content,
+.trekking__card-content *,
 .rentals__card *,
 .transport__card *,
-.packages__card *,
 .testimonials__card *,
-.detail-card *,
-.trek-card *,
-.tour-card *,
-.activities__item *,
-.experience-card *,
-.activity-card * {
+.detail-card__body *,
+.trek-card__body *,
+.activities__item * {
+  color: inherit !important;
   background: transparent !important;
   background-color: transparent !important;
-  color: var(--sand) !important;
 }
 
-/* 4. Inside Card Highlights & Icons */
-.wc-card__num,
-.why-choose__card::after,
-.skiing__package-arrow,
-.testimonials__star,
-.testimonials__author-source {
-  color: var(--gold-accent) !important;
+/* Restore correct text hierarchy in cards */
+.trekking__card-title,
+.rentals__card-title,
+.transport__card-title,
+.testimonials__author-name,
+.detail-card__title,
+.trek-card__title {
+  color: var(--charcoal) !important;
 }
+
+.trekking__card-info span,
+.rentals__card-desc,
+.transport__card-desc,
+.testimonials__text,
+.detail-card__desc,
+.trek-card__desc {
+  color: var(--text-secondary) !important;
+}
+
+
+/* ——— 5. Icons & Visual Accents ——— */
 
 .wc-card__icon svg,
-.why-choose__icon svg,
-.rentals__card-icon svg,
-.transport__card-icon svg {
-  color: var(--gold-accent) !important;
+.why-choose__icon svg {
+  color: var(--forest-green) !important;
 }
 
-/* Card titles and text contrast */
-.why-choose__card-title,
-.why-choose__card-desc,
-.wc-card__title,
-.wc-card__desc,
-.skiing__package-name,
-.trekking__card-title,
-.packages__card-title,
-.packages__card-desc,
-.testimonials__text,
-.testimonials__author-name,
-.rentals__card-title,
-.rentals__card-desc,
-.transport__card-title,
-.transport__card-desc {
-  color: var(--sand) !important;
+.rentals__card-icon svg,
+.transport__card-icon svg {
+  color: var(--earth-brown) !important;
+}
+
+.wc-card__num,
+.testimonials__star,
+.testimonials__author-source {
+  color: var(--sunset-gold) !important;
 }
 
 .testimonials__avatar {
-  background: var(--gold-accent) !important;
-  color: var(--charcoal-deep) !important;
+  background: var(--forest-green) !important;
+  color: #fff !important;
+  border-radius: 50% !important;
 }
 
-/* 5. Buttons and Call-to-Actions */
+.trekking__card-info svg {
+  color: var(--earth-brown) !important;
+}
+
+.detail-card__price,
+.trek-card__price {
+  color: var(--sunset-gold) !important;
+}
+
+
+/* ——— 6. Buttons ——— */
+
 .btn--primary,
 .btn-primary,
 .button-primary,
 .cta-button {
-  background: var(--gold-accent) !important;
-  background-color: var(--gold-accent) !important;
-  border: 1px solid var(--gold-accent) !important;
-  color: var(--charcoal-deep) !important;
-  font-weight: 700 !important;
-  border-radius: 12px !important;
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease !important;
+  background: var(--sunset-gold) !important;
+  border: 1px solid var(--sunset-gold) !important;
+  color: var(--charcoal) !important;
+  font-weight: var(--weight-bold) !important;
+  border-radius: var(--radius-md) !important;
+  transition: all 0.25s var(--ease-premium) !important;
 }
 
 .btn--primary:hover,
 .btn-primary:hover,
 .button-primary:hover,
 .cta-button:hover {
-  background: var(--forest) !important;
-  background-color: var(--forest) !important;
-  border-color: var(--forest) !important;
-  color: var(--sand) !important;
-  transform: scale(1.02) translateY(-2px) !important;
-  box-shadow: 0 6px 18px rgba(215, 154, 23, 0.25) !important;
+  background: var(--gold-dark) !important;
+  border-color: var(--gold-dark) !important;
+  color: #fff !important;
+  transform: translateY(-2px) !important;
+  box-shadow: var(--shadow-gold) !important;
 }
 
 .btn--secondary,
 .btn-secondary,
 .button-secondary {
   background: transparent !important;
-  border: 1px solid var(--forest) !important;
-  color: var(--forest) !important;
-  border-radius: 12px !important;
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease !important;
+  border: 1px solid var(--forest-green) !important;
+  color: var(--forest-green) !important;
+  border-radius: var(--radius-md) !important;
+  transition: all 0.25s var(--ease-premium) !important;
 }
 
 .btn--secondary:hover,
 .btn-secondary:hover,
 .button-secondary:hover {
-  background: var(--forest) !important;
-  color: var(--sand) !important;
-  transform: scale(1.02) translateY(-2px) !important;
-  box-shadow: 0 6px 18px rgba(47, 79, 62, 0.2) !important;
+  background: var(--forest-green) !important;
+  color: #fff !important;
+  transform: translateY(-2px) !important;
+  box-shadow: var(--shadow-lg) !important;
 }
 
-/* Buttons inside Forest Green cards */
+/* Buttons inside premium (green) containers */
 .packages__card .btn--primary,
 .trekking__card .btn--primary {
-  background: var(--gold-accent) !important;
-  color: var(--charcoal-deep) !important;
+  background: var(--sunset-gold) !important;
+  color: var(--charcoal) !important;
+  border-color: var(--sunset-gold) !important;
 }
 
 .packages__card .btn--primary:hover,
 .trekking__card .btn--primary:hover {
-  background: var(--sand) !important;
-  color: var(--forest) !important;
-  transform: scale(1.02) translateY(-2px) !important;
-  box-shadow: 0 6px 18px rgba(215, 154, 23, 0.25) !important;
+  background: var(--gold-dark) !important;
+  color: #fff !important;
+  border-color: var(--gold-dark) !important;
 }
 
-/* 6. Section Typography & Headings */
+
+/* ——— 7. Section Typography ——— */
+
 .section-title {
-  color: var(--charcoal-deep) !important;
+  color: var(--charcoal) !important;
   font-family: var(--font-heading) !important;
 }
 
 .section-subtitle {
-  color: #5A6B5C !important;
+  color: var(--text-secondary) !important;
 }
 
 .section-label {
-  color: var(--earth) !important;
+  color: var(--earth-brown) !important;
+}
+
+.section-label::before {
+  background: var(--earth-brown) !important;
 }
 
 .section-title .text-gradient {
-  background: linear-gradient(135deg, var(--forest), var(--gold-accent)) !important;
+  background: linear-gradient(135deg, var(--forest-green), var(--sunset-gold)) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
   background-clip: text !important;
 }
 
-/* 7. Navbar & Header Overrides */
+
+/* ——— 8. Navbar ——— */
+
 .navbar {
   background: rgba(31, 41, 51, 0.15) !important;
-  backdrop-filter: blur(20px) !important;
-  -webkit-backdrop-filter: blur(20px) !important;
+  backdrop-filter: blur(24px) !important;
+  -webkit-backdrop-filter: blur(24px) !important;
 }
 
 .navbar.scrolled {
-  background: var(--charcoal-deep) !important;
+  background: var(--charcoal) !important;
 }
 
 .navbar a,
@@ -247,73 +274,148 @@ section,
 .navbar a:hover,
 .navbar__link.active,
 .navbar__logo span {
-  color: var(--gold-accent) !important;
+  color: var(--sunset-gold) !important;
 }
 
-/* Mobile active link indicator */
 .nav-sheet__item.active {
-  border-color: var(--gold-accent) !important;
-  color: var(--gold-accent) !important;
+  border-color: var(--sunset-gold) !important;
+  color: var(--sunset-gold) !important;
 }
 
-/* 8. Footer Overrides */
+
+/* ——— 9. Footer ——— */
+
 footer,
-.site-footer {
-  background: var(--forest) !important;
-  color: var(--sand) !important;
+.site-footer,
+.footer {
+  background: var(--forest-green) !important;
+  color: var(--sand-beige) !important;
 }
 
 footer a,
-.site-footer a {
-  color: rgba(242, 232, 213, 0.85) !important;
+.site-footer a,
+.footer a {
+  color: rgba(242, 232, 213, 0.80) !important;
 }
 
 footer a:hover,
-.site-footer a:hover {
-  color: var(--gold-accent) !important;
+.site-footer a:hover,
+.footer a:hover {
+  color: var(--sunset-gold) !important;
 }
 
-/* Inputs and Forms */
-input, 
-textarea, 
+.footer__column-title {
+  color: var(--sunset-gold) !important;
+}
+
+
+/* ——— 10. Forms ——— */
+
+.cta__input,
+input,
+textarea,
 select {
-  background: rgba(255, 255, 255, 0.15) !important;
-  border: 1px solid rgba(255, 255, 255, 0.25) !important;
-  color: #fff !important;
-  border-radius: 10px !important;
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border-medium) !important;
+  color: var(--charcoal) !important;
+  border-radius: var(--radius-md) !important;
 }
 
-input:focus, 
-textarea:focus {
-  border-color: var(--gold-accent) !important;
+input::placeholder,
+textarea::placeholder,
+.cta__input::placeholder {
+  color: var(--text-muted) !important;
 }
 
-/* 9. Hero Parallax and Specific Pages */
+/* iOS Safari placeholder support for date inputs */
+input[type="date"] {
+  position: relative;
+}
+input[type="date"]::-webkit-datetime-edit {
+  color: transparent !important;
+}
+input[type="date"]:focus::-webkit-datetime-edit,
+input[type="date"]:valid::-webkit-datetime-edit,
+input[type="date"]:not([value=""])::-webkit-datetime-edit {
+  color: var(--charcoal) !important;
+}
+input[type="date"]::before {
+  content: attr(placeholder);
+  color: var(--text-muted) !important;
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+input[type="date"]:focus::before,
+input[type="date"]:valid::before,
+input[type="date"]:not([value=""]):before {
+  content: "" !important;
+  display: none !important;
+}
+
+input:focus,
+textarea:focus,
+.cta__input:focus {
+  border-color: var(--forest-green) !important;
+  box-shadow: 0 0 0 3px rgba(47, 79, 62, 0.12) !important;
+  outline: none !important;
+}
+
+
+/* ——— 11. Hero & Page Heroes ——— */
+
 .page-hero,
 .hero,
 .adv-hero {
-  background-color: var(--forest) !important;
+  background-color: var(--forest-green) !important;
 }
 
 .hero__slider {
-  background: var(--forest) !important;
+  background: var(--forest-green) !important;
 }
 
-/* 10. Dark Section Overrides (using Charcoal) */
+
+/* ——— 12. CTA Section ——— */
+
 .cta__grid,
 .cta__form-side {
-  background: var(--charcoal-deep) !important;
-  border-color: rgba(255, 255, 255, 0.1) !important;
+  background: var(--charcoal) !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  border-radius: var(--radius-lg) !important;
+}
+
+.cta__form-side input,
+.cta__form-side textarea,
+.cta__form-side select,
+.cta__form-side .cta__input {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  color: #fff !important;
+}
+
+.cta__form-side input:focus,
+.cta__form-side textarea:focus,
+.cta__form-side .cta__input:focus {
+  border-color: var(--sunset-gold) !important;
+  box-shadow: 0 0 0 3px rgba(215, 160, 23, 0.15) !important;
+}
+
+.cta__form-side .cta__input::placeholder {
+  color: rgba(255, 255, 255, 0.45) !important;
 }
 
 .experiences__sidebar {
-  background-color: var(--charcoal-deep) !important;
+  background-color: var(--charcoal) !important;
 }
 
-/* 11. Cohesive Section Spacing & Outlines */
+
+/* ——— 13. Section Spacing ——— */
+
 section {
-  padding-top: clamp(80px, 10vw, 140px) !important;
-  padding-bottom: clamp(80px, 10vw, 140px) !important;
+  padding-top: clamp(64px, 8vw, 120px) !important;
+  padding-bottom: clamp(64px, 8vw, 120px) !important;
 }
 
 .hero,
@@ -323,20 +425,37 @@ section {
 }
 
 
+/* ——— 14. Dividers & Accents ——— */
+
 .why-choose__inner {
-  border-color: rgba(139, 94, 52, 0.3) !important;
+  border-color: rgba(139, 94, 52, 0.2) !important;
 }
 
 .sh-modal {
-  border-color: rgba(139, 94, 52, 0.3) !important;
+  border-color: rgba(139, 94, 52, 0.2) !important;
+  border-radius: var(--radius-xl) !important;
 }
 
-/* 12. Focus States for Accessibility */
-button:focus,
-a:focus,
-input:focus,
-textarea:focus,
-select:focus {
-  outline: 2px solid var(--gold-accent) !important;
+
+/* ——— 15. Focus States (Accessibility) ——— */
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--sunset-gold) !important;
   outline-offset: 2px !important;
+}
+
+
+/* ——— 16. Links ——— */
+
+section a:not(.btn):not(.navbar__link):not(.footer__link):not(.nav-sheet__item) {
+  color: var(--forest-green);
+  transition: color 0.2s ease;
+}
+
+section a:not(.btn):not(.navbar__link):not(.footer__link):not(.nav-sheet__item):hover {
+  color: var(--sunset-gold);
 }

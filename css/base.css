@@ -70,6 +70,17 @@ input, textarea, select {
   background: none;
 }
 
+select {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+@media (max-width: 768px) {
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+}
+
 /* ---------- Typography ---------- */
 h1,
 h2,
@@ -243,7 +254,7 @@ section {
   font-size: var(--text-sm);
   font-weight: var(--weight-semibold);
   letter-spacing: var(--tracking-wide);
-  border-radius: 0;
+  border-radius: var(--radius-md);
   transition: all var(--duration-normal) var(--ease-premium);
   position: relative;
   overflow: hidden;
@@ -347,7 +358,7 @@ section {
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid var(--glass-border);
-  border-radius: 0;
+  border-radius: var(--radius-lg);
   padding: var(--space-8);
   transition: all var(--duration-normal) var(--ease-premium);
 }
@@ -367,15 +378,15 @@ section {
 
 /* ---------- Selection ---------- */
 ::selection {
-  background: var(--gold);
-  color: #1a1f14;
+  background: var(--sunset-gold);
+  color: var(--charcoal);
 }
 
 /* ---------- Scrollbar ---------- */
-::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track  { background: var(--bg-deepest); }
-::-webkit-scrollbar-thumb  { background: var(--gold-dark); border-radius: 0; }
-::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track  { background: var(--bg-raised); }
+::-webkit-scrollbar-thumb  { background: var(--forest-green); border-radius: var(--radius-full); }
+::-webkit-scrollbar-thumb:hover { background: var(--sunset-gold); }
 
 /* ---------- Screen Reader Only ---------- */
 .sr-only {

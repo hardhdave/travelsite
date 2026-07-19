@@ -122,8 +122,8 @@
 
 /* ======== GLOBAL DARK BODY ======== */
 body {
-  background: var(--bg-base);
-  color: var(--text-primary);
+  background: var(--sand-beige);
+  color: var(--charcoal);
 }
 
 /* ======== SECTION SEPARATORS ======== */
@@ -169,7 +169,7 @@ body {
   color: var(--gold);
   background: rgba(196, 168, 108, 0.08);
   border: 1px solid rgba(196, 168, 108, 0.28);
-  border-radius: 0;
+  border-radius: var(--radius-sm);
   font-family: var(--font-accent);
   font-size: 10px;
   letter-spacing: 0.3em;
@@ -259,7 +259,7 @@ body {
 /* ======== GLOBAL BUTTONS ======== */
 .btn {
   box-shadow: none;
-  border-radius: 0;
+  border-radius: var(--radius-md);
 }
 
 .btn--primary {
@@ -298,7 +298,7 @@ body {
 
 /* ======== EXPERIENCES SECTION ======== */
 .experiences {
-  background: var(--bg-deepest);
+  background: var(--charcoal);
   padding-bottom: 0;
 }
 
@@ -308,7 +308,7 @@ body {
 }
 
 .experiences__card {
-  border-radius: 0;
+  border-radius: var(--radius-lg);
   overflow: hidden;
   position: relative;
 }
@@ -343,7 +343,7 @@ body {
 .experiences__card-arrow {
   color: var(--gold);
   border: 1px solid var(--gold-border);
-  border-radius: 0;
+  border-radius: var(--radius-lg);
   width: 36px;
   height: 36px;
   display: flex;
@@ -371,7 +371,7 @@ body {
 
 /* ======== WHY CHOOSE ======== */
 .why-choose {
-  background: var(--bg-raised);
+  background: var(--bg-raised, #FAF6EE);
   position: relative;
 }
 
@@ -464,7 +464,7 @@ body {
   background: var(--bg-raised);
   padding: var(--space-10) var(--space-8);
   border: none;
-  border-radius: 0;
+  border-radius: var(--radius-md);
   position: relative;
   transition: background var(--duration-normal) ease;
   display: flex;
@@ -566,7 +566,7 @@ body {
 
 /* ======== SKIING SECTION ======== */
 .skiing {
-  background: var(--bg-deepest);
+  background: var(--bg-base);
   position: relative;
   overflow: hidden;
 }
@@ -1142,7 +1142,7 @@ body {
 
 /* ======== PACKAGES ======== */
 .packages {
-  background: var(--bg-deepest);
+  background: var(--bg-base);
 }
 
 .packages__header {
@@ -1167,6 +1167,7 @@ body {
     display: flex !important;
     flex-direction: row !important;
     overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
     scroll-snap-type: x mandatory !important;
     gap: 12px !important;
     scroll-behavior: smooth !important;
@@ -1290,7 +1291,7 @@ body {
 .testimonials__card {
   background: var(--bg-card) !important;
   border: 1px solid rgba(196, 168, 108, 0.12) !important;
-  border-radius: 0 !important;
+  border-radius: var(--radius-lg) !important;
   padding: var(--space-8) !important;
   flex-shrink: 0;
   transition: border-color var(--duration-normal) ease !important;
@@ -1332,7 +1333,7 @@ body {
 
 /* ======== GALLERY ======== */
 .gallery {
-  background: var(--bg-deepest);
+  background: var(--bg-base);
 }
 
 .gallery__header {
@@ -1379,7 +1380,7 @@ body {
 .gallery__lightbox-close {
   color: var(--text-secondary);
   border: 1px solid var(--border-subtle);
-  border-radius: 0;
+  border-radius: var(--radius-md);
   width: 40px;
   height: 40px;
   display: flex;
@@ -1522,7 +1523,7 @@ body {
   background: rgba(37, 211, 102, 0.08);
   color: #25D366;
   border: 1px solid rgba(37, 211, 102, 0.3);
-  border-radius: 0;
+  border-radius: var(--radius-md);
   font-family: var(--font-accent);
   font-size: 10px;
   letter-spacing: 0.15em;
@@ -1544,7 +1545,7 @@ body {
 
 /* ======== FOOTER ======== */
 .footer {
-  background: var(--bg-deepest) !important;
+  background: var(--forest-green) !important;
   border-top: 1px solid rgba(196, 168, 108, 0.2);
 }
 
@@ -1726,7 +1727,7 @@ body {
 /* ======== WHATSAPP FLOAT ======== */
 .whatsapp-float {
   position: fixed;
-  bottom: var(--space-8);
+  bottom: calc(var(--space-8) + env(safe-area-inset-bottom));
   right: var(--space-8);
   z-index: var(--z-sticky);
   width: 52px;
@@ -1736,7 +1737,7 @@ body {
   align-items: center;
   justify-content: center;
   color: #fff;
-  border-radius: 0;
+  border-radius: var(--radius-md);
   box-shadow: 0 4px 20px rgba(37, 211, 102, 0.35);
   transition: all var(--duration-fast) ease;
 }
@@ -1838,10 +1839,10 @@ body {
   max-width: 600px;
   max-height: 600px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(196, 168, 108, 0.045) 0%, rgba(0, 0, 0, 0) 70%) !important;
+  background: radial-gradient(circle, rgba(47, 79, 62, 0.04) 0%, rgba(0, 0, 0, 0) 70%) !important;
   filter: blur(95px) !important;
   pointer-events: none;
-  opacity: 0.85;
+  opacity: 0.6;
 }
 
 .ambient-orb--1 {
@@ -1864,55 +1865,4 @@ body {
   vertical-align: bottom;
   margin-right: 0.22em;
 }
-/* Client palette finish — visual-only theme layer */
-:root {
-  --palette-forest: #4A7C61;
-  --palette-earth: #8B5E34;
-  --palette-sand: #F2E8D5;
-  --palette-gold: #D79A17;
-  --palette-sky: #87AFC7;
-  --palette-charcoal: #1F2933;
-}
-
-body {
-  background: var(--palette-sand);
-  color: var(--palette-charcoal);
-}
-
-::selection { background: var(--palette-gold); color: #fff; }
-
-/* Rich, calm surfaces and clearer content hierarchy */
-section:nth-of-type(even) { background: color-mix(in srgb, var(--palette-sand) 86%, #fff); }
-.card, .package-card, .experience-card, .activity-card, .testimonial-card,
-[class*="card"] {
-  border-color: rgba(47,79,62,.14);
-  box-shadow: 0 12px 32px rgba(31,41,51,.09);
-}
-.card:hover, .package-card:hover, .experience-card:hover, .activity-card:hover,
-[class*="card"]:hover { box-shadow: 0 18px 40px rgba(47,79,62,.17); }
-
-.btn-primary, .button-primary, .cta-button, [class*="btn"][class*="primary"] {
-  background: var(--palette-forest);
-  color: #fff;
-  border-color: var(--palette-forest);
-}
-.btn-primary:hover, .button-primary:hover, .cta-button:hover, [class*="btn"][class*="primary"]:hover {
-  background: var(--palette-gold);
-  border-color: var(--palette-gold);
-  transform: translateY(-2px);
-}
-
-.navbar, .site-header, header { background: rgba(31,41,51,.94); }
-.navbar a:hover, header a:hover { color: var(--palette-gold); }
-
-.badge, .tag, .eyebrow, .section-kicker { color: var(--palette-earth); }
-hr, .divider { border-color: rgba(47,79,62,.18); }
-
-footer { background: var(--palette-charcoal); }
-footer a:hover { color: var(--palette-sky); }
-
-@supports not (background: color-mix(in srgb, white, black)) {
-  section:nth-of-type(even) { background: #F7F1E8; }
-}
-
-
+/* Palette managed by variables.css + theme.css */

@@ -71,7 +71,7 @@
 }
 
 .trekking__card {
-  border-radius: 0;
+  border-radius: var(--radius-lg);
   overflow: hidden;
   position: relative;
   cursor: pointer;
@@ -121,10 +121,10 @@
   font-weight: var(--weight-semibold);
   letter-spacing: var(--tracking-widest);
   text-transform: uppercase;
-  color: var(--gold);
-  background: rgba(196,168,108,0.15);
+  color: var(--charcoal);
+  background: var(--sky-blue);
   padding: var(--space-1) var(--space-3);
-  border-radius: 0;
+  border-radius: var(--radius-sm);
   margin-bottom: var(--space-3);
 }
 

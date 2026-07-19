@@ -106,8 +106,8 @@ p {
   content: '';
   width: 5px;
   height: 5px;
-  background: var(--gold);
-  border-radius: 0;
+  background: var(--forest-green);
+  border-radius: var(--radius-full);
   flex-shrink: 0;
 }
 
@@ -157,7 +157,7 @@ p {
   background: var(--gold) !important;
   color: #1a1f14 !important;
   padding: 4px 12px;
-  border-radius: 0 !important;
+  border-radius: var(--radius-sm) !important;
   font-family: var(--font-accent);
   font-size: 9px;
   font-weight: 700;
@@ -223,7 +223,7 @@ p {
   color: var(--text-secondary) !important;
   background: rgba(255, 255, 255, 0.03) !important;
   padding: 5px 10px;
-  border-radius: 0 !important;
+  border-radius: var(--radius-sm) !important;
   border: 1px solid rgba(255, 255, 255, 0.06) !important;
   letter-spacing: 0.05em;
 }
@@ -242,7 +242,7 @@ p {
   color: var(--gold) !important;
   background: rgba(196, 168, 108, 0.06) !important;
   padding: 4px 8px;
-  border-radius: 0 !important;
+  border-radius: var(--radius-sm) !important;
   border: 1px solid var(--gold-border) !important;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -261,8 +261,8 @@ p {
 
 /* Button overrides on subpage */
 .btn {
-  border-radius: 0 !important;
-  letter-spacing: 0.15em !important;
+  border-radius: var(--radius-md) !important;
+  letter-spacing: 0.12em !important;
   text-transform: uppercase !important;
   font-family: var(--font-accent) !important;
 }
@@ -358,7 +358,7 @@ p {
   letter-spacing: 0.2em;
   text-transform: uppercase;
   padding: 4px 12px;
-  border-radius: 0 !important;
+  border-radius: var(--radius-sm) !important;
   z-index: 2;
 }
 
@@ -437,7 +437,7 @@ p {
   color: var(--text-secondary) !important;
   background: rgba(255, 255, 255, 0.04) !important;
   padding: 4px 10px;
-  border-radius: 0 !important;
+  border-radius: var(--radius-sm) !important;
   border: 1px solid rgba(255, 255, 255, 0.07) !important;
 }
 
@@ -464,7 +464,7 @@ p {
 
 /* ---- Tour Package Card (large) ---- */
 .tour-card {
-  border-radius: 0 !important;
+  border-radius: var(--radius-lg) !important;
   border: 1px solid rgba(196, 168, 108, 0.12);
   overflow: hidden;
   position: relative;
@@ -525,7 +525,7 @@ p {
   background: rgba(196, 168, 108, 0.1) !important;
   color: var(--gold) !important;
   padding: 4px 12px;
-  border-radius: 0 !important;
+  border-radius: var(--radius-sm) !important;
   border: 1px solid var(--gold-border) !important;
 }
 
@@ -556,7 +556,7 @@ p {
   color: var(--text-secondary) !important;
   background: rgba(255, 255, 255, 0.06) !important;
   padding: 3px 12px;
-  border-radius: 0 !important;
+  border-radius: var(--radius-sm) !important;
   border: 1px solid rgba(255, 255, 255, 0.1) !important;
   letter-spacing: 0.05em;
 }
@@ -593,7 +593,7 @@ p {
 .stat-card {
   background: var(--bg-base) !important;
   border: none !important;
-  border-radius: 0 !important;
+  border-radius: var(--radius-lg) !important;
   padding: 32px 24px;
   text-align: center;
   transition: background var(--duration-fast) ease;
@@ -636,7 +636,7 @@ p {
 .info-box {
   background: var(--bg-card) !important;
   border: 1px solid rgba(196, 168, 108, 0.15) !important;
-  border-radius: 0 !important;
+  border-radius: var(--radius-lg) !important;
   padding: 32px;
 }
 

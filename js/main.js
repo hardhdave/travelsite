@@ -47,3 +47,6 @@ document.addEventListener('DOMContentLoaded', () => {
 window.addEventListener('load', () => {
   if (hasGsapScroll) ScrollTrigger.refresh();
 });
+
+// Enable immediate CSS :active tap feedback on WebKit / iOS touch screens
+document.addEventListener('touchstart', () => {}, { passive: true });
