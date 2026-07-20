@@ -61,8 +61,8 @@ section,
   color: var(--charcoal) !important;
   box-shadow: var(--shadow-sm) !important;
   transition: transform 0.3s var(--ease-premium),
-              box-shadow 0.3s var(--ease-premium),
-              border-color 0.3s ease !important;
+    box-shadow 0.3s var(--ease-premium),
+    border-color 0.3s ease !important;
 }
 
 /* Normal card hover */
@@ -86,8 +86,8 @@ section,
 .wc-card,
 .packages__card {
   transition: transform 0.35s var(--ease-premium),
-              box-shadow 0.35s var(--ease-premium),
-              border-color 0.35s ease !important;
+    box-shadow 0.35s var(--ease-premium),
+    border-color 0.35s ease !important;
 }
 
 /* Tour/experience cards */
@@ -95,8 +95,8 @@ section,
 .experience-card,
 .activity-card {
   transition: transform 0.35s var(--ease-premium),
-              box-shadow 0.35s var(--ease-premium),
-              border-color 0.35s ease !important;
+    box-shadow 0.35s var(--ease-premium),
+    border-color 0.35s ease !important;
 }
 
 
@@ -286,7 +286,7 @@ section,
 footer,
 .site-footer,
 .footer {
-  background: var(--primary-700) !important;
+  background: var(--primary-800) !important;
   color: #ffffff !important;
 }
 

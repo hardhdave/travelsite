@@ -329,10 +329,10 @@
   bottom: 48px;
   left: 48px;
   max-width: 440px;
-  background: var(--bg-card) !important;
+  background: #ffffff !important;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--border-subtle) !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
   border-radius: var(--radius-lg) !important;
   padding: 32px 36px !important;
   z-index: 3;
@@ -344,8 +344,8 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: var(--gold-subtle) !important;
-  border: 1px solid var(--gold-border) !important;
+  background: #FDF9F0 !important;
+  border: 1px solid rgba(167, 123, 52, 0.3) !important;
   border-radius: 100px;
   padding: 5px 12px;
   font-family: var(--font-accent);
@@ -353,7 +353,7 @@
   font-weight: 600;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--sunset-gold) !important;
+  color: #855B14 !important;
   margin-bottom: 16px;
   transform: translateY(20px);
   opacity: 0;
@@ -480,7 +480,7 @@
   font-size: 9px;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.4);
+  color: #4B5563 !important;
 }
 
 /* ---- Progress Dots ---- */
@@ -573,43 +573,42 @@
     left: 20px !important;
     right: 20px !important;
     max-width: none !important;
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
-    padding: 0 !important;
+    background: #ffffff !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important;
+    padding: 24px 28px !important;
+    border-radius: 12px !important;
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
     box-sizing: border-box;
   }
 
   .experiences__panel-heading {
-    font-size: clamp(1.5rem, 6.5vw, 2.2rem) !important;
-    color: #f7f3ee !important;
-    text-shadow:
-      0 2px 12px rgba(0, 0, 0, 0.7),
-      0 1px 4px rgba(0, 0, 0, 0.9) !important;
-    font-weight: 400 !important;
+    font-size: clamp(1.4rem, 4vw, 1.8rem) !important;
+    color: #111827 !important;
+    text-shadow: none !important;
+    font-weight: 600 !important;
     margin-bottom: 16px !important;
-    line-height: 1.2 !important;
+    line-height: 1.25 !important;
   }
 
   .experiences__panel-tag {
-    background: rgba(26, 46, 34, 0.85) !important;
-    color: #f7f3ee !important;
-    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    background: #FDF9F0 !important;
+    color: #855B14 !important;
+    border: 1px solid rgba(167, 123, 52, 0.3) !important;
     margin-bottom: 12px !important;
-    backdrop-filter: blur(6px) !important;
-    -webkit-backdrop-filter: blur(6px) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
   }
 
   .experiences__panel-tag::before {
-    background: #8bba99 !important;
+    background: #855B14 !important;
   }
 
   /* Mobile CTA button — cream so it pops on dark image overlay */
   .experiences__panel-cta {
-    background: #f5e9d5 !important;
-    color: #1c1e21 !important;
+    background: var(--gold) !important;
+    color: #ffffff !important;
     border-radius: 6px !important;
     padding: 12px 22px !important;
     font-size: 10px !important;
@@ -986,7 +985,10 @@
     flex-direction: column !important;
     align-items: flex-start !important;
     text-align: left !important;
-    background: transparent !important;
+    background: #ffffff !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+    border-top: none !important;
+    border-radius: 0 0 12px 12px !important;
     box-sizing: border-box !important;
     width: 100% !important;
     flex-grow: 1 !important;
@@ -1012,9 +1014,9 @@
     font-weight: 700;
     letter-spacing: 0.15em !important;
     text-transform: uppercase !important;
-    color: var(--gold) !important;
-    background: rgba(167, 123, 52, 0.1) !important;
-    border: 1px solid rgba(167, 123, 52, 0.25) !important;
+    color: #855B14 !important;
+    background: #FDF9F0 !important;
+    border: 1px solid rgba(167, 123, 52, 0.3) !important;
     padding: 4px 10px !important;
     border-radius: 100px !important;
     margin-bottom: 12px !important;
@@ -1024,8 +1026,8 @@
   /* Heading style */
   .experiences__panel-heading {
     font-size: 1.3rem !important;
-    color: #ffffff !important;
-    font-weight: 500 !important;
+    color: #111827 !important;
+    font-weight: 600 !important;
     margin: 0 0 10px 0 !important;
     text-shadow: none !important;
     line-height: 1.3 !important;
@@ -1034,7 +1036,7 @@
   /* Description style */
   .experiences__panel-desc {
     font-size: 0.82rem !important;
-    color: rgba(255, 255, 255, 0.6) !important;
+    color: #374151 !important;
     line-height: 1.55 !important;
     margin: 0 0 20px 0 !important;
     display: block !important;
@@ -1066,6 +1068,15 @@
     height: 14px !important;
     stroke-width: 2.5px !important;
     transform: none !important;
+  }
+
+  /* Stats label/num readibility on white */
+  .experiences__stat-label {
+    color: #4B5563 !important;
+  }
+
+  .experiences__stat-num {
+    color: #855B14 !important;
   }
 }
 

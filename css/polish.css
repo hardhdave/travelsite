@@ -1547,7 +1547,7 @@ body {
 
 /* ======== FOOTER ======== */
 .footer {
-  background: var(--primary-700) !important;
+  background: var(--primary-800) !important;
   border-top: 1px solid rgba(35, 139, 69, 0.2);
 }
 
