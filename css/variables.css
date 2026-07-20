@@ -1,37 +1,37 @@
 /* ============================================
    SHRED HIMALAYAS — Premium Design Tokens
-   Kashmiri Palette: Chinar Leaves · Saffron Fields · Walnut Wood
-   Deep Pine · Saffron Amber · Chinar Red · Warm Ivory · Walnut Brown
+   Forest Green Palette — Extracted from Reference
+   Muted Sage · Fern · Emerald · Deep Pine
    ============================================ */
 
 :root {
   /* ——— Core Brand Colors ——— */
-  --primary:          #12241C;
-  --primary-rgb:      18, 36, 28;
+  --primary:          #238B45;
+  --primary-rgb:      35, 139, 69;
   --forest-green:     var(--primary);
   --forest-green-rgb: var(--primary-rgb);
-  --earth-brown:      #2A1F1A;
-  --earth-brown-rgb:  42, 31, 26;
-  --sand-beige:       #F7F2EA;
-  --sand-beige-rgb:   247, 242, 234;
-  --sunset-gold:      #E08A2C;
-  --sunset-gold-rgb:  224, 138, 44;
-  --sky-blue:         #B23A2E;
-  --sky-blue-rgb:     178, 58, 46;
-  --charcoal:         #12241C;
-  --charcoal-rgb:     18, 36, 28;
+  --earth-brown:      #006D2C;
+  --earth-brown-rgb:  0, 109, 44;
+  --sand-beige:       #F7FCF5;
+  --sand-beige-rgb:   247, 252, 245;
+  --sunset-gold:      #41AB5D;
+  --sunset-gold-rgb:  65, 171, 93;
+  --sky-blue:         #74C476;
+  --sky-blue-rgb:     116, 196, 118;
+  --charcoal:         #00441B;
+  --charcoal-rgb:     0, 68, 27;
 
-  /* ——— Primary Pine Scale ——— */
-  --primary-50:  #EAF0EC;
-  --primary-100: #C4D5CA;
-  --primary-200: #9BBAA7;
-  --primary-300: #729F84;
-  --primary-400: #3F6B50;
-  --primary-500: #12241C;
-  --primary-600: #0F1E17;
-  --primary-700: #0C1812;
-  --primary-800: #08120D;
-  --primary-900: #040C08;
+  /* ——— Primary Forest Green Scale (from image) ——— */
+  --primary-50:  #F7FCF5;
+  --primary-100: #E5F5E0;
+  --primary-200: #C7E9C0;
+  --primary-300: #A1D99B;
+  --primary-400: #74C476;
+  --primary-500: #41AB5D;
+  --primary-600: #238B45;
+  --primary-700: #006D2C;
+  --primary-800: #00441B;
+  --primary-900: #002710;
 
   --forest-50:  var(--primary-50);
   --forest-100: var(--primary-100);
@@ -44,82 +44,82 @@
   --forest-800: var(--primary-800);
   --forest-900: var(--primary-900);
 
-  /* ——— Saffron Amber Scale ——— */
-  --gold-50:  #FDF3E7;
-  --gold-100: #FAE2C0;
-  --gold-200: #F4C88A;
-  --gold-300: #ECAC5A;
-  --gold-400: #E69838;
-  --gold-500: #E08A2C;
-  --gold-600: #C07020;
-  --gold-700: #9E5718;
-  --gold-800: #7C4010;
-  --gold-900: #5A2D08;
+  /* ——— Accent (Fern Green Scale) ——— */
+  --gold-50:  #F7FCF5;
+  --gold-100: #E5F5E0;
+  --gold-200: #C7E9C0;
+  --gold-300: #A1D99B;
+  --gold-400: #74C476;
+  --gold-500: #41AB5D;
+  --gold-600: #238B45;
+  --gold-700: #006D2C;
+  --gold-800: #005722;
+  --gold-900: #00441B;
 
-  /* ——— Accent (Legacy compat) ——— */
-  --gold:             #E08A2C;
-  --gold-light:       #E69838;
-  --gold-dark:        #C07020;
-  --gold-subtle:      rgba(224, 138, 44, 0.08);
-  --gold-border:      rgba(224, 138, 44, 0.25);
-  --gold-border-hover:rgba(224, 138, 44, 0.50);
+  /* ——— Accent Aliases (Legacy compat — mapped to green) ——— */
+  --gold:             #238B45;
+  --gold-light:       #41AB5D;
+  --gold-dark:        #006D2C;
+  --gold-subtle:      rgba(35, 139, 69, 0.08);
+  --gold-border:      rgba(35, 139, 69, 0.25);
+  --gold-border-hover:rgba(35, 139, 69, 0.50);
 
   /* ——— Background Scale ——— */
-  --bg-deepest:      var(--primary);
-  --bg-base:         #F7F2EA;
-  --bg-raised:       #FDFAF5;
-  --bg-card:         #EDE4D6;
-  --bg-card-premium: var(--primary);
-  --bg-hover:        #E6DDD0;
-  --bg-surface:      #F7F2EA;
-  --bg-overlay:      rgba(18, 36, 28, 0.75);
+  --bg-deepest:      var(--primary-700);
+  --bg-base:         #F7FCF5;
+  --bg-raised:       #FAFFF8;
+  --bg-card:         #EDF7EA;
+  --bg-card-premium: var(--primary-700);
+  --bg-hover:        #DFF0DA;
+  --bg-surface:      #F7FCF5;
+  --bg-overlay:      rgba(0, 68, 27, 0.75);
 
-  /* ——— Cream Section Tokens (Legacy compat) ——— */
-  --bg-cream:        #F7F2EA;
-  --bg-cream-dark:   #EDE4D6;
-  --bg-cream-card:   #EDE4D6;
-  --text-on-cream:       #12241C;
-  --text-secondary-on-cream: #4A5568;
-  --text-muted-on-cream:     #8C8072;
-  --border-on-cream:   rgba(42, 31, 26, 0.12);
-  --gold-border-on-cream: rgba(224, 138, 44, 0.20);
+  /* ——— Cream/Green Section Tokens (Legacy compat) ——— */
+  --bg-cream:        #F7FCF5;
+  --bg-cream-dark:   #E5F5E0;
+  --bg-cream-card:   #EDF7EA;
+  --text-on-cream:       #00441B;
+  --text-secondary-on-cream: #1A5C33;
+  --text-muted-on-cream:     #4A8C5C;
+  --border-on-cream:   rgba(0, 109, 44, 0.12);
+  --gold-border-on-cream: rgba(35, 139, 69, 0.20);
 
   /* ——— Text Scale ——— */
-  --text-primary:    #12241C;
-  --text-secondary:  #3F4F45;
-  --text-muted:      #8C8072;
-  --text-gold:       #E08A2C;
-  --text-white:      #F7F2EA;
-  --text-on-dark:    #F7F2EA;
+  --text-primary:    #00441B;
+  --text-secondary:  #1A5C33;
+  --text-muted:      #4A8C5C;
+  --text-gold:       #238B45;
+  --text-white:      #F7FCF5;
+  --text-on-dark:    #F7FCF5;
 
   /* ——— Border / Divider ——— */
-  --border-subtle:   rgba(42, 31, 26, 0.08);
-  --border-medium:   rgba(42, 31, 26, 0.15);
-  --border-strong:   rgba(42, 31, 26, 0.28);
+  --border-subtle:   rgba(0, 109, 44, 0.08);
+  --border-medium:   rgba(0, 109, 44, 0.15);
+  --border-strong:   rgba(0, 109, 44, 0.28);
 
   /* ——— Glass / Card Effects ——— */
-  --glass-dark:      rgba(18, 36, 28, 0.06);
-  --glass-dark-hover:rgba(18, 36, 28, 0.12);
-  --glass-gold:      rgba(224, 138, 44, 0.06);
-  --glass-shadow:    0 8px 32px rgba(18, 36, 28, 0.14);
+  --glass-dark:      rgba(0, 68, 27, 0.06);
+  --glass-dark-hover:rgba(0, 68, 27, 0.12);
+  --glass-gold:      rgba(35, 139, 69, 0.06);
+  --glass-shadow:    0 8px 32px rgba(0, 68, 27, 0.14);
 
   /* ——— Navbar Glass ——— */
-  --navbar-glass-bg: rgba(18, 36, 28, 0.55);
+  --navbar-glass-bg: rgba(0, 68, 27, 0.55);
 
   /* ——— Legacy aliases (compatibility) ——— */
   --midnight-navy:        var(--bg-base);
-  --midnight-navy-rgb:    247, 242, 234;
+  --midnight-navy-rgb:    247, 252, 245;
   --glacier-blue:         var(--gold);
-  --glacier-blue-rgb:     224, 138, 44;
+  --glacier-blue-rgb:     35, 139, 69;
   --snow-white:           var(--text-primary);
-  --snow-white-rgb:       18, 36, 28;
+  --snow-white-rgb:       0, 68, 27;
   --mountain-gray:        var(--text-secondary);
-  --mountain-gray-rgb:    63, 79, 69;
+  --mountain-gray-rgb:    26, 92, 51;
   --deep-navy:            var(--bg-raised);
   --dark-slate:           var(--bg-card);
   --ice-blue:             var(--sky-blue);
   --warm-gold:            var(--gold);
-  --sunset-amber:         #E08A2C;
+  --sunset-amber:         #238B45;
   --alpine-white:         var(--text-primary);
   --charcoal-hex:         var(--charcoal);
   --storm-gray:           var(--text-muted);
@@ -133,29 +133,29 @@
   --charcoal-deep:        var(--charcoal);
 
   /* ——— Gradients ——— */
-  --gradient-premium:      linear-gradient(135deg, #12241C, #2A1F1A);
+  --gradient-premium:      linear-gradient(135deg, #00441B, #006D2C);
   --gradient-hero-overlay: linear-gradient(180deg,
-      rgba(18, 36, 28, 0.45) 0%,
-      rgba(18, 36, 28, 0.15) 40%,
-      rgba(18, 36, 28, 0.78) 100%);
-  --gradient-card:         linear-gradient(145deg, #EDE4D6, #F7F2EA);
+      rgba(0, 68, 27, 0.45) 0%,
+      rgba(0, 68, 27, 0.15) 40%,
+      rgba(0, 68, 27, 0.78) 100%);
+  --gradient-card:         linear-gradient(145deg, #E5F5E0, #F7FCF5);
   --gradient-glacier:      linear-gradient(135deg, var(--gold-dark), var(--gold));
-  --gradient-forest:       linear-gradient(135deg, #12241C, #1E3D2A);
-  --gradient-winter:       linear-gradient(180deg, #F7F2EA 0%, #EDE4D6 100%);
-  --gradient-summer:       linear-gradient(180deg, #EDE4D6 0%, #F7F2EA 100%);
-  --gradient-text:         linear-gradient(135deg, #12241C, #E08A2C);
+  --gradient-forest:       linear-gradient(135deg, #00441B, #238B45);
+  --gradient-winter:       linear-gradient(180deg, #F7FCF5 0%, #E5F5E0 100%);
+  --gradient-summer:       linear-gradient(180deg, #E5F5E0 0%, #F7FCF5 100%);
+  --gradient-text:         linear-gradient(135deg, #00441B, #41AB5D);
   --gradient-gold-shine:   linear-gradient(90deg,
-      transparent, rgba(224, 138, 44, 0.12), transparent);
+      transparent, rgba(35, 139, 69, 0.12), transparent);
 
   /* ——— Glass Effects ——— */
   --glass-bg:          rgba(255, 255, 255, 0.80);
   --glass-bg-light:    rgba(255, 255, 255, 0.60);
-  --glass-border:      rgba(139, 94, 52, 0.12);
-  --glass-border-hover:rgba(139, 94, 52, 0.25);
+  --glass-border:      rgba(0, 109, 44, 0.12);
+  --glass-border-hover:rgba(0, 109, 44, 0.25);
 
   /* ——— Section shadows ——— */
   --section-overlap:    clamp(54px, 8vw, 118px);
-  --section-lift-shadow: 0 -20px 60px rgba(47, 79, 62, 0.04), 0 20px 60px rgba(47, 79, 62, 0.04);
+  --section-lift-shadow: 0 -20px 60px rgba(35, 139, 69, 0.04), 0 20px 60px rgba(35, 139, 69, 0.04);
 
   /* ——— Typography ——— */
   --font-logo:     'Cormorant Garamond', Georgia, serif;
@@ -232,14 +232,20 @@
   --radius-2xl:  32px;
   --radius-full: 9999px;
 
-  /* ——— Shadows (Warm Earthy Tone) ——— */
-  --shadow-sm:          0 2px 8px rgba(47, 79, 62, 0.06);
-  --shadow-md:          0 4px 16px rgba(47, 79, 62, 0.08);
-  --shadow-lg:          0 8px 30px rgba(47, 79, 62, 0.10);
-  --shadow-xl:          0 16px 48px rgba(47, 79, 62, 0.12);
-  --shadow-glow:        0 0 24px rgba(215, 160, 23, 0.15);
-  --shadow-glow-strong: 0 0 40px rgba(215, 160, 23, 0.25);
-  --shadow-gold:        0 4px 20px rgba(215, 160, 23, 0.20);
+  /* ——— Shadows (Forest Green Tone) ——— */
+  --shadow-sm:          0 2px 8px rgba(35, 139, 69, 0.06);
+  --shadow-md:          0 4px 16px rgba(35, 139, 69, 0.08);
+  --shadow-lg:          0 8px 30px rgba(35, 139, 69, 0.10);
+  --shadow-xl:          0 16px 48px rgba(35, 139, 69, 0.12);
+  --shadow-glow:        0 0 24px rgba(65, 171, 93, 0.18);
+  --shadow-glow-strong: 0 0 40px rgba(65, 171, 93, 0.28);
+  --shadow-gold:        0 4px 20px rgba(35, 139, 69, 0.22);
+
+  /* ——— Semantic Status Colors ——— */
+  --color-success:  #238B45;
+  --color-warning:  #E6A817;
+  --color-danger:   #C0392B;
+  --color-info:     #1A6B4A;
 
   /* ——— Transitions ——— */
   --ease-smooth:  cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -250,6 +256,10 @@
   --duration-slow:    0.6s;
   --duration-slower:  0.8s;
   --duration-slowest: 1.2s;
+
+  /* ——— Smooth Color Transitions (Phase 7) ——— */
+  --transition-color: background-color 0.3s ease, color 0.3s ease,
+                      border-color 0.3s ease, box-shadow 0.3s ease;
 
   /* ——— Z-Index Scale ——— */
   --z-base:       1;
@@ -263,4 +273,46 @@
   --z-loader:     9999;
 }
 
+/* ===== Dark Mode Architecture (Phase 8) =====
+   Add [data-theme="dark"] to <html> to activate.
+   ============================================= */
+[data-theme="dark"] {
+  --primary:         #41AB5D;
+  --forest-green:    var(--primary);
+  --sand-beige:      #0D1F12;
+  --sand-beige-rgb:  13, 31, 18;
+  --charcoal:        #E5F5E0;
+  --charcoal-rgb:    229, 245, 224;
 
+  --bg-deepest:      #00250E;
+  --bg-base:         #0D1F12;
+  --bg-raised:       #122718;
+  --bg-card:         #1A3520;
+  --bg-hover:        #1F3D25;
+  --bg-surface:      #0D1F12;
+  --bg-overlay:      rgba(0, 37, 14, 0.85);
+
+  --text-primary:    #E5F5E0;
+  --text-secondary:  #A1D99B;
+  --text-muted:      #74C476;
+
+  --border-subtle:   rgba(65, 171, 93, 0.08);
+  --border-medium:   rgba(65, 171, 93, 0.15);
+  --border-strong:   rgba(65, 171, 93, 0.28);
+
+  --gold:            #74C476;
+  --gold-light:      #A1D99B;
+  --gold-dark:       #41AB5D;
+  --gold-border:     rgba(116, 196, 118, 0.25);
+  --gold-subtle:     rgba(116, 196, 118, 0.08);
+
+  --shadow-sm:       0 2px 8px rgba(0, 0, 0, 0.25);
+  --shadow-md:       0 4px 16px rgba(0, 0, 0, 0.35);
+  --shadow-lg:       0 8px 30px rgba(0, 0, 0, 0.45);
+  --shadow-xl:       0 16px 48px rgba(0, 0, 0, 0.55);
+  --shadow-glow:     0 0 24px rgba(116, 196, 118, 0.20);
+  --shadow-gold:     0 4px 20px rgba(116, 196, 118, 0.25);
+
+  --glass-bg:        rgba(13, 31, 18, 0.85);
+  --glass-border:    rgba(65, 171, 93, 0.15);
+}

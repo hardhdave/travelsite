@@ -8,7 +8,7 @@
   position: fixed;
   inset: 0;
   z-index: var(--z-loader);
-  background: #0f131a;
+  background: var(--sand-beige);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -52,7 +52,7 @@
 
 .loader__ring-bg {
   fill: none;
-  stroke: rgba(255, 255, 255, 0.08);
+  stroke: var(--border-medium);
   stroke-width: 2;
 }
 
@@ -91,7 +91,7 @@
   font-weight: var(--weight-light);
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: #ffffff;
+  color: var(--charcoal);
   margin-bottom: 8px;
   text-align: center;
 }
@@ -101,8 +101,8 @@
   font-size: 10px;
   letter-spacing: 0.35em;
   text-transform: uppercase;
-  color: var(--gold);
-  opacity: 0.7;
+  color: var(--primary-600);
+  opacity: 0.9;
   text-align: center;
 }
 
@@ -166,9 +166,9 @@ body {
   align-items: center;
   gap: 10px;
   padding: 8px 18px;
-  color: var(--gold);
-  background: rgba(196, 168, 108, 0.08);
-  border: 1px solid rgba(196, 168, 108, 0.28);
+  color: var(--primary-200);
+  background: rgba(35, 139, 69, 0.10);
+  border: 1px solid rgba(35, 139, 69, 0.28);
   border-radius: var(--radius-sm);
   font-family: var(--font-accent);
   font-size: 10px;
@@ -182,7 +182,7 @@ body {
   content: '';
   width: 20px;
   height: 1px;
-  background: var(--gold);
+  background: var(--primary-300);
   display: inline-block;
 }
 
@@ -215,7 +215,7 @@ body {
 .hero .btn--primary:hover {
   background: var(--gold-light);
   border-color: var(--gold-light);
-  box-shadow: 0 8px 30px rgba(196, 168, 108, 0.3);
+  box-shadow: 0 8px 30px rgba(35, 139, 69, 0.3);
 }
 
 .hero .btn--secondary {
@@ -232,7 +232,7 @@ body {
 }
 
 .hero__scroll-text {
-  color: rgba(245, 240, 232, 0.5);
+  color: rgba(231, 250, 235, 0.55);
   font-family: var(--font-accent);
   font-size: 10px;
   letter-spacing: 0.2em;
@@ -240,7 +240,7 @@ body {
 }
 
 .hero__scroll-line {
-  background: rgba(196, 168, 108, 0.4);
+  background: rgba(65, 171, 93, 0.4);
 }
 
 /* ======== SECTION TITLE GLOBAL ======== */
@@ -263,37 +263,39 @@ body {
 }
 
 .btn--primary {
-  background: var(--gold);
-  color: #0a0a0a;
-  border: 1px solid var(--gold);
+  background: var(--primary-600);
+  color: #ffffff;
+  border: 1px solid var(--primary-600);
   letter-spacing: 0.15em;
   text-transform: uppercase;
   font-size: 10px;
   font-family: var(--font-accent);
   font-weight: 700;
+  transition: var(--transition-color);
 }
 
 .btn--primary:hover {
-  box-shadow: 0 8px 30px rgba(196, 168, 108, 0.25);
-  background: var(--gold-light);
-  border-color: var(--gold-light);
+  box-shadow: 0 8px 30px rgba(35, 139, 69, 0.25);
+  background: var(--primary-700);
+  border-color: var(--primary-700);
 }
 
 .btn--secondary {
   background: transparent;
-  color: var(--gold);
+  color: var(--primary-600);
   border: 1px solid var(--gold-border);
   letter-spacing: 0.15em;
   text-transform: uppercase;
   font-size: 10px;
   font-family: var(--font-accent);
+  transition: var(--transition-color);
 }
 
 .btn--secondary:hover {
-  background: var(--gold-subtle);
-  border-color: var(--gold);
-  color: var(--gold-light);
-  box-shadow: 0 8px 30px rgba(196, 168, 108, 0.15);
+  background: var(--primary-600);
+  border-color: var(--primary-600);
+  color: #ffffff;
+  box-shadow: 0 8px 30px rgba(35, 139, 69, 0.18);
 }
 
 /* ======== EXPERIENCES SECTION ======== */
@@ -394,8 +396,8 @@ body {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(196, 168, 108, 0.15);
+  background: rgba(229, 245, 224, 0.25);
+  border: 1px solid rgba(35, 139, 69, 0.15);
 }
 
 @media (max-width: 900px) {
@@ -417,7 +419,7 @@ body {
     min-height: 180px;
     gap: 8px;
     background: #FFFFFF;
-    border: 1px solid rgba(31, 41, 51, 0.05);
+    border: 1px solid rgba(35, 139, 69, 0.08);
   }
 
   .why-choose__icon {
@@ -479,7 +481,7 @@ body {
   left: var(--space-8);
   right: var(--space-8);
   height: 1px;
-  background: rgba(196, 168, 108, 0.1);
+  background: rgba(35, 139, 69, 0.10);
 }
 
 .why-choose__card:hover {
@@ -504,9 +506,9 @@ body {
 }
 
 .why-choose__card:hover .why-choose__icon {
-  background: var(--gold);
-  color: #0a0a0a;
-  border-color: var(--gold);
+  background: var(--primary-600);
+  color: #ffffff;
+  border-color: var(--primary-600);
 }
 
 .why-choose__card-title {
@@ -529,8 +531,8 @@ body {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   margin-top: var(--space-16);
-  border-top: 1px solid rgba(196, 168, 108, 0.15);
-  border-left: 1px solid rgba(196, 168, 108, 0.15);
+  border-top: 1px solid rgba(35, 139, 69, 0.15);
+  border-left: 1px solid rgba(35, 139, 69, 0.15);
 }
 
 @media (max-width: 768px) {
@@ -541,8 +543,8 @@ body {
 
 .why-choose__stat {
   padding: var(--space-8);
-  border-right: 1px solid rgba(196, 168, 108, 0.15);
-  border-bottom: 1px solid rgba(196, 168, 108, 0.15);
+  border-right: 1px solid rgba(35, 139, 69, 0.15);
+  border-bottom: 1px solid rgba(35, 139, 69, 0.15);
   text-align: center;
 }
 
@@ -627,9 +629,9 @@ body {
   position: absolute;
   bottom: var(--space-6);
   left: var(--space-6);
-  background: rgba(8, 8, 8, 0.85);
+  background: rgba(0, 68, 27, 0.85);
   border: 1px solid var(--gold-border);
-  color: var(--gold);
+  color: var(--primary-200);
   font-family: var(--font-accent);
   font-size: 10px;
   letter-spacing: 0.2em;
@@ -644,10 +646,10 @@ body {
   font-size: 10px;
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--primary-600);
   margin-bottom: var(--space-6);
   padding-bottom: var(--space-4);
-  border-bottom: 1px solid rgba(196, 168, 108, 0.2);
+  border-bottom: 1px solid rgba(35, 139, 69, 0.2);
 }
 
 .skiing__package-card {
@@ -663,7 +665,7 @@ body {
 
 .skiing__package-card:hover {
   padding-left: var(--space-3);
-  border-bottom-color: rgba(196, 168, 108, 0.3);
+  border-bottom-color: rgba(35, 139, 69, 0.35);
 }
 
 .skiing__package-name {
@@ -748,12 +750,12 @@ body {
 .trekking__card {
   position: relative;
   overflow: hidden;
-  border: 1px solid rgba(196, 168, 108, 0.12);
+  border: 1px solid rgba(35, 139, 69, 0.12);
   cursor: pointer;
 }
 
 .trekking__card:hover {
-  border-color: rgba(196, 168, 108, 0.35);
+  border-color: rgba(35, 139, 69, 0.35);
 }
 
 .trekking__card-image {
@@ -880,7 +882,7 @@ body {
 }
 
 .activities__split-divider {
-  background: rgba(196, 168, 108, 0.2);
+  background: rgba(35, 139, 69, 0.2);
   align-self: stretch;
 }
 
@@ -902,8 +904,8 @@ body {
   font-size: 9px;
   letter-spacing: 0.35em;
   text-transform: uppercase;
-  color: var(--gold);
-  background: rgba(196, 168, 108, 0.08);
+  color: var(--primary-600);
+  background: rgba(35, 139, 69, 0.08);
   border: 1px solid var(--gold-border);
   padding: 5px 14px;
   display: inline-block;
@@ -930,7 +932,7 @@ body {
 
 .activities__item:hover {
   padding-left: var(--space-2);
-  border-bottom-color: rgba(196, 168, 108, 0.2);
+  border-bottom-color: rgba(35, 139, 69, 0.20);
 }
 
 .activities__item-icon {
@@ -987,10 +989,10 @@ body {
 }
 
 .rentals__card {
-  background: var(--bg-card, #121214) !important;
+  background: var(--bg-card) !important;
   padding: var(--space-10) var(--space-8);
   border-radius: 16px !important;
-  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid rgba(35, 139, 69, 0.10) !important;
   position: relative;
   transition: all var(--duration-normal) ease !important;
   display: flex;
@@ -999,10 +1001,10 @@ body {
 }
 
 .rentals__card:hover {
-  background: rgba(255, 255, 255, 0.03) !important;
-  border-color: var(--gold, #c7965a) !important;
+  background: var(--bg-hover) !important;
+  border-color: var(--primary-600) !important;
   transform: translateY(-6px) !important;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45) !important;
+  box-shadow: var(--shadow-lg) !important;
 }
 
 .rentals__card-icon {
@@ -1018,9 +1020,9 @@ body {
 }
 
 .rentals__card:hover .rentals__card-icon {
-  background: var(--gold);
-  color: #0a0a0a;
-  border-color: var(--gold);
+  background: var(--primary-600);
+  color: #ffffff;
+  border-color: var(--primary-600);
 }
 
 .rentals__card-title {
@@ -1040,9 +1042,9 @@ body {
   position: absolute;
   top: var(--space-4);
   right: var(--space-4);
-  background: rgba(196, 168, 108, 0.08);
+  background: rgba(35, 139, 69, 0.08);
   border: 1px solid var(--gold-border);
-  color: var(--gold);
+  color: var(--primary-600);
   font-family: var(--font-accent);
   font-size: 8px;
   letter-spacing: 0.2em;
@@ -1093,10 +1095,10 @@ body {
 }
 
 .transport__card {
-  background: var(--bg-card, #121214) !important;
+  background: var(--bg-card) !important;
   padding: var(--space-10) var(--space-8);
   border-radius: 16px !important;
-  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid rgba(35, 139, 69, 0.10) !important;
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
@@ -1104,10 +1106,10 @@ body {
 }
 
 .transport__card:hover {
-  background: rgba(255, 255, 255, 0.03) !important;
-  border-color: var(--gold, #c7965a) !important;
+  background: var(--bg-hover) !important;
+  border-color: var(--primary-600) !important;
   transform: translateY(-6px) !important;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45) !important;
+  box-shadow: var(--shadow-lg) !important;
 }
 
 .transport__card-icon {
@@ -1122,9 +1124,9 @@ body {
 }
 
 .transport__card:hover .transport__card-icon {
-  background: var(--gold);
-  color: #0a0a0a;
-  border-color: var(--gold);
+  background: var(--primary-600);
+  color: #ffffff;
+  border-color: var(--primary-600);
 }
 
 .transport__card-title {
@@ -1193,13 +1195,13 @@ body {
 .packages__card {
   position: relative;
   overflow: hidden;
-  border: 1px solid rgba(196, 168, 108, 0.12);
+  border: 1px solid rgba(35, 139, 69, 0.12);
   transition: border-color var(--duration-normal) ease;
   cursor: pointer;
 }
 
 .packages__card:hover {
-  border-color: rgba(196, 168, 108, 0.4);
+  border-color: rgba(35, 139, 69, 0.40);
 }
 
 .packages__card-image {
@@ -1290,7 +1292,7 @@ body {
 
 .testimonials__card {
   background: var(--bg-card) !important;
-  border: 1px solid rgba(196, 168, 108, 0.12) !important;
+  border: 1px solid rgba(35, 139, 69, 0.12) !important;
   border-radius: var(--radius-lg) !important;
   padding: var(--space-8) !important;
   flex-shrink: 0;
@@ -1298,7 +1300,7 @@ body {
 }
 
 .testimonials__card:hover {
-  border-color: rgba(196, 168, 108, 0.3) !important;
+  border-color: rgba(35, 139, 69, 0.35) !important;
 }
 
 .testimonials__star {
@@ -1326,9 +1328,9 @@ body {
 }
 
 .testimonials__avatar {
-  background: rgba(196, 168, 108, 0.1) !important;
+  background: rgba(35, 139, 69, 0.10) !important;
   border: 1px solid var(--gold-border) !important;
-  color: var(--gold) !important;
+  color: var(--primary-600) !important;
 }
 
 /* ======== GALLERY ======== */
@@ -1399,7 +1401,7 @@ body {
 }
 
 .about__portrait-frame {
-  border-color: rgba(196, 168, 108, 0.3) !important;
+  border-color: rgba(35, 139, 69, 0.3) !important;
 }
 
 .about__portrait-image {
@@ -1545,8 +1547,8 @@ body {
 
 /* ======== FOOTER ======== */
 .footer {
-  background: var(--forest-green) !important;
-  border-top: 1px solid rgba(196, 168, 108, 0.2);
+  background: var(--primary-700) !important;
+  border-top: 1px solid rgba(35, 139, 69, 0.2);
 }
 
 .footer__top {
@@ -1668,9 +1670,9 @@ body {
 
 .footer__map {
   margin: var(--space-8) 0;
-  border: 1px solid rgba(196, 168, 108, 0.15);
+  border: 1px solid rgba(35, 139, 69, 0.15);
   overflow: hidden;
-  filter: grayscale(60%) brightness(0.6) contrast(1.1);
+  filter: grayscale(40%) brightness(0.7) contrast(1.05);
 }
 
 .footer__map iframe {
@@ -1752,7 +1754,7 @@ body {
   height: 26px;
 }
 
-/* ======== SECTION GOLD DIVIDER LINES ======== */
+/* ======== SECTION GREEN DIVIDER LINES ======== */
 .skiing::after,
 .packages::after {
   content: '';
@@ -1779,7 +1781,7 @@ body {
   .navbar__link:hover,
   .navbar__link.active {
     color: var(--gold);
-    background: rgba(196, 168, 108, 0.05);
+    background: rgba(35, 139, 69, 0.05);
   }
 
   .activities__season {
@@ -1792,9 +1794,9 @@ body {
    Warm cream stands out on dark mountain photo overlay
    ===================================================== */
 .packages__card-content .btn--primary {
-  background: #f5e9d5 !important;
-  color: #1a2e22 !important;
-  border: 1px solid #f5e9d5 !important;
+  background: var(--primary-200) !important;
+  color: var(--primary-800) !important;
+  border: 1px solid var(--primary-200) !important;
   border-radius: 4px !important;
   font-weight: 700 !important;
   letter-spacing: 0.15em !important;
@@ -1803,14 +1805,14 @@ body {
 
 .packages__card-content .btn--primary:hover {
   background: #ffffff !important;
-  color: #1a2e22 !important;
+  color: var(--primary-800) !important;
   border-color: #ffffff !important;
 }
 
 .packages__card-tag {
-  background: rgba(245, 233, 213, 0.12) !important;
-  color: #f5e9d5 !important;
-  border: 1px solid rgba(245, 233, 213, 0.45) !important;
+  background: rgba(199, 233, 192, 0.12) !important;
+  color: var(--primary-200) !important;
+  border: 1px solid rgba(199, 233, 192, 0.45) !important;
   border-radius: 3px !important;
   font-size: 9px !important;
   font-weight: 700 !important;
@@ -1839,7 +1841,7 @@ body {
   max-width: 600px;
   max-height: 600px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(47, 79, 62, 0.04) 0%, rgba(0, 0, 0, 0) 70%) !important;
+  background: radial-gradient(circle, rgba(35, 139, 69, 0.05) 0%, rgba(0, 0, 0, 0) 70%) !important;
   filter: blur(95px) !important;
   pointer-events: none;
   opacity: 0.6;

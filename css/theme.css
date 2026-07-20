@@ -1,11 +1,12 @@
 /* ============================================
-   UNIFIED DESIGN SYSTEM — Earthy Nature Premium
-   Sand Beige · White Cards · Forest Green Accents
-   Sunset Gold CTAs · Earth Brown Icons
-   
-   60% Neutral (Sand + White)
-   30% Forest Green + Charcoal
-   10% Gold + Brown + Sky Blue
+   UNIFIED DESIGN SYSTEM — Forest Green Premium
+   Extracted from Reference Image
+   #F7FCF5 · #E5F5E0 · #C7E9C0 · #A1D99B
+   #74C476 · #41AB5D · #238B45 · #006D2C · #00441B
+
+   60% Light Sage (Page BG / Cards)
+   30% Forest Green (Primary actions / Dark accents)
+   10% Accent Fern / Muted Pine
    ============================================ */
 
 
@@ -15,6 +16,7 @@ html,
 body {
   background-color: var(--sand-beige) !important;
   color: var(--charcoal) !important;
+  transition: var(--transition-color);
 }
 
 body::before,
@@ -23,7 +25,7 @@ body::after {
 }
 
 
-/* ——— 2. Section Backgrounds — Alternating Warm Tones ——— */
+/* ——— 2. Section Backgrounds ——— */
 
 section,
 .why-choose,
@@ -44,9 +46,9 @@ section,
 }
 
 
-/* ——— 3. Card System — White (Normal) vs Forest Green (Premium) ——— */
+/* ——— 3. Card System ——— */
 
-/* NORMAL CARDS: White background, earthy borders */
+/* NORMAL CARDS */
 .skiing__package-card,
 .trekking__card,
 .testimonials__card,
@@ -58,7 +60,9 @@ section,
   border-radius: var(--radius-lg) !important;
   color: var(--charcoal) !important;
   box-shadow: var(--shadow-sm) !important;
-  transition: transform 0.3s var(--ease-premium), box-shadow 0.3s var(--ease-premium), border-color 0.3s ease !important;
+  transition: transform 0.3s var(--ease-premium),
+              box-shadow 0.3s var(--ease-premium),
+              border-color 0.3s ease !important;
 }
 
 /* Normal card hover */
@@ -77,23 +81,26 @@ section,
   border-color: var(--border-medium) !important;
 }
 
-/* PREMIUM CARDS: Forest Green with white text */
+/* PREMIUM CARDS */
 .why-choose__card,
 .wc-card,
 .packages__card {
-  /* Packages keep photo overlay style, not green bg */
-  transition: transform 0.35s var(--ease-premium), box-shadow 0.35s var(--ease-premium), border-color 0.35s ease !important;
+  transition: transform 0.35s var(--ease-premium),
+              box-shadow 0.35s var(--ease-premium),
+              border-color 0.35s ease !important;
 }
 
-/* Tour/experience cards keep their photo overlay style */
+/* Tour/experience cards */
 .tour-card,
 .experience-card,
 .activity-card {
-  transition: transform 0.35s var(--ease-premium), box-shadow 0.35s var(--ease-premium), border-color 0.35s ease !important;
+  transition: transform 0.35s var(--ease-premium),
+              box-shadow 0.35s var(--ease-premium),
+              border-color 0.35s ease !important;
 }
 
 
-/* ——— 4. Text Inside Normal Cards ——— */
+/* ——— 4. Text Inside Cards ——— */
 
 .skiing__package-card *,
 .trekking__card-content,
@@ -148,7 +155,7 @@ section,
 }
 
 .trekking__card-info svg {
-  color: var(--earth-brown) !important;
+  color: var(--forest-green) !important;
 }
 
 .detail-card__price,
@@ -163,21 +170,21 @@ section,
 .btn-primary,
 .button-primary,
 .cta-button {
-  background: var(--sunset-gold) !important;
-  border: 1px solid var(--sunset-gold) !important;
-  color: var(--charcoal) !important;
+  background: var(--primary-600) !important;
+  border: 1px solid var(--primary-600) !important;
+  color: #ffffff !important;
   font-weight: var(--weight-bold) !important;
   border-radius: var(--radius-md) !important;
-  transition: all 0.25s var(--ease-premium) !important;
+  transition: var(--transition-color), transform 0.25s var(--ease-premium) !important;
 }
 
 .btn--primary:hover,
 .btn-primary:hover,
 .button-primary:hover,
 .cta-button:hover {
-  background: var(--gold-dark) !important;
-  border-color: var(--gold-dark) !important;
-  color: #fff !important;
+  background: var(--primary-700) !important;
+  border-color: var(--primary-700) !important;
+  color: #ffffff !important;
   transform: translateY(-2px) !important;
   box-shadow: var(--shadow-gold) !important;
 }
@@ -186,34 +193,34 @@ section,
 .btn-secondary,
 .button-secondary {
   background: transparent !important;
-  border: 1px solid var(--sunset-gold) !important;
-  color: var(--sunset-gold) !important;
+  border: 1px solid var(--primary-600) !important;
+  color: var(--primary-600) !important;
   border-radius: var(--radius-md) !important;
-  transition: all 0.25s var(--ease-premium) !important;
+  transition: var(--transition-color), transform 0.25s var(--ease-premium) !important;
 }
 
 .btn--secondary:hover,
 .btn-secondary:hover,
 .button-secondary:hover {
-  background: var(--sunset-gold) !important;
-  color: var(--charcoal) !important;
+  background: var(--primary-600) !important;
+  color: #ffffff !important;
   transform: translateY(-2px) !important;
   box-shadow: var(--shadow-lg) !important;
 }
 
-/* Buttons inside premium (green) containers */
+/* Buttons inside premium containers */
 .packages__card .btn--primary,
 .trekking__card .btn--primary {
-  background: var(--sunset-gold) !important;
-  color: var(--charcoal) !important;
-  border-color: var(--sunset-gold) !important;
+  background: var(--primary-600) !important;
+  color: #ffffff !important;
+  border-color: var(--primary-600) !important;
 }
 
 .packages__card .btn--primary:hover,
 .trekking__card .btn--primary:hover {
-  background: var(--gold-dark) !important;
-  color: #fff !important;
-  border-color: var(--gold-dark) !important;
+  background: var(--primary-700) !important;
+  color: #ffffff !important;
+  border-color: var(--primary-700) !important;
 }
 
 
@@ -229,15 +236,15 @@ section,
 }
 
 .section-label {
-  color: var(--earth-brown) !important;
+  color: var(--primary-600) !important;
 }
 
 .section-label::before {
-  background: var(--earth-brown) !important;
+  background: var(--primary-600) !important;
 }
 
 .section-title .text-gradient {
-  background: linear-gradient(135deg, var(--forest-green), var(--sunset-gold)) !important;
+  background: linear-gradient(135deg, var(--primary-700), var(--primary-500)) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
   background-clip: text !important;
@@ -247,7 +254,7 @@ section,
 /* ——— 8. Navbar ——— */
 
 .navbar {
-  background: rgba(31, 41, 51, 0.15) !important;
+  background: rgba(0, 68, 27, 0.12) !important;
   backdrop-filter: blur(24px) !important;
   -webkit-backdrop-filter: blur(24px) !important;
 }
@@ -265,12 +272,12 @@ section,
 .navbar a:hover,
 .navbar__link.active,
 .navbar__logo span {
-  color: var(--sunset-gold) !important;
+  color: var(--primary-300) !important;
 }
 
 .nav-sheet__item.active {
-  border-color: var(--sunset-gold) !important;
-  color: var(--sunset-gold) !important;
+  border-color: var(--primary-400) !important;
+  color: var(--primary-300) !important;
 }
 
 
@@ -279,8 +286,7 @@ section,
 footer,
 .site-footer,
 .footer {
-  background: #4A7C59 !important;
-  /* Lighter Forest Green */
+  background: var(--primary-700) !important;
   color: #ffffff !important;
 }
 
@@ -297,21 +303,21 @@ footer a:hover,
 .footer a:hover,
 .footer__link:hover,
 .footer__bottom-link:hover {
-  color: var(--sand-beige) !important;
+  color: var(--primary-200) !important;
 }
 
 .footer__column-title,
 .footer__logo {
-  color: var(--sand-beige) !important;
+  color: var(--primary-200) !important;
 }
 
 .footer__brand-desc,
 .footer__copyright {
-  color: rgba(255, 255, 255, 0.85) !important;
+  color: rgba(255, 255, 255, 0.75) !important;
 }
 
 .footer__social-link svg {
-  color: var(--sand-beige) !important;
+  color: var(--primary-200) !important;
 }
 
 
@@ -325,6 +331,7 @@ select {
   border: 1px solid var(--border-medium) !important;
   color: var(--charcoal) !important;
   border-radius: var(--radius-md) !important;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease !important;
 }
 
 input::placeholder,
@@ -333,7 +340,7 @@ textarea::placeholder,
   color: var(--text-muted) !important;
 }
 
-/* iOS Safari placeholder support for date inputs */
+/* iOS Safari date input support */
 input[type="date"] {
   position: relative;
 }
@@ -368,8 +375,8 @@ input[type="date"]:not([value=""]):before {
 input:focus,
 textarea:focus,
 .cta__input:focus {
-  border-color: var(--forest-green) !important;
-  box-shadow: 0 0 0 3px rgba(47, 79, 62, 0.12) !important;
+  border-color: var(--primary-600) !important;
+  box-shadow: 0 0 0 3px rgba(35, 139, 69, 0.15) !important;
   outline: none !important;
 }
 
@@ -379,11 +386,11 @@ textarea:focus,
 .page-hero,
 .hero,
 .adv-hero {
-  background-color: var(--forest-green) !important;
+  background-color: var(--primary-700) !important;
 }
 
 .hero__slider {
-  background: var(--forest-green) !important;
+  background: var(--primary-700) !important;
 }
 
 
@@ -408,8 +415,8 @@ textarea:focus,
 .cta__form-side input:focus,
 .cta__form-side textarea:focus,
 .cta__form-side .cta__input:focus {
-  border-color: var(--forest-green) !important;
-  box-shadow: 0 0 0 3px rgba(47, 79, 62, 0.12) !important;
+  border-color: var(--primary-600) !important;
+  box-shadow: 0 0 0 3px rgba(35, 139, 69, 0.15) !important;
 }
 
 .cta__form-side .cta__input::placeholder {
@@ -440,23 +447,23 @@ section {
 /* ——— 14. Dividers & Accents ——— */
 
 .why-choose__inner {
-  border-color: rgba(139, 94, 52, 0.2) !important;
+  border-color: rgba(0, 109, 44, 0.2) !important;
 }
 
 .sh-modal {
-  border-color: rgba(139, 94, 52, 0.2) !important;
+  border-color: rgba(0, 109, 44, 0.2) !important;
   border-radius: var(--radius-xl) !important;
 }
 
 
-/* ——— 15. Focus States (Accessibility) ——— */
+/* ——— 15. Focus States (Accessibility — WCAG 2.1 AA) ——— */
 
 button:focus-visible,
 a:focus-visible,
 input:focus-visible,
 textarea:focus-visible,
 select:focus-visible {
-  outline: 2px solid var(--sunset-gold) !important;
+  outline: 2px solid var(--primary-500) !important;
   outline-offset: 2px !important;
 }
 
@@ -464,21 +471,21 @@ select:focus-visible {
 /* ——— 16. Links ——— */
 
 section a:not(.btn):not(.navbar__link):not(.footer__link):not(.nav-sheet__item) {
-  color: var(--forest-green);
+  color: var(--primary-600);
   transition: color 0.2s ease;
 }
 
 section a:not(.btn):not(.navbar__link):not(.footer__link):not(.nav-sheet__item):hover {
-  color: var(--sunset-gold);
+  color: var(--primary-700);
 }
 
-/* Experiences Sidebar Light Theme Fixes */
+/* Experiences Sidebar Light Theme */
 .experiences__sidebar-title {
   color: var(--charcoal) !important;
 }
 
 .experiences__sidebar-label {
-  color: #A77B34 !important;
+  color: var(--primary-600) !important;
 }
 
 .experiences__nav-btn {
@@ -507,7 +514,7 @@ section a:not(.btn):not(.navbar__link):not(.footer__link):not(.nav-sheet__item):
 }
 
 .experiences__nav-btn.is-active .experiences__nav-sub {
-  color: #A77B34 !important;
+  color: var(--primary-600) !important;
 }
 
 .experiences__nav-btn:not(.is-active):hover .experiences__nav-title {
@@ -523,7 +530,7 @@ section a:not(.btn):not(.navbar__link):not(.footer__link):not(.nav-sheet__item):
   background: linear-gradient(to bottom, transparent, var(--border-medium) 30%, var(--border-medium) 70%, transparent) !important;
 }
 
-/* Page Hero Light Theme Override */
+/* Page Hero Override */
 .page-hero {
   background-color: var(--sand-beige) !important;
 }
@@ -541,9 +548,9 @@ section a:not(.btn):not(.navbar__link):not(.footer__link):not(.nav-sheet__item):
 }
 
 .page-hero__label {
-  color: #A77B34 !important;
-  background: rgba(139, 94, 52, 0.1) !important;
-  border-color: rgba(139, 94, 52, 0.2) !important;
+  color: var(--primary-600) !important;
+  background: rgba(35, 139, 69, 0.10) !important;
+  border-color: rgba(35, 139, 69, 0.22) !important;
 }
 
 .page-hero__breadcrumb a {
@@ -570,7 +577,7 @@ section a:not(.btn):not(.navbar__link):not(.footer__link):not(.nav-sheet__item):
   border-color: var(--border-medium) !important;
 }
 
-/* Seasonal Toggle Light Theme Override */
+/* Seasonal Toggle */
 .seasonal-toggle-capsule {
   background: var(--bg-card) !important;
   border-color: var(--border-medium) !important;
@@ -578,6 +585,7 @@ section a:not(.btn):not(.navbar__link):not(.footer__link):not(.nav-sheet__item):
 
 .seasonal-toggle-btn {
   color: var(--text-secondary) !important;
+  transition: color 0.3s ease !important;
 }
 
 .seasonal-toggle-btn:hover {
@@ -586,23 +594,23 @@ section a:not(.btn):not(.navbar__link):not(.footer__link):not(.nav-sheet__item):
 
 .seasonal-toggle-btn.active {
   color: #ffffff !important;
+  background: var(--primary-600) !important;
 }
 
-
-/* WhatsApp CTA Button Sunset Gold Override */
+/* WhatsApp CTA */
 .cta__whatsapp {
-  background: rgba(215, 160, 23, 0.08) !important;
-  color: var(--sunset-gold) !important;
-  border: 1px solid rgba(215, 160, 23, 0.3) !important;
+  background: rgba(35, 139, 69, 0.08) !important;
+  color: var(--primary-600) !important;
+  border: 1px solid rgba(35, 139, 69, 0.30) !important;
 }
 
 .cta__whatsapp:hover {
-  background: rgba(215, 160, 23, 0.15) !important;
-  border-color: rgba(215, 160, 23, 0.6) !important;
-  color: var(--gold-dark) !important;
+  background: rgba(35, 139, 69, 0.15) !important;
+  border-color: rgba(35, 139, 69, 0.60) !important;
+  color: var(--primary-700) !important;
 }
 
-/* Activities CTA Light Theme Override */
+/* Activities CTA */
 .activities-cta__text h3 {
   color: var(--charcoal) !important;
 }
@@ -615,7 +623,7 @@ section a:not(.btn):not(.navbar__link):not(.footer__link):not(.nav-sheet__item):
   border-top-color: var(--border-medium) !important;
 }
 
-/* Packages Page CTA Text Visibility Fix */
+/* Packages Page CTA Text */
 .cta__content .cta__title {
   color: #ffffff !important;
 }
@@ -625,10 +633,10 @@ section a:not(.btn):not(.navbar__link):not(.footer__link):not(.nav-sheet__item):
 }
 
 .cta__content .section-label {
-  color: var(--gold) !important;
+  color: var(--primary-300) !important;
 }
 
-/* Loading Screen Light Theme Override */
+/* Loading Screen */
 #sh-loader {
   background-color: var(--sand-beige) !important;
 }
@@ -638,7 +646,7 @@ section a:not(.btn):not(.navbar__link):not(.footer__link):not(.nav-sheet__item):
 }
 
 .loader__sub {
-  color: #A77B34 !important;
+  color: var(--primary-600) !important;
   opacity: 1 !important;
 }
 
@@ -647,5 +655,5 @@ section a:not(.btn):not(.navbar__link):not(.footer__link):not(.nav-sheet__item):
 }
 
 .loader__mountain svg {
-  fill: rgba(139, 94, 52, 0.05) !important;
+  fill: rgba(35, 139, 69, 0.05) !important;
 }

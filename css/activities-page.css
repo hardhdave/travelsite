@@ -45,7 +45,7 @@
   bottom: 4px;
   left: 4px;
   width: calc(50% - 4px);
-  background: var(--gold, #A77B34);
+  background: var(--gold, #238B45);
   border-radius: 100px;
   z-index: 1;
   transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
@@ -183,7 +183,7 @@
 .activities__item-price strong {
   font-size: 1rem;
   font-weight: 700;
-  color: var(--gold, #A77B34);
+  color: var(--gold, #238B45);
   margin-left: 4px;
 }
 
@@ -225,7 +225,7 @@
   }
 
   .activities__item:hover .activities__item-name {
-    color: var(--gold, #A77B34);
+    color: var(--gold, #238B45);
   }
 }
 

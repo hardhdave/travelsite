@@ -136,9 +136,9 @@ p {
   max-width: 65ch;
 }
 
-/* ---- Gold Text Gradient ---- */
+/* ---- Green Text Gradient ---- */
 .text-gradient {
-  background: linear-gradient(135deg, var(--gold-light), var(--gold));
+  background: linear-gradient(135deg, var(--primary-500), var(--primary-700));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -151,11 +151,11 @@ p {
 }
 
 .section--cream .section-label {
-  color: var(--gold-dark);
+  color: var(--primary-700);
 }
 
 .section--cream .section-label::before {
-  background: var(--gold-dark);
+  background: var(--primary-700);
 }
 
 .section--cream .section-title {
@@ -172,7 +172,7 @@ p {
 
 /* Fix for split-text animated gradient spans */
 .text-gradient .anim-word {
-  background: linear-gradient(135deg, var(--gold-light), var(--gold)) !important;
+  background: linear-gradient(135deg, var(--primary-500), var(--primary-700)) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
   background-clip: text !important;
@@ -180,7 +180,7 @@ p {
 }
 
 .text-gold {
-  color: var(--gold);
+  color: var(--primary-600);
 }
 
 .text-accent {
@@ -189,7 +189,7 @@ p {
   letter-spacing: var(--tracking-wider);
   text-transform: uppercase;
   font-size: var(--text-xs);
-  color: var(--gold);
+  color: var(--primary-600);
 }
 
 /* ---------- Section Label ---------- */
@@ -199,7 +199,7 @@ p {
   font-weight: var(--weight-semibold);
   letter-spacing: var(--tracking-widest);
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--primary-600);
   margin-bottom: var(--space-4);
   display: flex;
   align-items: center;
@@ -211,7 +211,7 @@ p {
   display: inline-block;
   width: 32px;
   height: 1px;
-  background: var(--gold);
+  background: var(--primary-600);
   opacity: 0.7;
   border-radius: var(--radius-full);
 }
@@ -281,46 +281,48 @@ section {
   transition: opacity var(--duration-normal) var(--ease-smooth);
 }
 
-/* Primary = Gold filled */
+/* Primary = Forest Green filled */
 .btn--primary {
-  background: var(--gold);
-  color: var(--charcoal);
-  border: 1px solid var(--gold);
+  background: var(--primary-600);
+  color: #ffffff;
+  border: 1px solid var(--primary-600);
   font-weight: var(--weight-bold);
   letter-spacing: var(--tracking-wider);
   text-transform: uppercase;
   font-size: 11px;
+  transition: var(--transition-color), transform 0.25s var(--ease-premium);
 }
 
 .btn--primary::before {
-  background: linear-gradient(135deg, var(--gold-light), var(--gold));
+  background: linear-gradient(135deg, var(--primary-500), var(--primary-700));
 }
 
 .btn--primary:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow-gold);
-  background: var(--gold-light);
-  border-color: var(--gold-light);
+  background: var(--primary-700);
+  border-color: var(--primary-700);
 }
 
 .btn--primary:hover::before {
   opacity: 1;
 }
 
-/* Secondary = Gold outlined */
+/* Secondary = Forest Green outlined */
 .btn--secondary {
   background: transparent;
-  color: var(--gold);
+  color: var(--primary-600);
   border: 1px solid var(--gold-border);
   letter-spacing: var(--tracking-wider);
   text-transform: uppercase;
   font-size: 11px;
+  transition: var(--transition-color), transform 0.25s var(--ease-premium);
 }
 
 .btn--secondary:hover {
-  border-color: var(--gold);
-  color: var(--gold);
-  background: var(--gold-subtle);
+  border-color: var(--primary-600);
+  color: #ffffff;
+  background: var(--primary-600);
   transform: translateY(-2px);
   box-shadow: var(--shadow-gold);
 }
@@ -389,15 +391,15 @@ section {
 
 /* ---------- Selection ---------- */
 ::selection {
-  background: var(--sunset-gold);
-  color: var(--charcoal);
+  background: var(--primary-400);
+  color: #ffffff;
 }
 
 /* ---------- Scrollbar ---------- */
 ::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track  { background: var(--bg-raised); }
-::-webkit-scrollbar-thumb  { background: var(--forest-green); border-radius: var(--radius-full); }
-::-webkit-scrollbar-thumb:hover { background: var(--sunset-gold); }
+::-webkit-scrollbar-track  { background: var(--primary-100); }
+::-webkit-scrollbar-thumb  { background: var(--primary-500); border-radius: var(--radius-full); }
+::-webkit-scrollbar-thumb:hover { background: var(--primary-700); }
 
 /* ---------- Screen Reader Only ---------- */
 .sr-only {

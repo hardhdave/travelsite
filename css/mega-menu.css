@@ -74,7 +74,7 @@
   left: 0;
   width: 100vw;
   background: rgba(8, 8, 8, 0.97);
-  border-bottom: 1px solid rgba(196, 168, 108, 0.2);
+  border-bottom: 1px solid rgba(35, 139, 69, 0.2);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   z-index: calc(var(--z-navbar) - 1);
@@ -110,7 +110,7 @@
 .mega-menu__hero {
   position: relative;
   overflow: hidden;
-  border: 1px solid rgba(196, 168, 108, 0.15);
+  border: 1px solid rgba(35, 139, 69, 0.15);
   height: 100%;
   min-height: 320px;
 }
@@ -154,8 +154,8 @@
   letter-spacing: 0.35em;
   text-transform: uppercase;
   color: var(--gold);
-  background: rgba(196, 168, 108, 0.08);
-  border: 1px solid rgba(196, 168, 108, 0.25);
+  background: rgba(35, 139, 69, 0.08);
+  border: 1px solid rgba(35, 139, 69, 0.25);
   padding: 5px 12px;
   display: inline-block;
   width: fit-content;
@@ -239,14 +239,14 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  border: 1px solid rgba(196, 168, 108, 0.1);
+  border: 1px solid rgba(35, 139, 69, 0.1);
   cursor: pointer;
   text-decoration: none;
   transition: border-color var(--duration-fast) ease, transform var(--duration-fast) ease;
 }
 
 .mega-card:hover {
-  border-color: rgba(196, 168, 108, 0.4);
+  border-color: rgba(35, 139, 69, 0.4);
   transform: translateY(-3px);
 }
 
@@ -287,7 +287,7 @@
   width: 34px;
   height: 34px;
   background: rgba(8, 8, 8, 0.75);
-  border: 1px solid rgba(196, 168, 108, 0.35);
+  border: 1px solid rgba(35, 139, 69, 0.35);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -385,7 +385,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(196, 168, 108, 0.05);
+  background: rgba(35, 139, 69, 0.05);
   transform: translateX(-100%);
   transition: transform var(--duration-fast) ease;
 }
@@ -497,7 +497,7 @@
     backdrop-filter: none;
     background: var(--bg-raised);
     border: none;
-    border-top: 1px solid rgba(196, 168, 108, 0.1);
+    border-top: 1px solid rgba(35, 139, 69, 0.1);
     padding-top: 0;
     display: none;
     pointer-events: all;
