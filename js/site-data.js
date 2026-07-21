@@ -102,10 +102,34 @@ const SHData = (function () {
     },
 
     rentals: [
-      { id: 'r1', title: 'Ski Rental', desc: 'Premium skis, boots, poles & helmets from top brands.' },
-      { id: 'r2', title: 'Snowboard Rental', desc: 'All-mountain & powder boards with bindings and boots.' },
-      { id: 'r3', title: 'Trekking Rental', desc: 'Backpacks, tents, sleeping bags & trekking poles.' },
-      { id: 'r4', title: 'MTB Rental', desc: 'Mountain bikes for Himalayan trail riding adventures.', comingSoon: true }
+      {
+        id: 'cat-ski-gear', title: 'Ski Rental', icon: '⛷️', comingSoon: false,
+        items: [
+          { id: 'rk1', enabled: true, title: 'Ski Package (Skis + Boots + Poles)', price: '₹800/day', desc: 'Full premium ski package from top brands. Includes skis, boots and poles sized to your height and ability level. Expert fitting included.', image: 'assets/images/skiing-action.png', waMsg: "I'm interested in renting the Ski Package" },
+          { id: 'rk2', enabled: true, title: 'Helmet & Protective Gear', price: '₹200/day', desc: 'Safety-certified ski helmets, wrist guards and knee pads. All gear sanitised and maintained daily.', image: 'assets/images/gallery-gulmarg.png', waMsg: "I'm interested in renting Helmet & Protective Gear" },
+          { id: 'rk3', enabled: true, title: 'Ski Jacket & Pants', price: '₹500/day', desc: 'Waterproof and breathable ski outerwear for men, women and kids. Multiple sizes available at base camp.', image: 'assets/images/hero-mountains.png', waMsg: "I'm interested in renting Ski Jacket & Pants" }
+        ]
+      },
+      {
+        id: 'cat-sb-gear', title: 'Snowboard Rental', icon: '🏂', comingSoon: false,
+        items: [
+          { id: 'rk4', enabled: true, title: 'Snowboard Package (Board + Boots)', price: '₹900/day', desc: 'All-mountain and powder snowboards with adjustable bindings and comfortable boots.', image: 'assets/images/snowboarding-action.png', waMsg: "I'm interested in renting the Snowboard Package" },
+          { id: 'rk5', enabled: true, title: 'Snowboard Boots', price: '₹400/day', desc: 'High-performance quick-lace snowboard boots providing ankle support and warmth.', image: 'assets/images/gallery-gulmarg.png', waMsg: "I'm interested in renting Snowboard Boots" }
+        ]
+      },
+      {
+        id: 'cat-trek-gear', title: 'Trekking Gear', icon: '🥾', comingSoon: false,
+        items: [
+          { id: 'rk6', enabled: true, title: '4-Season Expedition Tent', price: '₹350/day', desc: 'Double-walled windproof expedition tents for 2–3 persons.', image: 'assets/images/trekking-landscape.png', waMsg: "I'm interested in renting an Expedition Tent" },
+          { id: 'rk7', enabled: true, title: 'Sub-Zero Sleeping Bag (-10°C)', price: '₹250/day', desc: 'High-loft down sleeping bags rated for cold Himalayan nights.', image: 'assets/images/gallery-sonamarg.png', waMsg: "I'm interested in renting a Sleeping Bag" },
+          { id: 'rk8', enabled: true, title: 'Trekking Backpack (60L–75L)', price: '₹200/day', desc: 'Ergonomic internal-frame rucksacks with rain covers.', image: 'assets/images/gallery-pahalgam.png', waMsg: "I'm interested in renting a Backpack" },
+          { id: 'rk9', enabled: true, title: 'Trekking Poles (Pair)', price: '₹100/day', desc: 'Lightweight shock-absorbing aluminum trekking poles.', image: 'assets/images/gallery-gulmarg.png', waMsg: "I'm interested in renting Trekking Poles" }
+        ]
+      },
+      {
+        id: 'cat-mtb-gear', title: 'MTB Rental', icon: '🚵', comingSoon: true,
+        items: []
+      }
     ],
 
     testimonials: [
@@ -137,7 +161,16 @@ const SHData = (function () {
 
   function get(section) {
     const stored = load();
-    if (stored && stored[section] !== undefined) return stored[section];
+    if (stored && stored[section] !== undefined) {
+      // Rentals migration: old flat array → new category+items structure
+      if (section === 'rentals' && stored[section] && stored[section].length > 0 && stored[section][0].items === undefined) {
+        var freshRentals = JSON.parse(JSON.stringify(defaults.rentals));
+        stored[section] = freshRentals;
+        save(stored);
+        return freshRentals;
+      }
+      return stored[section];
+    }
     return JSON.parse(JSON.stringify(defaults[section]));
   }
 
@@ -294,12 +327,12 @@ const SHData = (function () {
     const stored = load();
     if (stored && !localStorage.getItem(ACTS_MIGRATION_KEY)) {
       const defActsFull = JSON.parse(JSON.stringify(defaults.activities));
-      ['winter', 'summer'].forEach(function(season) {
+      ['winter', 'summer'].forEach(function (season) {
         if (stored.activities && stored.activities[season]) {
-          stored.activities[season] = stored.activities[season].map(function(a) {
-            const def = defActsFull[season].find(function(d) { return d.id === a.id; }) || {};
+          stored.activities[season] = stored.activities[season].map(function (a) {
+            const def = defActsFull[season].find(function (d) { return d.id === a.id; }) || {};
             const merged = Object.assign({}, def);
-            Object.keys(a).forEach(function(k) {
+            Object.keys(a).forEach(function (k) {
               if (a[k] !== undefined && a[k] !== null && a[k] !== '') {
                 merged[k] = a[k];
               }
@@ -317,11 +350,11 @@ const SHData = (function () {
 
     function mergeWithDefaults(storedList, defaultList) {
       if (!storedList || storedList.length === 0) return defaultList;
-      return storedList.map(function(a) {
-        const def = defaultList.find(function(d) { return d.id === a.id; }) || {};
+      return storedList.map(function (a) {
+        const def = defaultList.find(function (d) { return d.id === a.id; }) || {};
         // Merge: use defaults first, then override with stored values — but skip empty stored values
         const merged = Object.assign({}, def);
-        Object.keys(a).forEach(function(k) {
+        Object.keys(a).forEach(function (k) {
           if (a[k] !== undefined && a[k] !== null && a[k] !== '') {
             merged[k] = a[k];
           }
@@ -413,6 +446,121 @@ const SHData = (function () {
       </div>`).join('');
   }
 
+  /* -- Rentals: dedicated page renderer with tab toggle & URL param support -- */
+  function renderRentalPage(tabsId, panelsId) {
+    var tabsEl = document.getElementById(tabsId);
+    var panelsEl = document.getElementById(panelsId);
+    if (!tabsEl || !panelsEl) return;
+
+    var cats = get('rentals');
+    var wa_num = get('settings').whatsappNumber;
+
+    // Read URL param ?cat=0 or hash #cat-0 to auto-select a tab
+    var initialCat = 0;
+    try {
+      var params = new URLSearchParams(window.location.search);
+      var catParam = parseInt(params.get('cat'), 10);
+      if (!isNaN(catParam) && catParam >= 0 && catParam < cats.length) initialCat = catParam;
+      if (isNaN(catParam) && window.location.hash && window.location.hash.indexOf('#cat-') === 0) {
+        catParam = parseInt(window.location.hash.replace('#cat-', ''), 10);
+        if (!isNaN(catParam) && catParam >= 0 && catParam < cats.length) initialCat = catParam;
+      }
+    } catch(e) {}
+
+    // Build tabs
+    tabsEl.innerHTML = cats.map(function(cat, ci) {
+      var itemCount = cat.items ? cat.items.filter(function(i){ return i.enabled !== false; }).length : 0;
+      var isCS = cat.comingSoon && itemCount === 0;
+      return '<button class="rental-tab-btn' + (ci === initialCat ? ' active' : '') + '" data-ci="' + ci + '" id="rental-tab-' + ci + '">' +
+        '<span class="rental-tab-icon">' + (cat.icon || '🎿') + '</span>' +
+        '<span>' + cat.title + '</span>' +
+        (isCS ? '<span class="rental-tab-cs-badge">Soon</span>' : '') +
+        '</button>';
+    }).join('');
+
+    // Build panels
+    panelsEl.innerHTML = cats.map(function(cat, ci) {
+      var visibleItems = cat.items ? cat.items.filter(function(item) { return item.enabled !== false; }) : [];
+      var panelContent = '';
+
+      if (visibleItems.length === 0) {
+        panelContent = '<div class="rental-coming-soon">' +
+          '<div class="rental-coming-soon__icon">' + (cat.icon || '🎿') + '</div>' +
+          '<h3 class="rental-coming-soon__title">Coming Soon</h3>' +
+          '<p class="rental-coming-soon__text">We\'re bringing <strong>' + cat.title + '</strong> to base camp soon. Check back or enquire below to be the first to know.</p>' +
+          '<a href="https://wa.me/' + wa_num + '?text=' + encodeURIComponent('I\'m interested in ' + cat.title + ' — when will it be available?') + '" class="btn btn--primary rental-coming-soon__btn" target="_blank" rel="noopener"><span>Enquire Early Access</span></a>' +
+          '</div>';
+      } else {
+        panelContent = '<div class="rental-eq-grid">' +
+          visibleItems.map(function(item) {
+            var imgSrc = item.image || 'assets/images/hero-mountains.png';
+            return '<div class="rental-eq-card">' +
+              '<div class="rental-eq-card__img-wrap">' +
+              '<img src="' + imgSrc + '" alt="' + item.title + '" class="rental-eq-card__img" loading="lazy">' +
+              '<span class="rental-eq-card__price">' + (item.price || 'Contact') + '</span>' +
+              '</div>' +
+              '<div class="rental-eq-card__body">' +
+              '<h3 class="rental-eq-card__title">' + item.title + '</h3>' +
+              '<p class="rental-eq-card__desc">' + (item.desc || '') + '</p>' +
+              '<a href="' + wa(wa_num, item.waMsg || 'I\'m interested in renting ' + item.title) + '" class="btn btn--primary rental-eq-card__cta" target="_blank" rel="noopener"><span>Enquire Now</span></a>' +
+              '</div>' +
+              '</div>';
+          }).join('') +
+          '</div>';
+      }
+
+      return '<div class="rental-panel' + (ci === initialCat ? ' active' : '') + '" id="rental-panel-' + ci + '" data-ci="' + ci + '">' +
+        panelContent + '</div>';
+    }).join('');
+
+    // Tab switching
+    tabsEl.querySelectorAll('.rental-tab-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var idx = parseInt(btn.getAttribute('data-ci'), 10);
+        tabsEl.querySelectorAll('.rental-tab-btn').forEach(function(b) { b.classList.remove('active'); });
+        panelsEl.querySelectorAll('.rental-panel').forEach(function(p) { p.classList.remove('active'); });
+        btn.classList.add('active');
+        var panel = document.getElementById('rental-panel-' + idx);
+        if (panel) {
+          panel.classList.add('active');
+          var cards = panel.querySelectorAll('.rental-eq-card');
+          cards.forEach(function(card, i) {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.45s ease ' + (i * 0.07) + 's, transform 0.45s ease ' + (i * 0.07) + 's';
+          });
+          requestAnimationFrame(function() {
+            requestAnimationFrame(function() {
+              cards.forEach(function(card) {
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+              });
+            });
+          });
+        }
+      });
+    });
+  }
+
+  /* -- Rentals: homepage section renderer (category cards linking to rentals.html) -- */
+  function renderRentals(containerId) {
+    var el = document.getElementById(containerId);
+    if (!el) return;
+    var cats = get('rentals');
+    el.innerHTML = cats.map(function(r, ci) {
+      var isCategory = r.items !== undefined;
+      var itemCount = isCategory ? r.items.filter(function(i){ return i.enabled !== false; }).length : 0;
+      var csoon = r.comingSoon || (isCategory && itemCount === 0);
+      var desc = r.desc || (isCategory && itemCount > 0 ? itemCount + ' item' + (itemCount === 1 ? '' : 's') + ' available' : (isCategory ? 'Equipment available at base camp' : ''));
+      return '<a href="rentals.html?cat=' + ci + '" class="rentals__card ' + (csoon ? 'rentals__card--coming-soon' : '') + ' reveal" style="text-decoration:none;color:inherit;cursor:pointer;">' +
+        (csoon ? '<span class="rentals__card-badge">Coming Soon</span>' : '') +
+        '<div class="rentals__card-icon"><svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="9" width="18" height="6" rx="2"/><path d="m7 12 2-2 2 2-2 2zm6 0 2-2 2 2-2 2z"/></svg></div>' +
+        '<h4 class="rentals__card-title">' + r.title + '</h4>' +
+        '<p class="rentals__card-desc">' + desc + '</p>' +
+        '</a>';
+    }).join('');
+  }
+
   /* -- Hero text -- */
   function renderHero() {
     const s = get('settings');
@@ -471,7 +619,7 @@ const SHData = (function () {
       // ── iOS-safe scroll freeze helpers ──
       var _scrollY = 0;
       var _isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
-                   (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+        (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
 
       function lockScroll() {
         if (_isIOS) {
@@ -556,7 +704,7 @@ const SHData = (function () {
         // Helper: build the itinerary button or placeholder
         function itineraryBtnHtml(pdf, name) {
           if (pdf && pdf.length > 100) {
-            return `<button class="btn sh-modal__itinerary-btn" data-pdf-url="${pdf}" data-pdf-name="${name||'itinerary.pdf'}" style="padding:12px 20px;background:transparent;border:1px solid rgba(196,168,108,0.45);color:#c4a86c;display:flex;align-items:center;justify-content:center;gap:8px;border-radius:8px;font-size:13px;cursor:pointer;transition:all 0.25s ease;width:100%;margin-top:10px;">
+            return `<button class="btn sh-modal__itinerary-btn" data-pdf-url="${pdf}" data-pdf-name="${name || 'itinerary.pdf'}" style="padding:12px 20px;background:transparent;border:1px solid rgba(196,168,108,0.45);color:#c4a86c;display:flex;align-items:center;justify-content:center;gap:8px;border-radius:8px;font-size:13px;cursor:pointer;transition:all 0.25s ease;width:100%;margin-top:10px;">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
               <span>View Itinerary PDF</span>
             </button>`;
@@ -663,10 +811,10 @@ const SHData = (function () {
           const allSights = get('sightseeing') || [];
           let matched = itemData;
           // Search skiing categories
-          for (let c of allSkiing) { const f = (c.items||[]).find(i => i.id === itemData.id); if (f) { matched = f; break; } }
+          for (let c of allSkiing) { const f = (c.items || []).find(i => i.id === itemData.id); if (f) { matched = f; break; } }
           // Search snowboarding categories
           if (matched === itemData) {
-            for (let c of allSnow) { const f = (c.items||[]).find(i => i.id === itemData.id); if (f) { matched = f; break; } }
+            for (let c of allSnow) { const f = (c.items || []).find(i => i.id === itemData.id); if (f) { matched = f; break; } }
           }
           // Search winter & summer activities
           if (matched === itemData) {
@@ -753,7 +901,7 @@ const SHData = (function () {
           var blobUrl = URL.createObjectURL(blob);
           var win = window.open(blobUrl, '_blank');
           if (win) win.document.title = pdfName;
-        } catch(err) {
+        } catch (err) {
           // Fallback: open raw data URL
           window.open(pdfUrl, '_blank');
         }
@@ -789,41 +937,141 @@ const SHData = (function () {
       var closeBtn = document.getElementById('shModalClose');
       var pdfBtns = modal.querySelectorAll('.sh-modal__pdf-btn');
       if (closeBtn) closeBtn.style.opacity = '0';
-      pdfBtns.forEach(function(b){ b.style.opacity = '0'; });
+      pdfBtns.forEach(function (b) { b.style.opacity = '0'; });
 
       loadScript('https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js')
         .then(function () {
           var opt = {
-            margin:        [10, 10, 10, 10],
-            filename:      filename,
-            image:         { type: 'jpeg', quality: 0.96 },
-            html2canvas:   { scale: 2, useCORS: true, logging: false, backgroundColor: '#12160F' },
-            jsPDF:         { unit: 'mm', format: 'a4', orientation: 'portrait' },
-            pagebreak:     { mode: ['avoid-all', 'css', 'legacy'] }
+            margin: [10, 10, 10, 10],
+            filename: filename,
+            image: { type: 'jpeg', quality: 0.96 },
+            html2canvas: { scale: 2, useCORS: true, logging: false, backgroundColor: '#12160F' },
+            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+            pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
           };
           return html2pdf().set(opt).from(modal).save();
         })
         .then(function () {
           if (closeBtn) closeBtn.style.opacity = '';
-          pdfBtns.forEach(function(b){ b.style.opacity = ''; });
+          pdfBtns.forEach(function (b) { b.style.opacity = ''; });
           btn.innerHTML = origHTML;
           btn.disabled = false;
         })
         .catch(function (err) {
           console.error('PDF generation failed:', err);
           if (closeBtn) closeBtn.style.opacity = '';
-          pdfBtns.forEach(function(b){ b.style.opacity = ''; });
+          pdfBtns.forEach(function (b) { b.style.opacity = ''; });
           btn.innerHTML = origHTML;
           btn.disabled = false;
         });
     });
   }
 
+  // ─── RENDER RENTALS (homepage section — category overview cards) ───
+  function renderRentals(containerId) {
+    var cats = get('rentals');
+    var el = document.getElementById(containerId);
+    if (!el) return;
+    if (!cats || cats.length === 0) {
+      el.innerHTML = '<p style="color:rgba(255,255,255,.5);text-align:center;padding:40px 0;">No rental categories yet.</p>';
+      return;
+    }
+    var settings = get('settings');
+    var waNum = (settings.whatsappNumber || '919149974118').replace(/\D/g, '');
+    el.innerHTML = cats.filter(function(c){ return c.title; }).map(function (cat) {
+      var isCS = cat.comingSoon || !cat.items || cat.items.length === 0;
+      return '<div class="rentals__card' + (isCS ? ' rentals__card--coming-soon' : '') + '">' +
+        (isCS ? '<span class="rentals__card-badge">Coming Soon</span>' : '') +
+        '<div class="rentals__card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 17h16M7 14l-3 3 3 3M17 14l3 3-3 3"/></svg></div>' +
+        '<div class="rentals__card-title">' + cat.title + '</div>' +
+        '<p class="rentals__card-desc">' + (isCS ? 'Coming soon — enquire for availability.' : (cat.items.length + ' items available for rent')) + '</p>' +
+        '</div>';
+    }).join('');
+  }
+
+  // ─── RENDER RENTAL PAGE (rentals.html — full tab+cards page) ────────
+  function renderRentalPage(tabsId, panelsId) {
+    var cats = get('rentals');
+    var tabsEl = document.getElementById(tabsId);
+    var panelsEl = document.getElementById(panelsId);
+    if (!tabsEl || !panelsEl) return;
+
+    var settings = get('settings');
+    var waNum = (settings.whatsappNumber || '919149974118').replace(/\D/g, '');
+
+    if (!cats || cats.length === 0) {
+      tabsEl.innerHTML = '';
+      panelsEl.innerHTML = '<div class="rental-coming-soon"><div class="rental-coming-soon__icon">🎿</div><div class="rental-coming-soon__title">No Categories Yet</div><p class="rental-coming-soon__text">We\'re building our rental fleet. Check back soon or <strong>WhatsApp us</strong> directly.</p><a href="https://wa.me/' + waNum + '" class="rental-coming-soon__btn">WhatsApp Us</a></div>';
+      return;
+    }
+
+    // Build tabs
+    tabsEl.innerHTML = cats.map(function (cat, i) {
+      var isCS = cat.comingSoon || !cat.items || cat.items.length === 0;
+      return '<button class="rental-tab-btn' + (i === 0 ? ' active' : '') + '" data-tab="' + i + '" onclick="window._rentalTab(this,' + i + ')" role="tab" aria-selected="' + (i === 0 ? 'true' : 'false') + '">' +
+        '<span class="rental-tab-icon">' + (cat.icon || '🎿') + '</span>' +
+        cat.title +
+        (isCS ? '<span class="rental-tab-cs-badge">Soon</span>' : '') +
+        '</button>';
+    }).join('');
+
+    // Build panels
+    panelsEl.innerHTML = cats.map(function (cat, i) {
+      var isCS = cat.comingSoon || !cat.items || cat.items.length === 0;
+      var panelContent = '';
+      if (isCS) {
+        panelContent = '<div class="rental-coming-soon">' +
+          '<div class="rental-coming-soon__icon">' + (cat.icon || '🎿') + '</div>' +
+          '<div class="rental-coming-soon__title">' + cat.title + ' — Coming Soon</div>' +
+          '<p class="rental-coming-soon__text">This equipment category is not yet available. <strong>Enquire on WhatsApp</strong> for early access or custom arrangements.</p>' +
+          '<a href="https://wa.me/' + waNum + '?text=' + encodeURIComponent('I\'m interested in ' + cat.title + ' rental') + '" target="_blank" class="rental-coming-soon__btn">📲 Enquire Now</a>' +
+          '</div>';
+      } else {
+        var enabledItems = cat.items.filter(function(it){ return it.enabled !== false; });
+        if (enabledItems.length === 0) {
+          panelContent = '<div class="rental-coming-soon"><div class="rental-coming-soon__icon">' + (cat.icon || '🎿') + '</div><div class="rental-coming-soon__title">No Items Available</div><p class="rental-coming-soon__text">Nothing available in this category yet. Check back soon.</p><a href="https://wa.me/' + waNum + '" class="rental-coming-soon__btn">📲 Enquire Now</a></div>';
+        } else {
+          panelContent = '<div class="rental-panel-header">' +
+            '<div class="rental-panel-header__label">' + (cat.icon || '🎿') + ' ' + cat.title + '</div>' +
+            '<div class="rental-panel-header__title">Choose Your Gear</div>' +
+            '<div class="rental-panel-header__sub">All prices per day · Expert fitting included · Pick up from our base camp</div>' +
+            '</div>' +
+            '<div class="rental-eq-grid">' +
+            enabledItems.map(function(item) {
+              var waLink = 'https://wa.me/' + waNum + '?text=' + encodeURIComponent(item.waMsg || 'I\'m interested in renting ' + item.title);
+              return '<div class="rental-eq-card">' +
+                (item.image ? '<div class="rental-eq-card__img-wrap"><img class="rental-eq-card__img" src="' + item.image + '" alt="' + item.title + '" onerror="this.parentElement.style.display=\'none\'">' + (item.price ? '<span class="rental-eq-card__price">' + item.price + '</span>' : '') + '</div>' : '') +
+                '<div class="rental-eq-card__body">' +
+                '<div class="rental-eq-card__title">' + item.title + '</div>' +
+                '<div class="rental-eq-card__desc">' + (item.desc || '') + '</div>' +
+                '<a href="' + waLink + '" target="_blank" class="rental-eq-card__cta">📲 Enquire on WhatsApp</a>' +
+                '</div></div>';
+            }).join('') +
+            '</div>';
+        }
+      }
+      return '<div class="rental-panel' + (i === 0 ? ' active' : '') + '" id="rental-panel-' + i + '" role="tabpanel">' + panelContent + '</div>';
+    }).join('');
+
+    // Tab switcher
+    window._rentalTab = function(btn, idx) {
+      var allBtns = tabsEl.querySelectorAll('.rental-tab-btn');
+      var allPanels = panelsEl.querySelectorAll('.rental-panel');
+      allBtns.forEach(function(b){ b.classList.remove('active'); b.setAttribute('aria-selected','false'); });
+      allPanels.forEach(function(p){ p.classList.remove('active'); });
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected','true');
+      var panel = document.getElementById('rental-panel-' + idx);
+      if (panel) panel.classList.add('active');
+    };
+  }
+
   // Public API
   return {
     get, set, reset, defaults,
     renderSkiing, renderSnowboarding, renderTrekking,
-    renderPackages, renderActivities, renderRentals,
+    renderPackages, renderActivities, renderRentals, renderRentalPage,
     renderTestimonials, renderHero, renderFooter, updateWhatsApp
   };
 })();
+

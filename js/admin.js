@@ -15,7 +15,7 @@ function showToast(msg, ok) {
   t.textContent = (ok !== false ? '✅ ' : '❌ ') + msg;
   t.classList.add('show');
   clearTimeout(t._timer);
-  t._timer = setTimeout(function() { t.classList.remove('show'); }, 3000);
+  t._timer = setTimeout(function () { t.classList.remove('show'); }, 3000);
 }
 
 // ─── TOAST ALIAS (admin.js used 'toast()') ───────────
@@ -56,8 +56,8 @@ function confirmReset() {
 
 // ─── NAVIGATION ─────────────────────────────────────
 function navigate(el) {
-  document.querySelectorAll('.nv').forEach(function(n) { n.classList.remove('active'); });
-  document.querySelectorAll('.pg').forEach(function(p) { p.classList.remove('active'); });
+  document.querySelectorAll('.nv').forEach(function (n) { n.classList.remove('active'); });
+  document.querySelectorAll('.pg').forEach(function (p) { p.classList.remove('active'); });
   el.classList.add('active');
   var page = el.dataset.page;
   var pg = document.getElementById('page-' + page);
@@ -105,41 +105,41 @@ function renderDashboard() {
   var rentals = SHData.get('rentals');
   var sightseeing = SHData.get('sightseeing');
 
-  var skiCount = skiing.reduce(function(a,c){return a+c.items.length;},0);
-  var sbCount = snowboarding.reduce(function(a,c){return a+c.items.length;},0);
+  var skiCount = skiing.reduce(function (a, c) { return a + c.items.length; }, 0);
+  var sbCount = snowboarding.reduce(function (a, c) { return a + c.items.length; }, 0);
   var actCount = (activities.winter ? activities.winter.length : 0) + (activities.summer ? activities.summer.length : 0);
 
   var stats = [
-    { icon:'⛷️', label:'Skiing Packages', count: skiCount },
-    { icon:'🏂', label:'Snowboarding', count: sbCount },
-    { icon:'🥾', label:'Treks', count: trekking.length },
-    { icon:'📦', label:'Tour Packages', count: packages.length },
-    { icon:'💬', label:'Testimonials', count: testimonials.length },
-    { icon:'🎯', label:'Activities', count: actCount },
-    { icon:'📍', label:'Sightseeing', count: sightseeing.length },
-    { icon:'🎿', label:'Rentals', count: rentals.length }
+    { icon: '⛷️', label: 'Skiing Packages', count: skiCount },
+    { icon: '🏂', label: 'Snowboarding', count: sbCount },
+    { icon: '🥾', label: 'Treks', count: trekking.length },
+    { icon: '📦', label: 'Tour Packages', count: packages.length },
+    { icon: '💬', label: 'Testimonials', count: testimonials.length },
+    { icon: '🎯', label: 'Activities', count: actCount },
+    { icon: '📍', label: 'Sightseeing', count: sightseeing.length },
+    { icon: '🎿', label: 'Rentals', count: rentals.length }
   ];
 
   var ds = document.getElementById('dashStats');
-  if (ds) ds.innerHTML = stats.map(function(s) {
+  if (ds) ds.innerHTML = stats.map(function (s) {
     return '<div class="stat-card"><div class="stat-icon">' + s.icon + '</div><div><div class="stat-count">' + s.count + '</div><div class="stat-label">' + s.label + '</div></div></div>';
   }).join('');
 
   var quicks = [
-    { icon:'⛷️', title:'Skiing', page:'skiing', count: skiCount + ' packages' },
-    { icon:'🏂', title:'Snowboarding', page:'snowboarding', count: sbCount + ' packages' },
-    { icon:'🥾', title:'Trekking', page:'trekking', count: trekking.length + ' treks' },
-    { icon:'🎯', title:'Activities', page:'activities', count: 'Winter & Summer' },
-    { icon:'📍', title:'Sightseeing', page:'sightseeing', count: sightseeing.length + ' spots' },
-    { icon:'🎿', title:'Rentals', page:'rentals', count: rentals.length + ' items' },
-    { icon:'📦', title:'Packages', page:'packages', count: packages.length + ' tours' },
-    { icon:'📄', title:'Itineraries', page:'itineraries', count: packages.filter(function(p){return p.itineraryPdf;}).length + ' PDFs' },
-    { icon:'💬', title:'Testimonials', page:'testimonials', count: testimonials.length + ' reviews' },
-    { icon:'⚙️', title:'Settings', page:'settings', count: 'Site config' }
+    { icon: '⛷️', title: 'Skiing', page: 'skiing', count: skiCount + ' packages' },
+    { icon: '🏂', title: 'Snowboarding', page: 'snowboarding', count: sbCount + ' packages' },
+    { icon: '🥾', title: 'Trekking', page: 'trekking', count: trekking.length + ' treks' },
+    { icon: '🎯', title: 'Activities', page: 'activities', count: 'Winter & Summer' },
+    { icon: '📍', title: 'Sightseeing', page: 'sightseeing', count: sightseeing.length + ' spots' },
+    { icon: '🎿', title: 'Rentals', page: 'rentals', count: rentals.length + ' items' },
+    { icon: '📦', title: 'Packages', page: 'packages', count: packages.length + ' tours' },
+    { icon: '📄', title: 'Itineraries', page: 'itineraries', count: packages.filter(function (p) { return p.itineraryPdf; }).length + ' PDFs' },
+    { icon: '💬', title: 'Testimonials', page: 'testimonials', count: testimonials.length + ' reviews' },
+    { icon: '⚙️', title: 'Settings', page: 'settings', count: 'Site config' }
   ];
 
   var qn = document.getElementById('quickNav');
-  if (qn) qn.innerHTML = quicks.map(function(q) {
+  if (qn) qn.innerHTML = quicks.map(function (q) {
     return '<div class="qcard" onclick="navigate(document.querySelector(\'[data-page=' + q.page + ']\'))"><div class="qcard-ico">' + q.icon + '</div><div class="qcard-title">' + q.title + '</div><div class="qcard-count">' + q.count + '</div></div>';
   }).join('');
 }
@@ -182,8 +182,8 @@ function renderSkiingEditor() {
   var cats = SHData.get('skiing');
   var el = document.getElementById('skiing-editor');
   if (!el) return;
-  el.innerHTML = cats.map(function(cat, ci) {
-    var rows = cat.items.map(function(item, ii) {
+  el.innerHTML = cats.map(function (cat, ci) {
+    var rows = cat.items.map(function (item, ii) {
       var actions =
         toggleBtn(item.enabled, "toggleItem('skiing'," + ci + "," + ii + ")") +
         '<button class="icon-btn icon-btn--edit" title="Edit" onclick="openModal(\'ski-item\',' + ci + ',' + ii + ')">' + SVG_EDIT + '</button>' +
@@ -203,8 +203,8 @@ function renderSnowboardingEditor() {
   var cats = SHData.get('snowboarding');
   var el = document.getElementById('snowboarding-editor');
   if (!el) return;
-  el.innerHTML = cats.map(function(cat, ci) {
-    var rows = cat.items.map(function(item, ii) {
+  el.innerHTML = cats.map(function (cat, ci) {
+    var rows = cat.items.map(function (item, ii) {
       var actions =
         toggleBtn(item.enabled, "toggleItem('snowboarding'," + ci + "," + ii + ")") +
         '<button class="icon-btn icon-btn--edit" title="Edit" onclick="openModal(\'sb-item\',' + ci + ',' + ii + ')">' + SVG_EDIT + '</button>' +
@@ -224,17 +224,17 @@ function renderTrekkingEditor() {
   var treks = SHData.get('trekking');
   var el = document.getElementById('trekking-editor');
   if (!el) return;
-  el.innerHTML = treks.length ? treks.map(function(t, ti) {
+  el.innerHTML = treks.length ? treks.map(function (t, ti) {
     var diffClass = 'diff-tag--' + (t.difficultyClass || t.difficulty.toLowerCase());
     var actions =
       toggleBtn(t.enabled, "toggleTrek(" + ti + ")") +
       '<button class="icon-btn icon-btn--edit" title="Edit" onclick="openModal(\'trek\',null,' + ti + ')">' + SVG_EDIT + '</button>' +
       '<button class="icon-btn icon-btn--delete" title="Delete" onclick="deleteTrek(' + ti + ')">' + SVG_DEL + '</button>';
     return '<div class="item-row' + (t.enabled === false ? ' item-row--disabled' : '') + '">' +
-      '<img class="item-thumb" src="' + (t.image||'') + '" alt="" onerror="this.style.display=\'none\'">' +
+      '<img class="item-thumb" src="' + (t.image || '') + '" alt="" onerror="this.style.display=\'none\'">' +
       '<div class="item-info"><div class="item-title">' + escHtml(t.title) + '</div>' +
-      '<div class="item-meta">' + (t.price||'No Price') + ' · ' + (t.days||'') + ' · ' + (t.altitude||'') + '</div></div>' +
-      '<span class="diff-tag ' + diffClass + '">' + (t.difficulty||'') + '</span>' +
+      '<div class="item-meta">' + (t.price || 'No Price') + ' · ' + (t.days || '') + ' · ' + (t.altitude || '') + '</div></div>' +
+      '<span class="diff-tag ' + diffClass + '">' + (t.difficulty || '') + '</span>' +
       (t.enabled === false ? '<span class="disabled-badge">Hidden</span>' : '') +
       '<div class="item-actions">' + actions + '</div></div>';
   }).join('') : emptyState('No treks added yet');
@@ -247,7 +247,7 @@ function renderActivitiesEditor() {
   var sEl = document.getElementById('summer-activities-editor');
 
   if (wEl) {
-    var wRows = (acts.winter || []).map(function(a, ai) {
+    var wRows = (acts.winter || []).map(function (a, ai) {
       var actions =
         toggleBtn(a.enabled, "toggleActivity('winter'," + ai + ")") +
         '<button class="icon-btn icon-btn--edit" onclick="openModal(\'activity\',\'winter\',' + ai + ')">' + SVG_EDIT + '</button>' +
@@ -258,7 +258,7 @@ function renderActivitiesEditor() {
   }
 
   if (sEl) {
-    var sRows = (acts.summer || []).map(function(a, ai) {
+    var sRows = (acts.summer || []).map(function (a, ai) {
       var actions =
         toggleBtn(a.enabled, "toggleActivity('summer'," + ai + ")") +
         '<button class="icon-btn icon-btn--edit" onclick="openModal(\'activity\',\'summer\',' + ai + ')">' + SVG_EDIT + '</button>' +
@@ -274,7 +274,7 @@ function renderSightseeingEditor() {
   var items = SHData.get('sightseeing');
   var el = document.getElementById('sightseeing-editor');
   if (!el) return;
-  el.innerHTML = items.length ? items.map(function(s, si) {
+  el.innerHTML = items.length ? items.map(function (s, si) {
     var actions =
       toggleBtn(s.enabled, "toggleSight(" + si + ")") +
       '<button class="icon-btn icon-btn--edit" onclick="openModal(\'sightseeing\',null,' + si + ')">' + SVG_EDIT + '</button>' +
@@ -283,19 +283,52 @@ function renderSightseeingEditor() {
   }).join('') : emptyState('No sightseeing destinations yet');
 }
 
-// ─── RENTALS EDITOR ──────────────────────────────────
+// ─── RENTALS EDITOR (Category + Items) ────────────────
 function renderRentalsEditor() {
-  var rentals = SHData.get('rentals');
+  var cats = SHData.get('rentals');
   var el = document.getElementById('rentals-editor');
   if (!el) return;
-  el.innerHTML = rentals.length ? rentals.map(function(r, ri) {
-    var badge = r.comingSoon ? 'Coming Soon' : '';
-    var actions =
-      toggleBtn(r.enabled, "toggleRental(" + ri + ")") +
-      '<button class="icon-btn icon-btn--edit" onclick="openModal(\'rental\',null,' + ri + ')">' + SVG_EDIT + '</button>' +
-      '<button class="icon-btn icon-btn--delete" onclick="deleteRental(' + ri + ')">' + SVG_DEL + '</button>';
-    return simpleRow(r.title, r.desc, badge, r.enabled, actions);
-  }).join('') : emptyState('No rental items yet');
+  if (!cats || cats.length === 0) {
+    el.innerHTML = emptyState('No rental categories yet. Click "Add Category" to get started.');
+    return;
+  }
+  el.innerHTML = cats.map(function (cat, ci) {
+    var visibleItems = cat.items ? cat.items : [];
+    var isCS = cat.comingSoon || visibleItems.length === 0;
+    var itemsHtml = '';
+    if (visibleItems.length > 0) {
+      itemsHtml = '<div class="items-list">' +
+        visibleItems.map(function (item, ii) {
+          var actions =
+            toggleBtn(item.enabled, 'toggleRentalItem(' + ci + ',' + ii + ')') +
+            '<button class="icon-btn icon-btn--edit" title="Edit" onclick="openModal(\'rental-item\',' + ci + ',' + ii + ')">' + SVG_EDIT + '</button>' +
+            '<button class="icon-btn icon-btn--delete" title="Delete" onclick="deleteRentalItem(' + ci + ',' + ii + ')">' + SVG_DEL + '</button>';
+          var meta = (item.price || 'No price') + (item.desc ? ' &nbsp;&middot;&nbsp; ' + escHtml(item.desc.substring(0, 55)) + (item.desc.length > 55 ? '&hellip;' : '') : '');
+          return itemRow(item.image, item.title, meta, item.enabled, actions);
+        }).join('') +
+        '</div>';
+    } else {
+      itemsHtml = '<div style="border:1px solid var(--cb);border-top:none;border-radius:0 0 var(--r) var(--r);">' +
+        '<div class="empty-state" style="border:none;margin:0;"><div class="empty-state-icon">' + (cat.icon || '\ud83c\udfbf') + '</div>' +
+        '<strong>No equipment items yet</strong>This category shows as <em>Coming Soon</em> on the rental page until items are added.</div></div>';
+    }
+    var catActions =
+      '<button class="cat-add-btn" onclick="openModal(\'rental-item\',' + ci + ',null)">+ Add Item</button>' +
+      '<button class="cat-add-btn" style="margin-left:5px;background:rgba(224,138,44,.18);border-color:rgba(224,138,44,.35);" onclick="openModal(\'rental-cat\',' + ci + ',null)">\u270f\ufe0f Edit</button>' +
+      '<button class="cat-add-btn" style="margin-left:5px;background:rgba(239,68,68,.14);border-color:rgba(239,68,68,.28);" onclick="deleteRentalCat(' + ci + ')">\ud83d\uddd1 Del</button>';
+    return '<div class="admin-category">' +
+      '<div class="admin-cat-header">' +
+        '<div class="admin-cat-title">' +
+          '<div class="admin-cat-title-dot"></div>' +
+          '<span style="font-size:18px;line-height:1;margin-right:6px;">' + (cat.icon || '\ud83c\udfbf') + '</span>' +
+          escHtml(cat.title) +
+          (isCS ? '<span style="font-size:9px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,255,255,.18);color:#fff;padding:2px 8px;border-radius:100px;margin-left:8px;">Coming Soon</span>' : '') +
+        '</div>' +
+        '<div style="display:flex;align-items:center;gap:3px;">' + catActions + '</div>' +
+      '</div>' +
+      itemsHtml +
+      '</div>';
+  }).join('');
 }
 
 // ─── PACKAGES EDITOR ──────────────────────────────────
@@ -303,27 +336,26 @@ function renderPackagesEditor() {
   var pkgs = SHData.get('packages');
   var el = document.getElementById('packages-editor');
   if (!el) return;
-  el.innerHTML = pkgs.length ? pkgs.map(function(p, pi) {
+  el.innerHTML = pkgs.length ? pkgs.map(function (p, pi) {
     var actions =
       toggleBtn(p.enabled, "togglePackage(" + pi + ")") +
       '<button class="icon-btn icon-btn--edit" onclick="openModal(\'package\',null,' + pi + ')">' + SVG_EDIT + '</button>' +
       '<button class="icon-btn icon-btn--delete" onclick="deletePackage(' + pi + ')">' + SVG_DEL + '</button>';
-    var meta = (p.price||'No Price') + ' &nbsp;·&nbsp; ' + (p.duration||'') + ' &nbsp;·&nbsp; ' + (p.accommodation||'');
+    var meta = (p.price || 'No Price') + ' &nbsp;·&nbsp; ' + (p.duration || '') + ' &nbsp;·&nbsp; ' + (p.accommodation || '');
     return itemRow(p.image, p.title, meta, p.enabled, actions);
   }).join('') : emptyState('No tour packages yet');
 }
-
 // ─── TESTIMONIALS EDITOR ─────────────────────────────
 function renderTestimonialsEditor() {
   var tms = SHData.get('testimonials');
   var el = document.getElementById('testimonials-editor');
   if (!el) return;
-  el.innerHTML = tms.length ? tms.map(function(t, ti) {
+  el.innerHTML = tms.length ? tms.map(function (t, ti) {
     var actions =
       toggleBtn(t.enabled, "toggleTestimonial(" + ti + ")") +
       '<button class="icon-btn icon-btn--edit" onclick="openModal(\'testimonial\',null,' + ti + ')">' + SVG_EDIT + '</button>' +
       '<button class="icon-btn icon-btn--delete" onclick="deleteTestimonial(' + ti + ')">' + SVG_DEL + '</button>';
-    return simpleRow(t.name, t.text.substring(0,80)+'…', t.source, t.enabled, actions);
+    return simpleRow(t.name, t.text.substring(0, 80) + '…', t.source, t.enabled, actions);
   }).join('') : emptyState('No testimonials yet');
 }
 
@@ -378,15 +410,25 @@ function deleteSight(si) {
   var items = SHData.get('sightseeing');
   items.splice(si, 1); SHData.set('sightseeing', items); renderSightseeingEditor(); showToast('Deleted', false);
 }
-function toggleRental(ri) {
-  var rentals = SHData.get('rentals');
-  rentals[ri].enabled = rentals[ri].enabled === false ? true : false;
-  SHData.set('rentals', rentals); renderRentalsEditor(); showToast('Visibility updated');
+function toggleRentalItem(ci, ii) {
+  var cats = SHData.get('rentals');
+  cats[ci].items[ii].enabled = cats[ci].items[ii].enabled === false ? true : false;
+  SHData.set('rentals', cats); renderRentalsEditor(); showToast('Visibility updated');
 }
-function deleteRental(ri) {
-  if (!confirm('Delete this rental item?')) return;
-  var rentals = SHData.get('rentals');
-  rentals.splice(ri, 1); SHData.set('rentals', rentals); renderRentalsEditor(); showToast('Deleted', false);
+function deleteRentalItem(ci, ii) {
+  if (!confirm('Delete this equipment item?')) return;
+  var cats = SHData.get('rentals');
+  cats[ci].items.splice(ii, 1); SHData.set('rentals', cats); renderRentalsEditor(); showToast('Deleted', false);
+}
+function toggleRentalCat(ci) {
+  var cats = SHData.get('rentals');
+  cats[ci].enabled = cats[ci].enabled === false ? true : false;
+  SHData.set('rentals', cats); renderRentalsEditor(); showToast('Visibility updated');
+}
+function deleteRentalCat(ci) {
+  var cats = SHData.get('rentals');
+  if (!confirm('Delete category "' + cats[ci].title + '" and ALL its items? This cannot be undone.')) return;
+  cats.splice(ci, 1); SHData.set('rentals', cats); renderRentalsEditor(); showToast('Category deleted', false);
 }
 function togglePackage(pi) {
   var pkgs = SHData.get('packages');
@@ -425,11 +467,11 @@ function loadSettings() {
 }
 function saveSettings() {
   var s = {
-    whatsappNumber: (document.getElementById('s-whatsapp')||{}).value || '',
-    heroTitle: (document.getElementById('s-heroTitle')||{}).value || '',
-    heroSubtitle: (document.getElementById('s-heroSubtitle')||{}).value || '',
-    heroVideoUrl: (document.getElementById('s-heroVideo')||{}).value || '',
-    footerCopyright: (document.getElementById('s-copyright')||{}).value || ''
+    whatsappNumber: (document.getElementById('s-whatsapp') || {}).value || '',
+    heroTitle: (document.getElementById('s-heroTitle') || {}).value || '',
+    heroSubtitle: (document.getElementById('s-heroSubtitle') || {}).value || '',
+    heroVideoUrl: (document.getElementById('s-heroVideo') || {}).value || '',
+    footerCopyright: (document.getElementById('s-copyright') || {}).value || ''
   };
   SHData.set('settings', s);
   showToast('Settings saved successfully');
@@ -467,11 +509,19 @@ function openModal(type, ctx1, ctx2) {
     item = ctx2 !== null && ctx2 !== undefined ? sights[ctx2] : {};
     titleEl.textContent = ctx2 !== null && ctx2 !== undefined ? 'Edit: ' + item.title : 'Add Destination';
     html = sightseeingForm(item);
-  } else if (type === 'rental') {
-    var rentals = SHData.get('rentals');
-    item = ctx2 !== null && ctx2 !== undefined ? rentals[ctx2] : {};
-    titleEl.textContent = ctx2 !== null && ctx2 !== undefined ? 'Edit: ' + item.title : 'Add Rental Item';
-    html = rentalForm(item);
+  } else if (type === 'rental-cat') {
+    var cats = SHData.get('rentals');
+    // ctx1 = category index (edit) or null (new)
+    item = ctx1 !== null && ctx1 !== undefined ? cats[ctx1] : {};
+    titleEl.textContent = ctx1 !== null && ctx1 !== undefined ? 'Edit Category: ' + item.title : 'Add Rental Category';
+    html = rentalCatForm(item);
+  } else if (type === 'rental-item') {
+    var cats = SHData.get('rentals');
+    var cat = cats[ctx1];
+    // ctx2 = item index (edit) or null (new)
+    item = ctx2 !== null && ctx2 !== undefined ? cat.items[ctx2] : {};
+    titleEl.textContent = ctx2 !== null && ctx2 !== undefined ? 'Edit: ' + item.title : 'Add Item to "' + cat.title + '"';
+    html = rentalItemForm(item);
   } else if (type === 'package') {
     var pkgs = SHData.get('packages');
     item = ctx2 !== null && ctx2 !== undefined ? pkgs[ctx2] : {};
@@ -504,7 +554,7 @@ function closeModalOnBackdrop(e) {
   if (e.target.id === 'modalBackdrop') closeModal();
 }
 
-function v(id) { var el = document.getElementById(id); return el ? (el.value||'').trim() : ''; }
+function v(id) { var el = document.getElementById(id); return el ? (el.value || '').trim() : ''; }
 function vc(id) { var el = document.getElementById(id); return el ? el.checked : false; }
 
 function saveModal() {
@@ -576,18 +626,36 @@ function saveModal() {
     if (isEdit) sights[ctx2] = newS; else sights.push(newS);
     SHData.set('sightseeing', sights); renderSightseeingEditor();
   }
-  else if (type === 'rental') {
-    var rentals = SHData.get('rentals');
-    var existing = isEdit ? rentals[ctx2] : {};
-    var newR = {
-      id: isEdit ? existing.id : 'ren-' + Date.now(),
-      enabled: existing.enabled !== false,
-      title: v('f-title'), desc: v('f-desc'), comingSoon: vc('f-coming-soon'),
-      price: v('f-price')
+  else if (type === 'rental-cat') {
+    var cats = SHData.get('rentals');
+    var isCatEdit = ctx1 !== null && ctx1 !== undefined;
+    var existingCat = isCatEdit ? cats[ctx1] : {};
+    var newCat = {
+      id: isCatEdit ? existingCat.id : 'cat-' + Date.now(),
+      title: v('f-title'),
+      icon: v('f-icon') || '🎿',
+      comingSoon: vc('f-coming-soon'),
+      items: isCatEdit ? (existingCat.items || []) : []
     };
-    if (!newR.title) { showToast('Title is required', false); return; }
-    if (isEdit) rentals[ctx2] = newR; else rentals.push(newR);
-    SHData.set('rentals', rentals); renderRentalsEditor();
+    if (!newCat.title) { showToast('Category title is required', false); return; }
+    if (isCatEdit) cats[ctx1] = newCat; else cats.push(newCat);
+    SHData.set('rentals', cats); renderRentalsEditor();
+  }
+  else if (type === 'rental-item') {
+    var cats = SHData.get('rentals');
+    var existing = isEdit ? cats[ctx1].items[ctx2] : {};
+    var newItem = {
+      id: isEdit ? existing.id : 'ri-' + Date.now(),
+      enabled: existing.enabled !== false,
+      title: v('f-title'),
+      desc: v('f-desc'),
+      price: v('f-price'),
+      image: v('f-image'),
+      waMsg: v('f-wamsg')
+    };
+    if (!newItem.title) { showToast('Title is required', false); return; }
+    if (isEdit) cats[ctx1].items[ctx2] = newItem; else cats[ctx1].items.push(newItem);
+    SHData.set('rentals', cats); renderRentalsEditor();
   }
   else if (type === 'package') {
     var pkgs = SHData.get('packages');
@@ -628,16 +696,16 @@ function saveModal() {
 
 // ─── HTML HELPERS ─────────────────────────────────────
 function escHtml(s) {
-  return String(s||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  return String(s || '').replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
 function field(label, id, val, type, placeholder) {
-  return '<div class="field"><label>' + label + '</label><input type="' + (type||'text') + '" id="' + id + '" value="' + escHtml(val||'') + '" placeholder="' + (placeholder||'') + '"></div>';
+  return '<div class="field"><label>' + label + '</label><input type="' + (type || 'text') + '" id="' + id + '" value="' + escHtml(val || '') + '" placeholder="' + (placeholder || '') + '"></div>';
 }
 function fieldTA(label, id, val, rows) {
-  return '<div class="field"><label>' + label + '</label><textarea id="' + id + '" rows="' + (rows||3) + '">' + escHtml(val||'') + '</textarea></div>';
+  return '<div class="field"><label>' + label + '</label><textarea id="' + id + '" rows="' + (rows || 3) + '">' + escHtml(val || '') + '</textarea></div>';
 }
 function fieldSelect(label, id, options, selected) {
-  var opts = options.map(function(o){ return '<option value="'+o+'"'+(o===selected?' selected':'')+'>'+o+'</option>'; }).join('');
+  var opts = options.map(function (o) { return '<option value="' + o + '"' + (o === selected ? ' selected' : '') + '>' + o + '</option>'; }).join('');
   return '<div class="field"><label>' + label + '</label><select id="' + id + '">' + opts + '</select></div>';
 }
 
@@ -646,12 +714,12 @@ function imageUploadField(fieldId, val) {
   var hasVal = val && val.length > 0;
   return '<div class="field"><label>Image</label>' +
     '<div class="img-upload-row">' +
-    '<input type="text" id="' + fieldId + '" value="' + escHtml(val||'') + '" placeholder="assets/images/... or click Import" oninput="updateImgPreview(\'' + fieldId + '\')">' +
+    '<input type="text" id="' + fieldId + '" value="' + escHtml(val || '') + '" placeholder="assets/images/... or click Import" oninput="updateImgPreview(\'' + fieldId + '\')">' +
     '<button type="button" class="import-btn" onclick="triggerImageUpload(\'' + fieldId + '\')">📁 Import</button>' +
     '<input type="file" id="' + fieldId + '-file" accept="image/*" style="display:none" onchange="handleImageUpload(\'' + fieldId + '\')">' +
     '</div>' +
     '<div class="img-preview" id="' + fieldId + '-preview" style="' + (hasVal ? '' : 'display:none') + '">' +
-    '<img src="' + escHtml(val||'') + '" alt="Preview" onerror="this.parentElement.style.display=\'none\'">' +
+    '<img src="' + escHtml(val || '') + '" alt="Preview" onerror="this.parentElement.style.display=\'none\'">' +
     '</div></div>';
 }
 function triggerImageUpload(fieldId) {
@@ -662,47 +730,47 @@ function handleImageUpload(fieldId) {
   var fileEl = document.getElementById(fieldId + '-file');
   if (!fileEl || !fileEl.files[0]) return;
   var reader = new FileReader();
-  reader.onload = function(e) {
+  reader.onload = function (e) {
     var dataUrl = e.target.result;
     var input = document.getElementById(fieldId);
     if (input) input.value = dataUrl;
     var preview = document.getElementById(fieldId + '-preview');
-    if (preview) { preview.style.display='block'; var img=preview.querySelector('img'); if(img) img.src=dataUrl; }
+    if (preview) { preview.style.display = 'block'; var img = preview.querySelector('img'); if (img) img.src = dataUrl; }
     showToast('Image imported from PC');
   };
   reader.readAsDataURL(fileEl.files[0]);
 }
 function updateImgPreview(fieldId) {
-  var val = (document.getElementById(fieldId)||{}).value || '';
+  var val = (document.getElementById(fieldId) || {}).value || '';
   var preview = document.getElementById(fieldId + '-preview');
   if (!preview) return;
-  if (val) { preview.style.display='block'; var img=preview.querySelector('img'); if(img) img.src=val; }
-  else preview.style.display='none';
+  if (val) { preview.style.display = 'block'; var img = preview.querySelector('img'); if (img) img.src = val; }
+  else preview.style.display = 'none';
 }
 
 // ─── TAG MANAGER ──────────────────────────────────────
 function tagManagerField(fieldId, val, labelText) {
   labelText = labelText || 'Includes / Tags';
-  var tags = (val||'').split(',').filter(Boolean).map(function(t){return t.trim();});
-  var pillsHtml = tags.map(function(t){
-    return '<span class="tag-pill">' + escHtml(t) + '<button type="button" onclick="removeTag(\'' + fieldId + '\',\'' + escHtml(t).replace(/'/g,"\\'") + '\')">×</button></span>';
+  var tags = (val || '').split(',').filter(Boolean).map(function (t) { return t.trim(); });
+  var pillsHtml = tags.map(function (t) {
+    return '<span class="tag-pill">' + escHtml(t) + '<button type="button" onclick="removeTag(\'' + fieldId + '\',\'' + escHtml(t).replace(/'/g, "\\'") + '\')">×</button></span>';
   }).join('');
   return '<div class="field"><label>' + labelText + '</label>' +
-    '<input type="hidden" id="' + fieldId + '" value="' + escHtml(val||'') + '">' +
+    '<input type="hidden" id="' + fieldId + '" value="' + escHtml(val || '') + '">' +
     '<div class="tag-container" id="' + fieldId + '-tags">' + (pillsHtml || '<span class="tag-placeholder">Type below and press Enter to add tags...</span>') + '</div>' +
     '<div class="tag-add-row">' +
     '<input type="text" id="' + fieldId + '-custom" placeholder="Type tag and press Enter..." class="tag-custom-input" onkeydown="if(event.key===\'Enter\'||event.key===\',\'){event.preventDefault();addCustomTag(\'' + fieldId + '\');}">' +
     '<button type="button" class="tag-add-btn" onclick="addCustomTag(\'' + fieldId + '\')">+ Add</button>' +
     '</div></div>';
 }
-function _getTags(id){ return ((document.getElementById(id)||{}).value||'').split(',').filter(Boolean).map(function(t){return t.trim();}); }
+function _getTags(id) { return ((document.getElementById(id) || {}).value || '').split(',').filter(Boolean).map(function (t) { return t.trim(); }); }
 function _setTags(id, tags) {
-  var input = document.getElementById(id); if(input) input.value=tags.join(',');
-  var c = document.getElementById(id+'-tags'); if(!c) return;
-  c.innerHTML = tags.length ? tags.map(function(t){ return '<span class="tag-pill">'+escHtml(t)+'<button type="button" onclick="removeTag(\''+id+'\',\''+escHtml(t).replace(/'/g,"\\'")+'\')">×</button></span>'; }).join('') : '<span class="tag-placeholder">Type below and press Enter to add tags...</span>';
+  var input = document.getElementById(id); if (input) input.value = tags.join(',');
+  var c = document.getElementById(id + '-tags'); if (!c) return;
+  c.innerHTML = tags.length ? tags.map(function (t) { return '<span class="tag-pill">' + escHtml(t) + '<button type="button" onclick="removeTag(\'' + id + '\',\'' + escHtml(t).replace(/'/g, "\\'") + '\')">×</button></span>'; }).join('') : '<span class="tag-placeholder">Type below and press Enter to add tags...</span>';
 }
-function addCustomTag(id) { var input=document.getElementById(id+'-custom'); var val=(input||{}).value; if(!val||!val.trim()) return; var tags=_getTags(id); val=val.trim(); if(!tags.includes(val)){tags.push(val);_setTags(id,tags);} if(input) input.value=''; }
-function removeTag(id, tag) { _setTags(id, _getTags(id).filter(function(t){return t!==tag;})); }
+function addCustomTag(id) { var input = document.getElementById(id + '-custom'); var val = (input || {}).value; if (!val || !val.trim()) return; var tags = _getTags(id); val = val.trim(); if (!tags.includes(val)) { tags.push(val); _setTags(id, tags); } if (input) input.value = ''; }
+function removeTag(id, tag) { _setTags(id, _getTags(id).filter(function (t) { return t !== tag; })); }
 
 // ─── PDF UPLOAD FIELD (reusable for all card forms) ───
 function pdfUploadField(item) {
@@ -734,7 +802,7 @@ function handlePdfField() {
     showToast('File too large (max 10MB)', false); fileEl.value = ''; return;
   }
   var reader = new FileReader();
-  reader.onload = function(e) {
+  reader.onload = function (e) {
     document.getElementById('f-pdf').value = e.target.result;
     document.getElementById('f-pdf-name').value = file.name;
     var status = document.getElementById('f-pdf-status');
@@ -761,62 +829,68 @@ function resolvePdfForSave(existing) {
 
 // ─── FORM BUILDERS ────────────────────────────────────
 function packageForm(item) {
-  return '<div class="form-row">' + field('Package Title *','f-title',item.title) + field('Badge (e.g. Beginner, Elite)','f-badge',item.badge) + '</div>' +
-    fieldTA('Description *','f-desc',item.description,4) +
-    '<div class="form-row">' + field('Price (e.g. ₹15,000)','f-price',item.price) + field('Duration (meta 1)','f-meta1',item.meta1) + '</div>' +
-    '<div class="form-row">' + field('Level/Type (meta 2)','f-meta2',item.meta2) + field('Extra Info (meta 3)','f-meta3',item.meta3) + '</div>' +
+  return '<div class="form-row">' + field('Package Title *', 'f-title', item.title) + field('Badge (e.g. Beginner, Elite)', 'f-badge', item.badge) + '</div>' +
+    fieldTA('Description *', 'f-desc', item.description, 4) +
+    '<div class="form-row">' + field('Price (e.g. ₹15,000)', 'f-price', item.price) + field('Duration (meta 1)', 'f-meta1', item.meta1) + '</div>' +
+    '<div class="form-row">' + field('Level/Type (meta 2)', 'f-meta2', item.meta2) + field('Extra Info (meta 3)', 'f-meta3', item.meta3) + '</div>' +
     tagManagerField('f-includes', item.includes, 'What\'s Included') +
     imageUploadField('f-image', item.image) +
     pdfUploadField(item) +
-    field('WhatsApp Message','f-wamsg',item.waMsg,'text',"I'm interested in...");
+    field('WhatsApp Message', 'f-wamsg', item.waMsg, 'text', "I'm interested in...");
 }
 function trekForm(item) {
-  return field('Trek Name *','f-title',item.title) +
-    fieldTA('Description *','f-desc',item.description,4) +
-    '<div class="form-row">' + field('Price (e.g. ₹16,500)','f-price',item.price) + field('Best Season (e.g. Jun – Sep)','f-season',item.season) + '</div>' +
-    '<div class="form-row">' + fieldSelect('Difficulty *','f-difficulty',['Easy','Moderate','Challenging'],item.difficulty) + field('Duration (e.g. 7 Days / 6 Nights)','f-days',item.days) + '</div>' +
-    '<div class="form-row">' + field('Max Altitude (e.g. 3,800m)','f-altitude',item.altitude) + field('Distance (e.g. 72 km)','f-distance',item.distance) + '</div>' +
+  return field('Trek Name *', 'f-title', item.title) +
+    fieldTA('Description *', 'f-desc', item.description, 4) +
+    '<div class="form-row">' + field('Price (e.g. ₹16,500)', 'f-price', item.price) + field('Best Season (e.g. Jun – Sep)', 'f-season', item.season) + '</div>' +
+    '<div class="form-row">' + fieldSelect('Difficulty *', 'f-difficulty', ['Easy', 'Moderate', 'Challenging'], item.difficulty) + field('Duration (e.g. 7 Days / 6 Nights)', 'f-days', item.days) + '</div>' +
+    '<div class="form-row">' + field('Max Altitude (e.g. 3,800m)', 'f-altitude', item.altitude) + field('Distance (e.g. 72 km)', 'f-distance', item.distance) + '</div>' +
     tagManagerField('f-highlights', item.highlights, 'Trek Highlights') +
     imageUploadField('f-image', item.image) +
     pdfUploadField(item) +
-    field('WhatsApp Message','f-wamsg',item.waMsg,'text',"I'm interested in...");
+    field('WhatsApp Message', 'f-wamsg', item.waMsg, 'text', "I'm interested in...");
 }
 function activityForm(item) {
-  return '<div class="form-row">' + field('Activity Name *','f-name',item.name) + field('Badge (e.g. Adventure, Leisure)','f-badge',item.badge) + '</div>' +
-    field('Short Description *','f-desc',item.desc) +
-    '<div class="form-row">' + field('Price (e.g. ₹2,999)','f-price',item.price) + field('WhatsApp Message','f-wamsg',item.waMsg,'text',"I'm interested in...") + '</div>' +
+  return '<div class="form-row">' + field('Activity Name *', 'f-name', item.name) + field('Badge (e.g. Adventure, Leisure)', 'f-badge', item.badge) + '</div>' +
+    field('Short Description *', 'f-desc', item.desc) +
+    '<div class="form-row">' + field('Price (e.g. ₹2,999)', 'f-price', item.price) + field('WhatsApp Message', 'f-wamsg', item.waMsg, 'text', "I'm interested in...") + '</div>' +
     imageUploadField('f-image', item.image);
 }
 function sightseeingForm(item) {
-  return field('Place ID (e.g. gulmarg)','f-place',item.place) +
-    field('Map Label','f-label',item.label) +
-    field('Display Title *','f-title',item.title) +
-    fieldTA('Description','f-desc',item.desc,3) +
+  return field('Place ID (e.g. gulmarg)', 'f-place', item.place) +
+    field('Map Label', 'f-label', item.label) +
+    field('Display Title *', 'f-title', item.title) +
+    fieldTA('Description', 'f-desc', item.desc, 3) +
     imageUploadField('f-image', item.image) +
     pdfUploadField(item);
 }
-function rentalForm(item) {
-  return field('Rental Item Title *','f-title',item.title) +
-    fieldTA('Description','f-desc',item.desc,2) +
-    field('Price / Rate (e.g. ₹500/day)','f-price',item.price) +
+function rentalCatForm(item) {
+  return field('Category Title *', 'f-title', item.title, 'text', 'e.g. Ski Rental') +
+    field('Icon (emoji)', 'f-icon', item.icon || '🎿', 'text', 'e.g. ⛷️') +
     '<div class="field"><label style="display:flex;align-items:center;gap:8px;cursor:pointer;text-transform:none;letter-spacing:0;font-size:13px;">' +
-    '<input type="checkbox" id="f-coming-soon" ' + (item.comingSoon?'checked':'') + ' style="width:auto;accent-color:var(--gold);"> Mark as "Coming Soon"</label></div>';
+    '<input type="checkbox" id="f-coming-soon" ' + (item.comingSoon ? 'checked' : '') + ' style="width:auto;accent-color:var(--gold);"> Mark as "Coming Soon" (overrides items)</label></div>';
+}
+function rentalItemForm(item) {
+  return field('Item Title *', 'f-title', item.title, 'text', 'e.g. Ski Package (Skis + Boots + Poles)') +
+    fieldTA('Description', 'f-desc', item.desc, 3) +
+    field('Price / Rate (e.g. ₹800/day)', 'f-price', item.price) +
+    imageUploadField('f-image', item.image) +
+    field('WhatsApp Message', 'f-wamsg', item.waMsg, 'text', "I'm interested in renting...");
 }
 function tourPackageForm(item) {
-  return '<div class="form-row">' + field('Package Title *','f-title',item.title) + field('Badge (e.g. Bestseller)','f-badge',item.badge) + '</div>' +
-    fieldTA('Description *','f-desc',item.description,4) +
-    '<div class="form-row">' + field('Price (e.g. ₹65,000)','f-price',item.price) + field('Duration (e.g. 7N / 8D)','f-duration',item.duration) + '</div>' +
-    '<div class="form-row">' + field('Accommodation','f-accommodation',item.accommodation) + field('Transport','f-transport',item.transport) + '</div>' +
-    '<div class="form-row">' + field('Meals','f-meals',item.meals) + field('Destinations (comma-separated)','f-destinations',item.destinations,'text','Srinagar,Gulmarg,...') + '</div>' +
+  return '<div class="form-row">' + field('Package Title *', 'f-title', item.title) + field('Badge (e.g. Bestseller)', 'f-badge', item.badge) + '</div>' +
+    fieldTA('Description *', 'f-desc', item.description, 4) +
+    '<div class="form-row">' + field('Price (e.g. ₹65,000)', 'f-price', item.price) + field('Duration (e.g. 7N / 8D)', 'f-duration', item.duration) + '</div>' +
+    '<div class="form-row">' + field('Accommodation', 'f-accommodation', item.accommodation) + field('Transport', 'f-transport', item.transport) + '</div>' +
+    '<div class="form-row">' + field('Meals', 'f-meals', item.meals) + field('Destinations (comma-separated)', 'f-destinations', item.destinations, 'text', 'Srinagar,Gulmarg,...') + '</div>' +
     tagManagerField('f-includes', item.includes, 'What\'s Included') +
     imageUploadField('f-image', item.image) +
     pdfUploadField(item) +
-    field('WhatsApp Message','f-wamsg',item.waMsg,'text',"I'm interested in...");
+    field('WhatsApp Message', 'f-wamsg', item.waMsg, 'text', "I'm interested in...");
 }
 function testimonialForm(item) {
-  return '<div class="form-row">' + field('Reviewer Name *','f-name',item.name) + field('Initials (e.g. AK)','f-initials',item.initials,'text','AK') + '</div>' +
-    field('Source (e.g. Google Review ★ 5.0)','f-source',item.source) +
-    fieldTA('Review Text *','f-text',item.text,5);
+  return '<div class="form-row">' + field('Reviewer Name *', 'f-name', item.name) + field('Initials (e.g. AK)', 'f-initials', item.initials, 'text', 'AK') + '</div>' +
+    field('Source (e.g. Google Review ★ 5.0)', 'f-source', item.source) +
+    fieldTA('Review Text *', 'f-text', item.text, 5);
 }
 
 // ─── ITINERARY EDITOR ─────────────────────────────────
@@ -824,21 +898,21 @@ function renderItinerariesEditor() {
   var pkgs = SHData.get('packages') || [];
   var el = document.getElementById('itineraries-editor');
   if (!el) return;
-  
+
   if (!pkgs.length) {
     el.innerHTML = emptyState('No packages available. Add some packages first.');
     return;
   }
 
-  el.innerHTML = pkgs.map(function(p, pi) {
+  el.innerHTML = pkgs.map(function (p, pi) {
     var hasPdf = p.itineraryPdf && p.itineraryPdf.length > 0;
     var filename = p.itineraryPdfName || (hasPdf ? 'uploaded-itinerary.pdf' : '');
-    var currentPdfHtml = hasPdf 
+    var currentPdfHtml = hasPdf
       ? '<div class="pdf-status" style="margin-bottom:12px; font-size:13px; color:var(--gold); display:flex; align-items:center; gap:6px;">📄 <span>' + escHtml(filename) + '</span></div>'
       : '<div class="pdf-status" style="margin-bottom:12px; font-size:13px; color:var(--t3); font-style:italic;">No PDF uploaded</div>';
-    
+
     var uploadBtnLabel = hasPdf ? 'Replace PDF' : 'Upload PDF';
-    var removeBtnHtml = hasPdf 
+    var removeBtnHtml = hasPdf
       ? '<button type="button" class="tbtn tbtn--danger" onclick="removeItinerary(' + pi + ')">Remove</button>'
       : '';
 
@@ -892,40 +966,40 @@ function handlePdfUpload(pi) {
 
   // Read file as Base64 Data URL
   var reader = new FileReader();
-  reader.onload = function(e) {
+  reader.onload = function (e) {
     var dataUrl = e.target.result;
-    
+
     // Save PDF in package data
     var pkgs = SHData.get('packages');
     pkgs[pi].itineraryPdf = dataUrl;
     pkgs[pi].itineraryPdfName = file.name;
     SHData.set('packages', pkgs);
-    
+
     // Hide loading
     if (loadingEl) loadingEl.style.display = 'none';
-    
+
     showToast('Itinerary PDF uploaded successfully');
     renderItinerariesEditor();
   };
-  reader.onerror = function() {
+  reader.onerror = function () {
     if (loadingEl) loadingEl.style.display = 'none';
     showToast('Failed to upload PDF', false);
   };
-  
+
   // Simulate minor delay for loading state visibility
-  setTimeout(function() {
+  setTimeout(function () {
     reader.readAsDataURL(file);
   }, 600);
 }
 
 function removeItinerary(pi) {
   if (!confirm('Remove this itinerary PDF?')) return;
-  
+
   var pkgs = SHData.get('packages');
   pkgs[pi].itineraryPdf = '';
   pkgs[pi].itineraryPdfName = '';
   SHData.set('packages', pkgs);
-  
+
   showToast('Itinerary PDF removed');
   renderItinerariesEditor();
 }

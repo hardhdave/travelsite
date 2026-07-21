@@ -14,8 +14,13 @@
   margin-bottom: var(--space-16);
 }
 
-.rentals__header .section-label { justify-content: center; }
-.rentals__header .section-subtitle { margin: 0 auto; }
+.rentals__header .section-label {
+  justify-content: center;
+}
+
+.rentals__header .section-subtitle {
+  margin: 0 auto;
+}
 
 .rentals__grid {
   display: grid;
@@ -39,8 +44,8 @@
   overflow: hidden !important;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3) !important;
   transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1),
-              border-color 0.4s cubic-bezier(0.25, 1, 0.5, 1),
-              box-shadow 0.4s cubic-bezier(0.25, 1, 0.5, 1) !important;
+    border-color 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+    box-shadow 0.4s cubic-bezier(0.25, 1, 0.5, 1) !important;
   box-sizing: border-box;
 }
 
@@ -64,7 +69,7 @@
 }
 
 /* Keep card text and icons above background overlay */
-.rentals__card > * {
+.rentals__card>* {
   position: relative;
   z-index: 2;
 }
@@ -73,12 +78,15 @@
 .rentals__card:nth-child(1)::before {
   background-image: url('../assets/images/skiing-action.png');
 }
+
 .rentals__card:nth-child(2)::before {
   background-image: url('../assets/images/snowboarding-action.png');
 }
+
 .rentals__card:nth-child(3)::before {
   background-image: url('../assets/images/trekking-landscape.png');
 }
+
 .rentals__card:nth-child(4)::before {
   background-image: url('../assets/images/rentals-mtb.png');
 }
@@ -88,14 +96,14 @@
   .rentals__card:hover::before {
     transform: scale(1.06) !important;
   }
-  
+
   .rentals__card:hover {
     transform: translateY(-8px) !important;
     border-color: rgba(167, 123, 52, 0.45) !important;
     box-shadow: 0 16px 40px rgba(167, 123, 52, 0.12),
-                0 0 20px rgba(167, 123, 52, 0.05) !important;
+      0 0 20px rgba(167, 123, 52, 0.05) !important;
   }
-  
+
   .rentals__card:hover .rentals__card-icon {
     transform: translateY(-4px) scale(1.05) !important;
     background-color: rgba(167, 123, 52, 0.2) !important;
@@ -105,7 +113,8 @@
 }
 
 .rentals__card--coming-soon {
-  opacity: 0.8 !important; /* Slightly more visible for background aesthetics */
+  opacity: 0.8 !important;
+  /* Slightly more visible for background aesthetics */
 }
 
 /* Card Badge */
@@ -138,8 +147,8 @@
   justify-content: center !important;
   color: var(--gold) !important;
   transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1),
-              background-color 0.35s ease,
-              border-color 0.35s ease !important;
+    background-color 0.35s ease,
+    border-color 0.35s ease !important;
 }
 
 .rentals__card-icon svg {
@@ -179,7 +188,7 @@
 
 /* Mobile (< 768px) Overrides */
 @media (max-width: 767px) {
-  .rentals > .container {
+  .rentals>.container {
     padding: 32px 24px !important;
   }
 
@@ -258,7 +267,7 @@
 }
 
 @media (max-width: 480px) {
-  .rentals > .container {
+  .rentals>.container {
     padding: 24px 16px !important;
   }
 
@@ -285,4 +294,387 @@
   .rentals__card-desc {
     font-size: 0.78rem !important;
   }
+}
+
+/* ============================================================
+   RENTAL PAGE — Tab Toggle + Equipment Cards
+   ============================================================ */
+
+/* ── Page Hero ── */
+.rental-page-hero {
+  position: relative;
+  min-height: 340px;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  background: linear-gradient(135deg, #0d1f14 0%, #1a3322 60%, #0d1f14 100%);
+}
+.rental-page-hero__bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('../assets/images/hero-mountains.png');
+  background-size: cover;
+  background-position: center 30%;
+  opacity: 0.22;
+}
+.rental-page-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(10,20,14,0.95) 0%, rgba(10,20,14,0.4) 100%);
+}
+.rental-page-hero__content {
+  position: relative;
+  z-index: 2;
+  padding: 0 0 56px 0;
+  width: 100%;
+}
+.rental-page-hero__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #c4a86c;
+  margin-bottom: 14px;
+}
+.rental-page-hero__label::before {
+  content: '';
+  display: block;
+  width: 28px;
+  height: 1px;
+  background: #c4a86c;
+}
+.rental-page-hero__title {
+  font-family: var(--font-heading, 'Manrope', sans-serif);
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin-bottom: 14px;
+}
+.rental-page-hero__title em {
+  font-style: italic;
+  color: #c4a86c;
+}
+.rental-page-hero__subtitle {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.65);
+  max-width: 540px;
+  line-height: 1.6;
+}
+
+/* ── Tab Bar ── */
+.rental-tab-section {
+  background: var(--sand-beige, #f7f4ef);
+  position: sticky;
+  top: 72px;
+  z-index: 90;
+  border-bottom: 1px solid rgba(0,0,0,0.07);
+  box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+}
+.rental-tab-bar {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding: 0;
+}
+.rental-tab-bar::-webkit-scrollbar { display: none; }
+
+.rental-tab-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 18px 28px;
+  border: none;
+  border-bottom: 3px solid transparent;
+  background: transparent;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #6b7280;
+  cursor: pointer;
+  transition: all 0.22s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+  position: relative;
+}
+.rental-tab-btn:hover {
+  color: #2f4f3e;
+  background: rgba(47,79,62,0.05);
+}
+.rental-tab-btn.active {
+  color: #2f4f3e;
+  border-bottom-color: #2f4f3e;
+  background: rgba(47,79,62,0.06);
+}
+.rental-tab-icon {
+  font-size: 18px;
+  line-height: 1;
+}
+.rental-tab-cs-badge {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: #c4a86c;
+  color: #fff;
+  padding: 2px 7px;
+  border-radius: 100px;
+  margin-left: 4px;
+}
+
+/* ── Panels ── */
+.rental-panels-wrap {
+  background: var(--sand-beige, #f7f4ef);
+  min-height: 60vh;
+  padding: 48px 0 80px;
+}
+.rental-panel {
+  display: none;
+}
+.rental-panel.active {
+  display: block;
+  animation: rPanelIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes rPanelIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ── Equipment Card Grid ── */
+.rental-eq-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.rental-eq-card {
+  background: #fff;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  border: 1px solid rgba(0,0,0,0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+.rental-eq-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 48px rgba(47,79,62,0.14);
+}
+.rental-eq-card__img-wrap {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.rental-eq-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.rental-eq-card:hover .rental-eq-card__img {
+  transform: scale(1.06);
+}
+.rental-eq-card__price {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  background: rgba(10,20,14,0.88);
+  color: #c4a86c;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: 100px;
+  letter-spacing: 0.04em;
+  backdrop-filter: blur(8px);
+}
+.rental-eq-card__body {
+  padding: 22px 22px 24px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.rental-eq-card__title {
+  font-family: var(--font-heading, 'Manrope', sans-serif);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #1a2a1e;
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+.rental-eq-card__desc {
+  font-size: 0.875rem;
+  color: #5a6b5e;
+  line-height: 1.6;
+  flex: 1;
+  margin-bottom: 18px;
+}
+.rental-eq-card__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 22px;
+  background: linear-gradient(135deg, #2f4f3e, #1a3328);
+  color: #fff;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  transition: all 0.22s ease;
+  width: 100%;
+  text-align: center;
+}
+.rental-eq-card__cta:hover {
+  background: linear-gradient(135deg, #c4a86c, #a8893c);
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(196,168,108,0.3);
+}
+
+/* ── Coming Soon State ── */
+.rental-coming-soon {
+  text-align: center;
+  padding: 80px 24px;
+  max-width: 480px;
+  margin: 0 auto;
+}
+.rental-coming-soon__icon {
+  font-size: 56px;
+  margin-bottom: 20px;
+  opacity: 0.7;
+}
+.rental-coming-soon__title {
+  font-family: var(--font-heading, 'Manrope', sans-serif);
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: #1a2a1e;
+  margin-bottom: 12px;
+}
+.rental-coming-soon__text {
+  font-size: 0.95rem;
+  color: #6b7a6e;
+  line-height: 1.65;
+  margin-bottom: 28px;
+}
+.rental-coming-soon__text strong {
+  color: #2f4f3e;
+}
+.rental-coming-soon__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 28px;
+  background: linear-gradient(135deg, #2f4f3e, #1a3328);
+  color: #fff;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  transition: all 0.22s ease;
+}
+.rental-coming-soon__btn:hover {
+  background: linear-gradient(135deg, #c4a86c, #a8893c);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(196,168,108,0.3);
+}
+
+/* ── Panel Section Header ── */
+.rental-panel-header {
+  margin-bottom: 32px;
+}
+.rental-panel-header__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #c4a86c;
+  margin-bottom: 10px;
+}
+.rental-panel-header__label::before {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 1px;
+  background: #c4a86c;
+}
+.rental-panel-header__title {
+  font-family: var(--font-heading, 'Manrope', sans-serif);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 700;
+  color: #1a2a1e;
+  letter-spacing: -0.025em;
+  margin-bottom: 8px;
+}
+.rental-panel-header__sub {
+  font-size: 0.9rem;
+  color: #6b7a6e;
+}
+
+/* ── Admin Rentals Category Editor Enhancements ── */
+.rental-admin-cat-group {
+  margin-bottom: 28px;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(247,242,234,0.08);
+}
+.rental-admin-cat-hd {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #3F6B50;
+  padding: 13px 18px;
+  justify-content: space-between;
+}
+.rental-admin-cat-hd-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.rental-admin-cat-icon {
+  font-size: 20px;
+  line-height: 1;
+}
+.rental-admin-cat-name {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #fff;
+}
+.rental-admin-cat-cs-pill {
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: rgba(255,255,255,0.18);
+  color: #fff;
+  padding: 3px 9px;
+  border-radius: 100px;
+  border: 1px solid rgba(255,255,255,0.28);
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .rental-page-hero { min-height: 260px; }
+  .rental-page-hero__content { padding-bottom: 36px; }
+  .rental-tab-btn { padding: 14px 18px; font-size: 12.5px; }
+  .rental-panels-wrap { padding: 32px 0 60px; }
+  .rental-eq-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+}
+@media (max-width: 480px) {
+  .rental-eq-grid { grid-template-columns: 1fr; gap: 16px; }
+  .rental-tab-btn { padding: 12px 14px; font-size: 12px; }
+  .rental-coming-soon { padding: 48px 16px; }
 }
