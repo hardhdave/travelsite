@@ -11,8 +11,8 @@ const SHData = (function () {
   const defaults = {
     settings: {
       whatsappNumber: '919149974118',
-      heroTitle: 'Himalayas, by locals.',
-      heroSubtitle: 'Premium private journeys across Ladakh, Zanskar, Spiti, Himachal and Bhutan.',
+      heroTitle: 'From the Himalayas, Beyond the ordinary',
+      heroSubtitle: 'Crafting Journeys & Experiences across Kashmir for those who believe memories are life’s greatest Luxury',
       heroVideoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-snowy-mountain-peak-under-blue-sky-41584-large.mp4',
       footerCopyright: '© 2024 Shred Himalayas. All rights reserved. Crafted with love in Kashmir.'
     },

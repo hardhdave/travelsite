@@ -138,6 +138,9 @@ p {
 
 /* ---- Green Text Gradient ---- */
 .text-gradient {
+  display: inline-block;
+  padding-bottom: 0.15em;
+  margin-bottom: -0.15em;
   background: linear-gradient(135deg, var(--primary-500), var(--primary-700));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

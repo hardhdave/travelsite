@@ -244,6 +244,9 @@ section,
 }
 
 .section-title .text-gradient {
+  display: inline-block !important;
+  padding-bottom: 0.15em !important;
+  margin-bottom: -0.15em !important;
   background: linear-gradient(135deg, var(--primary-700), var(--primary-500)) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
@@ -602,15 +605,28 @@ section a:not(.btn):not(.navbar__link):not(.footer__link):not(.nav-sheet__item):
 
 /* WhatsApp CTA */
 .cta__whatsapp {
-  background: rgba(35, 139, 69, 0.08) !important;
-  color: var(--primary-600) !important;
-  border: 1px solid rgba(35, 139, 69, 0.30) !important;
+  background: rgba(37, 211, 102, 0.12) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(37, 211, 102, 0.45) !important;
+}
+
+.cta__whatsapp span {
+  color: #ffffff !important;
+}
+
+.cta__whatsapp svg {
+  color: #25D366 !important;
+  fill: #25D366 !important;
 }
 
 .cta__whatsapp:hover {
-  background: rgba(35, 139, 69, 0.15) !important;
-  border-color: rgba(35, 139, 69, 0.60) !important;
-  color: var(--primary-700) !important;
+  background: rgba(37, 211, 102, 0.22) !important;
+  border-color: rgba(37, 211, 102, 0.75) !important;
+  color: #ffffff !important;
+}
+
+.cta__whatsapp:hover span {
+  color: #ffffff !important;
 }
 
 /* Activities CTA */

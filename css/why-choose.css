@@ -85,7 +85,7 @@
 
 .why-choose__header-left h2 {
   font-family: var(--font-heading);
-  font-size: clamp(2.2rem, 3.5vw, 3.2rem);
+  font-size: clamp(1.8rem, 2.8vw, 2.5rem);
   font-weight: 300;
   line-height: 1.15;
   color: var(--charcoal);

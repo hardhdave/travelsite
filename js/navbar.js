@@ -193,40 +193,6 @@
   // Run initial setup
   initActiveState();
 
-  /* ── Infinite Ticker duplicate logic ── */
-  const tickerTrack = document.querySelector('.nav-ticker__track');
-  if (tickerTrack) {
-    const originalItems = Array.from(tickerTrack.children);
-    if (originalItems.length > 0) {
-      tickerTrack.innerHTML = '';
-      
-      const tempContainer = document.createElement('div');
-      tempContainer.style.display = 'inline-flex';
-      tempContainer.style.visibility = 'hidden';
-      tempContainer.style.position = 'absolute';
-      tempContainer.style.whiteSpace = 'nowrap';
-      originalItems.forEach(item => tempContainer.appendChild(item.cloneNode(true)));
-      document.body.appendChild(tempContainer);
-      const singleSetWidth = tempContainer.offsetWidth || 450;
-      document.body.removeChild(tempContainer);
-      
-      const viewportWidth = window.innerWidth;
-      const repeatsForHalf = Math.max(4, Math.ceil((viewportWidth * 1.5) / singleSetWidth));
-      
-      const fragment = document.createDocumentFragment();
-      for (let i = 0; i < repeatsForHalf; i++) {
-        originalItems.forEach(item => {
-          fragment.appendChild(item.cloneNode(true));
-        });
-      }
-      for (let i = 0; i < repeatsForHalf; i++) {
-        originalItems.forEach(item => {
-          fragment.appendChild(item.cloneNode(true));
-        });
-      }
-      
-      tickerTrack.appendChild(fragment);
-    }
-  }
+
 
 })();
