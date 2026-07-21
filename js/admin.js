@@ -87,6 +87,7 @@ function renderPage(page) {
     case 'activities': renderActivitiesEditor(); break;
     case 'sightseeing': renderSightseeingEditor(); break;
     case 'rentals': renderRentalsEditor(); break;
+    case 'transport': renderTransportEditor(); break;
     case 'packages': renderPackagesEditor(); break;
     case 'itineraries': renderItinerariesEditor(); break;
     case 'testimonials': renderTestimonialsEditor(); break;
@@ -103,7 +104,9 @@ function renderDashboard() {
   var testimonials = SHData.get('testimonials');
   var activities = SHData.get('activities');
   var rentals = SHData.get('rentals');
+  var transport = SHData.get('transport') || [];
   var sightseeing = SHData.get('sightseeing');
+  var transportItemCount = transport.reduce(function (a, c) { return a + (c.items ? c.items.length : 0); }, 0);
 
   var skiCount = skiing.reduce(function (a, c) { return a + c.items.length; }, 0);
   var sbCount = snowboarding.reduce(function (a, c) { return a + c.items.length; }, 0);
@@ -117,7 +120,8 @@ function renderDashboard() {
     { icon: '💬', label: 'Testimonials', count: testimonials.length },
     { icon: '🎯', label: 'Activities', count: actCount },
     { icon: '📍', label: 'Sightseeing', count: sightseeing.length },
-    { icon: '🎿', label: 'Rentals', count: rentals.length }
+    { icon: '🎿', label: 'Rentals', count: rentals.length },
+    { icon: '🚗', label: 'Transport', count: transportItemCount }
   ];
 
   var ds = document.getElementById('dashStats');
@@ -132,6 +136,7 @@ function renderDashboard() {
     { icon: '🎯', title: 'Activities', page: 'activities', count: 'Winter & Summer' },
     { icon: '📍', title: 'Sightseeing', page: 'sightseeing', count: sightseeing.length + ' spots' },
     { icon: '🎿', title: 'Rentals', page: 'rentals', count: rentals.length + ' items' },
+    { icon: '🚗', title: 'Transport', page: 'transport', count: transportItemCount + ' vehicles' },
     { icon: '📦', title: 'Packages', page: 'packages', count: packages.length + ' tours' },
     { icon: '📄', title: 'Itineraries', page: 'itineraries', count: packages.filter(function (p) { return p.itineraryPdf; }).length + ' PDFs' },
     { icon: '💬', title: 'Testimonials', page: 'testimonials', count: testimonials.length + ' reviews' },
@@ -318,17 +323,91 @@ function renderRentalsEditor() {
       '<button class="cat-add-btn" style="margin-left:5px;background:rgba(239,68,68,.14);border-color:rgba(239,68,68,.28);" onclick="deleteRentalCat(' + ci + ')">\ud83d\uddd1 Del</button>';
     return '<div class="admin-category">' +
       '<div class="admin-cat-header">' +
-        '<div class="admin-cat-title">' +
-          '<div class="admin-cat-title-dot"></div>' +
-          '<span style="font-size:18px;line-height:1;margin-right:6px;">' + (cat.icon || '\ud83c\udfbf') + '</span>' +
-          escHtml(cat.title) +
-          (isCS ? '<span style="font-size:9px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,255,255,.18);color:#fff;padding:2px 8px;border-radius:100px;margin-left:8px;">Coming Soon</span>' : '') +
-        '</div>' +
-        '<div style="display:flex;align-items:center;gap:3px;">' + catActions + '</div>' +
+      '<div class="admin-cat-title">' +
+      '<div class="admin-cat-title-dot"></div>' +
+      '<span style="font-size:18px;line-height:1;margin-right:6px;">' + (cat.icon || '\ud83c\udfbf') + '</span>' +
+      escHtml(cat.title) +
+      (isCS ? '<span style="font-size:9px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,255,255,.18);color:#fff;padding:2px 8px;border-radius:100px;margin-left:8px;">Coming Soon</span>' : '') +
+      '</div>' +
+      '<div style="display:flex;align-items:center;gap:3px;">' + catActions + '</div>' +
       '</div>' +
       itemsHtml +
       '</div>';
   }).join('');
+}
+
+// ─── TRANSPORT EDITOR (Category + Items — mirrors Rentals) ────
+function renderTransportEditor() {
+  var cats = SHData.get('transport') || [];
+  var el = document.getElementById('transport-editor');
+  if (!el) return;
+  if (!cats || cats.length === 0) {
+    el.innerHTML = emptyState('No transport categories yet. Click "Add Category" to get started.');
+    return;
+  }
+  el.innerHTML = cats.map(function (cat, ci) {
+    var visibleItems = cat.items ? cat.items : [];
+    var isCS = cat.comingSoon || visibleItems.length === 0;
+    var itemsHtml = '';
+    if (visibleItems.length > 0) {
+      itemsHtml = '<div class="items-list">' +
+        visibleItems.map(function (item, ii) {
+          var actions =
+            toggleBtn(item.enabled, 'toggleTransportItem(' + ci + ',' + ii + ')') +
+            '<button class="icon-btn icon-btn--edit" title="Edit" onclick="openModal(\'transport-item\',' + ci + ',' + ii + ')">' + SVG_EDIT + '</button>' +
+            '<button class="icon-btn icon-btn--delete" title="Delete" onclick="deleteTransportItem(' + ci + ',' + ii + ')">' + SVG_DEL + '</button>';
+          var meta = (item.price || 'No price') + (item.desc ? ' &nbsp;&middot;&nbsp; ' + escHtml(item.desc.substring(0, 55)) + (item.desc.length > 55 ? '&hellip;' : '') : '');
+          return itemRow(item.image, item.title, meta, item.enabled, actions);
+        }).join('') +
+        '</div>';
+    } else {
+      itemsHtml = '<div style="border:1px solid var(--cb);border-top:none;border-radius:0 0 var(--r) var(--r);">' +
+        '<div class="empty-state" style="border:none;margin:0;"><div class="empty-state-icon">' + (cat.icon || '🚗') + '</div>' +
+        '<strong>No vehicles yet</strong>This category shows as <em>Coming Soon</em> on the travel page until items are added.</div></div>';
+    }
+    var catActions =
+      '<button class="cat-add-btn" onclick="openModal(\'transport-item\',' + ci + ',null)">+ Add Vehicle</button>' +
+      '<button class="cat-add-btn" style="margin-left:5px;background:rgba(224,138,44,.18);border-color:rgba(224,138,44,.35);" onclick="openModal(\'transport-cat\',' + ci + ',null)">\u270f\ufe0f Edit</button>' +
+      '<button class="cat-add-btn" style="margin-left:5px;background:rgba(239,68,68,.14);border-color:rgba(239,68,68,.28);" onclick="deleteTransportCat(' + ci + ')">' + '\ud83d\uddd1 Del</button>';
+    return '<div class="admin-category">' +
+      '<div class="admin-cat-header">' +
+      '<div class="admin-cat-title">' +
+      '<div class="admin-cat-title-dot"></div>' +
+      '<span style="font-size:18px;line-height:1;margin-right:6px;">' + (cat.icon || '🚗') + '</span>' +
+      escHtml(cat.title) +
+      (isCS ? '<span style="font-size:9px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,255,255,.18);color:#fff;padding:2px 8px;border-radius:100px;margin-left:8px;">Coming Soon</span>' : '') +
+      '</div>' +
+      '<div style="display:flex;align-items:center;gap:3px;">' + catActions + '</div>' +
+      '</div>' +
+      itemsHtml +
+      '</div>';
+  }).join('');
+}
+
+function toggleTransportItem(ci, ii) {
+  var cats = SHData.get('transport');
+  cats[ci].items[ii].enabled = !cats[ci].items[ii].enabled;
+  SHData.set('transport', cats);
+  renderTransportEditor();
+  showToast('Visibility updated');
+}
+
+function deleteTransportItem(ci, ii) {
+  if (!confirm('Delete this vehicle?')) return;
+  var cats = SHData.get('transport');
+  cats[ci].items.splice(ii, 1);
+  SHData.set('transport', cats);
+  renderTransportEditor();
+  showToast('Deleted', false);
+}
+
+function deleteTransportCat(ci) {
+  if (!confirm('Delete this entire transport category and all its vehicles?')) return;
+  var cats = SHData.get('transport');
+  cats.splice(ci, 1);
+  SHData.set('transport', cats);
+  renderTransportEditor();
+  showToast('Category deleted', false);
 }
 
 // ─── PACKAGES EDITOR ──────────────────────────────────
@@ -522,6 +601,17 @@ function openModal(type, ctx1, ctx2) {
     item = ctx2 !== null && ctx2 !== undefined ? cat.items[ctx2] : {};
     titleEl.textContent = ctx2 !== null && ctx2 !== undefined ? 'Edit: ' + item.title : 'Add Item to "' + cat.title + '"';
     html = rentalItemForm(item);
+  } else if (type === 'transport-cat') {
+    var cats = SHData.get('transport') || [];
+    item = ctx1 !== null && ctx1 !== undefined ? cats[ctx1] : {};
+    titleEl.textContent = ctx1 !== null && ctx1 !== undefined ? 'Edit Category: ' + item.title : 'Add Transport Category';
+    html = transportCatForm(item);
+  } else if (type === 'transport-item') {
+    var cats = SHData.get('transport') || [];
+    var cat = cats[ctx1];
+    item = ctx2 !== null && ctx2 !== undefined ? cat.items[ctx2] : {};
+    titleEl.textContent = ctx2 !== null && ctx2 !== undefined ? 'Edit: ' + item.title : 'Add Vehicle to "' + cat.title + '"';
+    html = transportItemForm(item);
   } else if (type === 'package') {
     var pkgs = SHData.get('packages');
     item = ctx2 !== null && ctx2 !== undefined ? pkgs[ctx2] : {};
@@ -656,6 +746,38 @@ function saveModal() {
     if (!newItem.title) { showToast('Title is required', false); return; }
     if (isEdit) cats[ctx1].items[ctx2] = newItem; else cats[ctx1].items.push(newItem);
     SHData.set('rentals', cats); renderRentalsEditor();
+  }
+  else if (type === 'transport-cat') {
+    var cats = SHData.get('transport') || [];
+    var isCatEdit = ctx1 !== null && ctx1 !== undefined;
+    var existingCat = isCatEdit ? cats[ctx1] : {};
+    var newCat = {
+      id: isCatEdit ? existingCat.id : 'tr-' + Date.now(),
+      title: v('f-title'),
+      icon: v('f-icon') || '🚗',
+      comingSoon: vc('f-coming-soon'),
+      items: isCatEdit ? (existingCat.items || []) : []
+    };
+    if (!newCat.title) { showToast('Category title is required', false); return; }
+    if (isCatEdit) cats[ctx1] = newCat; else cats.push(newCat);
+    SHData.set('transport', cats); renderTransportEditor();
+  }
+  else if (type === 'transport-item') {
+    var cats = SHData.get('transport') || [];
+    var existing = isEdit ? cats[ctx1].items[ctx2] : {};
+    var newItem = {
+      id: isEdit ? existing.id : 'tv-' + Date.now(),
+      enabled: existing.enabled !== false,
+      title: v('f-title'),
+      desc: v('f-desc'),
+      price: v('f-price'),
+      image: v('f-image'),
+      waMsg: v('f-wamsg')
+    };
+    if (!newItem.title) { showToast('Vehicle name is required', false); return; }
+    if (!newItem.price) { showToast('Price is required', false); return; }
+    if (isEdit) cats[ctx1].items[ctx2] = newItem; else cats[ctx1].items.push(newItem);
+    SHData.set('transport', cats); renderTransportEditor();
   }
   else if (type === 'package') {
     var pkgs = SHData.get('packages');
@@ -868,6 +990,19 @@ function rentalCatForm(item) {
     field('Icon (emoji)', 'f-icon', item.icon || '🎿', 'text', 'e.g. ⛷️') +
     '<div class="field"><label style="display:flex;align-items:center;gap:8px;cursor:pointer;text-transform:none;letter-spacing:0;font-size:13px;">' +
     '<input type="checkbox" id="f-coming-soon" ' + (item.comingSoon ? 'checked' : '') + ' style="width:auto;accent-color:var(--gold);"> Mark as "Coming Soon" (overrides items)</label></div>';
+}
+function transportCatForm(item) {
+  return field('Category Title *', 'f-title', item.title, 'text', 'e.g. Airport Transfers') +
+    field('Icon (emoji)', 'f-icon', item.icon || '🚗', 'text', 'e.g. ✈️') +
+    '<div class="field"><label style="display:flex;align-items:center;gap:8px;cursor:pointer;text-transform:none;letter-spacing:0;font-size:13px;">' +
+    '<input type="checkbox" id="f-coming-soon" ' + (item.comingSoon ? 'checked' : '') + ' style="width:auto;accent-color:var(--gold);"> Mark as "Coming Soon" (overrides items)</label></div>';
+}
+function transportItemForm(item) {
+  return field('Vehicle Name *', 'f-title', item.title, 'text', 'e.g. Toyota Fortuner') +
+    fieldTA('Description', 'f-desc', item.desc, 3) +
+    field('Price / Rate * (e.g. ₹7,000/day)', 'f-price', item.price) +
+    imageUploadField('f-image', item.image) +
+    field('WhatsApp Message', 'f-wamsg', item.waMsg, 'text', "I'm interested in...");
 }
 function rentalItemForm(item) {
   return field('Item Title *', 'f-title', item.title, 'text', 'e.g. Ski Package (Skis + Boots + Poles)') +

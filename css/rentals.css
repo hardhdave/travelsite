@@ -30,6 +30,8 @@
 
 /* Base Card Styles */
 .rentals__card {
+  text-decoration: none !important;
+  color: inherit !important;
   border: 1px solid rgba(255, 255, 255, 0.08) !important;
   background: #18181a !important;
   border-radius: 16px !important;
@@ -449,12 +451,38 @@
 
 /* ── Equipment Card Grid ── */
 .rental-eq-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
   gap: 24px;
+  padding-bottom: 16px;
+  padding-top: 6px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: #c4a86c rgba(0, 0, 0, 0.05);
+}
+
+.rental-eq-grid::-webkit-scrollbar {
+  height: 6px;
+}
+
+.rental-eq-grid::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+}
+
+.rental-eq-grid::-webkit-scrollbar-thumb {
+  background: #c4a86c;
+  border-radius: 10px;
 }
 
 .rental-eq-card {
+  flex: 0 0 310px;
+  width: 310px;
+  max-width: 310px;
+  scroll-snap-align: start;
   background: #fff;
   border-radius: 18px;
   overflow: hidden;
@@ -671,10 +699,12 @@
   .rental-page-hero__content { padding-bottom: 36px; }
   .rental-tab-btn { padding: 14px 18px; font-size: 12.5px; }
   .rental-panels-wrap { padding: 32px 0 60px; }
-  .rental-eq-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+  .rental-eq-grid { gap: 16px; }
+  .rental-eq-card { flex: 0 0 280px; width: 280px; max-width: 280px; }
 }
 @media (max-width: 480px) {
-  .rental-eq-grid { grid-template-columns: 1fr; gap: 16px; }
+  .rental-eq-grid { gap: 14px; }
+  .rental-eq-card { flex: 0 0 260px; width: 260px; max-width: 260px; }
   .rental-tab-btn { padding: 12px 14px; font-size: 12px; }
   .rental-coming-soon { padding: 48px 16px; }
 }

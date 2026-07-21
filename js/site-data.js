@@ -144,6 +144,44 @@ const SHData = (function () {
       { id: 'sg2', place: 'srinagar', label: 'Srinagar', title: 'Srinagar', desc: 'The summer capital of Jammu & Kashmir. Experience the iconic Dal Lake, Mughal Gardens, and ancient wooden architecture.', image: 'assets/images/sightseeing-dal-lake.png' },
       { id: 'sg3', place: 'pahalgam', label: 'Pahalgam', title: 'Pahalgam', desc: 'The "Valley of Shepherds" — a stunning green valley where the Lidder River flows through meadows and pine forests.', image: 'assets/images/gallery-pahalgam.png' },
       { id: 'sg4', place: 'sonamarg', label: 'Sonamarg', title: 'Sonamarg', desc: 'The "Meadow of Gold" — gateway to the Himalayan glaciers and the dramatic Thajiwas Glacier valley.', image: 'assets/images/gallery-sonamarg.png' }
+    ],
+
+    transport: [
+      {
+        id: 'tr-airport', title: 'Airport Transfers', icon: '✈️', comingSoon: false,
+        items: [
+          { id: 'ta1', enabled: true, title: 'Sedan Airport Pickup', price: '₹2,500/per day', desc: 'Comfortable sedan (Swift Dzire / Honda Amaze) for hassle-free Srinagar Airport pickup and drop. Meet & greet by uniformed driver at arrivals.', image: 'assets/images/transport-airport.png', waMsg: "I'm interested in Sedan Airport Pickup" },
+          { id: 'ta2', enabled: true, title: 'SUV Airport Transfer', price: '₹3,500/per day', desc: 'Spacious SUV (Innova / Ertiga) for airport transfers with ample luggage space. Ideal for families or groups of 4–6 passengers.', image: 'assets/images/transport-cab.png', waMsg: "I'm interested in SUV Airport Transfer" },
+          { id: 'ta3', enabled: true, title: 'Tempo Traveller Pickup', price: '₹5,000/per day', desc: '12-seater Tempo Traveller for large group airport transfers. AC, pushback seats, and dedicated luggage compartment included.', image: 'assets/images/transport-group.png', waMsg: "I'm interested in Tempo Traveller Airport Pickup" },
+          { id: 'ta4', enabled: true, title: 'Late Night Transfer', price: '₹3,800/per day', desc: 'Available 24/7 for late-night and early-morning flights. Driver waits at arrivals with name board. No surge pricing.', image: 'assets/images/luxury-transport.png', waMsg: "I'm interested in Late Night Airport Transfer" }
+        ]
+      },
+      {
+        id: 'tr-private-cabs', title: 'Private Cabs', icon: '🚕', comingSoon: false,
+        items: [
+          { id: 'tc1', enabled: true, title: 'Gulmarg Day Trip', price: '₹3,500/per day', desc: 'Full-day private cab to Gulmarg with experienced mountain driver. Includes Tangmarg stop, Gondola base drop, and return to Srinagar.', image: 'assets/images/gallery-gulmarg.png', waMsg: "I'm interested in Gulmarg Day Trip cab" },
+          { id: 'tc2', enabled: true, title: 'Pahalgam Day Trip', price: '₹4,000/per day', desc: 'Scenic drive through saffron fields to Pahalgam. Visit Betaab Valley, Aru Valley, and Chandanwari with flexible stops.', image: 'assets/images/gallery-pahalgam.png', waMsg: "I'm interested in Pahalgam Day Trip cab" },
+          { id: 'tc3', enabled: true, title: 'Sonamarg Day Trip', price: '₹4,500/per day', desc: 'Drive along the dramatic Sindh Valley to Sonamarg. Includes Thajiwas Glacier visit and photo stops at Zero Point road.', image: 'assets/images/gallery-sonamarg.png', waMsg: "I'm interested in Sonamarg Day Trip cab" },
+          { id: 'tc4', enabled: true, title: 'Full Day Srinagar Local', price: '₹2,500/per day', desc: 'Explore Srinagar at your own pace — Dal Lake, Mughal Gardens, Shankaracharya Temple, Old City, and local markets.', image: 'assets/images/sightseeing-dal-lake.png', waMsg: "I'm interested in Full Day Srinagar cab" }
+        ]
+      },
+      {
+        id: 'tr-group', title: 'Group Transport', icon: '🚌', comingSoon: false,
+        items: [
+          { id: 'tg1', enabled: true, title: '12-Seater Tempo Traveller', price: '₹5,500/per day', desc: 'Comfortable force tempo traveller with AC, pushback seats, and ample luggage space. Perfect for medium-sized groups.', image: 'assets/images/transport-group.png', waMsg: "I'm interested in 12-Seater Tempo Traveller" },
+          { id: 'tg2', enabled: true, title: '17-Seater Traveller', price: '₹7,000/per day', desc: 'Larger capacity traveller with individual AC vents, curtains, and music system. Ideal for corporate outings and family reunions.', image: 'assets/images/transport-airport.png', waMsg: "I'm interested in 17-Seater Traveller" },
+          { id: 'tg3', enabled: true, title: '26-Seater Mini Bus', price: '₹9,500/per day', desc: 'Full-size mini bus with high headroom, reclining seats, and onboard entertainment. Perfect for weddings and large tour groups.', image: 'assets/images/transport-cab.png', waMsg: "I'm interested in 26-Seater Mini Bus" }
+        ]
+      },
+      {
+        id: 'tr-luxury', title: 'Luxury Transport', icon: '🏎️', comingSoon: false,
+        items: [
+          { id: 'tl1', enabled: true, title: 'Toyota Fortuner', price: '₹7,000/per day', desc: 'Rugged luxury SUV with 4WD capability. Premium leather interiors, climate control, and professional chauffeur included.', image: 'assets/images/luxury-transport.png', waMsg: "I'm interested in Toyota Fortuner rental" },
+          { id: 'tl2', enabled: true, title: 'Innova Crysta (Top End)', price: '₹5,500/per day', desc: 'India\'s most popular premium MPV. Captain seats, ambient lighting, and a smooth ride perfect for scenic mountain drives.', image: 'assets/images/transport-cab.png', waMsg: "I'm interested in Innova Crysta rental" },
+          { id: 'tl3', enabled: true, title: 'Mercedes-Benz E-Class', price: '₹12,000/per day', desc: 'Ultimate luxury sedan experience. Immaculate interiors, panoramic sunroof, and English-speaking uniformed chauffeur.', image: 'assets/images/transport-airport.png', waMsg: "I'm interested in Mercedes E-Class rental" },
+          { id: 'tl4', enabled: true, title: 'Range Rover Sport', price: '₹15,000/per day', desc: 'The pinnacle of mountain luxury. All-terrain capability meets world-class comfort — privacy glass, premium audio, and VIP service.', image: 'assets/images/transport-group.png', waMsg: "I'm interested in Range Rover Sport rental" }
+        ]
+      }
     ]
   };
 
@@ -465,11 +503,11 @@ const SHData = (function () {
         catParam = parseInt(window.location.hash.replace('#cat-', ''), 10);
         if (!isNaN(catParam) && catParam >= 0 && catParam < cats.length) initialCat = catParam;
       }
-    } catch(e) {}
+    } catch (e) { }
 
     // Build tabs
-    tabsEl.innerHTML = cats.map(function(cat, ci) {
-      var itemCount = cat.items ? cat.items.filter(function(i){ return i.enabled !== false; }).length : 0;
+    tabsEl.innerHTML = cats.map(function (cat, ci) {
+      var itemCount = cat.items ? cat.items.filter(function (i) { return i.enabled !== false; }).length : 0;
       var isCS = cat.comingSoon && itemCount === 0;
       return '<button class="rental-tab-btn' + (ci === initialCat ? ' active' : '') + '" data-ci="' + ci + '" id="rental-tab-' + ci + '">' +
         '<span class="rental-tab-icon">' + (cat.icon || '🎿') + '</span>' +
@@ -479,8 +517,8 @@ const SHData = (function () {
     }).join('');
 
     // Build panels
-    panelsEl.innerHTML = cats.map(function(cat, ci) {
-      var visibleItems = cat.items ? cat.items.filter(function(item) { return item.enabled !== false; }) : [];
+    panelsEl.innerHTML = cats.map(function (cat, ci) {
+      var visibleItems = cat.items ? cat.items.filter(function (item) { return item.enabled !== false; }) : [];
       var panelContent = '';
 
       if (visibleItems.length === 0) {
@@ -492,7 +530,7 @@ const SHData = (function () {
           '</div>';
       } else {
         panelContent = '<div class="rental-eq-grid">' +
-          visibleItems.map(function(item) {
+          visibleItems.map(function (item) {
             var imgSrc = item.image || 'assets/images/hero-mountains.png';
             return '<div class="rental-eq-card">' +
               '<div class="rental-eq-card__img-wrap">' +
@@ -514,24 +552,24 @@ const SHData = (function () {
     }).join('');
 
     // Tab switching
-    tabsEl.querySelectorAll('.rental-tab-btn').forEach(function(btn) {
-      btn.addEventListener('click', function() {
+    tabsEl.querySelectorAll('.rental-tab-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
         var idx = parseInt(btn.getAttribute('data-ci'), 10);
-        tabsEl.querySelectorAll('.rental-tab-btn').forEach(function(b) { b.classList.remove('active'); });
-        panelsEl.querySelectorAll('.rental-panel').forEach(function(p) { p.classList.remove('active'); });
+        tabsEl.querySelectorAll('.rental-tab-btn').forEach(function (b) { b.classList.remove('active'); });
+        panelsEl.querySelectorAll('.rental-panel').forEach(function (p) { p.classList.remove('active'); });
         btn.classList.add('active');
         var panel = document.getElementById('rental-panel-' + idx);
         if (panel) {
           panel.classList.add('active');
           var cards = panel.querySelectorAll('.rental-eq-card');
-          cards.forEach(function(card, i) {
+          cards.forEach(function (card, i) {
             card.style.opacity = '0';
             card.style.transform = 'translateY(20px)';
             card.style.transition = 'opacity 0.45s ease ' + (i * 0.07) + 's, transform 0.45s ease ' + (i * 0.07) + 's';
           });
-          requestAnimationFrame(function() {
-            requestAnimationFrame(function() {
-              cards.forEach(function(card) {
+          requestAnimationFrame(function () {
+            requestAnimationFrame(function () {
+              cards.forEach(function (card) {
                 card.style.opacity = '1';
                 card.style.transform = 'translateY(0)';
               });
@@ -547,9 +585,9 @@ const SHData = (function () {
     var el = document.getElementById(containerId);
     if (!el) return;
     var cats = get('rentals');
-    el.innerHTML = cats.map(function(r, ci) {
+    el.innerHTML = cats.map(function (r, ci) {
       var isCategory = r.items !== undefined;
-      var itemCount = isCategory ? r.items.filter(function(i){ return i.enabled !== false; }).length : 0;
+      var itemCount = isCategory ? r.items.filter(function (i) { return i.enabled !== false; }).length : 0;
       var csoon = r.comingSoon || (isCategory && itemCount === 0);
       var desc = r.desc || (isCategory && itemCount > 0 ? itemCount + ' item' + (itemCount === 1 ? '' : 's') + ' available' : (isCategory ? 'Equipment available at base camp' : ''));
       return '<a href="rentals.html?cat=' + ci + '" class="rentals__card ' + (csoon ? 'rentals__card--coming-soon' : '') + ' reveal" style="text-decoration:none;color:inherit;cursor:pointer;">' +
@@ -978,14 +1016,14 @@ const SHData = (function () {
     }
     var settings = get('settings');
     var waNum = (settings.whatsappNumber || '919149974118').replace(/\D/g, '');
-    el.innerHTML = cats.filter(function(c){ return c.title; }).map(function (cat) {
+    el.innerHTML = cats.filter(function (c) { return c.title; }).map(function (cat, i) {
       var isCS = cat.comingSoon || !cat.items || cat.items.length === 0;
-      return '<div class="rentals__card' + (isCS ? ' rentals__card--coming-soon' : '') + '">' +
+      return '<a href="rental.html?tab=' + i + '" class="rentals__card' + (isCS ? ' rentals__card--coming-soon' : '') + '">' +
         (isCS ? '<span class="rentals__card-badge">Coming Soon</span>' : '') +
         '<div class="rentals__card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 17h16M7 14l-3 3 3 3M17 14l3 3-3 3"/></svg></div>' +
         '<div class="rentals__card-title">' + cat.title + '</div>' +
         '<p class="rentals__card-desc">' + (isCS ? 'Coming soon — enquire for availability.' : (cat.items.length + ' items available for rent')) + '</p>' +
-        '</div>';
+        '</a>';
     }).join('');
   }
 
@@ -1005,10 +1043,31 @@ const SHData = (function () {
       return;
     }
 
+    // Check URL parameter 'tab' (e.g. ?tab=0, ?tab=1, or ?tab=Ski%20Rental)
+    var activeIdx = 0;
+    try {
+      var urlParams = new URLSearchParams(window.location.search);
+      var paramTab = urlParams.get('tab');
+      if (paramTab !== null && paramTab !== '') {
+        if (!isNaN(parseInt(paramTab))) {
+          activeIdx = parseInt(paramTab);
+        } else {
+          var lowerParam = paramTab.toLowerCase();
+          cats.forEach(function (c, idx) {
+            if (c.id.toLowerCase() === lowerParam || c.title.toLowerCase() === lowerParam) {
+              activeIdx = idx;
+            }
+          });
+        }
+      }
+    } catch (e) { }
+    if (activeIdx < 0 || activeIdx >= cats.length) activeIdx = 0;
+
     // Build tabs
     tabsEl.innerHTML = cats.map(function (cat, i) {
       var isCS = cat.comingSoon || !cat.items || cat.items.length === 0;
-      return '<button class="rental-tab-btn' + (i === 0 ? ' active' : '') + '" data-tab="' + i + '" onclick="window._rentalTab(this,' + i + ')" role="tab" aria-selected="' + (i === 0 ? 'true' : 'false') + '">' +
+      var isActive = (i === activeIdx);
+      return '<button class="rental-tab-btn' + (isActive ? ' active' : '') + '" data-tab="' + i + '" onclick="window._rentalTab(this,' + i + ')" role="tab" aria-selected="' + (isActive ? 'true' : 'false') + '">' +
         '<span class="rental-tab-icon">' + (cat.icon || '🎿') + '</span>' +
         cat.title +
         (isCS ? '<span class="rental-tab-cs-badge">Soon</span>' : '') +
@@ -1027,7 +1086,7 @@ const SHData = (function () {
           '<a href="https://wa.me/' + waNum + '?text=' + encodeURIComponent('I\'m interested in ' + cat.title + ' rental') + '" target="_blank" class="rental-coming-soon__btn">📲 Enquire Now</a>' +
           '</div>';
       } else {
-        var enabledItems = cat.items.filter(function(it){ return it.enabled !== false; });
+        var enabledItems = cat.items.filter(function (it) { return it.enabled !== false; });
         if (enabledItems.length === 0) {
           panelContent = '<div class="rental-coming-soon"><div class="rental-coming-soon__icon">' + (cat.icon || '🎿') + '</div><div class="rental-coming-soon__title">No Items Available</div><p class="rental-coming-soon__text">Nothing available in this category yet. Check back soon.</p><a href="https://wa.me/' + waNum + '" class="rental-coming-soon__btn">📲 Enquire Now</a></div>';
         } else {
@@ -1037,7 +1096,7 @@ const SHData = (function () {
             '<div class="rental-panel-header__sub">All prices per day · Expert fitting included · Pick up from our base camp</div>' +
             '</div>' +
             '<div class="rental-eq-grid">' +
-            enabledItems.map(function(item) {
+            enabledItems.map(function (item) {
               var waLink = 'https://wa.me/' + waNum + '?text=' + encodeURIComponent(item.waMsg || 'I\'m interested in renting ' + item.title);
               return '<div class="rental-eq-card">' +
                 (item.image ? '<div class="rental-eq-card__img-wrap"><img class="rental-eq-card__img" src="' + item.image + '" alt="' + item.title + '" onerror="this.parentElement.style.display=\'none\'">' + (item.price ? '<span class="rental-eq-card__price">' + item.price + '</span>' : '') + '</div>' : '') +
@@ -1050,18 +1109,119 @@ const SHData = (function () {
             '</div>';
         }
       }
-      return '<div class="rental-panel' + (i === 0 ? ' active' : '') + '" id="rental-panel-' + i + '" role="tabpanel">' + panelContent + '</div>';
+      var isActive = (i === activeIdx);
+      return '<div class="rental-panel' + (isActive ? ' active' : '') + '" id="rental-panel-' + i + '" role="tabpanel">' + panelContent + '</div>';
     }).join('');
 
     // Tab switcher
-    window._rentalTab = function(btn, idx) {
+    window._rentalTab = function (btn, idx) {
       var allBtns = tabsEl.querySelectorAll('.rental-tab-btn');
       var allPanels = panelsEl.querySelectorAll('.rental-panel');
-      allBtns.forEach(function(b){ b.classList.remove('active'); b.setAttribute('aria-selected','false'); });
-      allPanels.forEach(function(p){ p.classList.remove('active'); });
+      allBtns.forEach(function (b) { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
+      allPanels.forEach(function (p) { p.classList.remove('active'); });
       btn.classList.add('active');
-      btn.setAttribute('aria-selected','true');
+      btn.setAttribute('aria-selected', 'true');
       var panel = document.getElementById('rental-panel-' + idx);
+      if (panel) panel.classList.add('active');
+    };
+  }
+
+  /* ─── TRANSPORT PAGE RENDERER (mirrors renderRentalPage) ─── */
+  function renderTransportPage(tabsContainerId, panelsContainerId) {
+    var tabsEl = document.getElementById(tabsContainerId);
+    var panelsEl = document.getElementById(panelsContainerId);
+    if (!tabsEl || !panelsEl) return;
+
+    var cats = get('transport');
+    var settings = get('settings') || {};
+    var waNum = (settings.whatsappNumber || '919149974118').replace(/\D/g, '');
+
+    if (!cats || cats.length === 0) {
+      tabsEl.innerHTML = '';
+      panelsEl.innerHTML = '<div class="rental-coming-soon"><div class="rental-coming-soon__icon">🚗</div><div class="rental-coming-soon__title">No Categories Yet</div><p class="rental-coming-soon__text">We\'re building our transport fleet. Check back soon or <strong>WhatsApp us</strong> directly.</p><a href="https://wa.me/' + waNum + '" class="rental-coming-soon__btn">WhatsApp Us</a></div>';
+      return;
+    }
+
+    // Check URL parameter 'tab' (e.g. ?tab=0, ?tab=1, or ?tab=Airport%20Transfers)
+    var activeIdx = 0;
+    try {
+      var urlParams = new URLSearchParams(window.location.search);
+      var paramTab = urlParams.get('tab');
+      if (paramTab !== null && paramTab !== '') {
+        if (!isNaN(parseInt(paramTab))) {
+          activeIdx = parseInt(paramTab);
+        } else {
+          var lowerParam = paramTab.toLowerCase();
+          cats.forEach(function (c, idx) {
+            if (c.id.toLowerCase() === lowerParam || c.title.toLowerCase() === lowerParam) {
+              activeIdx = idx;
+            }
+          });
+        }
+      }
+    } catch (e) { }
+    if (activeIdx < 0 || activeIdx >= cats.length) activeIdx = 0;
+
+    // Build tabs
+    tabsEl.innerHTML = cats.map(function (cat, i) {
+      var isCS = cat.comingSoon || !cat.items || cat.items.length === 0;
+      var isActive = (i === activeIdx);
+      return '<button class="rental-tab-btn' + (isActive ? ' active' : '') + '" data-tab="' + i + '" onclick="window._transportTab(this,' + i + ')" role="tab" aria-selected="' + (isActive ? 'true' : 'false') + '">' +
+        '<span class="rental-tab-icon">' + (cat.icon || '🚗') + '</span>' +
+        cat.title +
+        (isCS ? '<span class="rental-tab-cs-badge">Soon</span>' : '') +
+        '</button>';
+    }).join('');
+
+    // Build panels
+    panelsEl.innerHTML = cats.map(function (cat, i) {
+      var isCS = cat.comingSoon || !cat.items || cat.items.length === 0;
+      var panelContent = '';
+      if (isCS) {
+        panelContent = '<div class="rental-coming-soon">' +
+          '<div class="rental-coming-soon__icon">' + (cat.icon || '🚗') + '</div>' +
+          '<div class="rental-coming-soon__title">' + cat.title + ' — Coming Soon</div>' +
+          '<p class="rental-coming-soon__text">This transport category is not yet available. <strong>Enquire on WhatsApp</strong> for early access or custom arrangements.</p>' +
+          '<a href="https://wa.me/' + waNum + '?text=' + encodeURIComponent('I\'m interested in ' + cat.title) + '" target="_blank" class="rental-coming-soon__btn">📲 Enquire Now</a>' +
+          '</div>';
+      } else {
+        var enabledItems = cat.items.filter(function (it) { return it.enabled !== false; });
+        if (enabledItems.length === 0) {
+          panelContent = '<div class="rental-coming-soon"><div class="rental-coming-soon__icon">' + (cat.icon || '🚗') + '</div><div class="rental-coming-soon__title">No Vehicles Available</div><p class="rental-coming-soon__text">Nothing available in this category yet. Check back soon.</p><a href="https://wa.me/' + waNum + '" class="rental-coming-soon__btn">📲 Enquire Now</a></div>';
+        } else {
+          panelContent = '<div class="rental-panel-header">' +
+            '<div class="rental-panel-header__label">' + (cat.icon || '🚗') + ' ' + cat.title + '</div>' +
+            '<div class="rental-panel-header__title">Choose Your Vehicle</div>' +
+            '<div class="rental-panel-header__sub">All prices include professional driver · Fuel included · 24/7 support</div>' +
+            '</div>' +
+            '<div class="rental-eq-grid">' +
+            enabledItems.map(function (item) {
+              var waLink = 'https://wa.me/' + waNum + '?text=' + encodeURIComponent(item.waMsg || 'I\'m interested in ' + item.title);
+              var displayPrice = item.price ? (item.price.indexOf('/per day') !== -1 ? item.price : (item.price.replace(/\/day$/, '') + '/per day')) : '';
+              return '<div class="rental-eq-card">' +
+                (item.image ? '<div class="rental-eq-card__img-wrap"><img class="rental-eq-card__img" src="' + item.image + '" alt="' + item.title + '" onerror="this.parentElement.style.display=\'none\'">' + (displayPrice ? '<span class="rental-eq-card__price">' + displayPrice + '</span>' : '') + '</div>' : '') +
+                '<div class="rental-eq-card__body">' +
+                '<div class="rental-eq-card__title">' + item.title + '</div>' +
+                '<div class="rental-eq-card__desc">' + (item.desc || '') + '</div>' +
+                '<a href="' + waLink + '" target="_blank" class="rental-eq-card__cta">📲 Enquire on WhatsApp</a>' +
+                '</div></div>';
+            }).join('') +
+            '</div>';
+        }
+      }
+      var isActive = (i === activeIdx);
+      return '<div class="rental-panel' + (isActive ? ' active' : '') + '" id="transport-panel-' + i + '" role="tabpanel">' + panelContent + '</div>';
+    }).join('');
+
+    // Tab switcher
+    window._transportTab = function (btn, idx) {
+      var allBtns = tabsEl.querySelectorAll('.rental-tab-btn');
+      var allPanels = panelsEl.querySelectorAll('.rental-panel');
+      allBtns.forEach(function (b) { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
+      allPanels.forEach(function (p) { p.classList.remove('active'); });
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+      var panel = document.getElementById('transport-panel-' + idx);
       if (panel) panel.classList.add('active');
     };
   }
@@ -1071,7 +1231,8 @@ const SHData = (function () {
     get, set, reset, defaults,
     renderSkiing, renderSnowboarding, renderTrekking,
     renderPackages, renderActivities, renderRentals, renderRentalPage,
-    renderTestimonials, renderHero, renderFooter, updateWhatsApp
+    renderTestimonials, renderHero, renderFooter, updateWhatsApp,
+    renderTransportPage
   };
 })();
 

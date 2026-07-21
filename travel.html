@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Premium Transportation — Shred Himalayas</title>
+  <meta name="description"
+    content="Luxury vehicles and professional drivers for seamless mountain transfers. Srinagar Airport pickup, drop, private cabs, group transport, and luxury SUVs.">
+  <meta name="keywords"
+    content="airport transfers Srinagar, private cab Gulmarg, group transport Kashmir, luxury SUVs Srinagar">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Inter:wght@400;500;600&family=Manrope:wght@700;800&display=swap"
+    rel="stylesheet">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/variables.css?v=5">
+  <link rel="stylesheet" href="css/base.css?v=5">
+  <link rel="stylesheet" href="css/navbar.css?v=4">
+  <link rel="stylesheet" href="css/footer.css?v=2">
+  <link rel="stylesheet" href="css/rentals.css?v=16">
+  <link rel="stylesheet" href="css/transport.css?v=15">
+  <link rel="stylesheet" href="css/theme.css?v=3">
+  <link rel="stylesheet" href="css/ios-compat.css">
+
+  <!-- Favicon -->
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232F4F3E' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='m8 3 4 8 5-5 5 15H2L8 3z'/></svg>">
+
+  <style>
+    /* Page-scoped overrides */
+    body {
+      background: #f7f4ef;
+    }
+
+    .container {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Override hero background for Travel */
+    .rental-page-hero__bg {
+      background-image: url('assets/images/luxury-transport.png');
+      opacity: 0.15;
+    }
+
+    /* Minimal footer on this page */
+    .rental-footer {
+      background: #0d1f14;
+      color: rgba(255, 255, 255, 0.5);
+      text-align: center;
+      padding: 28px 24px;
+      font-size: 13px;
+    }
+
+    .rental-footer a {
+      color: #c4a86c;
+      text-decoration: none;
+    }
+
+    .rental-footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Horizontal scrollable cards for Travel */
+    .rental-eq-grid {
+      display: flex !important;
+      flex-wrap: nowrap !important;
+      overflow-x: auto !important;
+      overflow-y: hidden !important;
+      gap: 24px !important;
+      padding-bottom: 16px !important;
+      padding-top: 6px !important;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      scrollbar-color: #c4a86c rgba(0, 0, 0, 0.05);
+    }
+
+    .rental-eq-grid::-webkit-scrollbar {
+      height: 6px;
+    }
+
+    .rental-eq-grid::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.05);
+      border-radius: 10px;
+    }
+
+    .rental-eq-grid::-webkit-scrollbar-thumb {
+      background: #c4a86c;
+      border-radius: 10px;
+    }
+
+    .rental-eq-card {
+      flex: 0 0 310px !important;
+      width: 310px !important;
+      max-width: 310px !important;
+      scroll-snap-align: start;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar__inner">
+      <a href="index.html" class="navbar__logo">
+        <div class="navbar__logo-icon">
+          <svg viewBox="0 0 100 100" class="navbar__yak-logo" width="34" height="34" fill="none" stroke="currentColor"
+            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M15 35 C15 20, 30 10, 50 25 C70 10, 85 20, 85 35" />
+            <path d="M22 38 C25 28, 38 24, 50 32 C62 24, 75 28, 78 38" />
+            <path d="M32 36 L40 70 C42 75, 45 80, 50 80 C55 80, 58 75, 60 70 L68 36 Z" />
+            <path d="M44 68 C46 70, 54 70, 56 68" />
+          </svg>
+        </div>
+        <div class="navbar__logo-text">Shred <span>Himalayas</span></div>
+      </a>
+
+      <div class="navbar__links" id="navLinks">
+        <a href="index.html" class="navbar__link">Home</a>
+        <a href="adventures.html" class="navbar__link">Adventures</a>
+        <a href="activities.html" class="navbar__link">Activities</a>
+        <a href="packages.html" class="navbar__link">Packages</a>
+        <a href="travel.html" class="navbar__link active">Travel</a>
+        <a href="index.html#about" class="navbar__link">About</a>
+        <a href="index.html#cta__form-side" class="navbar__link">Contact Us</a>
+      </div>
+
+      <button class="navbar__toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false"
+        aria-controls="navSheet">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ===== MOBILE NAV BOTTOM-SHEET ===== -->
+  <div class="nav-sheet-backdrop" id="navSheetBackdrop"></div>
+  <div class="nav-sheet" id="navSheet" role="dialog" aria-modal="true" aria-label="Navigation">
+    <div class="nav-sheet__pill"></div>
+    <div class="nav-sheet__header">
+      <span class="nav-sheet__label">Navigation</span>
+    </div>
+    <div class="nav-sheet__divider"></div>
+    <div class="nav-sheet__grid">
+      <a href="index.html" class="nav-sheet__item">Home
+        <svg class="nav-sheet__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+          stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12" />
+          <polyline points="12 5 19 12 12 19" />
+        </svg>
+      </a>
+      <a href="adventures.html" class="nav-sheet__item">Adventures
+        <svg class="nav-sheet__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+          stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12" />
+          <polyline points="12 5 19 12 12 19" />
+        </svg>
+      </a>
+      <a href="activities.html" class="nav-sheet__item">Activities
+        <svg class="nav-sheet__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+          stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12" />
+          <polyline points="12 5 19 12 12 19" />
+        </svg>
+      </a>
+      <a href="packages.html" class="nav-sheet__item">Packages
+        <svg class="nav-sheet__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+          stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12" />
+          <polyline points="12 5 19 12 12 19" />
+        </svg>
+      </a>
+      <a href="travel.html" class="nav-sheet__item active">Travel
+        <svg class="nav-sheet__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+          stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12" />
+          <polyline points="12 5 19 12 12 19" />
+        </svg>
+      </a>
+      <a href="index.html#about" class="nav-sheet__item">About
+        <svg class="nav-sheet__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+          stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12" />
+          <polyline points="12 5 19 12 12 19" />
+        </svg>
+      </a>
+      <a href="index.html#cta__form-side" class="nav-sheet__item">Contact
+        <svg class="nav-sheet__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+          stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12" />
+          <polyline points="12 5 19 12 12 19" />
+        </svg>
+      </a>
+    </div>
+    <div class="nav-sheet__actions">
+      <a href="packages.html" class="nav-sheet__btn nav-sheet__btn--gold">
+        Plan Journey
+        <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="3"
+          stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12" />
+          <polyline points="12 5 19 12 12 19" />
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- ===== HERO ===== -->
+  <section class="rental-page-hero">
+    <div class="rental-page-hero__bg"></div>
+    <div class="rental-page-hero__overlay"></div>
+    <div class="container rental-page-hero__content">
+      <div class="rental-breadcrumb" style="background:transparent;border:none;padding:0;margin-bottom:16px;">
+        <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:rgba(255,255,255,0.45);">
+          <a href="index.html" style="color:rgba(255,255,255,0.55);text-decoration:none;">Home</a>
+          <span style="opacity:.35">/</span>
+          <span style="color:#c4a86c;font-weight:600;">Transportation</span>
+        </div>
+      </div>
+      <p class="rental-page-hero__label">Transportation</p>
+      <h1 class="rental-page-hero__title">Travel In <em>Premium</em><br>Comfort</h1>
+      <p class="rental-page-hero__subtitle">Luxury vehicles and professional drivers for seamless mountain transfers.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== TAB BAR ===== -->
+  <div class="rental-tab-section" id="transportTabSection">
+    <div class="container" style="padding-left:0;padding-right:0;max-width:100%;">
+      <div class="rental-tab-bar" id="transportTabs" role="tablist" aria-label="Transport categories"></div>
+    </div>
+  </div>
+
+  <!-- ===== PANELS ===== -->
+  <div class="rental-panels-wrap">
+    <div class="container">
+      <div id="transportPanels"></div>
+    </div>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="rental-footer">
+    <p>© 2025 Shred Himalayas. All rights reserved. | <a href="index.html">Home</a> &nbsp;·&nbsp; <a
+        href="admin.html">Admin</a></p>
+  </footer>
+
+  <!-- ===== SCRIPTS ===== -->
+  <script src="js/site-data.js?v=4"></script>
+  <script src="js/navbar.js?v=3"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      SHData.renderTransportPage('transportTabs', 'transportPanels');
+      SHData.updateWhatsApp();
+      SHData.renderFooter();
+    });
+  </script>
+
+</body>
+
+</html>

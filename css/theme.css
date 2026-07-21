@@ -592,9 +592,12 @@ section a:not(.btn):not(.navbar__link):not(.footer__link):not(.nav-sheet__item):
   color: var(--charcoal) !important;
 }
 
+.seasonal-toggle-slider {
+  background: var(--primary-600) !important;
+}
+
 .seasonal-toggle-btn.active {
   color: #ffffff !important;
-  background: var(--primary-600) !important;
 }
 
 /* WhatsApp CTA */

@@ -34,6 +34,8 @@
 
 /* Base Card Styles */
 .transport__card {
+  text-decoration: none !important;
+  color: inherit !important;
   border: 1px solid rgba(255, 255, 255, 0.08) !important;
   background: #18181a !important;
   border-radius: 16px !important;
