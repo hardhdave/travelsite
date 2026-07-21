@@ -611,14 +611,26 @@
 
       .adv-panel__intro-inner {
         flex-direction: column;
+        align-items: flex-start;
+        padding: 32px var(--container-padding, 24px);
       }
 
       .adv-panel__intro-stats {
         width: 100%;
-        justify-content: center;
-        border-top: 1px solid rgba(47, 79, 62, 0.1);
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        border-top: 1px solid rgba(255, 255, 255, 0.12);
         padding-top: 20px;
-        margin-top: 8px;
+        margin-top: 16px;
+      }
+
+      .adv-intro-stat {
+        padding: 12px 20px;
+        flex: 1 1 30%;
+      }
+
+      .adv-intro-stat:first-child {
+        padding-left: 0;
       }
     }
 

@@ -513,16 +513,42 @@
 }
 .rental-eq-card__price {
   position: absolute;
-  bottom: 12px;
-  right: 12px;
-  background: rgba(10,20,14,0.88);
-  color: #c4a86c;
+  top: 12px;
+  left: 12px;
+  background: linear-gradient(135deg, rgba(14, 34, 22, 0.92) 0%, rgba(6, 18, 11, 0.95) 100%);
+  color: #4ADE80;
+  border: 1px solid rgba(74, 222, 128, 0.35);
   font-size: 12px;
   font-weight: 700;
   padding: 5px 12px;
   border-radius: 100px;
   letter-spacing: 0.04em;
   backdrop-filter: blur(8px);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  z-index: 2;
+}
+.rental-eq-card__price-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background: rgba(35, 139, 69, 0.06);
+  border: 1px solid rgba(35, 139, 69, 0.15);
+  border-radius: 10px;
+  margin-bottom: 16px;
+  margin-top: 4px;
+}
+.rental-eq-card__price-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #5a6b5e;
+}
+.rental-eq-card__price-val {
+  font-size: 14px;
+  font-weight: 700;
+  color: #238B45;
 }
 .rental-eq-card__body {
   padding: 22px 22px 24px;

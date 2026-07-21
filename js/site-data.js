@@ -10,7 +10,7 @@ const SHData = (function () {
   // ─── DEFAULT DATA ────────────────────────────────────
   const defaults = {
     settings: {
-      whatsappNumber: '919999999999',
+      whatsappNumber: '919149974118',
       heroTitle: 'Himalayas, by locals.',
       heroSubtitle: 'Premium private journeys across Ladakh, Zanskar, Spiti, Himachal and Bhutan.',
       heroVideoUrl: 'https://assets.mixkit.co/videos/preview/mixkit-snowy-mountain-peak-under-blue-sky-41584-large.mp4',
@@ -1098,11 +1098,13 @@ const SHData = (function () {
             '<div class="rental-eq-grid">' +
             enabledItems.map(function (item) {
               var waLink = 'https://wa.me/' + waNum + '?text=' + encodeURIComponent(item.waMsg || 'I\'m interested in renting ' + item.title);
+              var displayPrice = item.price ? (item.price.indexOf('/per day') !== -1 ? item.price : (item.price.replace(/\/day$/, '') + '/per day')) : '';
               return '<div class="rental-eq-card">' +
-                (item.image ? '<div class="rental-eq-card__img-wrap"><img class="rental-eq-card__img" src="' + item.image + '" alt="' + item.title + '" onerror="this.parentElement.style.display=\'none\'">' + (item.price ? '<span class="rental-eq-card__price">' + item.price + '</span>' : '') + '</div>' : '') +
+                (item.image ? '<div class="rental-eq-card__img-wrap"><img class="rental-eq-card__img" src="' + item.image + '" alt="' + item.title + '" onerror="this.parentElement.style.display=\'none\'">' + (displayPrice ? '<span class="rental-eq-card__price">' + displayPrice + '</span>' : '') + '</div>' : '') +
                 '<div class="rental-eq-card__body">' +
                 '<div class="rental-eq-card__title">' + item.title + '</div>' +
                 '<div class="rental-eq-card__desc">' + (item.desc || '') + '</div>' +
+                (displayPrice ? '<div class="rental-eq-card__price-row"><span class="rental-eq-card__price-label">Rental Rate</span><span class="rental-eq-card__price-val">' + displayPrice + '</span></div>' : '') +
                 '<a href="' + waLink + '" target="_blank" class="rental-eq-card__cta">📲 Enquire on WhatsApp</a>' +
                 '</div></div>';
             }).join('') +
@@ -1203,6 +1205,7 @@ const SHData = (function () {
                 '<div class="rental-eq-card__body">' +
                 '<div class="rental-eq-card__title">' + item.title + '</div>' +
                 '<div class="rental-eq-card__desc">' + (item.desc || '') + '</div>' +
+                (displayPrice ? '<div class="rental-eq-card__price-row"><span class="rental-eq-card__price-label">Price Rate</span><span class="rental-eq-card__price-val">' + displayPrice + '</span></div>' : '') +
                 '<a href="' + waLink + '" target="_blank" class="rental-eq-card__cta">📲 Enquire on WhatsApp</a>' +
                 '</div></div>';
             }).join('') +
