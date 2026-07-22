@@ -93,6 +93,7 @@ function renderPage(page) {
     case 'testimonials': renderTestimonialsEditor(); break;
     case 'policies': renderPoliciesEditor(); break;
     case 'settings': loadSettings(); break;
+    case 'contacts': renderContactsEditor(); break;
   }
 }
 
@@ -107,6 +108,7 @@ function renderDashboard() {
   var rentals = SHData.get('rentals');
   var transport = SHData.get('transport') || [];
   var sightseeing = SHData.get('sightseeing');
+  var contacts = SHData.get('contacts') || [];
   var transportItemCount = transport.reduce(function (a, c) { return a + (c.items ? c.items.length : 0); }, 0);
 
   var skiCount = skiing.reduce(function (a, c) { return a + c.items.length; }, 0);
@@ -122,7 +124,8 @@ function renderDashboard() {
     { icon: '🎯', label: 'Activities', count: actCount },
     { icon: '📍', label: 'Sightseeing', count: sightseeing.length },
     { icon: '🎿', label: 'Rentals', count: rentals.length },
-    { icon: '🚗', label: 'Transport', count: transportItemCount }
+    { icon: '🚗', label: 'Transport', count: transportItemCount },
+    { icon: '📞', label: 'Contact Points', count: contacts.length }
   ];
 
   var ds = document.getElementById('dashStats');
@@ -141,6 +144,7 @@ function renderDashboard() {
     { icon: '📦', title: 'Packages', page: 'packages', count: packages.length + ' tours' },
     { icon: '📄', title: 'Itineraries', page: 'itineraries', count: packages.filter(function (p) { return p.itineraryPdf; }).length + ' PDFs' },
     { icon: '💬', title: 'Testimonials', page: 'testimonials', count: testimonials.length + ' reviews' },
+    { icon: '📞', title: 'Contact Info', page: 'contacts', count: contacts.length + ' locations' },
     { icon: '⚙️', title: 'Settings', page: 'settings', count: 'Site config' }
   ];
 
@@ -155,6 +159,8 @@ var SVG_EDIT = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok
 var SVG_DEL = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>';
 var SVG_EYE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>';
 var SVG_HIDE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></svg>';
+var SVG_STAR_FILL = '<svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>';
+var SVG_STAR_OUTLINE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>';
 
 // ─── TOGGLE BUTTON ───────────────────────────────────
 function toggleBtn(enabled, onclickStr) {
@@ -531,6 +537,66 @@ function deleteTestimonial(ti) {
   tms.splice(ti, 1); SHData.set('testimonials', tms); renderTestimonialsEditor(); showToast('Deleted', false);
 }
 
+// ─── CONTACTS ─────────────────────────────────────────
+function renderContactsEditor() {
+  var contacts = SHData.get('contacts') || [];
+  var el = document.getElementById('contacts-editor');
+  if (!el) return;
+
+  if (!contacts.length) {
+    el.innerHTML = emptyState('No contact locations added yet. Click "Add Contact Point" to get started.');
+    return;
+  }
+
+  el.innerHTML = contacts.map(function (c, ci) {
+    var isDefault = c.isDefault === true;
+    var defaultBtnClass = isDefault ? 'icon-btn--star-active' : 'icon-btn--star-inactive';
+    var defaultTitle = isDefault ? 'Default contact (active)' : 'Set as Default';
+    var actions =
+      '<button class="icon-btn ' + defaultBtnClass + '" title="' + defaultTitle + '" onclick="setDefaultContact(' + ci + ')">' +
+      (isDefault ? SVG_STAR_FILL : SVG_STAR_OUTLINE) +
+      '</button>' +
+      toggleBtn(c.enabled, "toggleContact(" + ci + ")") +
+      '<button class="icon-btn icon-btn--edit" title="Edit" onclick="openModal(\'contact\',null,' + ci + ')">' + SVG_EDIT + '</button>' +
+      '<button class="icon-btn icon-btn--delete" title="Delete" onclick="deleteContact(' + ci + ')">' + SVG_DEL + '</button>';
+
+    var meta = escHtml(c.phone || 'No Phone') + ' &nbsp;·&nbsp; ' + escHtml(c.email || 'No Email') + ' &nbsp;·&nbsp; ' + (isDefault ? '<strong>Default</strong>' : 'Standard');
+    return itemRow('', c.name + (c.badge ? ' (' + c.badge + ')' : ''), meta, c.enabled, actions);
+  }).join('');
+}
+
+function toggleContact(ci) {
+  var contacts = SHData.get('contacts') || [];
+  contacts[ci].enabled = contacts[ci].enabled === false ? true : false;
+  SHData.set('contacts', contacts);
+  renderContactsEditor();
+  showToast('Visibility updated');
+}
+
+function deleteContact(ci) {
+  var contacts = SHData.get('contacts') || [];
+  if (contacts[ci].isDefault) {
+    alert('Cannot delete the default contact point. Set another contact point as default first.');
+    return;
+  }
+  if (!confirm('Delete contact point "' + contacts[ci].name + '"?')) return;
+  contacts.splice(ci, 1);
+  SHData.set('contacts', contacts);
+  renderContactsEditor();
+  showToast('Deleted', false);
+}
+
+function setDefaultContact(ci) {
+  var contacts = SHData.get('contacts') || [];
+  contacts.forEach(function (c, idx) {
+    c.isDefault = (idx === ci);
+    if (idx === ci) c.enabled = true; // Ensure default is enabled
+  });
+  SHData.set('contacts', contacts);
+  renderContactsEditor();
+  showToast('Default contact point updated');
+}
+
 // ─── SETTINGS ─────────────────────────────────────────
 function loadSettings() {
   var s = SHData.get('settings');
@@ -623,6 +689,11 @@ function openModal(type, ctx1, ctx2) {
     item = ctx2 !== null && ctx2 !== undefined ? tms[ctx2] : {};
     titleEl.textContent = ctx2 !== null && ctx2 !== undefined ? 'Edit Review' : 'Add Review';
     html = testimonialForm(item);
+  } else if (type === 'contact') {
+    var contacts = SHData.get('contacts') || [];
+    item = ctx2 !== null && ctx2 !== undefined ? contacts[ctx2] : {};
+    titleEl.textContent = ctx2 !== null && ctx2 !== undefined ? 'Edit Contact Location' : 'Add Contact Location';
+    html = contactForm(item);
   }
 
   body.innerHTML = html;
@@ -810,6 +881,36 @@ function saveModal() {
     if (!newTm.name || !newTm.text) { showToast('Name and review text required', false); return; }
     if (isEdit) tms[ctx2] = newTm; else tms.push(newTm);
     SHData.set('testimonials', tms); renderTestimonialsEditor();
+  }
+  else if (type === 'contact') {
+    var contacts = SHData.get('contacts') || [];
+    var existing = isEdit ? contacts[ctx2] : {};
+    var newC = {
+      id: isEdit ? existing.id : 'c-' + Date.now(),
+      enabled: existing.enabled !== false,
+      isDefault: existing.isDefault === true,
+      name: v('f-name'),
+      badge: v('f-badge'),
+      subtitle: v('f-subtitle'),
+      address: v('f-address'),
+      mapUrl: v('f-mapurl'),
+      email: v('f-email'),
+      phone: v('f-phone'),
+      whatsapp: v('f-whatsapp')
+    };
+    if (!newC.name) { showToast('Location name is required', false); return; }
+    if (!newC.address) { showToast('Address is required', false); return; }
+    if (!newC.phone) { showToast('Phone number is required', false); return; }
+    if (!newC.whatsapp) { showToast('WhatsApp number is required', false); return; }
+
+    if (contacts.length === 0) {
+      newC.isDefault = true;
+      newC.enabled = true;
+    }
+
+    if (isEdit) contacts[ctx2] = newC; else contacts.push(newC);
+    SHData.set('contacts', contacts);
+    renderContactsEditor();
   }
 
   showToast('Saved successfully');
@@ -1027,6 +1128,20 @@ function testimonialForm(item) {
   return '<div class="form-row">' + field('Reviewer Name *', 'f-name', item.name) + field('Initials (e.g. AK)', 'f-initials', item.initials, 'text', 'AK') + '</div>' +
     field('Source (e.g. Google Review ★ 5.0)', 'f-source', item.source) +
     fieldTA('Review Text *', 'f-text', item.text, 5);
+}
+function contactForm(item) {
+  return '<div class="form-row">' +
+    field('Location Name * (e.g. Tangmarg Head Office)', 'f-name', item.name) +
+    field('Badge Label (e.g. Shred Himalayas Expeditions)', 'f-badge', item.badge) +
+    '</div>' +
+    field('Subtitle', 'f-subtitle', item.subtitle, 'text', 'e.g. We are here to craft your bespoke Kashmiri experience.') +
+    fieldTA('Address * (supports multiple lines)', 'f-address', item.address, 4) +
+    field('Map Link / Search URL', 'f-mapurl', item.mapUrl, 'text', 'https://maps.google.com/?q=...') +
+    field('Email Address', 'f-email', item.email, 'email', 'e.g. info@shredhimalayas.com') +
+    '<div class="form-row">' +
+    field('Phone Number *', 'f-phone', item.phone, 'text', 'e.g. +91 91499 74118') +
+    field('WhatsApp Number * (digits only, e.g. 919149974118)', 'f-whatsapp', item.whatsapp, 'text', '919149974118') +
+    '</div>';
 }
 
 // ─── ITINERARY EDITOR ─────────────────────────────────
