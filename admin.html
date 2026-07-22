@@ -2280,7 +2280,24 @@
     function closeSB() { document.getElementById('sidebar').classList.remove('open'); document.getElementById('sbOv').classList.remove('open') }
     var CREDS = { user: 'jammu&kashmir', pass: 'admin@2000' };
     function doLogin(e) { e.preventDefault(); var u = document.getElementById('loginUser').value.trim(), p = document.getElementById('loginPass').value, err = document.getElementById('loginError'); if (u === CREDS.user && p === CREDS.pass) { err.classList.remove('show'); document.getElementById('loginScreen').style.display = 'none'; document.getElementById('app').classList.add('visible'); loadAll() } else { err.classList.add('show') } }
-    function doLogout() { document.getElementById('app').classList.remove('visible'); document.getElementById('loginScreen').style.display = 'flex'; document.getElementById('loginUser').value = ''; document.getElementById('loginPass').value = '' }
+    function doLogout() {
+      if (confirm('Are you sure you want to log out from the Admin Panel?')) {
+        document.getElementById('app').classList.remove('visible');
+        document.getElementById('loginScreen').style.display = 'flex';
+        document.getElementById('loginUser').value = '';
+        document.getElementById('loginPass').value = '';
+      }
+    }
+
+    window.addEventListener('beforeunload', function (e) {
+      var app = document.getElementById('app');
+      if (app && app.classList.contains('visible')) {
+        var msg = 'You are currently logged in to the Admin Panel. Leaving the page will discard unsaved changes.';
+        e.preventDefault();
+        e.returnValue = msg;
+        return msg;
+      }
+    });
   </script>
   <script src="js/site-data.js?v=4"></script>
   <script src="js/policy-modal.js"></script>
