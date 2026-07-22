@@ -91,6 +91,7 @@ function renderPage(page) {
     case 'packages': renderPackagesEditor(); break;
     case 'itineraries': renderItinerariesEditor(); break;
     case 'testimonials': renderTestimonialsEditor(); break;
+    case 'policies': renderPoliciesEditor(); break;
     case 'settings': loadSettings(); break;
   }
 }
@@ -1137,6 +1138,41 @@ function removeItinerary(pi) {
 
   showToast('Itinerary PDF removed');
   renderItinerariesEditor();
+}
+
+// ─── POLICIES EDITOR ─────────────────────────────────
+function renderPoliciesEditor() {
+  var policies = SHData.getPolicies();
+  var pEl = document.getElementById('pol-privacy');
+  var tEl = document.getElementById('pol-terms');
+  var cEl = document.getElementById('pol-cancellation');
+  if (pEl) pEl.value = policies.privacy || '';
+  if (tEl) tEl.value = policies.terms || '';
+  if (cEl) cEl.value = policies.cancellation || '';
+}
+
+function savePolicies() {
+  var pEl = document.getElementById('pol-privacy');
+  var tEl = document.getElementById('pol-terms');
+  var cEl = document.getElementById('pol-cancellation');
+
+  var newPolicies = {
+    privacy: pEl ? pEl.value : '',
+    terms: tEl ? tEl.value : '',
+    cancellation: cEl ? cEl.value : ''
+  };
+
+  SHData.setPolicies(newPolicies);
+  showToast('Legal Policies updated successfully!');
+}
+
+function resetPolicies() {
+  if (confirm('⚠️ Reset all Legal Policies to initial default text?')) {
+    var defs = SHData.defaults.policies;
+    SHData.setPolicies(defs);
+    renderPoliciesEditor();
+    showToast('Policies reset to defaults');
+  }
 }
 
 

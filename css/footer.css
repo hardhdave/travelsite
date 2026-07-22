@@ -240,3 +240,250 @@
     justify-content: center;
   }
 }
+
+/* ============================================
+   POLICY POPUP MODAL — Premium White Card Theme
+   ============================================ */
+
+.policy-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 100000;
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.policy-modal-backdrop.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.policy-modal {
+  width: 100%;
+  max-width: 780px;
+  max-height: 85vh;
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  border-radius: 20px;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(35, 139, 69, 0.15);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transform: scale(0.94) translateY(16px);
+  transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+  color: #1e293b;
+}
+
+.policy-modal-backdrop.is-open .policy-modal {
+  transform: scale(1) translateY(0);
+}
+
+/* Modal Header */
+.policy-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 26px 14px;
+  background: #ffffff;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.policy-modal__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  background: rgba(35, 139, 69, 0.08);
+  border: 1px solid rgba(35, 139, 69, 0.2);
+  border-radius: 100px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #15803d;
+  margin-bottom: 4px;
+}
+
+.policy-modal__title {
+  font-family: var(--font-heading, "Cormorant Garamond", serif);
+  font-size: 22px;
+  font-weight: 600;
+  color: #0f172a;
+  margin: 0;
+}
+
+.policy-modal__close {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  color: #64748b;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.policy-modal__close:hover {
+  background: #fee2e2;
+  border-color: #fca5a5;
+  color: #ef4444;
+  transform: rotate(90deg);
+}
+
+/* Modal Tabs — Segmented Control Style */
+.policy-modal__tabs {
+  display: flex;
+  background: #f1f5f9;
+  border-radius: 100px;
+  padding: 4px;
+  margin: 12px 26px;
+  border: 1px solid rgba(15, 23, 42, 0.05);
+}
+
+.policy-tab-btn {
+  flex: 1;
+  padding: 8px 12px;
+  border: none;
+  background: transparent;
+  color: #64748b;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.policy-tab-btn:hover {
+  color: #0f172a;
+}
+
+.policy-tab-btn.active {
+  background: #ffffff;
+  color: #15803d;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Modal Body */
+.policy-modal__body {
+  padding: 24px 28px;
+  overflow-y: auto;
+  flex: 1;
+  font-size: 14px;
+  line-height: 1.7;
+  color: #334155;
+  background: #ffffff;
+}
+
+.policy-modal__body h3 {
+  font-family: var(--font-heading, "Cormorant Garamond", serif);
+  font-size: 20px;
+  color: #0f172a;
+  margin-top: 0;
+  margin-bottom: 12px;
+  padding-left: 10px;
+  border-left: 3px solid #15803d;
+}
+
+.policy-modal__body h4 {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #15803d;
+  margin-top: 18px;
+  margin-bottom: 6px;
+}
+
+.policy-modal__body p {
+  margin: 0 0 10px;
+  color: #475569;
+}
+
+.policy-modal__body ul {
+  margin: 0 0 12px 18px;
+  padding: 0;
+}
+
+.policy-modal__body li {
+  margin-bottom: 6px;
+  color: #475569;
+}
+
+.policy-modal__body a {
+  color: #15803d;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.policy-modal__body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.policy-modal__body::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+/* Modal Footer */
+.policy-modal__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 26px;
+  background: #f8fafc;
+  border-top: 1px solid #e2e8f0;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.policy-modal__foot-text {
+  font-size: 12px;
+  color: #64748b;
+}
+
+.policy-modal__contact-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: #25D366;
+  color: #052910;
+  border-radius: 100px;
+  font-size: 11.5px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.policy-modal__contact-btn:hover {
+  background: #20bd5a;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 640px) {
+  .policy-modal__tabs {
+    margin: 10px 16px;
+    padding: 3px;
+  }
+  .policy-tab-btn {
+    padding: 6px 4px;
+    font-size: 11px;
+  }
+}

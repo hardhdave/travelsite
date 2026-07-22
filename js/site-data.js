@@ -182,7 +182,13 @@ const SHData = (function () {
           { id: 'tl4', enabled: true, title: 'Range Rover Sport', price: '₹15,000/per day', desc: 'The pinnacle of mountain luxury. All-terrain capability meets world-class comfort — privacy glass, premium audio, and VIP service.', image: 'assets/images/transport-group.png', waMsg: "I'm interested in Range Rover Sport rental" }
         ]
       }
-    ]
+    ],
+
+    policies: {
+      privacy: `<h3>Privacy Policy</h3><p>At <strong>Shred Himalayas Expeditions</strong>, we value your trust and are dedicated to protecting your personal information. This Privacy Policy explains how we collect, use, and protect your data when you visit our website, book packages, or rent gear.</p><h4>1. Information We Collect</h4><p>We collect information you provide directly to us when making an enquiry, booking an expedition, or renting equipment. This includes your full name, phone number, email address, emergency contact details, physical address, and specific travel preferences.</p><h4>2. How We Use Your Information</h4><p>Your details are strictly used to:</p><ul><li>Process and confirm package bookings and equipment rentals.</li><li>Secure high-altitude permits, government entry passes, and cable car (Gondola) passes.</li><li>Coordinate local transportation, guides, and hotel accommodations.</li><li>Send critical travel updates, weather alerts, and safety guidelines for your trip.</li></ul><h4>3. Data Sharing & Security</h4><p>We do not sell, rent, or trade your personal information. Data is shared exclusively with certified local guides, hotel partners, and government permit offices solely for facilitating your expedition.</p><p>We implement robust physical, electronic, and procedural safeguards to ensure your data is kept secure against unauthorized access.</p><h4>4. Contact Us</h4><p>For questions or privacy requests, please contact us at <a href="mailto:loneakash7753@gmail.com">loneakash7753@gmail.com</a> or call <a href="tel:+919149974118">+91 91499 74118</a>.</p>`,
+      terms: `<h3>Terms of Service</h3><p>Welcome to <strong>Shred Himalayas Expeditions</strong>. By accessing our services, booking tours, or renting equipment, you agree to abide by these Terms of Service.</p><h4>1. Bookings & Payments</h4><p>All expedition bookings and equipment rentals are confirmed upon receipt of the initial deposit. Full payment must be cleared prior to trip commencement or equipment hand-over.</p><h4>2. Mountain & High-Altitude Risks</h4><p>Skiing, snowboarding, trekking, and backcountry expeditions in the Himalayas involve inherent risks including extreme weather, avalanches, altitude sickness, and rugged terrain. Guests acknowledge these risks and participate voluntarily. Comprehensive medical and emergency evacuation insurance is strongly recommended.</p><h4>3. Equipment Rental Policy</h4><p>Rented gear must be returned in good working condition. The hirer is responsible for any loss or major damage to equipment beyond normal wear and tear.</p><h4>4. Schedule & Itinerary Changes</h4><p>Shred Himalayas reserves the right to modify itineraries, routes, or timings in response to adverse weather conditions, avalanche hazards, road blockages, or government security advisories to prioritize guest safety.</p><h4>5. Jurisdiction</h4><p>These terms shall be governed by and construed in accordance with the laws of Jammu & Kashmir, India.</p>`,
+      cancellation: `<h3>Cancellation & Refund Policy</h3><p>We strive to keep our cancellation policies fair and transparent. Below are the terms governing trip cancellations, refunds, and weather disruptions for <strong>Shred Himalayas Expeditions</strong>.</p><h4>1. Cancellation Timeline & Refund Percentages</h4><ul><li><strong>30 days or more before trip start:</strong> 90% refund of the total booking amount.</li><li><strong>15 to 29 days before trip start:</strong> 50% refund of the total booking amount.</li><li><strong>7 to 14 days before trip start:</strong> 25% refund of the total booking amount.</li><li><strong>Less than 7 days before trip start:</strong> Non-refundable.</li></ul><h4>2. Weather & Gondola Closure Disruptions</h4><p>In the event of severe blizzards, road blockages, or Gulmarg Gondola suspensions, Shred Himalayas will arrange alternative local sightseeing or provide credit vouchers valid for 12 months. Direct cash refunds for weather disruptions are subject to third-party vendor terms.</p><h4>3. Medical Emergencies</h4><p>If a guest cannot travel due to a certified medical emergency prior to trip departure, a credit voucher valid for 12 months will be issued (minus non-recoverable hotel/permit costs).</p><h4>4. Refund Processing</h4><p>Approved refunds are credited to the original payment channel within 7 to 10 working days.</p>`
+    }
   };
 
   // ─── STORAGE HELPERS ─────────────────────────────────
@@ -195,6 +201,18 @@ const SHData = (function () {
 
   function save(data) {
     try { localStorage.setItem(KEY, JSON.stringify(data)); } catch (e) { }
+  }
+
+  function getPolicies() {
+    const stored = load();
+    if (stored && stored.policies) return stored.policies;
+    return JSON.parse(JSON.stringify(defaults.policies));
+  }
+
+  function setPolicies(policiesObj) {
+    const stored = load() || JSON.parse(JSON.stringify(defaults));
+    stored.policies = policiesObj;
+    save(stored);
   }
 
   function get(section) {
@@ -1232,6 +1250,7 @@ const SHData = (function () {
   // Public API
   return {
     get, set, reset, defaults,
+    getPolicies, setPolicies,
     renderSkiing, renderSnowboarding, renderTrekking,
     renderPackages, renderActivities, renderRentals, renderRentalPage,
     renderTestimonials, renderHero, renderFooter, updateWhatsApp,

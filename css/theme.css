@@ -273,8 +273,7 @@ section,
 }
 
 .navbar a:hover,
-.navbar__link.active,
-.navbar__logo span {
+.navbar__link.active {
   color: var(--primary-300) !important;
 }
 

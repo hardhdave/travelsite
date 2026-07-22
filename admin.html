@@ -1922,7 +1922,12 @@
             </div>
           </div>
           <div class="sb-sec">
-            <span class="sb-lbl">Configuration</span>
+            <span class="sb-lbl">Configuration & Legal</span>
+            <div class="nv" data-page="policies" onclick="navigate(this)">
+              <svg class="nv-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg><span>Legal Policies</span>
+            </div>
             <div class="nv" data-page="settings" onclick="navigate(this)">
               <svg class="nv-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <circle cx="12" cy="12" r="3" />
@@ -2152,6 +2157,57 @@
           </div>
           <div class="simple-list" id="testimonials-editor"></div>
         </div>
+        <div class="pg" id="page-policies">
+          <div class="pg-hd">
+            <div class="pg-ht">
+              <div class="pg-ico">🛡️</div>
+              <div>
+                <h1>Legal Policies</h1>
+                <p>Edit website Privacy Policy, Terms of Service, and Cancellation Policy displayed in footer popup.</p>
+              </div>
+            </div>
+            <div style="display:flex; gap:10px;">
+              <button class="tbtn tbtn--prev" onclick="openPolicyModal('privacy')">👁️ Preview Popup</button>
+              <button class="add-btn" onclick="savePolicies()">💾 Save All Policies</button>
+            </div>
+          </div>
+          <div class="settings-grid" style="grid-template-columns: 1fr;">
+            <div class="settings-card">
+              <div class="settings-card-header">
+                <div class="settings-card-icon">🔒</div>
+                <h3>Privacy Policy</h3>
+              </div>
+              <div class="field">
+                <label>Privacy Policy Content (HTML / Text)</label>
+                <textarea id="pol-privacy" rows="8" style="font-family: monospace; font-size: 13px;"></textarea>
+              </div>
+            </div>
+            <div class="settings-card">
+              <div class="settings-card-header">
+                <div class="settings-card-icon">📜</div>
+                <h3>Terms of Service</h3>
+              </div>
+              <div class="field">
+                <label>Terms of Service Content (HTML / Text)</label>
+                <textarea id="pol-terms" rows="8" style="font-family: monospace; font-size: 13px;"></textarea>
+              </div>
+            </div>
+            <div class="settings-card">
+              <div class="settings-card-header">
+                <div class="settings-card-icon">❌</div>
+                <h3>Cancellation & Refund Policy</h3>
+              </div>
+              <div class="field">
+                <label>Cancellation Policy Content (HTML / Text)</label>
+                <textarea id="pol-cancellation" rows="8" style="font-family: monospace; font-size: 13px;"></textarea>
+              </div>
+            </div>
+            <div style="display:flex; gap:12px; justify-content: flex-end; margin-top: 10px;">
+              <button class="btn-cancel" style="background: rgba(255,255,255,0.06); color: #cbd5e1; border: 1px solid rgba(255,255,255,0.15); padding: 10px 20px; border-radius: 8px; cursor: pointer;" onclick="resetPolicies()">↺ Reset Policies to Default</button>
+              <button class="save-btn" style="width: auto; padding: 12px 30px;" onclick="savePolicies()">💾 Save Legal Policies</button>
+            </div>
+          </div>
+        </div>
         <div class="pg" id="page-settings">
           <div class="pg-hd">
             <div class="pg-ht">
@@ -2218,6 +2274,7 @@
     function doLogout() { document.getElementById('app').classList.remove('visible'); document.getElementById('loginScreen').style.display = 'flex'; document.getElementById('loginUser').value = ''; document.getElementById('loginPass').value = '' }
   </script>
   <script src="js/site-data.js?v=4"></script>
+  <script src="js/policy-modal.js"></script>
   <script src="js/admin.js?v=2"></script>
   <script>
     function navigate(el) {
