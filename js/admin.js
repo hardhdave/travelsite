@@ -94,6 +94,7 @@ function renderPage(page) {
     case 'policies': renderPoliciesEditor(); break;
     case 'settings': loadSettings(); break;
     case 'contacts': renderContactsEditor(); break;
+    case 'seo': renderSEOEditor(); break;
   }
 }
 
@@ -1291,3 +1292,167 @@ function resetPolicies() {
 }
 
 
+// ─────────────────────────────────────────────────────────
+// SEO MANAGER
+// ─────────────────────────────────────────────────────────
+
+var _seoKeywords = [];   // working array of keyword strings
+
+function renderSEOEditor() {
+  var seo = SHData.get('seo');
+  if (!seo) seo = JSON.parse(JSON.stringify(SHData.defaults.seo));
+
+  // Populate simple text / textarea / select fields
+  function setField(id, val) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    if (el.type === 'checkbox') el.checked = !!val;
+    else el.value = val || '';
+  }
+
+  setField('seo-metaTitle',         seo.metaTitle);
+  setField('seo-metaDescription',   seo.metaDescription);
+  setField('seo-ogTitle',           seo.ogTitle);
+  setField('seo-ogDescription',     seo.ogDescription);
+  setField('seo-ogImage',           seo.ogImage);
+  setField('seo-canonicalUrl',      seo.canonicalUrl);
+  setField('seo-twitterTitle',      seo.twitterTitle);
+  setField('seo-twitterDescription',seo.twitterDescription);
+  setField('seo-twitterSite',       seo.twitterSite);
+  setField('seo-twitterCard',       seo.twitterCard);
+  setField('seo-robotsDirective',   seo.robotsDirective);
+  setField('seo-schemaEnabled',     seo.schemaEnabled !== false);
+
+  // Keywords — parse from comma-string stored in metaKeywords
+  _seoKeywords = (seo.metaKeywords || '')
+    .split(',')
+    .map(function(k){ return k.trim(); })
+    .filter(function(k){ return k.length > 0; });
+  seoRenderTags();
+
+  // Char counters
+  seoCharCount('metaTitle', 60);
+  seoCharCount('metaDesc', 160);
+
+  // Live preview
+  seoUpdatePreview();
+
+  // Keyword input: add on Enter or comma
+  var ghostInput = document.getElementById('kw-ghost-input');
+  if (ghostInput) {
+    // Remove old listener to prevent duplicates
+    ghostInput.replaceWith(ghostInput.cloneNode(true));
+    var fresh = document.getElementById('kw-ghost-input');
+    fresh.addEventListener('keydown', function(e) {
+      var val = fresh.value.trim().replace(/,+$/, '');
+      if ((e.key === 'Enter' || e.key === ',') && val) {
+        e.preventDefault();
+        seoAddKeyword(val);
+        fresh.value = '';
+      } else if (e.key === 'Backspace' && fresh.value === '' && _seoKeywords.length) {
+        _seoKeywords.pop();
+        seoRenderTags();
+      }
+    });
+    fresh.addEventListener('blur', function() {
+      var val = fresh.value.trim().replace(/,+$/, '');
+      if (val) { seoAddKeyword(val); fresh.value = ''; }
+    });
+  }
+}
+
+function seoAddKeyword(kw) {
+  var cleaned = kw.replace(/,/g, '').trim();
+  if (!cleaned) return;
+  // Prevent duplicates (case-insensitive)
+  var lower = cleaned.toLowerCase();
+  if (_seoKeywords.some(function(k){ return k.toLowerCase() === lower; })) return;
+  _seoKeywords.push(cleaned);
+  seoRenderTags();
+}
+
+function seoRemoveKeyword(idx) {
+  _seoKeywords.splice(idx, 1);
+  seoRenderTags();
+}
+
+function seoRenderTags() {
+  var container = document.getElementById('kw-tags-container');
+  if (!container) return;
+  container.innerHTML = _seoKeywords.map(function(kw, i) {
+    return '<span class="kw-tag">' +
+      escHtmlAdmin(kw) +
+      '<button type="button" onclick="seoRemoveKeyword(' + i + ')" title="Remove keyword">&times;</button>' +
+      '</span>';
+  }).join('');
+  // Update count badge
+  var badge = document.getElementById('cc-kwCount');
+  if (badge) badge.textContent = _seoKeywords.length + ' keyword' + (_seoKeywords.length !== 1 ? 's' : '');
+}
+
+function seoCharCount(fieldKey, max) {
+  // fieldKey: 'metaTitle' or 'metaDesc'
+  var inputId = fieldKey === 'metaTitle' ? 'seo-metaTitle' : 'seo-metaDescription';
+  var badgeId = fieldKey === 'metaTitle' ? 'cc-metaTitle' : 'cc-metaDesc';
+  var el = document.getElementById(inputId);
+  var badge = document.getElementById(badgeId);
+  if (!el || !badge) return;
+  var len = el.value.length;
+  badge.textContent = len + ' / ' + max;
+  badge.className = 'seo-char-count';
+  if (len > max) badge.classList.add('over');
+  else if (len > max * 0.85) badge.classList.add('warn');
+}
+
+function seoUpdatePreview() {
+  var titleEl  = document.getElementById('seo-metaTitle');
+  var descEl   = document.getElementById('seo-metaDescription');
+  var urlEl    = document.getElementById('seo-canonicalUrl');
+  var ogTitle  = document.getElementById('seo-ogTitle');
+
+  var pTitle = document.getElementById('seo-prev-title');
+  var pDesc  = document.getElementById('seo-prev-desc');
+  var pUrl   = document.getElementById('seo-prev-url');
+
+  if (!pTitle) return;
+
+  // Title: use og:title if available, otherwise page title
+  var titleVal = (ogTitle && ogTitle.value.trim()) || (titleEl && titleEl.value.trim()) || 'Your Page Title';
+  pTitle.textContent = titleVal.length > 60 ? titleVal.slice(0, 57) + '...' : titleVal;
+
+  // Description
+  var descVal = descEl && descEl.value.trim() ? descEl.value.trim() : 'No description set yet.';
+  pDesc.textContent = descVal;
+
+  // URL — strip protocol
+  var rawUrl = urlEl && urlEl.value.trim() ? urlEl.value.trim() : 'https://shredhimalayas.com';
+  pUrl.textContent = rawUrl.replace(/^https?:\/\//i, '');
+}
+
+function escHtmlAdmin(s) {
+  return String(s || '')
+    .replace(/&/g, '&amp;').replace(/"/g, '&quot;')
+    .replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+function saveSEOSettings() {
+  var seo = {
+    metaTitle:           (document.getElementById('seo-metaTitle')         || {}).value || '',
+    metaDescription:     (document.getElementById('seo-metaDescription')   || {}).value || '',
+    metaKeywords:        _seoKeywords.join(', '),
+    ogTitle:             (document.getElementById('seo-ogTitle')            || {}).value || '',
+    ogDescription:       (document.getElementById('seo-ogDescription')      || {}).value || '',
+    ogImage:             (document.getElementById('seo-ogImage')            || {}).value || '',
+    ogUrl:               (document.getElementById('seo-canonicalUrl')       || {}).value || '',
+    canonicalUrl:        (document.getElementById('seo-canonicalUrl')       || {}).value || '',
+    twitterCard:         (document.getElementById('seo-twitterCard')        || {}).value || 'summary_large_image',
+    twitterSite:         (document.getElementById('seo-twitterSite')        || {}).value || '',
+    twitterTitle:        (document.getElementById('seo-twitterTitle')       || {}).value || '',
+    twitterDescription:  (document.getElementById('seo-twitterDescription') || {}).value || '',
+    robotsDirective:     (document.getElementById('seo-robotsDirective')    || {}).value || 'index, follow',
+    schemaEnabled:       !!(document.getElementById('seo-schemaEnabled')    || {}).checked
+  };
+
+  SHData.set('seo', seo);
+  showToast('🔎 SEO settings saved! Tags will be injected on next page load.');
+}

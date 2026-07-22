@@ -17,6 +17,23 @@ const SHData = (function () {
       footerCopyright: '© 2024 Shred Himalayas. All rights reserved. Crafted with love in Kashmir.'
     },
 
+    seo: {
+      metaTitle: 'Shred Himalayas — Premium Himalayan Adventures & Ski Experiences in Kashmir',
+      metaDescription: 'Luxury adventures, ski experiences, treks, and bespoke Himalayan journeys crafted by local experts in Kashmir. Experience the Himalayas beyond the ordinary.',
+      metaKeywords: 'Kashmir skiing, Gulmarg ski resort, heliskiing Kashmir, Kashmir snowboarding, Himalayan trekking, Kashmir luxury travel, Gulmarg gondola, Kashmir tour packages, Kashmir adventure sports, snowboarding Gulmarg, ski lessons Kashmir, backcountry skiing, Kashmir offbeat tours, Dal Lake houseboat, Pahalgam trekking, Sonamarg glacier, Kashmir winter sports, Kashmir mountain guide, premium Kashmir tours, Shred Himalayas',
+      ogTitle: 'Shred Himalayas — Premium Himalayan Adventures',
+      ogDescription: 'Crafting extraordinary ski, snowboard, trek, and luxury travel experiences in the heart of the Himalayas. Book your Kashmir adventure with local experts.',
+      ogImage: 'assets/images/hero-mountains.png',
+      ogUrl: 'https://shredhimalayas.com',
+      twitterCard: 'summary_large_image',
+      twitterSite: '@ShredHimalayas',
+      twitterTitle: 'Shred Himalayas — Premium Himalayan Adventures',
+      twitterDescription: 'Crafting extraordinary ski, snowboard, trek, and luxury travel experiences in the heart of the Himalayas.',
+      canonicalUrl: 'https://shredhimalayas.com',
+      robotsDirective: 'index, follow',
+      schemaEnabled: true
+    },
+
     contacts: [
       {
         id: 'c1',
@@ -1386,6 +1403,98 @@ const SHData = (function () {
     };
   }
 
+  /* ─── SEO META TAG INJECTOR ─── */
+  function renderSEO() {
+    var seo = get('seo');
+    if (!seo) seo = JSON.parse(JSON.stringify(defaults.seo));
+
+    function setMeta(name, content, prop) {
+      if (!content) return;
+      var sel = prop
+        ? 'meta[property="' + name + '"]'
+        : 'meta[name="' + name + '"]';
+      var el = document.querySelector(sel);
+      if (!el) {
+        el = document.createElement('meta');
+        if (prop) el.setAttribute('property', name);
+        else el.setAttribute('name', name);
+        document.head.appendChild(el);
+      }
+      el.setAttribute('content', content);
+    }
+
+    function setLink(rel, href) {
+      if (!href) return;
+      var el = document.querySelector('link[rel="' + rel + '"]');
+      if (!el) {
+        el = document.createElement('link');
+        el.setAttribute('rel', rel);
+        document.head.appendChild(el);
+      }
+      el.setAttribute('href', href);
+    }
+
+    // Page title
+    if (seo.metaTitle) document.title = seo.metaTitle;
+
+    // Core meta tags
+    setMeta('description', seo.metaDescription);
+    setMeta('keywords', seo.metaKeywords);
+    setMeta('robots', seo.robotsDirective || 'index, follow');
+
+    // Open Graph
+    setMeta('og:title', seo.ogTitle, true);
+    setMeta('og:description', seo.ogDescription, true);
+    setMeta('og:image', seo.ogImage, true);
+    setMeta('og:url', seo.ogUrl || seo.canonicalUrl, true);
+    setMeta('og:type', 'website', true);
+    setMeta('og:site_name', 'Shred Himalayas', true);
+
+    // Twitter Card
+    setMeta('twitter:card', seo.twitterCard || 'summary_large_image');
+    setMeta('twitter:site', seo.twitterSite);
+    setMeta('twitter:title', seo.twitterTitle || seo.ogTitle);
+    setMeta('twitter:description', seo.twitterDescription || seo.ogDescription);
+    setMeta('twitter:image', seo.ogImage);
+
+    // Canonical
+    setLink('canonical', seo.canonicalUrl);
+
+    // JSON-LD Structured Data (LocalBusiness schema)
+    if (seo.schemaEnabled !== false) {
+      var existingScript = document.getElementById('sh-schema-ld');
+      if (existingScript) existingScript.remove();
+      var settings = get('settings');
+      var contacts = get('contacts') || [];
+      var primary = contacts.find(function(c){ return c.isDefault; }) || contacts[0] || {};
+      var schema = {
+        "@context": "https://schema.org",
+        "@type": "TravelAgency",
+        "name": "Shred Himalayas Expeditions",
+        "description": seo.metaDescription,
+        "url": seo.canonicalUrl || 'https://shredhimalayas.com',
+        "telephone": primary.phone || '+91 91499 74118',
+        "email": primary.email || 'loneakash7753@gmail.com',
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": (primary.address || 'Chandilora, Tangmarg Gulmarg Road').split('\n')[0],
+          "addressLocality": "Baramulla",
+          "addressRegion": "Kashmir",
+          "postalCode": "193402",
+          "addressCountry": "IN"
+        },
+        "areaServed": "Kashmir, Gulmarg, Pahalgam, Sonamarg, Srinagar",
+        "priceRange": "₹₹₹",
+        "sameAs": []
+      };
+      var ldScript = document.createElement('script');
+      ldScript.id = 'sh-schema-ld';
+      ldScript.type = 'application/ld+json';
+      ldScript.textContent = JSON.stringify(schema, null, 2);
+      document.head.appendChild(ldScript);
+    }
+  }
+
   // Public API
   return {
     get, set, reset, defaults,
@@ -1393,7 +1502,7 @@ const SHData = (function () {
     renderSkiing, renderSnowboarding, renderTrekking,
     renderPackages, renderActivities, renderRentals, renderRentalPage,
     renderTestimonials, renderHero, renderFooter, updateWhatsApp,
-    renderTransportPage, renderContact
+    renderTransportPage, renderContact, renderSEO
   };
 })();
 

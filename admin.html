@@ -867,6 +867,248 @@
       margin-bottom: 12px
     }
 
+    /* SEO MANAGER */
+    .seo-section { margin-bottom: 28px }
+
+    .seo-section-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--tm);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px
+    }
+
+    .seo-section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--div)
+    }
+
+    .seo-score-bar {
+      background: var(--cbg);
+      border: 1px solid var(--cb);
+      border-radius: var(--r);
+      padding: 18px 22px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 18px
+    }
+
+    .seo-score-ring {
+      width: 60px;
+      height: 60px;
+      flex-shrink: 0;
+      position: relative
+    }
+
+    .seo-score-ring svg { transform: rotate(-90deg) }
+
+    .seo-score-ring-label {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--g)
+    }
+
+    .seo-score-info { flex: 1 }
+
+    .seo-score-info strong {
+      display: block;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--tf);
+      margin-bottom: 4px
+    }
+
+    .seo-score-info p {
+      font-size: 12px;
+      color: var(--ts);
+      margin: 0
+    }
+
+    .seo-field-card {
+      background: var(--cbg);
+      border: 1px solid var(--cb);
+      border-radius: var(--r);
+      padding: 22px;
+      margin-bottom: 14px;
+      transition: border-color var(--d)
+    }
+
+    .seo-field-card:hover { border-color: var(--cbH) }
+
+    .seo-field-card-hd {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 16px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--div)
+    }
+
+    .seo-field-card-hd-left { flex: 1 }
+
+    .seo-field-label {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--tf);
+      margin-bottom: 3px
+    }
+
+    .seo-field-hint {
+      font-size: 11.5px;
+      color: var(--ts)
+    }
+
+    .seo-char-count {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 9px;
+      border-radius: 100px;
+      background: rgba(35,139,69,.08);
+      color: var(--g);
+      white-space: nowrap
+    }
+
+    .seo-char-count.warn { background: rgba(234,179,8,.10); color: #ca8a04 }
+    .seo-char-count.over { background: rgba(239,68,68,.10); color: #dc2626 }
+
+    /* Keyword tag input */
+    .keyword-input-wrap {
+      border: 1px solid var(--cb);
+      border-radius: 8px;
+      padding: 8px 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      cursor: text;
+      transition: border-color var(--d);
+      min-height: 46px;
+      align-items: flex-start
+    }
+
+    .keyword-input-wrap:focus-within { border-color: var(--g) }
+
+    .kw-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: rgba(35,139,69,.10);
+      border: 1px solid rgba(35,139,69,.20);
+      color: var(--g);
+      border-radius: 100px;
+      padding: 3px 10px;
+      font-size: 12px;
+      font-weight: 600
+    }
+
+    .kw-tag button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--g);
+      padding: 0;
+      line-height: 1;
+      font-size: 14px;
+      opacity: .6;
+      transition: opacity var(--d)
+    }
+
+    .kw-tag button:hover { opacity: 1 }
+
+    #kw-ghost-input {
+      border: none;
+      outline: none;
+      background: transparent;
+      font-family: inherit;
+      font-size: 13px;
+      color: var(--tf);
+      min-width: 140px;
+      flex: 1;
+      padding: 3px 2px
+    }
+
+    .seo-robots-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px
+    }
+
+    .seo-toggle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--div)
+    }
+
+    .seo-toggle-row:last-child { border-bottom: none }
+
+    .seo-toggle-label { font-size: 13px; font-weight: 600; color: var(--tf) }
+    .seo-toggle-hint { font-size: 11.5px; color: var(--ts); margin-top: 2px }
+
+    .seo-preview-box {
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 18px 20px;
+      font-family: Arial, sans-serif
+    }
+
+    .seo-preview-url {
+      font-size: 12px;
+      color: #1a73e8;
+      margin-bottom: 3px
+    }
+
+    .seo-preview-title {
+      font-size: 18px;
+      color: #1a0dab;
+      font-weight: 400;
+      margin-bottom: 4px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis
+    }
+
+    .seo-preview-desc {
+      font-size: 13px;
+      color: #4d5156;
+      line-height: 1.5;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden
+    }
+
+    .seo-save-bar {
+      position: sticky;
+      bottom: 0;
+      background: var(--cs);
+      border-top: 1px solid var(--div);
+      padding: 14px 0;
+      margin-top: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      z-index: 10
+    }
+
+    .seo-save-note { font-size: 12px; color: var(--ts) }
+
     /* SEC BAR */
     .sec-bar {
       display: flex;
@@ -1965,6 +2207,13 @@
                 <circle cx="12" cy="10" r="3"></circle>
               </svg><span>Contact Info</span>
             </div>
+            <div class="nv" data-page="seo" onclick="navigate(this)">
+              <svg class="nv-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"/>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                <path d="M11 8v6M8 11h6"/>
+              </svg><span>SEO Manager</span>
+            </div>
           </div>
         </div>
         <div class="sb-bot">
@@ -2304,6 +2553,155 @@
           </div>
           <div class="items-list" id="contacts-editor"></div>
         </div>
+
+        <div class="pg" id="page-seo">
+          <div class="pg-hd">
+            <div class="pg-ht">
+              <div class="pg-ico">🔍</div>
+              <div>
+                <h1>SEO Manager</h1>
+                <p>Manage meta tags, keywords, Open Graph, and structured data — all injected invisibly in the page source.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Live Google Preview -->
+          <div class="seo-section">
+            <div class="seo-section-title">Google Search Preview</div>
+            <div class="seo-field-card">
+              <div class="seo-field-label" style="margin-bottom:12px">How your site appears in Google search results</div>
+              <div class="seo-preview-box">
+                <div class="seo-preview-url" id="seo-prev-url">shredhimalayas.com</div>
+                <div class="seo-preview-title" id="seo-prev-title">Shred Himalayas — Premium Himalayan Adventures</div>
+                <div class="seo-preview-desc" id="seo-prev-desc">Luxury adventures, ski experiences, treks, and bespoke Himalayan journeys crafted by local experts in Kashmir.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Core Meta -->
+          <div class="seo-section">
+            <div class="seo-section-title">Core Meta Tags</div>
+
+            <div class="seo-field-card">
+              <div class="seo-field-card-hd">
+                <div class="seo-field-card-hd-left">
+                  <div class="seo-field-label">Page Title</div>
+                  <div class="seo-field-hint">Shown in browser tab and Google search. Ideal: 50–60 characters.</div>
+                </div>
+                <span class="seo-char-count" id="cc-metaTitle">0 / 60</span>
+              </div>
+              <input type="text" id="seo-metaTitle" class="field" placeholder="e.g. Shred Himalayas — Best Skiing & Adventures in Kashmir" oninput="seoCharCount('metaTitle',60); seoUpdatePreview()">
+            </div>
+
+            <div class="seo-field-card">
+              <div class="seo-field-card-hd">
+                <div class="seo-field-card-hd-left">
+                  <div class="seo-field-label">Meta Description</div>
+                  <div class="seo-field-hint">Shown below the title in search results. Ideal: 150–160 characters.</div>
+                </div>
+                <span class="seo-char-count" id="cc-metaDesc">0 / 160</span>
+              </div>
+              <textarea id="seo-metaDescription" class="field" rows="3" placeholder="A compelling description of your site..." oninput="seoCharCount('metaDesc',160); seoUpdatePreview()"></textarea>
+            </div>
+
+            <div class="seo-field-card">
+              <div class="seo-field-card-hd">
+                <div class="seo-field-card-hd-left">
+                  <div class="seo-field-label">Focus Keywords</div>
+                  <div class="seo-field-hint">Type a keyword and press <kbd style="background:var(--cb);padding:1px 5px;border-radius:4px;font-size:11px">Enter</kbd> or <kbd style="background:var(--cb);padding:1px 5px;border-radius:4px;font-size:11px">,</kbd> to add. These are hidden in your page source to help search engines understand your content.</div>
+                </div>
+                <span class="seo-char-count" id="cc-kwCount" style="background:rgba(35,139,69,.08);color:var(--g)">0 keywords</span>
+              </div>
+              <div class="keyword-input-wrap" onclick="document.getElementById('kw-ghost-input').focus()">
+                <div id="kw-tags-container"></div>
+                <input id="kw-ghost-input" type="text" placeholder="Type keyword then press Enter..." autocomplete="off">
+              </div>
+            </div>
+          </div>
+
+          <!-- Open Graph -->
+          <div class="seo-section">
+            <div class="seo-section-title">Open Graph (Social Sharing)</div>
+            <div class="seo-field-card">
+              <div class="seo-field-label" style="margin-bottom:4px">OG Title</div>
+              <div class="seo-field-hint" style="margin-bottom:10px">Title shown when your link is shared on Facebook, WhatsApp, LinkedIn.</div>
+              <input type="text" id="seo-ogTitle" class="field" placeholder="Shred Himalayas — Premium Himalayan Adventures" oninput="seoUpdatePreview()">
+
+              <div class="seo-field-label" style="margin: 16px 0 4px">OG Description</div>
+              <div class="seo-field-hint" style="margin-bottom:10px">Subtitle shown in social share cards.</div>
+              <textarea id="seo-ogDescription" class="field" rows="2" placeholder="Crafting extraordinary ski, snowboard, trek experiences in Kashmir..."></textarea>
+
+              <div class="seo-field-label" style="margin: 16px 0 4px">OG Image URL</div>
+              <div class="seo-field-hint" style="margin-bottom:10px">Image shown in social share previews. Recommended: 1200×630px.</div>
+              <input type="text" id="seo-ogImage" class="field" placeholder="assets/images/hero-mountains.png">
+
+              <div class="seo-field-label" style="margin: 16px 0 4px">Canonical / Site URL</div>
+              <div class="seo-field-hint" style="margin-bottom:10px">Your website's primary URL. Used for canonical tag and OG URL.</div>
+              <input type="text" id="seo-canonicalUrl" class="field" placeholder="https://shredhimalayas.com" oninput="seoUpdatePreview()">
+            </div>
+          </div>
+
+          <!-- Twitter / X -->
+          <div class="seo-section">
+            <div class="seo-section-title">Twitter / X Card</div>
+            <div class="seo-field-card">
+              <div class="seo-field-label" style="margin-bottom:4px">Twitter Title</div>
+              <div class="seo-field-hint" style="margin-bottom:10px">Title for Twitter/X link cards (leave blank to use OG Title).</div>
+              <input type="text" id="seo-twitterTitle" class="field" placeholder="Leave blank to mirror OG Title">
+
+              <div class="seo-field-label" style="margin: 16px 0 4px">Twitter Description</div>
+              <div class="seo-field-hint" style="margin-bottom:10px">Short description for Twitter cards (leave blank to use OG Description).</div>
+              <textarea id="seo-twitterDescription" class="field" rows="2" placeholder="Leave blank to mirror OG Description"></textarea>
+
+              <div class="seo-field-label" style="margin: 16px 0 4px">Twitter Handle</div>
+              <div class="seo-field-hint" style="margin-bottom:10px">Your @handle on Twitter/X, e.g. @ShredHimalayas.</div>
+              <input type="text" id="seo-twitterSite" class="field" placeholder="@ShredHimalayas">
+
+              <div class="seo-field-label" style="margin: 16px 0 4px">Card Type</div>
+              <select id="seo-twitterCard" class="field">
+                <option value="summary_large_image">summary_large_image (recommended)</option>
+                <option value="summary">summary</option>
+                <option value="app">app</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Technical SEO -->
+          <div class="seo-section">
+            <div class="seo-section-title">Technical SEO</div>
+            <div class="seo-field-card">
+              <div class="seo-toggle-row">
+                <div>
+                  <div class="seo-toggle-label">Schema / Structured Data (JSON-LD)</div>
+                  <div class="seo-toggle-hint">Injects a TravelAgency schema block into the page &lt;head&gt; — helps Google understand your business and can enable rich results.</div>
+                </div>
+                <label class="toggle">
+                  <input type="checkbox" id="seo-schemaEnabled">
+                  <span class="toggle-slider"></span>
+                </label>
+              </div>
+              <div class="seo-toggle-row">
+                <div>
+                  <div class="seo-toggle-label">Robots Directive</div>
+                  <div class="seo-toggle-hint">Controls how search engine crawlers index this page.</div>
+                </div>
+                <select id="seo-robotsDirective" class="field" style="max-width:200px">
+                  <option value="index, follow">index, follow (recommended)</option>
+                  <option value="noindex, follow">noindex, follow</option>
+                  <option value="index, nofollow">index, nofollow</option>
+                  <option value="noindex, nofollow">noindex, nofollow</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Save Bar -->
+          <div class="seo-save-bar">
+            <span class="seo-save-note">🔒 These tags are injected in the page source — never visible to visitors, only to search engines.</span>
+            <button class="add-btn" onclick="saveSEOSettings()">Save SEO Settings</button>
+          </div>
+        </div>
+
       </main>
     </div>
   </div>
