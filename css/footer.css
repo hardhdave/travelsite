@@ -367,7 +367,11 @@
   cursor: pointer;
   transition: all 0.2s ease;
   text-align: center;
-  white-space: nowrap;
+  white-space: normal;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.25;
 }
 
 .policy-tab-btn:hover {
@@ -478,12 +482,74 @@
 }
 
 @media (max-width: 640px) {
-  .policy-modal__tabs {
-    margin: 10px 16px;
-    padding: 3px;
+  .policy-modal-backdrop {
+    padding: 12px;
   }
+  
+  .policy-modal {
+    max-height: 90vh;
+    border-radius: 16px;
+  }
+  
+  .policy-modal__header {
+    padding: 16px 20px 10px;
+  }
+  
+  .policy-modal__title {
+    font-size: 18px;
+  }
+
+  .policy-modal__tabs {
+    margin: 8px 16px;
+    padding: 3px;
+    border-radius: 8px;
+    gap: 3px;
+  }
+  
   .policy-tab-btn {
     padding: 6px 4px;
     font-size: 11px;
+    border-radius: 6px;
+  }
+
+  .policy-modal__body {
+    padding: 18px 20px;
+    font-size: 13.5px;
+  }
+  
+  .policy-modal__body h3 {
+    font-size: 18px;
+  }
+
+  .policy-modal__footer {
+    padding: 12px 20px;
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+    gap: 10px;
+  }
+
+  .policy-modal__contact-btn {
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+@media (max-width: 400px) {
+  .policy-modal-backdrop {
+    padding: 8px;
+  }
+  
+  .policy-modal__tabs {
+    margin: 6px 10px;
+  }
+  
+  .policy-tab-btn {
+    font-size: 9.5px;
+    padding: 6px 2px;
+  }
+  
+  .policy-modal__body {
+    padding: 14px 14px;
   }
 }
