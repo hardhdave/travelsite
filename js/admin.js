@@ -92,6 +92,7 @@ function renderPage(page) {
     case 'itineraries': renderItinerariesEditor(); break;
     case 'testimonials': renderTestimonialsEditor(); break;
     case 'team': renderTeamEditor(); break;
+    case 'about': renderAboutEditor(); break;
     case 'policies': renderPoliciesEditor(); break;
     case 'settings': loadSettings(); break;
     case 'contacts': renderContactsEditor(); break;
@@ -107,6 +108,8 @@ function renderDashboard() {
   var packages = SHData.get('packages');
   var testimonials = SHData.get('testimonials');
   var team = SHData.get('team') || [];
+  var about = SHData.get('about') || (SHData.defaults ? SHData.defaults.about : {});
+  var timeline = about.timeline || [];
   var activities = SHData.get('activities');
   var rentals = SHData.get('rentals');
   var transport = SHData.get('transport') || [];
@@ -125,6 +128,7 @@ function renderDashboard() {
     { icon: '📦', label: 'Tour Packages', count: packages.length },
     { icon: '💬', label: 'Testimonials', count: testimonials.length },
     { icon: '👥', label: 'Team Members', count: team.length },
+    { icon: '📖', label: 'Story Milestones', count: timeline.length },
     { icon: '🎯', label: 'Activities', count: actCount },
     { icon: '📍', label: 'Sightseeing', count: sightseeing.length },
     { icon: '🎿', label: 'Rentals', count: rentals.length },
@@ -149,6 +153,7 @@ function renderDashboard() {
     { icon: '📄', title: 'Itineraries', page: 'itineraries', count: packages.filter(function (p) { return p.itineraryPdf; }).length + ' PDFs' },
     { icon: '💬', title: 'Testimonials', page: 'testimonials', count: testimonials.length + ' reviews' },
     { icon: '👥', title: 'Our Team', page: 'team', count: team.length + ' members' },
+    { icon: '📖', title: 'Our Story', page: 'about', count: timeline.length + ' milestones' },
     { icon: '📞', title: 'Contact Info', page: 'contacts', count: contacts.length + ' locations' },
     { icon: '⚙️', title: 'Settings', page: 'settings', count: 'Site config' }
   ];
@@ -661,6 +666,94 @@ function saveSettings() {
 }
 function resetToDefaults() { SHData.reset(); }
 
+// ─── OUR STORY / ABOUT EDITOR ─────────────────────────
+function renderAboutEditor() {
+  var about = SHData.get('about');
+  if (!about) about = JSON.parse(JSON.stringify(SHData.defaults.about));
+
+  var lblEl = document.getElementById('ab-label');
+  var tpEl = document.getElementById('ab-titlePrefix');
+  var tgEl = document.getElementById('ab-titleGradient');
+  var qEl = document.getElementById('ab-quote');
+  var bEl = document.getElementById('ab-bio');
+
+  if (lblEl) lblEl.value = about.label || 'Our Story';
+  if (tpEl) tpEl.value = about.titlePrefix !== undefined ? about.titlePrefix : 'Built By ';
+  if (tgEl) tgEl.value = about.titleGradient !== undefined ? about.titleGradient : 'Local Experts';
+  if (qEl) qEl.value = about.quote || '';
+  if (bEl) bEl.value = about.bio || '';
+
+  var portraitContainer = document.getElementById('ab-portrait-field-container');
+  if (portraitContainer) {
+    portraitContainer.innerHTML = imageUploadField('ab-portraitImage', about.portraitImage || 'assets/images/founder-portrait.png');
+  }
+
+  // Render Timeline Milestones
+  var timeline = about.timeline || [];
+  var el = document.getElementById('timeline-editor');
+  if (!el) return;
+
+  if (!timeline.length) {
+    el.innerHTML = emptyState('No timeline milestones added yet. Click "Add Timeline Milestone" to add one.');
+    return;
+  }
+
+  el.innerHTML = timeline.map(function (item, idx) {
+    var actions =
+      toggleBtn(item.enabled !== false, "toggleTimelineItem(" + idx + ")") +
+      '<button class="icon-btn icon-btn--edit" title="Edit" onclick="openModal(\'timeline-item\', null, ' + idx + ')">' + SVG_EDIT + '</button>' +
+      '<button class="icon-btn icon-btn--delete" title="Delete" onclick="deleteTimelineItem(' + idx + ')">' + SVG_DEL + '</button>';
+
+    var title = 'Year ' + escHtml(item.year || 'N/A');
+    var desc = escHtml(item.text || 'No description');
+
+    return simpleRow('📅', title, desc, item.enabled !== false, actions);
+  }).join('');
+}
+
+function saveAboutSettings() {
+  var about = SHData.get('about') || JSON.parse(JSON.stringify(SHData.defaults.about));
+
+  var lblEl = document.getElementById('ab-label');
+  var tpEl = document.getElementById('ab-titlePrefix');
+  var tgEl = document.getElementById('ab-titleGradient');
+  var qEl = document.getElementById('ab-quote');
+  var bEl = document.getElementById('ab-bio');
+  var imgEl = document.getElementById('ab-portraitImage');
+
+  about.label = lblEl ? lblEl.value.trim() : 'Our Story';
+  about.titlePrefix = tpEl ? tpEl.value : 'Built By ';
+  about.titleGradient = tgEl ? tgEl.value : 'Local Experts';
+  about.quote = qEl ? qEl.value.trim() : '';
+  about.bio = bEl ? bEl.value.trim() : '';
+  if (imgEl) about.portraitImage = imgEl.value.trim();
+
+  SHData.set('about', about);
+  showToast('Story content saved successfully!');
+  renderAboutEditor();
+}
+
+function toggleTimelineItem(idx) {
+  var about = SHData.get('about') || JSON.parse(JSON.stringify(SHData.defaults.about));
+  if (about.timeline && about.timeline[idx]) {
+    about.timeline[idx].enabled = about.timeline[idx].enabled === false ? true : false;
+    SHData.set('about', about);
+    renderAboutEditor();
+    showToast('Visibility updated');
+  }
+}
+
+function deleteTimelineItem(idx) {
+  if (!confirm('Delete this timeline milestone?')) return;
+  var about = SHData.get('about') || JSON.parse(JSON.stringify(SHData.defaults.about));
+  if (about.timeline) {
+    about.timeline.splice(idx, 1);
+    SHData.set('about', about);
+    renderAboutEditor();
+    showToast('Milestone deleted', false);
+  }
+}
+
 // ─── MODAL CONTROLLER ─────────────────────────────────
 var _modalCtx = null;
 function openModal(type, ctx1, ctx2) {
@@ -736,6 +829,12 @@ function openModal(type, ctx1, ctx2) {
     item = ctx2 !== null && ctx2 !== undefined ? contacts[ctx2] : {};
     titleEl.textContent = ctx2 !== null && ctx2 !== undefined ? 'Edit Contact Location' : 'Add Contact Location';
     html = contactForm(item);
+  } else if (type === 'timeline-item') {
+    var about = SHData.get('about') || JSON.parse(JSON.stringify(SHData.defaults.about));
+    var timeline = about.timeline || [];
+    item = ctx2 !== null && ctx2 !== undefined ? timeline[ctx2] : {};
+    titleEl.textContent = ctx2 !== null && ctx2 !== undefined ? 'Edit Milestone' : 'Add Timeline Milestone';
+    html = timelineItemForm(item);
   }
 
   body.innerHTML = html;
@@ -971,6 +1070,22 @@ function saveModal() {
     if (isEdit) contacts[ctx2] = newC; else contacts.push(newC);
     SHData.set('contacts', contacts);
     renderContactsEditor();
+  }
+  else if (type === 'timeline-item') {
+    var about = SHData.get('about') || JSON.parse(JSON.stringify(SHData.defaults.about));
+    if (!about.timeline) about.timeline = [];
+    var existing = isEdit ? about.timeline[ctx2] : {};
+    var newItem = {
+      id: isEdit ? existing.id : 'tl-' + Date.now(),
+      enabled: existing.enabled !== false,
+      year: v('f-year'),
+      text: v('f-text')
+    };
+    if (!newItem.year) { showToast('Year is required', false); return; }
+    if (!newItem.text) { showToast('Milestone description is required', false); return; }
+    if (isEdit) about.timeline[ctx2] = newItem; else about.timeline.push(newItem);
+    SHData.set('about', about);
+    renderAboutEditor();
   }
 
   showToast('Saved successfully');
@@ -1209,6 +1324,11 @@ function contactForm(item) {
     field('Phone Number *', 'f-phone', item.phone, 'text', 'e.g. +91 91499 74118') +
     field('WhatsApp Number * (digits only, e.g. 919149974118)', 'f-whatsapp', item.whatsapp, 'text', '919149974118') +
     '</div>';
+}
+function timelineItemForm(item) {
+  item = item || {};
+  return field('Year / Date * (e.g. 2024)', 'f-year', item.year, 'text', 'e.g. 2024') +
+    fieldTA('Milestone Description *', 'f-text', item.text, 3, 'Describe the milestone achievement...');
 }
 
 // ─── ITINERARY EDITOR ─────────────────────────────────

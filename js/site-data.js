@@ -17,6 +17,21 @@ const SHData = (function () {
       footerCopyright: '© 2024 Shred Himalayas. All rights reserved. Crafted with love in Kashmir.'
     },
 
+    about: {
+      label: 'Our Story',
+      titlePrefix: 'Built By ',
+      titleGradient: 'Local Experts',
+      quote: '"We don\'t just show you Kashmir — we share the Kashmir we grew up in, the one that lives in our hearts."',
+      bio: 'Shred Himalayas was born from a passion for the mountains and a desire to show the world the real Kashmir. As locals who grew up skiing the slopes of Gulmarg and trekking the Great Lakes, we know these mountains like the back of our hands. Every experience we craft carries the authenticity that only a local can provide.',
+      portraitImage: 'assets/images/founder-portrait.png',
+      timeline: [
+        { id: 't1', year: '2018', text: 'Started as local ski guides in Gulmarg, sharing our passion with travelers.', enabled: true },
+        { id: 't2', year: '2020', text: 'Officially launched Shred Himalayas as a licensed premium travel company.', enabled: true },
+        { id: 't3', year: '2022', text: 'Expanded to trekking, sightseeing, and luxury tour packages across Kashmir.', enabled: true },
+        { id: 't4', year: '2024', text: 'Trusted by 2000+ guests with a perfect 5-star rating on Google Reviews.', enabled: true }
+      ]
+    },
+
     seo: {
       metaTitle: 'Shred Himalayas — Premium Himalayan Adventures & Ski Experiences in Kashmir',
       metaDescription: 'Luxury adventures, ski experiences, treks, and bespoke Himalayan journeys crafted by local experts in Kashmir. Experience the Himalayas beyond the ordinary.',
@@ -1576,13 +1591,57 @@ const SHData = (function () {
     }).join('');
   }
 
+  /* ─── RENDER OUR STORY / ABOUT ─── */
+  function renderAbout(containerId) {
+    var el = document.getElementById(containerId || 'about-container');
+    if (!el) return;
+
+    function esc(s) {
+      if (!s) return '';
+      return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    var about = get('about');
+    if (!about || typeof about !== 'object') about = defaults.about;
+
+    var portraitImg = about.portraitImage || 'assets/images/founder-portrait.png';
+    var label = about.label || 'Our Story';
+    var titlePrefix = about.titlePrefix !== undefined ? about.titlePrefix : 'Built By ';
+    var titleGradient = about.titleGradient !== undefined ? about.titleGradient : 'Local Experts';
+    var quote = about.quote || '';
+    var bio = about.bio || '';
+    var timeline = about.timeline || (defaults.about ? defaults.about.timeline : []);
+
+    var activeTimeline = timeline.filter(function (item) { return item.enabled !== false; });
+
+    var timelineHtml = activeTimeline.map(function (item) {
+      return '<div class="about__timeline-item">' +
+        '  <span class="about__timeline-year">' + esc(item.year) + '</span>' +
+        '  <p class="about__timeline-text">' + esc(item.text) + '</p>' +
+        '</div>';
+    }).join('');
+
+    el.innerHTML =
+      '<div class="about__portrait reveal-left" data-speed="0.94">' +
+      '  <img src="' + esc(portraitImg) + '" alt="Founder of Shred Himalayas" class="about__portrait-image">' +
+      '  <div class="about__portrait-frame"></div>' +
+      '</div>' +
+      '<div class="about__content reveal-right">' +
+      '  <p class="section-label">' + esc(label) + '</p>' +
+      '  <h2 class="section-title split-text">' + esc(titlePrefix) + '<span class="text-gradient">' + esc(titleGradient) + '</span></h2>' +
+      '  <blockquote class="about__quote">' + esc(quote) + '</blockquote>' +
+      '  <p class="about__bio">' + esc(bio) + '</p>' +
+      '  <div class="about__timeline">' + timelineHtml + '</div>' +
+      '</div>';
+  }
+
   // Public API
   return {
     get, set, reset, defaults,
     getPolicies, setPolicies,
     renderSkiing, renderSnowboarding, renderTrekking,
     renderPackages, renderActivities, renderRentals, renderRentalPage,
-    renderTestimonials, renderHero, renderFooter, updateWhatsApp,
+    renderTestimonials, renderHero, renderAbout, renderFooter, updateWhatsApp,
     renderTransportPage, renderContact, renderSEO, renderTeam
   };
 })();

@@ -2010,6 +2010,7 @@
         grid-template-columns: 1fr
       }
     }
+  </style>
   <link rel="stylesheet" href="css/theme.css?v=1">
   <style>
     /* ============================================
@@ -2318,6 +2319,12 @@
                 <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
               </svg><span>Our Team</span>
             </div>
+            <div class="nv" data-page="about" onclick="navigate(this)">
+              <svg class="nv-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+              </svg><span>Our Story</span>
+            </div>
           </div>
           <div class="sb-sec">
             <span class="sb-lbl">Configuration & Legal</span>
@@ -2589,6 +2596,70 @@
             </button>
           </div>
           <div class="simple-list" id="team-editor"></div>
+        </div>
+        <div class="pg" id="page-about">
+          <div class="pg-hd">
+            <div class="pg-ht">
+              <div class="pg-ico">📖</div>
+              <div>
+                <h1>Our Story Management</h1>
+                <p>Edit the "Built By Local Experts" story section, founder quote, bio text, portrait image, and timeline milestones on the homepage.</p>
+              </div>
+            </div>
+            <button class="add-btn" onclick="saveAboutSettings()">💾 Save Story Content</button>
+          </div>
+
+          <div class="settings-grid" style="grid-template-columns: 1fr 1fr; margin-bottom: 24px;">
+            <div class="settings-card">
+              <div class="settings-card-header">
+                <div class="settings-card-icon">📝</div>
+                <h3>Headlines & Description</h3>
+              </div>
+              <div class="field">
+                <label>Section Tagline Label</label>
+                <input type="text" id="ab-label" placeholder="Our Story">
+              </div>
+              <div class="form-row">
+                <div class="field">
+                  <label>Title Prefix</label>
+                  <input type="text" id="ab-titlePrefix" placeholder="Built By ">
+                </div>
+                <div class="field">
+                  <label>Title Highlight (Gradient)</label>
+                  <input type="text" id="ab-titleGradient" placeholder="Local Experts">
+                </div>
+              </div>
+              <div class="field">
+                <label>Founder Quote</label>
+                <textarea id="ab-quote" rows="3" placeholder="&quot;We don't just show you Kashmir...&quot;"></textarea>
+              </div>
+              <div class="field">
+                <label>Bio / Story Paragraph</label>
+                <textarea id="ab-bio" rows="5" placeholder="Shred Himalayas was born from a passion..."></textarea>
+              </div>
+            </div>
+
+            <div class="settings-card">
+              <div class="settings-card-header">
+                <div class="settings-card-icon">🖼️</div>
+                <h3>Founder / Guide Portrait</h3>
+              </div>
+              <div id="ab-portrait-field-container"></div>
+              <button class="save-btn" style="margin-top: 24px; width: 100%;" onclick="saveAboutSettings()">💾 Save Story Content</button>
+            </div>
+          </div>
+
+          <div class="section-bar">
+            <h2>Story Timeline Milestones</h2>
+            <button class="add-btn" onclick="openModal('timeline-item', null, null)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="12" y1="5" x2="12" y2="19" />
+                <line x1="5" y1="12" x2="19" y2="12" />
+              </svg>
+              Add Timeline Milestone
+            </button>
+          </div>
+          <div class="simple-list" id="timeline-editor"></div>
         </div>
         <div class="pg" id="page-policies">
           <div class="pg-hd">
