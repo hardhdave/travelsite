@@ -2010,8 +2010,132 @@
         grid-template-columns: 1fr
       }
     }
-  </style>
   <link rel="stylesheet" href="css/theme.css?v=1">
+  <style>
+    /* ============================================
+       ADMIN FORM INPUT FIELDS — HIGH VISIBILITY STYLES
+       ============================================ */
+
+    .fg label,
+    .field label,
+    .modal-header h2,
+    .settings-card-header h3,
+    .seo-field-label {
+      color: #00441B !important;
+      font-weight: 800 !important;
+      font-size: 12px !important;
+      letter-spacing: 0.05em !important;
+      text-transform: uppercase !important;
+      margin-bottom: 6px !important;
+    }
+
+    /* Clear, distinct, visible input controls */
+    .fg input,
+    .field input,
+    .field textarea,
+    .field select,
+    .tag-custom-input,
+    .seo-field-card input,
+    .seo-field-card textarea,
+    .seo-field-card select,
+    #kw-ghost-input,
+    .modal input,
+    .modal textarea,
+    .modal select,
+    .settings-card input,
+    .settings-card textarea,
+    .settings-card select {
+      background-color: #F4F8F5 !important; /* Soft light sage background so inputs stand out from white cards */
+      border: 1.5px solid #238B45 !important; /* Distinct crisp green border */
+      color: #00441B !important; /* Dark bold text */
+      font-weight: 600 !important;
+      font-size: 14px !important;
+      padding: 11px 15px !important;
+      border-radius: 8px !important;
+      box-shadow: inset 0 1px 3px rgba(0, 68, 27, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04) !important;
+      transition: all 0.2s ease !important;
+    }
+
+    /* Hover state */
+    .fg input:hover,
+    .field input:hover,
+    .field textarea:hover,
+    .field select:hover,
+    .modal input:hover,
+    .modal textarea:hover,
+    .modal select:hover,
+    .settings-card input:hover,
+    .settings-card textarea:hover,
+    .settings-card select:hover {
+      background-color: #FFFFFF !important;
+      border-color: #006D2C !important;
+    }
+
+    /* Focus state - vivid active highlight */
+    .fg input:focus,
+    .field input:focus,
+    .field textarea:focus,
+    .field select:focus,
+    .tag-custom-input:focus,
+    .seo-field-card input:focus,
+    .seo-field-card textarea:focus,
+    .seo-field-card select:focus,
+    .modal input:focus,
+    .modal textarea:focus,
+    .modal select:focus,
+    .settings-card input:focus,
+    .settings-card textarea:focus,
+    .settings-card select:focus {
+      background-color: #FFFFFF !important;
+      border-color: #238B45 !important;
+      box-shadow: 0 0 0 4px rgba(35, 139, 69, 0.2), 0 2px 8px rgba(35, 139, 69, 0.15) !important;
+      outline: none !important;
+      color: #00441B !important;
+    }
+
+    /* High visibility placeholders */
+    .fg input::placeholder,
+    .field input::placeholder,
+    .field textarea::placeholder,
+    .modal input::placeholder,
+    .modal textarea::placeholder,
+    .settings-card input::placeholder,
+    .settings-card textarea::placeholder {
+      color: #64748B !important;
+      font-weight: 400 !important;
+      opacity: 0.9 !important;
+    }
+
+    /* File upload button styling */
+    .img-upload-row .import-btn,
+    .tag-add-btn {
+      background: #238B45 !important;
+      color: #ffffff !important;
+      border: 1px solid #238B45 !important;
+      font-weight: 700 !important;
+      padding: 10px 16px !important;
+      border-radius: 8px !important;
+      cursor: pointer !important;
+      transition: all 0.2s ease !important;
+    }
+
+    .img-upload-row .import-btn:hover,
+    .tag-add-btn:hover {
+      background: #006D2C !important;
+      border-color: #006D2C !important;
+    }
+
+    /* Select dropdown arrow fix */
+    .field select,
+    .modal select,
+    .settings-card select {
+      background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23238B45' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") !important;
+      background-repeat: no-repeat !important;
+      background-position: right 14px center !important;
+      background-size: 14px !important;
+      padding-right: 38px !important;
+    }
+  </style>
 </head>
 
 <body>
