@@ -50,6 +50,39 @@ const SHData = (function () {
       }
     ],
 
+    team: [
+      {
+        id: 't1',
+        name: 'Akash Lone',
+        role: 'Founder & Lead Himalayan Guide',
+        badge: '12+ Yrs Exp',
+        description: 'Native of Tangmarg with over 12 years of high-altitude mountaineering, ski coaching, and backcountry leadership across Gulmarg and Kashmir passes.',
+        photo: 'assets/images/akash-avatar.jpg',
+        whatsapp: '919149974118',
+        enabled: true
+      },
+      {
+        id: 't2',
+        name: 'Tariq Ahmad',
+        role: 'Senior Ski & Snowboard Instructor',
+        badge: 'Certified Coach',
+        description: 'FIS-certified alpine ski instructor specializing in technical slope coaching, powder carving, and backcountry avalanche safety protocols.',
+        photo: 'assets/images/skiing-action.png',
+        whatsapp: '919149974118',
+        enabled: true
+      },
+      {
+        id: 't3',
+        name: 'Rayees Bhatt',
+        role: 'Trek Leader & Expedition Specialist',
+        badge: 'Expedition Lead',
+        description: 'Veteran Himalayan trek leader who has successfully guided 150+ expeditions through Kashmir Great Lakes, Sonamarg glaciers, and Gurez Valley.',
+        photo: 'assets/images/trekking-landscape.png',
+        whatsapp: '919149974118',
+        enabled: true
+      }
+    ],
+
     skiing: [
       {
         id: 'cat-learn-ski', title: 'Learn to Ski',
@@ -1495,6 +1528,54 @@ const SHData = (function () {
     }
   }
 
+  /* ─── RENDER OUR TEAM ─── */
+  function renderTeam(containerId) {
+    var el = document.getElementById(containerId || 'team-cards-container');
+    if (!el) return;
+
+    function esc(s) {
+      if (!s) return '';
+      return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    var team = get('team');
+    if (!team || !Array.isArray(team)) team = defaults.team;
+
+    var activeMembers = team.filter(function (m) { return m.enabled !== false; });
+    if (!activeMembers.length) {
+      el.innerHTML = '<div style="grid-column: 1/-1; text-align: center; color: rgba(255,255,255,0.6); padding: 40px; font-family: var(--font-body);">No team members listed currently.</div>';
+      return;
+    }
+
+    el.innerHTML = activeMembers.map(function (m) {
+      var photoSrc = m.photo || 'assets/images/akash-avatar.jpg';
+      var firstFirstName = (m.name || 'Guide').trim().split(' ')[0];
+      var waMsg = encodeURIComponent("Hi " + (m.name || 'Shred Himalayas Team') + "! I'd like to inquire about your Kashmir adventures.");
+      var waNum = m.whatsapp || (get('settings') || {}).whatsappNumber || '919149974118';
+      var waLink = "https://wa.me/" + waNum + "?text=" + waMsg;
+
+      return '<div class="team-card">' +
+        '  <div class="team-card__image-wrap">' +
+        '    <img src="' + esc(photoSrc) + '" alt="' + esc(m.name) + '" class="team-card__photo" loading="lazy" onerror="this.onerror=null;this.src=\'assets/images/akash-avatar.jpg\'">' +
+        '    <div class="team-card__overlay"></div>' +
+        '    <div class="team-card__overlay-bottom"></div>' +
+        (m.badge ? '    <span class="team-card__badge">' + esc(m.badge) + '</span>' : '') +
+        '  </div>' +
+        '  <div class="team-card__content">' +
+        '    <h3 class="team-card__name">' + esc(m.name) + '</h3>' +
+        '    <div class="team-card__role">' + esc(m.role || 'Himalayan Specialist') + '</div>' +
+        '    <p class="team-card__desc">' + esc(m.description || '') + '</p>' +
+        '    <div class="team-card__footer">' +
+        '      <a href="' + esc(waLink) + '" target="_blank" rel="noopener noreferrer" class="team-card__contact-btn">' +
+        '        <span>Chat with ' + esc(firstFirstName) + '</span>' +
+        '        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style="display:inline-block;vertical-align:middle;margin-left:6px;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>' +
+        '      </a>' +
+        '    </div>' +
+        '  </div>' +
+        '</div>';
+    }).join('');
+  }
+
   // Public API
   return {
     get, set, reset, defaults,
@@ -1502,7 +1583,7 @@ const SHData = (function () {
     renderSkiing, renderSnowboarding, renderTrekking,
     renderPackages, renderActivities, renderRentals, renderRentalPage,
     renderTestimonials, renderHero, renderFooter, updateWhatsApp,
-    renderTransportPage, renderContact, renderSEO
+    renderTransportPage, renderContact, renderSEO, renderTeam
   };
 })();
 

@@ -91,6 +91,7 @@ function renderPage(page) {
     case 'packages': renderPackagesEditor(); break;
     case 'itineraries': renderItinerariesEditor(); break;
     case 'testimonials': renderTestimonialsEditor(); break;
+    case 'team': renderTeamEditor(); break;
     case 'policies': renderPoliciesEditor(); break;
     case 'settings': loadSettings(); break;
     case 'contacts': renderContactsEditor(); break;
@@ -105,6 +106,7 @@ function renderDashboard() {
   var trekking = SHData.get('trekking');
   var packages = SHData.get('packages');
   var testimonials = SHData.get('testimonials');
+  var team = SHData.get('team') || [];
   var activities = SHData.get('activities');
   var rentals = SHData.get('rentals');
   var transport = SHData.get('transport') || [];
@@ -122,6 +124,7 @@ function renderDashboard() {
     { icon: '🥾', label: 'Treks', count: trekking.length },
     { icon: '📦', label: 'Tour Packages', count: packages.length },
     { icon: '💬', label: 'Testimonials', count: testimonials.length },
+    { icon: '👥', label: 'Team Members', count: team.length },
     { icon: '🎯', label: 'Activities', count: actCount },
     { icon: '📍', label: 'Sightseeing', count: sightseeing.length },
     { icon: '🎿', label: 'Rentals', count: rentals.length },
@@ -145,6 +148,7 @@ function renderDashboard() {
     { icon: '📦', title: 'Packages', page: 'packages', count: packages.length + ' tours' },
     { icon: '📄', title: 'Itineraries', page: 'itineraries', count: packages.filter(function (p) { return p.itineraryPdf; }).length + ' PDFs' },
     { icon: '💬', title: 'Testimonials', page: 'testimonials', count: testimonials.length + ' reviews' },
+    { icon: '👥', title: 'Our Team', page: 'team', count: team.length + ' members' },
     { icon: '📞', title: 'Contact Info', page: 'contacts', count: contacts.length + ' locations' },
     { icon: '⚙️', title: 'Settings', page: 'settings', count: 'Site config' }
   ];
@@ -446,6 +450,38 @@ function renderTestimonialsEditor() {
   }).join('') : emptyState('No testimonials yet');
 }
 
+// ─── OUR TEAM EDITOR ──────────────────────────────────
+function renderTeamEditor() {
+  var team = SHData.get('team') || [];
+  var el = document.getElementById('team-editor');
+  if (!el) return;
+  el.innerHTML = team.length ? team.map(function (m, mi) {
+    var actions =
+      toggleBtn(m.enabled, "toggleTeamMember(" + mi + ")") +
+      '<button class="icon-btn icon-btn--edit" title="Edit" onclick="openModal(\'team-member\',null,' + mi + ')">' + SVG_EDIT + '</button>' +
+      '<button class="icon-btn icon-btn--delete" title="Delete" onclick="deleteTeamMember(' + mi + ')">' + SVG_DEL + '</button>';
+    var meta = escHtml(m.role || 'Team Member') + (m.badge ? ' &nbsp;·&nbsp; ' + escHtml(m.badge) : '');
+    return itemRow(m.photo || 'assets/images/akash-avatar.jpg', m.name, meta, m.enabled, actions);
+  }).join('') : emptyState('No team members added yet');
+}
+
+function toggleTeamMember(mi) {
+  var team = SHData.get('team') || [];
+  team[mi].enabled = team[mi].enabled === false ? true : false;
+  SHData.set('team', team);
+  renderTeamEditor();
+  showToast('Visibility updated');
+}
+
+function deleteTeamMember(mi) {
+  var team = SHData.get('team') || [];
+  if (!confirm('Delete team member "' + (team[mi].name || '') + '"?')) return;
+  team.splice(mi, 1);
+  SHData.set('team', team);
+  renderTeamEditor();
+  showToast('Deleted', false);
+}
+
 // ─── EMPTY STATE ─────────────────────────────────────
 function emptyState(msg) {
   return '<div class="empty-state"><div class="empty-state-icon">📭</div><strong>Nothing here yet</strong>' + msg + '</div>';
@@ -690,6 +726,11 @@ function openModal(type, ctx1, ctx2) {
     item = ctx2 !== null && ctx2 !== undefined ? tms[ctx2] : {};
     titleEl.textContent = ctx2 !== null && ctx2 !== undefined ? 'Edit Review' : 'Add Review';
     html = testimonialForm(item);
+  } else if (type === 'team-member') {
+    var team = SHData.get('team') || [];
+    item = ctx2 !== null && ctx2 !== undefined ? team[ctx2] : {};
+    titleEl.textContent = ctx2 !== null && ctx2 !== undefined ? 'Edit Team Member: ' + item.name : 'Add Team Member';
+    html = teamMemberForm(item);
   } else if (type === 'contact') {
     var contacts = SHData.get('contacts') || [];
     item = ctx2 !== null && ctx2 !== undefined ? contacts[ctx2] : {};
@@ -882,6 +923,24 @@ function saveModal() {
     if (!newTm.name || !newTm.text) { showToast('Name and review text required', false); return; }
     if (isEdit) tms[ctx2] = newTm; else tms.push(newTm);
     SHData.set('testimonials', tms); renderTestimonialsEditor();
+  }
+  else if (type === 'team-member') {
+    var team = SHData.get('team') || [];
+    var existing = isEdit ? team[ctx2] : {};
+    var newM = {
+      id: isEdit ? existing.id : 'team-' + Date.now(),
+      enabled: existing.enabled !== false,
+      name: v('f-name'),
+      role: v('f-role'),
+      badge: v('f-badge'),
+      whatsapp: v('f-whatsapp'),
+      photo: v('f-photo'),
+      description: v('f-desc')
+    };
+    if (!newM.name) { showToast('Name is required', false); return; }
+    if (!newM.role) { showToast('Role is required', false); return; }
+    if (isEdit) team[ctx2] = newM; else team.push(newM);
+    SHData.set('team', team); renderTeamEditor();
   }
   else if (type === 'contact') {
     var contacts = SHData.get('contacts') || [];
@@ -1129,6 +1188,13 @@ function testimonialForm(item) {
   return '<div class="form-row">' + field('Reviewer Name *', 'f-name', item.name) + field('Initials (e.g. AK)', 'f-initials', item.initials, 'text', 'AK') + '</div>' +
     field('Source (e.g. Google Review ★ 5.0)', 'f-source', item.source) +
     fieldTA('Review Text *', 'f-text', item.text, 5);
+}
+function teamMemberForm(item) {
+  item = item || {};
+  return '<div class="form-row">' + field('Full Name *', 'f-name', item.name) + field('Role / Title *', 'f-role', item.role) + '</div>' +
+    '<div class="form-row">' + field('Badge / Tag (e.g. 12+ Yrs Exp)', 'f-badge', item.badge) + field('WhatsApp Number (digits only)', 'f-whatsapp', item.whatsapp || '919149974118', 'text', '919149974118') + '</div>' +
+    imageUploadField('f-photo', item.photo) +
+    fieldTA('Description / Bio', 'f-desc', item.description, 3);
 }
 function contactForm(item) {
   return '<div class="form-row">' +

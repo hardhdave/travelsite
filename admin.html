@@ -2186,6 +2186,14 @@
                 <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
               </svg><span>Testimonials</span>
             </div>
+            <div class="nv" data-page="team" onclick="navigate(this)">
+              <svg class="nv-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg><span>Our Team</span>
+            </div>
           </div>
           <div class="sb-sec">
             <span class="sb-lbl">Configuration & Legal</span>
@@ -2435,6 +2443,28 @@
               </svg>Add Review</button>
           </div>
           <div class="simple-list" id="testimonials-editor"></div>
+        </div>
+        <div class="pg" id="page-team">
+          <div class="pg-hd">
+            <div class="pg-ht">
+              <div class="pg-ico">👥</div>
+              <div>
+                <h1>Our Team Management</h1>
+                <p>Add, update, and delete team member cards shown on the homepage.</p>
+              </div>
+            </div>
+          </div>
+          <div class="section-bar">
+            <h2>Team Members</h2>
+            <button class="add-btn" onclick="openModal('team-member',null,null)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="12" y1="5" x2="12" y2="19" />
+                <line x1="5" y1="12" x2="19" y2="12" />
+              </svg>
+              Add Team Member
+            </button>
+          </div>
+          <div class="simple-list" id="team-editor"></div>
         </div>
         <div class="pg" id="page-policies">
           <div class="pg-hd">
